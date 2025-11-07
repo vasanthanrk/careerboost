@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+venv/
+.DS_Store
+
+# Node / React
+node_modules/
+dist/
+build/
+*.log
+
+# Model / training outputs
+outputs_phi2/
+ai_resume_model_lora/
+ai_resume_model/
+*.pt
+*.bin
+*.safetensors
+*.ckpt
+
+# System files
+__MACOSX/
