@@ -1,0 +1,305 @@
+
+------------------------------------------
+timestamp: 2025-11-06T05:37:57.125805
+user_id: 1
+user_email: vasanthan.raju@gmail.com
+model: gemini-2.5-flash
+prompt:
+You are an expert AI job match analyzer.
+    Compare the following job description with this candidate’s resume.
+    Provide a **valid JSON** response only, with this structure:
+
+    {
+        "match_score": (integer 0–100),
+        "matched_skills": [list of matched skills],
+        "missing_skills": [list of missing skills],
+        "recommendations": [
+            {
+                "title": "short suggestion",
+                "description": "detailed recommendation",
+                "priority": "high"|"medium"|"low"
+            }
+        ],
+        "score_breakdown": {
+            "required_skills_match": (integer 0–100),
+            "experience_level_match": (integer 0–100),
+            "education_requirements_match": (integer 0–100),
+            "preferred_qualifications_match": (integer 0–100)
+        }
+    }
+
+    --- Job Description ---
+    Role Responsibilities
+
+Contribute to open-source Python repositories used by leading AI and data teams.
+Design, implement, and optimize backend systems in Python for scalability and maintainability.
+Collaborate asynchronously with global contributors using GitHub workflows (issues, PRs, code review).
+Ensure code quality with automated testing and documentation.
+Drive best practices for modularity, type safety, and performance.
+
+Qualifications
+
+Must-Have
+
+Minimum 2+ years of professional experience in Python backend development.
+Active and regular contributor to open-source repositories (verified via GitHub).
+Strong understanding of software design principles and backend architecture.
+Familiarity with modern development tools (pytest, black, flake8, Docker, GitHub Actions).
+Excellent written communication and ability to work independently in a remote, asynchronous environment.
+
+    --- Candidate Resume ---
+    
+    Name: Senior Software Engineer
+    Summary: Highly experienced and results-driven Senior Software Engineer with over 9 years of expertise in full-stack development, including recent experience as a Lead Software Development Engineer. Proven ability to lead complex projects from conception to deployment, design robust architectures, and mentor junior engineers. Specializes in developing scalable web applications using PHP (Laravel, CodeIgniter), Python (Django), and JavaScript frameworks (Vue.js, jQuery, AngularJS), with extensive experience in database management (MySQL, MongoDB) and RESTful API design. Adept at leveraging AI for innovative solutions and contributing to diverse domains including career building, e-commerce, healthcare, and booking systems.
+    Skills: CodeIgniter, Mean Stack, Agile Methodologies, Ubuntu, Git, Requirements Analysis, Software Design, Back-End Web Development, REST APIs, VUE3, AngularJS, AJAX, jQuery, MongoDB, MySQL, Django 2.1, Django, Python 3.7, Python, Laravel 11, Laravel 8, Laravel 5.4, Laravel, PHP Frameworks, PHP 8.2, PHP 7.3, PHP
+    Experience: Lead Software Development Engineer at Freelance, Senior Software Engineer at Tuna Software Solutions Pvt Ltd, Sr PHP developer at TechMaven IT Solutions Pvt. Ltd, Senior Software Engineer at AlignMinds Technologies, Senior Software Developer at Innoxgen Solutions Pvt Ltd, Senior Software Engineer at Acodez IT Solutions Pvt. Ltd., PHP Developer at Adwaita technology
+    Education: 
+    Projects: Ticketing System, School Management System, True-parking (Parking Slot Booking), filtr3 (Dating Application), 12amclub, Okazjo (Event Management Portal), QR Code Restaurant Food Booking Application, Online Medical Application (SAP Integration), Theater Booking Application, Support Ticketing Application, AI-based Career Building Application
+response:
+```json
+{
+    "match_score": 64,
+    "matched_skills": [
+        "Python backend development (9+ years experience with Python/Django, REST APIs, Backend Web Development)",
+        "Software design principles and backend architecture (Software Design, designing robust architectures)",
+        "Developing scalable web applications",
+        "Git",
+        "Ability to work independently (implied by Lead and Freelance roles)",
+        "Leveraging AI for innovative solutions (AI-based Career Building Application, relevant to AI teams focus)"
+    ],
+    "missing_skills": [
+        "Active and regular contributor to open-source repositories (verified via GitHub)",
+        "Familiarity with pytest",
+        "Familiarity with black",
+        "Familiarity with flake8",
+        "Familiarity with Docker",
+        "Familiarity with GitHub Actions",
+        "Specific experience with GitHub workflows (issues, PRs, code review)",
+        "Explicit mention of excellent written communication",
+        "Experience collaborating asynchronously with global contributors"
+    ],
+    "recommendations": [
+        {
+            "title": "Highlight Open-Source Contributions",
+            "description": "The job explicitly requires 'Active and regular contributor to open-source repositories (verified via GitHub)'. If you have any open-source contributions, add them to your resume with GitHub links. If not, consider starting to contribute to demonstrate this critical skill.",
+            "priority": "high"
+        },
+        {
+            "title": "Showcase Modern Python Tooling",
+            "description": "Familiarity with tools like pytest, black, flake8, Docker, and GitHub Actions is a 'Must-Have'. Update your 'Skills' section and project descriptions to include any experience you have with these specific tools. Even self-learned experience with personal projects can be valuable here.",
+            "priority": "high"
+        },
+        {
+            "title": "Emphasize Asynchronous and Remote Collaboration",
+            "description": "The role stresses asynchronous collaboration and working independently in a remote environment. While your Lead and Freelance experience implies independence, explicitly mention instances where you managed projects or collaborated remotely and asynchronously, highlighting your communication methods.",
+            "priority": "medium"
+        },
+        {
+            "title": "Tailor Summary for Role Focus",
+            "description": "Refine your resume summary to directly address the job's focus on Python backend, open-source contribution, and collaboration within AI/data teams. Currently, it's broad across full-stack and various technologies.",
+            "priority": "medium"
+        },
+        {
+            "title": "Detail GitHub Workflow Experience",
+            "description": "Beyond just listing 'Git', elaborate on your experience with GitHub workflows, specifically mentioning participation in issues, pull requests, and code reviews, which are core to the job's collaboration model.",
+            "priority": "low"
+        }
+    ],
+    "score_breakdown": {
+        "required_skills_match": 45,
+        "experience_level_match": 100,
+        "education_requirements_match": 100,
+        "preferred_qualifications_match": 60
+    }
+}
+```
+
+------------------------------------------
+timestamp: 2025-11-06T06:46:20.306348
+user_id: 1
+user_email: vasanthan.raju@gmail.com
+model: gemini-2.5-flash
+prompt:
+You are an expert AI job match analyzer.
+    Compare the following job description with this candidate’s resume.
+    Provide a **valid JSON** response only, with this structure:
+
+    {
+        "match_score": (integer 0–100),
+        "matched_skills": [list of matched skills],
+        "missing_skills": [list of missing skills],
+        "recommendations": [
+            {
+                "title": "short suggestion",
+                "description": "detailed recommendation",
+                "priority": "high"|"medium"|"low"
+            }
+        ],
+        "score_breakdown": {
+            "required_skills_match": (integer 0–100),
+            "experience_level_match": (integer 0–100),
+            "education_requirements_match": (integer 0–100),
+            "preferred_qualifications_match": (integer 0–100)
+        }
+    }
+
+    --- Job Description ---
+    Description:
+
+We are looking for a senior Python resource to create scripts for automated checking and correction of audio transcripts. Tasks include correcting timing alignment, speaker labeling, formatting, and tagging errors.
+
+
+Requirements:
+
+Strong experience in Python scripting
+Familiarity with audio transcript processing
+Attention to detail and ability to deliver quickly
+
+    --- Candidate Resume ---
+    
+    Name: Senior Software Engineer
+    Summary: Highly experienced and results-driven Senior Software Engineer with over 9 years of expertise in full-stack development, including recent experience as a Lead Software Development Engineer. Proven ability to lead complex projects from conception to deployment, design robust architectures, and mentor junior engineers. Specializes in developing scalable web applications using PHP (Laravel, CodeIgniter), Python (Django), and JavaScript frameworks (Vue.js, jQuery, AngularJS), with extensive experience in database management (MySQL, MongoDB) and RESTful API design. Adept at leveraging AI for innovative solutions and contributing to diverse domains including career building, e-commerce, healthcare, and booking systems.
+    Skills: CodeIgniter, Mean Stack, Agile Methodologies, Ubuntu, Git, Requirements Analysis, Software Design, Back-End Web Development, REST APIs, VUE3, AngularJS, AJAX, jQuery, MongoDB, MySQL, Django 2.1, Django, Python 3.7, Python, Laravel 11, Laravel 8, Laravel 5.4, Laravel, PHP Frameworks, PHP 8.2, PHP 7.3, PHP
+    Experience: Lead Software Development Engineer at Freelance, Senior Software Engineer at Tuna Software Solutions Pvt Ltd, Sr PHP developer at TechMaven IT Solutions Pvt. Ltd, Senior Software Engineer at AlignMinds Technologies, Senior Software Developer at Innoxgen Solutions Pvt Ltd, Senior Software Engineer at Acodez IT Solutions Pvt. Ltd., PHP Developer at Adwaita technology
+    Education: 
+    Projects: Ticketing System, School Management System, True-parking (Parking Slot Booking), filtr3 (Dating Application), 12amclub, Okazjo (Event Management Portal), QR Code Restaurant Food Booking Application, Online Medical Application (SAP Integration), Theater Booking Application, Support Ticketing Application, AI-based Career Building Application
+response:
+{
+  "match_score": 68,
+  "matched_skills": [
+    "Python scripting",
+    "Python",
+    "Django",
+    "Senior Software Engineer experience",
+    "Attention to detail (implied by senior role)",
+    "Ability to deliver quickly (implied by senior role)",
+    "Scripting (implied by Python development)"
+  ],
+  "missing_skills": [
+    "Familiarity with audio transcript processing",
+    "Timing alignment correction",
+    "Speaker labeling correction",
+    "Formatting error correction (audio transcripts)",
+    "Tagging error correction (audio transcripts)"
+  ],
+  "recommendations": [
+    {
+      "title": "Highlight relevant Python scripting projects",
+      "description": "While the resume demonstrates strong Python experience, it would be beneficial to specifically highlight projects or experiences where Python was used for scripting, automation, or data processing tasks, especially if any involved text manipulation or natural language processing.",
+      "priority": "medium"
+    },
+    {
+      "title": "Address audio transcript processing gap",
+      "description": "The most significant gap is the lack of explicit experience with audio transcript processing. The candidate should consider how their existing skills in AI, data processing, or text analysis could be applied or transferable to this specific domain. If they have any related projects (e.g., text parsing, NLP on transcribed data, or even audio-related work), they should explicitly mention them.",
+      "priority": "high"
+    },
+    {
+      "title": "Emphasize problem-solving for specific errors",
+      "description": "The job description specifically mentions correcting timing alignment, speaker labeling, formatting, and tagging errors. The candidate should think about past experiences where they had to identify and correct complex errors in data or text, and describe their approach to problem-solving and detail orientation.",
+      "priority": "medium"
+    },
+    {
+      "title": "Provide education details",
+      "description": "Although not explicitly required in the job description, including education details is standard for a resume and can help strengthen the overall profile.",
+      "priority": "low"
+    }
+  ],
+  "score_breakdown": {
+    "required_skills_match": 60,
+    "experience_level_match": 95,
+    "education_requirements_match": 70,
+    "preferred_qualifications_match": 70
+  }
+}
+
+------------------------------------------
+timestamp: 2025-11-06T14:19:42.269452
+user_id: 1
+user_email: vasanthan.raju@gmail.com
+model: gemini-2.5-flash
+prompt:
+You are an expert AI job match analyzer.
+    Compare the following job description with this candidate’s resume.
+    Provide a **valid JSON** response only, with this structure:
+
+    {
+        "match_score": (integer 0–100),
+        "matched_skills": [list of matched skills],
+        "missing_skills": [list of missing skills],
+        "recommendations": [
+            {
+                "title": "short suggestion",
+                "description": "detailed recommendation",
+                "priority": "high"|"medium"|"low"
+            }
+        ],
+        "score_breakdown": {
+            "required_skills_match": (integer 0–100),
+            "experience_level_match": (integer 0–100),
+            "education_requirements_match": (integer 0–100),
+            "preferred_qualifications_match": (integer 0–100)
+        }
+    }
+
+    --- Job Description ---
+    Description:
+
+We are looking for a senior Python resource to create scripts for automated checking and correction of audio transcripts. Tasks include correcting timing alignment, speaker labeling, formatting, and tagging errors.
+
+
+Requirements:
+
+Strong experience in Python scripting
+Familiarity with audio transcript processing
+Attention to detail and ability to deliver quickly
+
+    --- Candidate Resume ---
+    
+    Name: Senior Software Engineer
+    Summary: Highly experienced and results-driven Senior Software Engineer with over 9 years of expertise in full-stack development, including recent experience as a Lead Software Development Engineer. Proven ability to lead complex projects from conception to deployment, design robust architectures, and mentor junior engineers. Specializes in developing scalable web applications using PHP (Laravel, CodeIgniter), Python (Django), and JavaScript frameworks (Vue.js, jQuery, AngularJS), with extensive experience in database management (MySQL, MongoDB) and RESTful API design. Adept at leveraging AI for innovative solutions and contributing to diverse domains including career building, e-commerce, healthcare, and booking systems.
+    Skills: CodeIgniter, Mean Stack, Agile Methodologies, Ubuntu, Git, Requirements Analysis, Software Design, Back-End Web Development, REST APIs, VUE3, AngularJS, AJAX, jQuery, MongoDB, MySQL, Django 2.1, Django, Python 3.7, Python, Laravel 11, Laravel 8, Laravel 5.4, Laravel, PHP Frameworks, PHP 8.2, PHP 7.3, PHP
+    Experience: Lead Software Development Engineer at Freelance, Senior Software Engineer at Tuna Software Solutions Pvt Ltd, Sr PHP developer at TechMaven IT Solutions Pvt. Ltd, Senior Software Engineer at AlignMinds Technologies, Senior Software Developer at Innoxgen Solutions Pvt Ltd, Senior Software Engineer at Acodez IT Solutions Pvt. Ltd., PHP Developer at Adwaita technology
+    Education: 
+    Projects: Ticketing System, School Management System, True-parking (Parking Slot Booking), filtr3 (Dating Application), 12amclub, Okazjo (Event Management Portal), QR Code Restaurant Food Booking Application, Online Medical Application (SAP Integration), Theater Booking Application, Support Ticketing Application, AI-based Career Building Application
+response:
+{
+    "match_score": 65,
+    "matched_skills": [
+        "Python",
+        "Python scripting (implied by Python expertise and development roles)",
+        "Django",
+        "Senior-level experience (9+ years as Senior Software Engineer, Lead Software Development Engineer)",
+        "Attention to detail (implied by leading complex projects and quality assurance in development)",
+        "Ability to deliver quickly (implied by project management and lead roles)"
+    ],
+    "missing_skills": [
+        "Familiarity with audio transcript processing",
+        "Correcting timing alignment (specific to audio transcripts)",
+        "Speaker labeling (specific to audio transcripts)",
+        "Formatting errors (specific to audio transcripts)",
+        "Tagging errors (specific to audio transcripts)"
+    ],
+    "recommendations": [
+        {
+            "title": "Address Audio Transcript Processing Gap",
+            "description": "The most significant gap is the lack of experience with audio transcript processing. Consider highlighting any transferable skills from your 'AI for innovative solutions' or data processing experience that could be relevant to parsing, cleaning, or manipulating text/sequential data, even if not specifically audio transcripts. If possible, pursue a personal project or contribute to open-source related to natural language processing, speech-to-text post-processing, or similar domains to demonstrate capability.",
+            "priority": "high"
+        },
+        {
+            "title": "Emphasize Python Scripting and Data Manipulation",
+            "description": "While your Python experience is clear, the job focuses on 'scripting' for 'automated checking and correction'. Tailor your resume to specifically highlight projects or tasks where you used Python for data processing, text analysis, automation, or quality control, rather than just web development (Django). Describe specific challenges overcome in data manipulation or validation.",
+            "priority": "medium"
+        },
+        {
+            "title": "Quantify Problem-Solving in Detail",
+            "description": "The job requires correcting 'timing alignment, speaker labeling, formatting, and tagging errors'. Although you lack direct audio experience, detail instances in past projects where you designed solutions for complex data validation, error detection, or automated correction in other domains. Quantify the impact of these solutions where possible.",
+            "priority": "medium"
+        }
+    ],
+    "score_breakdown": {
+        "required_skills_match": 60,
+        "experience_level_match": 100,
+        "education_requirements_match": 90,
+        "preferred_qualifications_match": 100
+    }
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body {
+      font-family: "Helvetica", sans-serif;
+      margin: 40px;
+      color: #333;
+    }
+    h1 {
+      color: #4a148c;
+      margin-bottom: 0;
+      font-size: 2.5em;
+    }
+    h2 {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 4px;
+      color: #555;
+      margin-top: 25px;
+      font-size: 1.5em;
+    }
+    .contact-info {
+      color: #666;
+      margin-top: 5px;
+      font-size: 0.95em;
+    }
+    .section {
+      margin-top: 25px;
+    }
+    .skill-tag {
+      background-color: #ede7f6;
+      color: #4a148c;
+      padding: 5px 10px;
+      border-radius: 12px;
+      margin: 2px;
+      display: inline-block;
+      font-size: 0.9em;
+    }
+    .job-title {
+      font-weight: bold;
+      color: #4a148c;
+      font-size: 1.1em;
+    }
+    .company {
+      color: #666;
+    }
+    .project-name {
+      font-weight: bold;
+      color: #4a148c;
+      font-size: 1.05em;
+    }
+    .description {
+      margin-top: 5px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <h1>{{ resume.name }}</h1>
+  <p class="contact-info">
+    {{ resume.email }} | {{ resume.phone }} | {{ resume.location }}
+  </p>
+
+  <div class="section">
+    <h2>Summary</h2>
+    <p>{{ resume.summary }}</p>
+  </div>
+
+  <div class="section">
+    <h2>Experience</h2>
+    {% for exp in resume.experiences %}
+      <div style="margin-bottom: 15px;">
+        <div class="job-title">{{ exp.title }}</div>
+        <div class="company">{{ exp.company }} ({{ exp.duration }})</div>
+        <p class="description">{{ exp.description }}</p>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="section">
+    <h2>Education</h2>
+    {% for edu in resume.educations %}
+      <p><strong>{{ edu.degree }}</strong>, {{ edu.school }} ({{ edu.year }})</p>
+    {% endfor %}
+  </div>
+
+  <div class="section">
+    <h2>Skills</h2>
+    {% for skill in resume.skills %}
+      <span class="skill-tag">{{ skill.skill }}</span>
+    {% endfor %}
+  </div>
+
+  <div class="section">
+    <h2>Projects</h2>
+    {% for proj in resume.projects %}
+      <div style="margin-bottom: 12px;">
+        <div class="project-name">{{ proj.name }}</div>
+        <p class="description">{{ proj.description }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</body>
+</html>

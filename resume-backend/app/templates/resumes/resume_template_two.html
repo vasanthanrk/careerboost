@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      margin: 0;
+      color: #2c3e50;
+    }
+    .template2 {
+      max-width: 100%;
+    }
+    .template2 .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 50px 40px;
+      text-align: center;
+    }
+    .template2 h1 {
+      margin: 0;
+      font-size: 2.8em;
+      letter-spacing: 2px;
+    }
+    .template2 .contact-info {
+      margin-top: 15px;
+      font-size: 0.95em;
+      opacity: 0.95;
+    }
+    .template2 .content {
+      padding: 40px;
+    }
+    .template2 h2 {
+      color: #667eea;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      font-size: 1.4em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .template2 .skill-tag {
+      background-color: #f0f4ff;
+      color: #667eea;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin: 4px;
+      display: inline-block;
+      font-size: 0.85em;
+      border: 1px solid #667eea;
+    }
+    .template2 .experience-item,
+    .template2 .project-item {
+      margin-bottom: 20px;
+      padding-left: 20px;
+      border-left: 3px solid #667eea;
+    }
+    .template2 .job-title,
+    .template2 .project-name {
+      font-weight: bold;
+      color: #2c3e50;
+      font-size: 1.1em;
+    }
+    .template2 .company-info {
+      color: #7f8c8d;
+      font-size: 0.95em;
+      margin-top: 3px;
+    }
+    .template2 .description {
+      margin-top: 8px;
+      line-height: 1.6;
+      color: #34495e;
+    }
+    .template2 .education-item {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="template2">
+    <div class="header">
+      <h1>{{ resume.name }}</h1>
+      <div class="contact-info">
+        {{ resume.email }} • {{ resume.phone }} • {{ resume.location }}
+      </div>
+    </div>
+
+    <div class="content">
+      <div>
+        <h2>Professional Summary</h2>
+        <p style="line-height: 1.6;">{{ resume.summary }}</p>
+      </div>
+
+      <div>
+        <h2>Work Experience</h2>
+        {% for exp in resume.experiences %}
+          <div class="experience-item">
+            <div class="job-title">{{ exp.title }}</div>
+            <div class="company-info">{{ exp.company }} • {{ exp.duration }}</div>
+            <p class="description">{{ exp.description }}</p>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div>
+        <h2>Education</h2>
+        {% for edu in resume.educations %}
+          <div class="education-item">
+            <strong>{{ edu.degree }}</strong>
+            <div style="color: #7f8c8d; font-size: 0.9em;">
+              {{ edu.school }} • {{ edu.year }}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div>
+        <h2>Technical Skills</h2>
+        <div>
+          {% for skill in resume.skills %}
+            <span class="skill-tag">{{ skill.skill }}</span>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div>
+        <h2>Projects</h2>
+        {% for proj in resume.projects %}
+          <div class="project-item">
+            <div class="project-name">{{ proj.name }}</div>
+            <p class="description">{{ proj.description }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</body>
+</html>

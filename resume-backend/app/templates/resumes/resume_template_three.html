@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body {
+      font-family: "Georgia", serif;
+      margin: 0;
+      color: #1a1a1a;
+    }
+    .template3 {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 100%;
+    }
+    .template3 .sidebar {
+      background-color: #e74c3c;
+      color: white;
+      padding: 40px 25px;
+    }
+    .template3 .sidebar h1 {
+      margin: 0 0 10px 0;
+      font-size: 2em;
+      line-height: 1.2;
+    }
+    .template3 .sidebar .contact-info {
+      font-size: 0.85em;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      opacity: 0.95;
+      font-family: 'Arial', sans-serif;
+    }
+    .template3 .sidebar h2 {
+      font-size: 1.2em;
+      margin-top: 25px;
+      margin-bottom: 12px;
+      border-bottom: 2px solid rgba(255,255,255,0.3);
+      padding-bottom: 5px;
+    }
+    .template3 .sidebar .skill-item {
+      background-color: rgba(255,255,255,0.2);
+      padding: 5px 10px;
+      margin: 5px 0;
+      border-radius: 3px;
+      font-size: 0.9em;
+      font-family: 'Arial', sans-serif;
+    }
+    .template3 .main-content {
+      padding: 40px;
+      background-color: white;
+    }
+    .template3 .main-content h2 {
+      color: #e74c3c;
+      font-size: 1.6em;
+      margin-top: 25px;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #e74c3c;
+      padding-bottom: 8px;
+    }
+    .template3 .experience-item,
+    .template3 .project-item {
+      margin-bottom: 20px;
+      position: relative;
+      padding-left: 0;
+    }
+    .template3 .job-title,
+    .template3 .project-name {
+      font-weight: bold;
+      color: #2c3e50;
+      font-size: 1.15em;
+    }
+    .template3 .company-info {
+      color: #7f8c8d;
+      font-style: italic;
+      margin-top: 3px;
+      font-size: 0.95em;
+    }
+    .template3 .description {
+      margin-top: 8px;
+      line-height: 1.7;
+      color: #444;
+    }
+    .template3 .education-item {
+      margin-bottom: 15px;
+    }
+    .template3 .summary {
+      line-height: 1.7;
+      color: #444;
+      font-size: 1.05em;
+    }
+  </style>
+</head>
+<body>
+  <div class="template3">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h1>{{ resume.name }}</h1>
+      <div class="contact-info">
+        {{ resume.email }}<br />
+        {{ resume.phone }}<br />
+        {{ resume.location }}
+      </div>
+
+      <h2>Skills</h2>
+      {% for skill in resume.skills %}
+        <div class="skill-item">{{ skill.skill }}</div>
+      {% endfor %}
+
+      <h2>Education</h2>
+      {% for edu in resume.educations %}
+        <div class="education-item">
+          <div style="font-weight: bold;">{{ edu.degree }}</div>
+          <div style="font-size: 0.9em; margin-top: 3px;">{{ edu.school }}</div>
+          <div style="font-size: 0.85em; opacity: 0.9;">{{ edu.year }}</div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <h2>Professional Summary</h2>
+      <p class="summary">{{ resume.summary }}</p>
+
+      <h2>Work Experience</h2>
+      {% for exp in resume.experiences %}
+        <div class="experience-item">
+          <div class="job-title">{{ exp.title }}</div>
+          <div class="company-info">{{ exp.company }} | {{ exp.duration }}</div>
+          <p class="description">{{ exp.description }}</p>
+        </div>
+      {% endfor %}
+
+      <h2>Featured Projects</h2>
+      {% for proj in resume.projects %}
+        <div class="project-item">
+          <div class="project-name">{{ proj.name }}</div>
+          <p class="description">{{ proj.description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+</html>

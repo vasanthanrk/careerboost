@@ -1,0 +1,93 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: cb_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    command: ["--default-authentication-plugin=mysql_native_password"]
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: ./resume-backend
+      dockerfile: Dockerfile
+    container_name: cb_backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8082:8082"
+    env_file:
+      - ./resume-backend/.env
+    volumes:
+      - ./resume-backend:/app # ✅ sync local code
+      - /app/__pycache__      # avoid cache overwrite
+      - /app/alembic          # keep migration files persistent
+    environment:
+      - WATCHFILES_FORCE_POLLING=true
+    command: >
+      sh -c "
+        until mysqladmin ping -h db -u${MYSQL_USER} -p${MYSQL_PASSWORD} --silent; do
+          echo 'Waiting for MySQL...'; sleep 2;
+        done;
+        alembic upgrade head &&
+        uvicorn app.main:app --host 0.0.0.0 --port 8082 --reload
+      "
+
+  frontend:
+    build:
+      context: ./ai.resume
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE: ${VITE_API_BASE}
+    container_name: cb_frontend
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./ai.resume:/app
+      - /app/node_modules
+    command: npm run dev -- --host 0.0.0.0 --port 8081
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - backend
+    restart: always
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: cb_phpmyadmin
+    restart: always
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_USER: ${MYSQL_USER}
+      PMA_PASSWORD: ${MYSQL_PASSWORD}
+      PMA_PORT: 3306
+    ports:
+      - "8083:80"
+    volumes:
+      - ./phpmyadmin.conf:/etc/apache2/conf-enabled/servername.conf
+
+volumes:
+  mysql_data:
+
+networks:
+  default:
+    driver: bridge

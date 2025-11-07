@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ personal.name }} - {{ personal.title }}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Optional custom colors -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            violet: {
+              50: '#f3e8ff',
+              600: '#7c3aed',
+            },
+            purple: {
+              600: '#9333ea',
+            },
+            pink: {
+              600: '#db2777',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-violet-600 via-purple-600 to-pink-600 px-8 py-24 overflow-hidden text-white">
+    <div class="absolute inset-0 opacity-20">
+      <div class="absolute top-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+      <div class="absolute bottom-10 right-10 w-96 h-96 bg-purple-300 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
+      <!-- Avatar -->
+      <div class="relative">
+        <div class="w-48 h-48 rounded-full bg-gradient-to-br from-white to-violet-100 flex items-center justify-center shadow-2xl border-4 border-white text-5xl font-bold text-violet-600">
+          {{ personal.name[:2] | upper }}
+        </div>
+        <div class="absolute -bottom-2 -right-2 bg-green-400 w-12 h-12 rounded-full border-4 border-white flex items-center justify-center">
+          ✨
+        </div>
+      </div>
+
+      <!-- Hero Content -->
+      <div class="flex-1 text-center md:text-left">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-4">
+          <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+          <span>Available for opportunities</span>
+        </div>
+        <h1 class="text-4xl font-bold mb-2">{{ personal.name }}</h1>
+        <p class="text-violet-100 text-lg mb-4">{{ personal.title }}</p>
+        <p class="text-white/90 mb-6 max-w-2xl">{{ personal.bio }}</p>
+
+        <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+          {% if personal.github_url %}
+          <a href="{{ personal.github_url }}" class="px-4 py-2 bg-white/90 hover:bg-white rounded-lg text-gray-800 font-medium">GitHub</a>
+          {% endif %}
+          {% if personal.linkedin_url %}
+          <a href="{{ personal.linkedin_url }}" class="px-4 py-2 bg-white/90 hover:bg-white rounded-lg text-gray-800 font-medium">LinkedIn</a>
+          {% endif %}
+          {% if personal.email %}
+          <a href="mailto:{{ personal.email }}" class="px-4 py-2 bg-white/90 hover:bg-white rounded-lg text-gray-800 font-medium">Email</a>
+          {% endif %}
+          {% if personal.website_url %}
+          <a href="{{ personal.website_url }}" class="px-4 py-2 bg-white/90 hover:bg-white rounded-lg text-gray-800 font-medium">Website</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="px-8 py-20 bg-gradient-to-br from-gray-50 to-violet-50">
+    <div class="max-w-5xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 text-violet-700 rounded-full mb-4">✨ Tech Stack</div>
+      <h2 class="text-3xl font-bold mb-3 bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">Skills & Technologies</h2>
+      <p class="text-gray-600 mb-8">Tools and technologies I work with daily</p>
+
+      <div class="flex flex-wrap justify-center gap-4">
+        {% for skill in skills %}
+        <div class="group px-6 py-3 bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-violet-200 hover:-translate-y-1">
+          <span class="bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent group-hover:from-purple-600 group-hover:to-pink-600">
+            {{ skill }}
+          </span>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section class="px-8 py-20 bg-white">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-full mb-4">💼 Career Journey</div>
+        <h2 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent mb-3">
+          Professional Experience
+        </h2>
+        <p class="text-gray-600">My professional journey and achievements</p>
+      </div>
+
+      <div class="space-y-8">
+        {% for exp in experiences %}
+        <div class="group relative p-8 bg-gradient-to-br from-blue-50 to-violet-50 rounded-2xl border-2 border-blue-100 hover:border-violet-300 hover:shadow-xl transition-all duration-300">
+          <div class="absolute top-8 left-0 w-1 h-16 bg-gradient-to-b from-blue-600 to-violet-600 rounded-r-full"></div>
+          <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+            <div>
+              <h3 class="text-violet-900 mb-2 text-lg font-semibold">{{ exp.job_title }}</h3>
+              <p class="text-blue-600">{{ exp.company }}</p>
+            </div>
+            <span class="bg-gradient-to-r from-blue-600 to-violet-600 text-white px-4 py-2 rounded-lg text-sm">{{ exp.duration }}</span>
+          </div>
+          <p class="text-gray-700 leading-relaxed">{{ exp.description }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="px-8 py-20 bg-gradient-to-br from-pink-50 to-orange-50">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-pink-100 text-pink-700 rounded-full mb-4">🚀 Portfolio</div>
+        <h2 class="text-3xl font-bold bg-gradient-to-r from-pink-600 to-orange-600 bg-clip-text text-transparent mb-3">Featured Projects</h2>
+        <p class="text-gray-600">Some of my favorite projects I've worked on</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for project in projects %}
+        <div class="group bg-white rounded-2xl overflow-hidden border-2 border-pink-100 hover:border-orange-300 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+          <div class="h-48 bg-gradient-to-br from-pink-400 to-orange-400 flex items-center justify-center text-white font-semibold text-xl">
+            {{ project.name }}
+          </div>
+          <div class="p-6 space-y-4">
+            <p class="text-gray-700">{{ project.description }}</p>
+            <div class="flex flex-wrap gap-2">
+              {% for tech in project.technologies.split(',') %}
+              <span class="px-3 py-1 bg-gradient-to-r from-pink-100 to-orange-100 text-pink-700 rounded-lg">{{ tech.strip() }}</span>
+              {% endfor %}
+            </div>
+            {% if project.project_url %}
+            <a href="{{ project.project_url }}" target="_blank" class="block text-center border border-pink-300 text-pink-700 py-2 rounded-lg hover:bg-pink-50 transition">View Project</a>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="px-8 py-20 bg-gradient-to-br from-violet-600 via-purple-600 to-pink-600 text-white">
+    <div class="max-w-3xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 rounded-full mb-4">✉️ Let's Connect</div>
+      <h2 class="text-3xl font-bold mb-4">Get In Touch</h2>
+      <p class="text-violet-100 mb-10">
+        Have a project in mind or want to collaborate? I'd love to hear from you!
+      </p>
+      <form class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 space-y-5">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <input type="text" placeholder="Your Name" class="w-full px-4 py-2 rounded-lg bg-white/90 text-gray-800" />
+          <input type="email" placeholder="Your Email" class="w-full px-4 py-2 rounded-lg bg-white/90 text-gray-800" />
+        </div>
+        <input type="text" placeholder="Subject" class="w-full px-4 py-2 rounded-lg bg-white/90 text-gray-800" />
+        <textarea rows="5" placeholder="Your Message" class="w-full px-4 py-2 rounded-lg bg-white/90 text-gray-800 resize-none"></textarea>
+        <button type="submit" class="w-full bg-white text-violet-600 py-3 rounded-lg font-semibold hover:bg-violet-50">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="px-8 py-12 bg-gray-900 text-white">
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="text-center md:text-left">
+        <p class="text-gray-400 mb-2">© {{ personal.name }} . All rights reserved.</p>
+        <p class="text-gray-500 flex items-center justify-center md:justify-start gap-2">
+          Built with <span class="text-violet-400">✨</span> CareerBoost AI
+        </p>
+      </div>
+      <div class="flex gap-4">
+        {% if personal.github_url %}
+        <a href="{{ personal.github_url }}" class="text-gray-400 hover:text-white">🐙</a>
+        {% endif %}
+        {% if personal.linkedin_url %}
+        <a href="{{ personal.linkedin_url }}" class="text-gray-400 hover:text-white">🔗</a>
+        {% endif %}
+        {% if personal.email %}
+        <a href="mailto:{{ personal.email }}" class="text-gray-400 hover:text-white">📧</a>
+        {% endif %}
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
