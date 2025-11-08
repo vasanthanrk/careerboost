@@ -24,3 +24,5 @@ ai_resume_model/
 
 # System files
 __MACOSX/
+
+.vscode/
