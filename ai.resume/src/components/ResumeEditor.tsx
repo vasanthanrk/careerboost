@@ -7,11 +7,14 @@ import { Label } from './ui/label';
 import { ScrollArea } from './ui/scroll-area';
 import { Textarea } from './ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
+import FeedbackPopup from "./FeedbackPopup";
+import FeatureLimitPopup from "./FeatureLimitPopup" 
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Sparkles, Download, Save, Plus, Trash2, FileText, Eye, Wand2 } from 'lucide-react';
 import { toast } from 'sonner@2.0.3';
 import api from '../api/axiosClient';
+import { handleFeatureCheck } from '../utils/featureCheck'
 
 export function ResumeEditor() {
   const [isGenerating, setIsGenerating] = useState(false);
@@ -29,12 +32,42 @@ export function ResumeEditor() {
   const [isOpen, setIsOpen] = useState(false);
   const [templates, setTemplates] = useState([]);
   const [selectedTemplate, setSelectedTemplate] = useState(null);
+  const [showFeedbackOnDownload, setShowFeedbackOnDownload] = useState(false);
+  const [showFeedbackOnResumeAi, setShowFeedbackOnResumeAi] = useState(false);
 
+  const [showLimitPopup, setShowLimitPopup] = useState(false);
+  const [activeFeature, setActiveFeature] = useState("");
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  
   useEffect(() => {
     const fetchResume = async () => {
       try {
         const res = await api.get('/resume');
-        setResumeData(res.data);
+
+        // Handle case where backend returns nested resume_data
+        const data = res.data?.resume_data ? res.data.resume_data : res.data;
+
+        // Validate structure and set default fields
+        setResumeData({
+          name: data?.name || '',
+          email: data?.email || '',
+          phone: data?.phone || '',
+          location: data?.location || '',
+          jobrole: data?.jobrole || '',
+          linkedin_url: data?.linkedin_url || '',
+          git_url: data?.git_url || '',
+          portfolio_url: data?.portfolio_url || '',
+          summary: data?.summary || '',
+          experiences: Array.isArray(data?.experiences) ? data.experiences : [],
+          educations: Array.isArray(data?.educations) ? data.educations : [],
+          skills: Array.isArray(data?.skills) ? data.skills : [],
+          projects: Array.isArray(data?.projects) ? data.projects : [],
+          certifications: Array.isArray(data?.certifications) ? data.certifications : [],
+          languages: Array.isArray(data?.languages) ? data.languages : [],
+          achievements: Array.isArray(data?.achievements) ? data.achievements : [],
+          keywords: Array.isArray(data?.keywords) ? data.keywords : []
+        });
       } catch (err: any) {
         if (err.response?.status === 404) {
           // No resume yet — initialize empty
@@ -50,14 +83,17 @@ export function ResumeEditor() {
             projects: []
           });
         } else {
+          console.error("Resume fetch error:", err);
           toast.error('Failed to load resume data');
         }
       } finally {
         setIsLoading(false);
       }
     };
+
     fetchResume();
   }, []);
+
 
   useEffect(() => {
     if (isOpen) {
@@ -70,9 +106,16 @@ export function ResumeEditor() {
       toast.error('Please fill in all required fields');
       return;
     }
-
-    setIsGenerating(true);
     try {
+      const allowed = await handleFeatureCheck("ai_resume_generate");
+      if (!allowed) {
+        setShowAIModal(false);
+        setActiveFeature("ai_resume_generate");
+        setShowLimitPopup(true);
+        return
+      };
+
+      setIsGenerating(true);
       const res = await api.post("/ai/generate", aiPrompt);
 
       // Update resumeData with generated content
@@ -85,6 +128,8 @@ export function ResumeEditor() {
         projects: res.data.projects || [],
       }));
 
+      // setTimeout(() => setShowFeedbackOnResumeAi(true), 500);
+      
       toast.success("AI Resume generated successfully!");
       setShowAIModal(false);
     } catch (err: any) {
@@ -142,6 +187,14 @@ export function ResumeEditor() {
 
   const handleDownload = async () => {
     try {
+      const allowed = await handleFeatureCheck("resume_download");
+      if (!allowed) {
+        setIsOpen(false)
+        setActiveFeature("resume_download");
+        setShowLimitPopup(true);
+        return
+      };
+      
       // Make API call to generate PDF
       const response = await api.get("/resume/download/" + selectedTemplate, {
         responseType: "blob", // Important for binary data
@@ -171,7 +224,15 @@ export function ResumeEditor() {
 
       // Clean up memory
       window.URL.revokeObjectURL(url);
+      setIsOpen(false)
 
+      const showFeedback = response.headers["x-show-feedback"] === "true";
+      console.log(response.headers);
+      console.log(showFeedback);
+      if (showFeedback) {
+        setTimeout(() => setShowFeedbackOnDownload(true), 500);
+      }
+    
       toast.success(`PDF downloaded: ${fileName}`);
     } catch (err) {
       console.error("Error downloading PDF:", err);
@@ -257,6 +318,13 @@ export function ResumeEditor() {
   if (isLoading) return <div className="p-8 text-center text-gray-600">Loading resume...</div>;
   return (
     <DashboardLayout>
+      {showLimitPopup && (
+        <FeatureLimitPopup
+          featureName={activeFeature}
+          onClose={() => setShowLimitPopup(false)}
+        />
+      )}
+
       <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
           <DialogContent
@@ -333,6 +401,14 @@ export function ResumeEditor() {
           </DialogContent>
         </Dialog>
       </div>
+
+      {showFeedbackOnDownload && (
+        <FeedbackPopup userId={user.id} typeUsed="resume_download" onClose={() => setShowFeedbackOnDownload(false)}/>
+      )}
+
+      {/* {showFeedbackOnResumeAi && (
+        <FeedbackPopup userId={user.id} typeUsed="resume_ai" onClose={() => setShowFeedbackOnResumeAi(false)}/>
+      )} */}
 
       <div className="space-y-6">
         {/* Modern Header */}
@@ -432,14 +508,36 @@ export function ResumeEditor() {
             </CardHeader>
             <CardContent>
               <Tabs defaultValue="personal" className="w-full">
-                <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 mb-6">
-                  <TabsTrigger value="personal">Personal</TabsTrigger>
-                  <TabsTrigger value="summary">Summary</TabsTrigger>
-                  <TabsTrigger value="experience">Experience</TabsTrigger>
-                  <TabsTrigger value="education">Education</TabsTrigger>
-                  <TabsTrigger value="skills">Skills</TabsTrigger>
-                  <TabsTrigger value="projects">Projects</TabsTrigger>
-                </TabsList>
+                <div className="relative -mx-4 sm:-mx-6">
+                  <div className="overflow-x-auto scrollbar-hide">
+                    <TabsList className="flex gap-4 min-w-max border-b border-gray-200 dark:border-gray-700">
+                      {[
+                        { value: "personal", label: "Personal" },
+                        { value: "summary", label: "Summary" },
+                        { value: "experience", label: "Experience" },
+                        { value: "education", label: "Education" },
+                        { value: "skills", label: "Skills" },
+                        { value: "projects", label: "Projects" },
+                        { value: "certifications", label: "Certifications" },
+                        { value: "languages", label: "Languages" },
+                        { value: "achievements", label: "Achievements" },
+                      ].map((tab) => (
+                        <TabsTrigger
+                          key={tab.value}
+                          value={tab.value}
+                          className="relative px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 
+                                    data-[state=active]:text-violet-600 dark:data-[state=active]:text-violet-400
+                                    after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px]
+                                    after:bg-violet-600 dark:after:bg-violet-400 after:scale-x-0
+                                    data-[state=active]:after:scale-x-100 after:transition-transform after:duration-300
+                                    hover:text-violet-600 dark:hover:text-violet-400"
+                        >
+                          {tab.label}
+                        </TabsTrigger>
+                      ))}
+                    </TabsList>
+                  </div>
+                </div>
 
                 <TabsContent value="personal" className="space-y-4">
                   <div className="space-y-2">
@@ -447,6 +545,14 @@ export function ResumeEditor() {
                     <Input
                       value={resumeData.name}
                       onChange={(e) => setResumeData({ ...resumeData, name: e.target.value })}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Job Role</Label>
+                    <Input
+                      placeholder="e.g., Senior Software Engineer"
+                      value={resumeData.jobrole}
+                      onChange={(e) => setResumeData({ ...resumeData, jobrole: e.target.value })}
                     />
                   </div>
                   <div className="space-y-2">
@@ -471,7 +577,29 @@ export function ResumeEditor() {
                       onChange={(e) => setResumeData({ ...resumeData, location: e.target.value })}
                     />
                   </div>
+                  <div className="space-y-2">
+                    <Label>LinkedIn URL</Label>
+                    <Input
+                      value={resumeData.linkedin_url}
+                      onChange={(e) => setResumeData({ ...resumeData, linkedin_url: e.target.value })}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>GitHub URL</Label>
+                    <Input
+                      value={resumeData.git_url}
+                      onChange={(e) => setResumeData({ ...resumeData, git_url: e.target.value })}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Portfolio URL</Label>
+                    <Input
+                      value={resumeData.portfolio_url}
+                      onChange={(e) => setResumeData({ ...resumeData, portfolio_url: e.target.value })}
+                    />
+                  </div>
                 </TabsContent>
+
 
                 <TabsContent value="summary" className="space-y-4">
                   <div className="space-y-2">
@@ -557,6 +685,92 @@ export function ResumeEditor() {
                     Add Project
                   </Button>
                 </TabsContent>
+                {/* Certifications */}
+                <TabsContent value="certifications" className="space-y-4">
+                  {resumeData.certifications.map((cert, index) => (
+                    <div key={index} className="p-4 border rounded-lg space-y-3">
+                      <Input placeholder="Certification Name" value={cert.name} onChange={(e) => {
+                        const updated = [...resumeData.certifications];
+                        updated[index].name = e.target.value;
+                        setResumeData({ ...resumeData, certifications: updated });
+                      }} />
+                      <Input placeholder="Issuer" value={cert.issuer} onChange={(e) => {
+                        const updated = [...resumeData.certifications];
+                        updated[index].issuer = e.target.value;
+                        setResumeData({ ...resumeData, certifications: updated });
+                      }} />
+                      <Input placeholder="Year" value={cert.year} onChange={(e) => {
+                        const updated = [...resumeData.certifications];
+                        updated[index].year = e.target.value;
+                        setResumeData({ ...resumeData, certifications: updated });
+                      }} />
+                      <Button variant="ghost" size="sm" className="text-red-600" onClick={() => {
+                        const updated = resumeData.certifications.filter((_, i) => i !== index);
+                        setResumeData({ ...resumeData, certifications: updated });
+                      }}>
+                        <Trash2 className="w-4 h-4 mr-2" /> Remove
+                      </Button>
+                    </div>
+                  ))}
+                  <Button variant="outline" className="w-full" onClick={() => setResumeData({ ...resumeData, certifications: [...resumeData.certifications, { name: '', issuer: '', year: '' }] })}>
+                    <Plus className="w-4 h-4 mr-2" /> Add Certification
+                  </Button>
+                </TabsContent>
+
+                {/* Languages */}
+                <TabsContent value="languages" className="space-y-4">
+                  {resumeData.languages.map((lang, index) => (
+                    <div key={index} className="p-4 border rounded-lg space-y-3">
+                      <Input placeholder="Language" value={lang.language} onChange={(e) => {
+                        const updated = [...resumeData.languages];
+                        updated[index].language = e.target.value;
+                        setResumeData({ ...resumeData, languages: updated });
+                      }} />
+                      <Input placeholder="Proficiency (e.g. Fluent, Intermediate)" value={lang.proficiency} onChange={(e) => {
+                        const updated = [...resumeData.languages];
+                        updated[index].proficiency = e.target.value;
+                        setResumeData({ ...resumeData, languages: updated });
+                      }} />
+                      <Button variant="ghost" size="sm" className="text-red-600" onClick={() => {
+                        const updated = resumeData.languages.filter((_, i) => i !== index);
+                        setResumeData({ ...resumeData, languages: updated });
+                      }}>
+                        <Trash2 className="w-4 h-4 mr-2" /> Remove
+                      </Button>
+                    </div>
+                  ))}
+                  <Button variant="outline" className="w-full" onClick={() => setResumeData({ ...resumeData, languages: [...resumeData.languages, { language: '', proficiency: '' }] })}>
+                    <Plus className="w-4 h-4 mr-2" /> Add Language
+                  </Button>
+                </TabsContent>
+
+                {/* Achievements */}
+                <TabsContent value="achievements" className="space-y-4">
+                  {resumeData.achievements.map((ach, index) => (
+                    <div key={index} className="p-4 border rounded-lg space-y-3">
+                      <Input placeholder="Achievement Title" value={ach.title} onChange={(e) => {
+                        const updated = [...resumeData.achievements];
+                        updated[index].title = e.target.value;
+                        setResumeData({ ...resumeData, achievements: updated });
+                      }} />
+                      <Textarea placeholder="Description" value={ach.description} rows={2} onChange={(e) => {
+                        const updated = [...resumeData.achievements];
+                        updated[index].description = e.target.value;
+                        setResumeData({ ...resumeData, achievements: updated });
+                      }} />
+                      <Button variant="ghost" size="sm" className="text-red-600" onClick={() => {
+                        const updated = resumeData.achievements.filter((_, i) => i !== index);
+                        setResumeData({ ...resumeData, achievements: updated });
+                      }}>
+                        <Trash2 className="w-4 h-4 mr-2" /> Remove
+                      </Button>
+                    </div>
+                  ))}
+                  <Button variant="outline" className="w-full" onClick={() => setResumeData({ ...resumeData, achievements: [...resumeData.achievements, { title: '', description: '' }] })}>
+                    <Plus className="w-4 h-4 mr-2" /> Add Achievement
+                  </Button>
+                </TabsContent>
+
               </Tabs>
             </CardContent>
           </Card>
@@ -573,11 +787,16 @@ export function ResumeEditor() {
                 <div className="bg-white border-2 border-gray-200 rounded-lg p-8 space-y-6 min-h-[600px]">
                   {/* Header */}
                   <div className="border-b-2 border-violet-600 pb-4">
-                    <h2 className="text-violet-900">{resumeData.name}</h2>
+                    <h2 className="text-violet-900">{resumeData.name||"Your Name"}</h2>
                     <div className="flex flex-wrap gap-4 mt-2 text-gray-600">
-                      <span>{resumeData.email}</span>
-                      <span>{resumeData.phone}</span>
-                      <span>{resumeData.location}</span>
+                      <span>{resumeData.email || 'Email'}</span> |
+                      <span>{resumeData.phone || 'Phone'}</span> |
+                      <span>{resumeData.location || "Location"}</span>
+                    </div>
+                    <div className="flex flex-wrap gap-4 mt-2 text-gray-600">
+                      <span>{resumeData.linkedin_url || 'LinkedIn'}</span> |
+                      <span>{resumeData.git_url || 'Git'}</span> |
+                      <span>{resumeData.portfolio_url || 'Portfolio'}</span>
                     </div>
                   </div>
 
@@ -653,6 +872,43 @@ export function ResumeEditor() {
                       </div>
                     ))}
                   </div>
+                  {/* Certifications */}
+                
+                  <div>
+                    <h3 className="text-violet-900 mb-3">Certifications</h3>
+                    {
+                      resumeData.certifications.length === 0 && (
+                        <p className="text-gray-500">No Certifications added.</p>
+                    )}
+                    {resumeData.certifications.map((cert, index) => (
+                      <p key={index} className="text-gray-700">{cert.name} — {cert.issuer} ({cert.year})</p>
+                    ))}
+                  </div>
+
+                  {/* Languages */}
+                  
+                  <div>
+                    <h3 className="text-violet-900 mb-3">Languages</h3>
+                    {
+                      resumeData.languages.length === 0 && (
+                        <p className="text-gray-500">No Languages added.</p>
+                    )}
+                    {resumeData.languages.map((lang, index) => (
+                      <p key={index} className="text-gray-700">{lang.language} — {lang.proficiency}</p>
+                    ))}
+                  </div>
+
+                  {/* Achievements */}
+                  <div>
+                    <h3 className="text-violet-900 mb-3">Achievements</h3>
+                    {
+                      resumeData.achievements.length === 0 && (
+                        <p className="text-gray-500">No Achievements added.</p>
+                    )}
+                    {resumeData.achievements.map((ach, index) => (
+                      <p key={index} className="text-gray-700">{ach.title}: {ach.description}</p>
+                    ))}
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -667,10 +923,6 @@ export function ResumeEditor() {
                 <Download className="w-4 h-4 mr-2" />
                 Download PDF
               </Button>
-              {/* <Button onClick={handleDownload} className="flex-1 bg-violet-600 hover:bg-violet-700">
-                <Download className="w-4 h-4 mr-2" />
-                Download PDF
-              </Button> */}
             </div>
           </div>):null}
         </div>

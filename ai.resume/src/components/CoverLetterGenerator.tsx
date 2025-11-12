@@ -10,6 +10,9 @@ import { Sparkles, Copy, RefreshCw, Download, Mail, Wand2, FileText } from 'luci
 import { toast } from 'sonner@2.0.3';
 import api from '../api/axiosClient';
 import ReactQuill from "react-quill";
+import FeatureLimitPopup from "./FeatureLimitPopup" 
+import { handleFeatureCheck } from '../utils/featureCheck'
+
 
 export function CoverLetterGenerator() {
   const [isGenerating, setIsGenerating] = useState(false);
@@ -21,15 +24,24 @@ export function CoverLetterGenerator() {
   });
   const [generatedLetter, setGeneratedLetter] = useState('');
 
+  const [showLimitPopup, setShowLimitPopup] = useState(false);
+  const [activeFeature, setActiveFeature] = useState("");
+
   const handleGenerate = async () => {
     if (!formData.jobRole || !formData.companyName) {
       toast.error('Please fill in Job Role and Company Name');
       return;
     }
 
-    setIsGenerating(true);
-
     try {
+      const allowed = await handleFeatureCheck("ai_cover_letter_generate");
+      if (!allowed) {
+        setActiveFeature("ai_cover_letter_generate");
+        setShowLimitPopup(true);
+        return
+      };
+
+      setIsGenerating(true);
       const res = await api.post('/ai/cover-letter', formData);
       setGeneratedLetter(res.data.cover_letter.replace(/\n/g, "<br/>"));
       toast.success('Cover letter generated successfully!');
@@ -62,6 +74,13 @@ export function CoverLetterGenerator() {
         coverLetter: generatedLetter
       }
 
+      const allowed = await handleFeatureCheck("cover_letter_download");
+      if (!allowed) {
+        setActiveFeature("cover_letter_download");
+        setShowLimitPopup(true);
+        return
+      };
+
       toast.info("Preparing your PDF...");
       const res = await api.post("/ai/cover-letter/pdf", data, {
         responseType: "blob",
@@ -87,6 +106,13 @@ export function CoverLetterGenerator() {
 
   return (
     <DashboardLayout>
+      {showLimitPopup && (
+        <FeatureLimitPopup
+          featureName={activeFeature}
+          onClose={() => setShowLimitPopup(false)}
+        />
+      )}
+      
       <div className="max-w-6xl mx-auto space-y-6">
         {/* Modern Header */}
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-green-600 via-emerald-600 to-teal-600 p-8 text-white shadow-xl">

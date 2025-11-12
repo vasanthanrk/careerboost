@@ -6,6 +6,7 @@ import { SignupPage } from './components/SignupPage';
 import { ForgotPasswordPage } from './components/ForgotPasswordPage';
 import { DashboardHome } from './components/DashboardHome';
 import { ResumeEditor } from './components/ResumeEditor';
+import { ATSScoreChecker}  from './components/ATSScoreChecker';
 import { CoverLetterGenerator } from './components/CoverLetterGenerator';
 import { JobFitAnalyzer } from './components/JobFitAnalyzer';
 import { JobMatchResult } from './components/JobMatchResult';
@@ -34,6 +35,7 @@ export default function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<DashboardHome />} />
             <Route path="/resume-builder" element={<ResumeEditor />} />
+            <Route path="/ats-checker" element={<ATSScoreChecker />} />
             <Route path="/cover-letter" element={<CoverLetterGenerator />} />
             <Route path="/job-fit" element={<JobFitAnalyzer />} />
             <Route path="/job-fit/result" element={<JobMatchResult />} />

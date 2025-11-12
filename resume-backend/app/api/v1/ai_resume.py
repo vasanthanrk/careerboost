@@ -40,14 +40,65 @@ def generate_ai_resume(prompt: AIPrompt,db: Session = Depends(get_db),  current_
         Experience level: {prompt.experienceLevel}.
         Additional info: {prompt.additionalInfo or "None"}.
 
+        need tobe ATS based data. object with the following schema strictly (even if some fields are empty)
+        please add experiences description if there is not provided for each jobs
         Return JSON with the following structure:
         {{
             "name": "string",
+            "email": "string",
+            "phone": "string",
+            "location": "string",
             "summary": "string",
-            "experiences": [{{"title": "string", "company": "string", "duration": "string", "description": "string"}}],
-            "educations": [{{"degree": "string", "school": "string", "year": "string"}}],
-            "skills": [{{"skill": "string"}}],
-            "projects": [{{"name": "string", "description": "string"}}]
+            "jobrole": "string",
+            "linkedin_url":"string",
+            "git_url":"string",
+            "portfolio_url":"string",
+            "experiences": [
+            {{
+                "title": "string",
+                "company": "string",
+                "duration": "string",
+                "description": "string"
+            }}
+            ],
+            "educations": [
+            {{
+                "degree": "string",
+                "school": "string",
+                "year": "string"
+            }}
+            ],
+            "skills": [
+            {{
+                "skill": "string"
+            }}
+            ],
+            "projects": [
+            {{
+                "name": "string",
+                "description": "string"
+            }}
+            ],
+            "certifications": [
+            {{
+                "name": "string",
+                "issuer": "string",
+                "year": "string"
+            }}
+            ],
+            "languages": [
+            {{
+                "language": "string",
+                "proficiency": "string"
+            }}
+            ],
+            "achievements": [
+            {{
+                "title": "string",
+                "description": "string"
+            }}
+            ],
+            "keywords": ["string", "..."]
         }}
         """
 
@@ -78,21 +129,6 @@ def generate_ai_resume(prompt: AIPrompt,db: Session = Depends(get_db),  current_
             model_name="gemini-2.5-flash"
         )
 
-
-        # Load OpenAI API Key from env
-        # openai.api_key = os.getenv("OPENAI_API_KEY")
-
-        # response = openai.ChatCompletion.create(
-        #     model="gpt-4o-mini",  # lightweight and cost-effective
-        #     messages=[
-        #         {"role": "system", "content": system_prompt},
-        #     ],
-        #     temperature=0.7,
-        # )
-
-        # text_output = response.choices[0].message.content.strip()
-
-        # data = json.loads(text_output)
         return data
 
     except Exception as e:

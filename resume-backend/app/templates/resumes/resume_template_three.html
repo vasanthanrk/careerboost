@@ -7,17 +7,24 @@
       font-family: "Georgia", serif;
       margin: 0;
       color: #1a1a1a;
+      background-color: white;
     }
     .template3 {
       display: grid;
       grid-template-columns: 280px 1fr;
       min-height: 100%;
     }
+    /* Sidebar & Main columns using inline-block for PDF safety */
     .template3 .sidebar {
+      float: left;
+      width: 260px;
       background-color: #e74c3c;
       color: white;
       padding: 40px 25px;
+      box-sizing: border-box;
+      min-height: 100vh;
     }
+    
     .template3 .sidebar h1 {
       margin: 0 0 10px 0;
       font-size: 2em;
@@ -46,8 +53,11 @@
       font-family: 'Arial', sans-serif;
     }
     .template3 .main-content {
+      margin-left: 260px; /* matches sidebar width */
       padding: 40px;
       background-color: white;
+      box-sizing: border-box;
+      min-height: 100vh;
     }
     .template3 .main-content h2 {
       color: #e74c3c;
@@ -87,6 +97,29 @@
       line-height: 1.7;
       color: #444;
       font-size: 1.05em;
+    }
+    /* Print/PDF-specific fixes */
+    @media print {
+      body {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .sidebar {
+        float: left;
+        width: 260px;
+        background-color: #e74c3c !important;
+        color: white !important;
+      }
+
+      .main-content {
+        margin-left: 260px;
+        page-break-inside: auto;
+      }
+
+      .template3 {
+        overflow: visible;
+      }
     }
   </style>
 </head>

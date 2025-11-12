@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api.v1 import health, auth, resume, ai_resume, ai_cover_letter, job_analyzer, linkedin_optimizer, portfolio, user
+from app.api.v1 import health, auth, resume, ai_resume, ai_cover_letter, job_analyzer, linkedin_optimizer, portfolio, user, feedback, user_metrics, ats
 from fastapi.staticfiles import StaticFiles
 import os
 
@@ -33,6 +33,9 @@ app.include_router(job_analyzer.router, prefix="/api/v1", tags=["Job Analyzer"])
 app.include_router(linkedin_optimizer.router, prefix="/api/v1", tags=["LinkedIn Optimizer"])
 app.include_router(portfolio.router, prefix="/api/v1", tags=["Portfolio"])
 app.include_router(user.router, prefix="/api/v1", tags=["User Settings"])
+app.include_router(feedback.router, prefix="/api/v1", tags=["User FeedBack"])
+app.include_router(user_metrics.router, prefix="/api/v1", tags=["User metrics"])
+app.include_router(ats.router, prefix="/api/v1", tags=["ats"])
 
 # Serve uploaded avatars
 # ✅ Mount uploads folder to serve files

@@ -8,6 +8,8 @@ import { Upload, FileText, Target } from 'lucide-react';
 import { toast } from 'sonner@2.0.3';
 import { Progress } from './ui/progress';
 import api from '../api/axiosClient';
+import FeatureLimitPopup from "./FeatureLimitPopup" 
+import { handleFeatureCheck } from '../utils/featureCheck'
 
 export function JobFitAnalyzer() {
   const navigate = useNavigate();
@@ -15,9 +17,11 @@ export function JobFitAnalyzer() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [analysisProgress, setAnalysisProgress] = useState(0);
 
+  const [showLimitPopup, setShowLimitPopup] = useState(false);
+  const [activeFeature, setActiveFeature] = useState("");
+
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    alert();
     if (file) {
       const formData = new FormData();
       formData.append("file", file);
@@ -38,6 +42,13 @@ export function JobFitAnalyzer() {
   };
 
   const processJD = async (formData) => {
+    const allowed = await handleFeatureCheck("job_fit_analysis");
+    if (!allowed) {
+      setActiveFeature("job_fit_analysis");
+      setShowLimitPopup(true);
+      return
+    };
+
     setIsAnalyzing(true);
     setAnalysisProgress(0);
 
@@ -67,58 +78,16 @@ export function JobFitAnalyzer() {
       setIsAnalyzing(false);
     }
   }
-
-  // const handleAnalyze = async () => {
-  //   if (!jobDescription.trim()) {
-  //     toast.error('Please paste a job description or upload a file');
-  //     return;
-  //   }
-
-  //   setIsAnalyzing(true);
-  //   setAnalysisProgress(0);
-
-  //   if (selectedFile) formData.append("file", selectedFile);
-  //   else formData.append("job_description", jobDescription);
-
-  //   try {
-  //     const res = await api.post("/job/analyze",
-  //       { job_description: jobDescription },
-  //       { headers: { "Content-Type": "application/json" } }
-  //     );
-
-  //     // Save result temporarily (or in context/store)
-  //     localStorage.setItem("job_analysis_result", JSON.stringify(res.data));
-
-  //     toast.success("Analysis complete!");
-  //     navigate("/job-fit/result");
-  //   } catch (error) {
-  //     console.error(error);
-  //     toast.error("Analysis failed");
-  //   } finally {
-  //     setIsAnalyzing(false);
-  //   }
-
-  //   // Simulate progress
-  //   const interval = setInterval(() => {
-  //     setAnalysisProgress((prev) => {
-  //       if (prev >= 100) {
-  //         clearInterval(interval);
-  //         return 100;
-  //       }
-  //       return prev + 10;
-  //     });
-  //   }, 200);
-
-  //   setTimeout(() => {
-  //     clearInterval(interval);
-  //     setIsAnalyzing(false);
-  //     toast.success('Analysis complete!');
-  //     navigate('/job-fit/result');
-  //   }, 2500);
-  // };
-
+  
   return (
     <DashboardLayout>
+      {showLimitPopup && (
+        <FeatureLimitPopup
+          featureName={activeFeature}
+          onClose={() => setShowLimitPopup(false)}
+        />
+      )}
+
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Header */}
         <div>

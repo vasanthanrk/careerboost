@@ -303,3 +303,380 @@ response:
         "preferred_qualifications_match": 100
     }
 }
+
+------------------------------------------
+timestamp: 2025-11-08T09:40:19.206933
+user_id: 1
+user_email: vasanthan.raju@gmail.com
+model: gemini-2.5-flash
+prompt:
+You are an expert AI job match analyzer.
+    Compare the following job description with this candidate’s resume.
+    Provide a **valid JSON** response only, with this structure:
+
+    {
+        "match_score": (integer 0–100),
+        "matched_skills": [list of matched skills],
+        "missing_skills": [list of missing skills],
+        "recommendations": [
+            {
+                "title": "short suggestion",
+                "description": "detailed recommendation",
+                "priority": "high"|"medium"|"low"
+            }
+        ],
+        "score_breakdown": {
+            "required_skills_match": (integer 0–100),
+            "experience_level_match": (integer 0–100),
+            "education_requirements_match": (integer 0–100),
+            "preferred_qualifications_match": (integer 0–100)
+        }
+    }
+
+    --- Job Description ---
+    Business Manager_Finance & Accounting
+
+Experience: 10 + Years
+Work Mode: Pan India | Work from Office
+
+Job description
+
+Build & Lead Finance & Accounting Staffing Business | Leadership Role @ Orcapod
+
+Are you a finance leader with an entrepreneurial spark who is ready to build and own a business vertical? Orcapod Consulting Services is hiring a Business Manager Finance & Accounting Unit to set up, scale, and lead our Finance & Accounting Staffing Practice for both Indian and international clients.
+
+This is not just another role its a chance to create and lead a business within Orcapod.
+
+What Youll Do
+
+Build & lead the Finance & Accounting staffing vertical from the ground up.
+Manage and expand client relationships (domestic & global) with strong cross-selling opportunities.
+Drive client acquisition and deliver tailored staffing solutions.
+Take full P&L ownership and lead business growth strategy.
+Build a network of consultants and delivery teams across finance, accounting & compliance.
+Deliver excellence in revenue, profitability, client & employee satisfaction.
+What Were Looking Force.
+
+Proven success in running/managing staffing businesses in Finance, Accounting, or Compliance.
+Strong entrepreneurial mindset and ability to take risks.
+Experience with Indian & international clients is a strong plus.
+Who Should Apply?
+
+Finance professionals who want to lead and build businesses.
+Leaders currently handling Finance/Accounting staffing practices.
+Ambitious professionals passionate about entrepreneurship & ownership.
+Whats in it for You?
+
+A leadership role with complete ownership of a growing business vertical.
+Compensation aligned to a RiskReward model.
+
+    --- Candidate Resume ---
+    
+    Name: NIPIN MP
+    Summary: Highly experienced and certified Senior Accountant with over 10 years of experience in financial accounting, budgeting, and auditing. Proven ability to lead teams, implement process improvements, and ensure compliance with all applicable financial reporting standards. Seeking a challenging role where I can leverage my expertise to drive financial success.
+    Skills: MS Office, Tally 7.5, 9, DCPA (Diploma in Computer Application Accounting), PACT (Practical Accounting and Taxation), English, Hindi, Malayalam
+    Experience: Senior Accountant at EHAM Digital (Malabar Group), Operation Executive at HDB Financial Services Ltd, Back-office Staff at IndusInd Bank, Accountant at KMCT Group, Assistant Accountant cum HR at Hajee A P Bava & Co Pvt Ltd
+    Education: PGDHRM - Alagappa University, MBA - Madurai Kamaraj University, BBM - Bangalore University
+    Projects:
+response:
+{
+    "match_score": 18,
+    "matched_skills": [
+        "Finance/Accounting knowledge (implied by Accountant roles, budgeting, auditing)",
+        "Team leadership (stated in summary)",
+        "Over 10 years of professional experience",
+        "MBA education"
+    ],
+    "missing_skills": [
+        "Proven success in running/managing staffing businesses (Finance, Accounting, or Compliance)",
+        "Building & leading a Finance & Accounting staffing vertical from the ground up",
+        "Client acquisition (specifically for staffing solutions)",
+        "Managing and expanding client relationships (in a staffing context)",
+        "Full P&L ownership (for a business vertical)",
+        "Leading business growth strategy (for a staffing business)",
+        "Building a network of consultants and delivery teams",
+        "Delivering tailored staffing solutions",
+        "Strong entrepreneurial mindset",
+        "Ability to take risks",
+        "Experience with international clients (specifically in staffing/business development)"
+    ],
+    "recommendations": [
+        {
+            "title": "Highlight Business Development/Staffing Experience",
+            "description": "The job description heavily emphasizes leadership in a *staffing business* vertical. Your resume showcases strong finance and accounting expertise but lacks direct experience in running or managing a staffing business. Explicitly detail any experience you have, even if tangential, related to client acquisition, business development, team building (beyond direct reports), or managing external consultants/vendors. If no direct experience exists, consider how your current skills could transfer to these areas.",
+            "priority": "high"
+        },
+        {
+            "title": "Emphasize Entrepreneurial Mindset and P&L Ownership",
+            "description": "The role requires an entrepreneurial spark, P&L ownership, and a willingness to build a business. Revise your summary and experience to highlight instances where you took initiative, drove new processes, managed budgets with a focus on profitability (beyond compliance), or contributed to revenue growth. Quantify these achievements where possible.",
+            "priority": "high"
+        },
+        {
+            "title": "Showcase Strategic Leadership & Growth",
+            "description": "While your resume mentions 'leading teams' and 'implementing process improvements', the job demands strategic leadership for business growth. Provide specific examples of how you have developed strategies, expanded operations, or contributed to the long-term vision of a business unit. Even in accounting, there might be projects where you advised on strategic financial planning or optimized resource allocation for growth.",
+            "priority": "medium"
+        },
+        {
+            "title": "Address International Client Experience",
+            "description": "Experience with Indian & international clients is a strong plus for this role. If you have worked with international stakeholders, reported to global teams, or managed financial aspects of international transactions, make this explicit in your experience section.",
+            "priority": "low"
+        }
+    ],
+    "score_breakdown": {
+        "required_skills_match": 10,
+        "experience_level_match": 25,
+        "education_requirements_match": 80,
+        "preferred_qualifications_match": 10
+    }
+}
+
+------------------------------------------
+timestamp: 2025-11-08T09:41:30.885956
+user_id: 1
+user_email: vasanthan.raju@gmail.com
+model: gemini-2.5-flash
+prompt:
+You are an expert AI job match analyzer.
+    Compare the following job description with this candidate’s resume.
+    Provide a **valid JSON** response only, with this structure:
+
+    {
+        "match_score": (integer 0–100),
+        "matched_skills": [list of matched skills],
+        "missing_skills": [list of missing skills],
+        "recommendations": [
+            {
+                "title": "short suggestion",
+                "description": "detailed recommendation",
+                "priority": "high"|"medium"|"low"
+            }
+        ],
+        "score_breakdown": {
+            "required_skills_match": (integer 0–100),
+            "experience_level_match": (integer 0–100),
+            "education_requirements_match": (integer 0–100),
+            "preferred_qualifications_match": (integer 0–100)
+        }
+    }
+
+    --- Job Description ---
+    Business Manager_Finance & Accounting
+
+Experience: 10 + Years
+Work Mode: Pan India | Work from Office
+
+Job description
+
+Build & Lead Finance & Accounting Staffing Business | Leadership Role @ Orcapod
+
+Are you a finance leader with an entrepreneurial spark who is ready to build and own a business vertical? Orcapod Consulting Services is hiring a Business Manager Finance & Accounting Unit to set up, scale, and lead our Finance & Accounting Staffing Practice for both Indian and international clients.
+
+This is not just another role its a chance to create and lead a business within Orcapod.
+
+What Youll Do
+
+Build & lead the Finance & Accounting staffing vertical from the ground up.
+Manage and expand client relationships (domestic & global) with strong cross-selling opportunities.
+Drive client acquisition and deliver tailored staffing solutions.
+Take full P&L ownership and lead business growth strategy.
+Build a network of consultants and delivery teams across finance, accounting & compliance.
+Deliver excellence in revenue, profitability, client & employee satisfaction.
+What Were Looking Force.
+
+Proven success in running/managing staffing businesses in Finance, Accounting, or Compliance.
+Strong entrepreneurial mindset and ability to take risks.
+Experience with Indian & international clients is a strong plus.
+Who Should Apply?
+
+Finance professionals who want to lead and build businesses.
+Leaders currently handling Finance/Accounting staffing practices.
+Ambitious professionals passionate about entrepreneurship & ownership.
+Whats in it for You?
+
+A leadership role with complete ownership of a growing business vertical.
+Compensation aligned to a RiskReward model.
+
+    --- Candidate Resume ---
+    
+    Name: NIPIN MP
+    Summary: Highly experienced and certified Senior Accountant with over 10 years of experience in financial accounting, budgeting, and auditing. Proven ability to lead teams, implement process improvements, and ensure compliance with all applicable financial reporting standards. Seeking a challenging role where I can leverage my expertise to drive financial success.
+    Skills: MS Office, Tally 7.5, 9, DCPA (Diploma in Computer Application Accounting), PACT (Practical Accounting and Taxation), English, Hindi, Malayalam
+    Experience: Senior Accountant at EHAM Digital (Malabar Group), Operation Executive at HDB Financial Services Ltd, Back-office Staff at IndusInd Bank, Accountant at KMCT Group, Assistant Accountant cum HR at Hajee A P Bava & Co Pvt Ltd
+    Education: PGDHRM - Alagappa University, MBA - Madurai Kamaraj University, BBM - Bangalore University
+    Projects:
+response:
+{
+    "match_score": 15,
+    "matched_skills": [
+        "Financial Accounting",
+        "Budgeting",
+        "Auditing",
+        "Financial Reporting Standards",
+        "Compliance",
+        "Team Leadership",
+        "Process Improvements",
+        "MS Office",
+        "Tally (7.5, 9)",
+        "English",
+        "Hindi",
+        "Malayalam"
+    ],
+    "missing_skills": [
+        "Running/Managing Staffing Businesses (Finance, Accounting, or Compliance)",
+        "P&L Ownership (for a business vertical)",
+        "Business Growth Strategy (for staffing solutions)",
+        "Client Acquisition (for staffing solutions)",
+        "Client Relationship Management (for staffing solutions)",
+        "Cross-selling (staffing services)",
+        "Building a network of consultants/delivery teams",
+        "Entrepreneurial Mindset (demonstrated in business building/ownership)",
+        "Risk-taking (in a business context)",
+        "Setting up a business vertical from scratch",
+        "Experience with international clients (in a business development context)"
+    ],
+    "recommendations": [
+        {
+            "title": "Address Staffing Business Gap",
+            "description": "The most critical missing skill is direct experience in running or managing a staffing business, specifically within Finance, Accounting, or Compliance. The candidate's resume shows strong domain expertise in Finance/Accounting but not in the business of 'staffing'. To bridge this gap, consider highlighting any transferable skills from your operational roles that involve client management, vendor relations, or strategic planning that could relate to a staffing model, or explore opportunities to gain such experience.",
+            "priority": "high"
+        },
+        {
+            "title": "Demonstrate Entrepreneurial & P&L Ownership",
+            "description": "The job description emphasizes an entrepreneurial mindset, P&L ownership, and building a business from the ground up. The candidate's resume lacks direct evidence of these. Revise your resume to include any instances where you took initiative to drive revenue, manage costs, contributed to business growth, or led projects with significant financial impact, even if not full P&L. Quantify these achievements where possible.",
+            "priority": "high"
+        },
+        {
+            "title": "Showcase Client Acquisition/Management",
+            "description": "The role requires strong client acquisition and relationship management skills, especially for staffing solutions. The current resume does not highlight experience in these areas. If you have any client-facing experience, especially in a sales or business development capacity, ensure it's prominently featured and quantify your impact on client relationships or growth.",
+            "priority": "medium"
+        },
+        {
+            "title": "Tailor Summary for Business Leadership",
+            "description": "While your summary mentions team leadership and driving financial success, it's heavily focused on accounting operations. Refine your summary to align more with business development, leadership, and the ambition to build and own a business vertical, explicitly mentioning your interest in a strategic, entrepreneurial role.",
+            "priority": "medium"
+        }
+    ],
+    "score_breakdown": {
+        "required_skills_match": 5,
+        "experience_level_match": 100,
+        "education_requirements_match": 100,
+        "preferred_qualifications_match": 10
+    }
+}
+
+------------------------------------------
+timestamp: 2025-11-09T07:15:07.564297
+user_id: 1
+user_email: vasanthan.raju@gmail.com
+model: gemini-2.5-flash
+prompt:
+You are an expert AI job match analyzer.
+    Compare the following job description with this candidate’s resume.
+    Provide a **valid JSON** response only, with this structure:
+
+    {
+        "match_score": (integer 0–100),
+        "matched_skills": [list of matched skills],
+        "missing_skills": [list of missing skills],
+        "recommendations": [
+            {
+                "title": "short suggestion",
+                "description": "detailed recommendation",
+                "priority": "high"|"medium"|"low"
+            }
+        ],
+        "score_breakdown": {
+            "required_skills_match": (integer 0–100),
+            "experience_level_match": (integer 0–100),
+            "education_requirements_match": (integer 0–100),
+            "preferred_qualifications_match": (integer 0–100)
+        }
+    }
+
+    --- Job Description ---
+    About the Role:
+
+We are seeking exceptional software engineers to collaborate on a groundbreaking AI research project with one of the world’s leading labs. This role involves analyzing large, production-grade repositories to design, evaluate, and benchmark complex coding challenges that test how advanced AI models reason about architecture, logic, and performance.
+
+
+Key Responsibilities:
+
+Analyze large-scale codebases and identify architectural, functional, and performance dependencies.
+Design complex, multi-step coding challenges that assess AI reasoning.
+Evaluate model-generated solutions for accuracy, coherence, and code quality.
+Cite specific functions, files, and line numbers to support your assessments.
+Produce clear, evidence-backed documentation detailing system logic and design choices.
+
+
+You’re a Great Fit If You:
+
+Are fluent in Python and JavaScript/TypeScript, with working knowledge of Java, Go, C++, Rust, or C#.
+Apply systematic exploration, connecting logic across files before forming conclusions.
+Demonstrate architectural understanding, identifying abstractions and design trade-offs.
+Have experience using AI coding agents (Copilot, GPT-4, Claude, or Replit Agents) in your workflow.
+Write precise, structured technical documentation and communicate complex reasoning clearly.
+
+
+Engagement Details:
+
+Remote, flexible collaboration
+Competitive task-based compensation (top contributors have earned $1,000+ per sprint)
+Weekly payouts via Stripe Connect
+
+    --- Candidate Resume ---
+    
+    Name: NIPIN MP
+    Summary: Highly experienced and certified Senior Accountant with over 10 years of experience in financial accounting, budgeting, and auditing. Proven ability to lead teams, implement process improvements, and ensure compliance with all applicable financial reporting standards. Seeking a challenging role where I can leverage my expertise to drive financial success.
+    Skills: Malayalam, Hindi, English, Internal Controls, Compliance, Reconciliation, General Ledger Management, Auditing, Budgeting, Financial Reporting, PACT (Practical Accounting and Taxation), DCPA (Diploma in Computer Application Accounting), Tally 9, Tally 7.5, MS Office
+    Experience: Senior Accountant at EHAM Digital (Malabar Group), Operation Executive at HDB Financial Services Ltd, Back-office Staff at IndusInd Bank, Accountant at KMCT Group, Assistant Account cum HR at Hajee A P Bava & Co Pvt Ltd
+    Education: PGDHRM - Alagappa University, MBA - Madurai Kamaraj University, BBM - Bangalore University
+    Projects:
+response:
+{
+    "match_score": 0,
+    "matched_skills": [
+        "English"
+    ],
+    "missing_skills": [
+        "Python (fluency)",
+        "JavaScript/TypeScript (fluency)",
+        "Java (working knowledge)",
+        "Go (working knowledge)",
+        "C++ (working knowledge)",
+        "Rust (working knowledge)",
+        "C# (working knowledge)",
+        "Analyzing large-scale codebases",
+        "Identifying architectural, functional, and performance dependencies",
+        "Designing complex coding challenges",
+        "Evaluating model-generated solutions (for accuracy, coherence, code quality)",
+        "Citing specific functions, files, and line numbers in code",
+        "Systematic exploration (connecting logic across files)",
+        "Architectural understanding (identifying abstractions, design trade-offs)",
+        "Experience using AI coding agents (Copilot, GPT-4, Claude, Replit Agents)",
+        "Writing precise, structured technical documentation (software design/logic)",
+        "Communicating complex technical reasoning clearly (software context)"
+    ],
+    "recommendations": [
+        {
+            "title": "Re-evaluate Career Alignment",
+            "description": "The job description is for a highly specialized software engineering role in AI research, requiring extensive programming, code analysis, and architectural design skills. Your resume highlights a strong and extensive background in financial accounting and related domains. There is a fundamental mismatch between your professional experience and the requirements of this role. It is crucial to ensure future applications align with your skillset and career aspirations.",
+            "priority": "high"
+        },
+        {
+            "title": "Focus on Relevant Opportunities",
+            "description": "To maximize your job search effectiveness, focus on roles that directly leverage your decade of experience as a Senior Accountant, your expertise in financial reporting, budgeting, auditing, compliance, and general ledger management. Your skills are highly valuable in the finance and accounting sectors.",
+            "priority": "high"
+        },
+        {
+            "title": "Acquire Foundational Software Engineering Skills (if career change desired)",
+            "description": "If there is an interest in transitioning into a software engineering or AI-related role, it would require significant investment in acquiring foundational programming skills, understanding data structures, algorithms, software architecture, and gaining hands-on project experience in a technical capacity. This would represent a complete career pivot.",
+            "priority": "low"
+        }
+    ],
+    "score_breakdown": {
+        "required_skills_match": 0,
+        "experience_level_match": 0,
+        "education_requirements_match": 0,
+        "preferred_qualifications_match": 0
+    }
+}
