@@ -36,9 +36,8 @@ services:
     env_file:
       - ./resume-backend/.env
     volumes:
-      - ./resume-backend:/app # ✅ sync local code
+      - ./resume-backend:/app # sync local code
       - /app/__pycache__      # avoid cache overwrite
-      - /app/alembic          # keep migration files persistent
     environment:
       - WATCHFILES_FORCE_POLLING=true
     command: >

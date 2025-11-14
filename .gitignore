@@ -26,3 +26,4 @@ ai_resume_model/
 __MACOSX/
 
 .vscode/
+resume-backend/alembic/versions
