@@ -12,6 +12,7 @@ node_modules/
 dist/
 build/
 *.log
+package-lock.json
 
 # Model / training outputs
 outputs_phi2/
