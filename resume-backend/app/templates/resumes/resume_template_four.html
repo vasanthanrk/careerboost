@@ -49,19 +49,20 @@
     .template4 .skill-container {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 15px; /* CORRECTED: Added space between skill tags */
       margin-top: 15px;
     }
     .template4 .skill-tag {
-      background-color: #2c3e50;
-      color: white;
-      padding: 5px 10px;   /* smaller inner spacing */
-      font-size: 0.80em;   /* slightly smaller text to match image */
-      font-family: 'Arial', sans-serif;
-      border: 1px solid #c0a062;
-      border-radius: 3px;
-      white-space: nowrap;
-      flex: 0 0 auto;
+    background-color: #2c3e50;
+    color: white;
+    padding: 5px 10px;  
+    font-size: 0.80em;
+    font-family: 'Arial', sans-serif;
+    border: 1px solid #c0a062;
+    border-radius: 3px;
+    white-space: nowrap;
+    flex: 0 0 auto;
+    margin: 0 10px 10px 0; /* ADDED MARGIN: 10px spacing below and to the right */
     }
     .template4 .experience-item,
     .template4 .project-item {
@@ -246,7 +247,7 @@
         <h2>Other</h2>
         <div class="skill-container">
           {% for keyword in resume.keywords %}
-            <div class="skill-tag">{{ keyword.keyword }}</div>
+            <div class="skill-tag">{{ keyword }}</div>
           {% endfor %}
         </div>
       </div>
