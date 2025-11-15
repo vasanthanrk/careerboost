@@ -50,7 +50,7 @@ export function LoginPage() {
           </div>
           <h1 className="mb-4">CareerBoost AI</h1>
           <p className="text-violet-100 max-w-md">
-            Elevate your career with AI-powered resume building, cover letters, and job matching.
+            Elevate your career with AI-powered Resume building, ATS Resume Checker, Cover letters, and Job matching.
           </p>
         </div>
       </div>
@@ -109,14 +109,18 @@ export function LoginPage() {
               {isLoading ? 'Signing in...' : 'Login'}
             </Button>
           </form>
-
+          <p className="text-center mt-6 text-gray-600">
+            <Link to="/forgot-password" className="text-violet-600 hover:text-violet-700">
+              Forgot Password
+            </Link>
+          </p>
           <div className="my-6 flex items-center">
             <div className="flex-1 border-t border-gray-300"></div>
             <span className="px-4 text-gray-500">OR</span>
             <div className="flex-1 border-t border-gray-300"></div>
           </div>
 
-          <Button
+          {/* <Button
             type="button"
             variant="outline"
             className="w-full"
@@ -129,10 +133,10 @@ export function LoginPage() {
               <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
             </svg>
             Continue with Google
-          </Button>
-
+          </Button> */}
           <p className="text-center mt-6 text-gray-600">
             Don't have an account?{' '}
+            
             <Link to="/signup" className="text-violet-600 hover:text-violet-700">
               Sign up
             </Link>

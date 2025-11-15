@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
 import { Badge } from './ui/badge';
@@ -27,6 +28,13 @@ import { Link } from 'react-router-dom';
 import { ThemeToggle } from './ThemeToggle';
 
 export function LandingPageOne() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    setIsLoggedIn(!!storedUser); // ✅ true if user exists
+  }, []);
+
   const features = [
     {
       icon: FileText,
@@ -102,14 +110,29 @@ export function LandingPageOne() {
             </div>
             <div className="flex items-center gap-3">
               {/* <ThemeToggle /> */}
-              <Link to="/login">
-                <Button variant="ghost" className="dark:text-gray-300 dark:hover:text-white">Sign In</Button>
-              </Link>
-              <Link to="/signup">
-                <Button className="bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700">
-                  Get Started Free
-                </Button>
-              </Link>
+              {isLoggedIn ? (
+                <Link to="/dashboard">
+                  <Button
+                    variant="ghost"
+                    className="text-base font-medium text-violet-600 hover:bg-violet-50"
+                  >
+                    View Dashboard
+                  </Button>
+                </Link>
+              ) : (
+                <>
+                  <Link to="/login">
+                    <Button variant="ghost" className="text-base font-medium">
+                      Sign In
+                    </Button>
+                  </Link>
+                  <Link to="/signup">
+                    <Button className="bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700">
+                      Get Started Free
+                    </Button>
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>
