@@ -2522,3 +2522,502 @@ response:
     "Software Development Life Cycle"
   ]
 }
+
+------------------------------------------
+timestamp: 2025-11-15T07:37:49.224965
+user_id: 1
+user_email: sandeep@gmail.com
+model: gemini-2.5-flash
+prompt:
+Generate a JSON resume for a Senior Software Engineer.
+        Experience level: senior.
+        Additional info: PHP Laravel & years experience
+Name Sandeep Kumar
+.
+
+        need tobe ATS based data. object with the following schema strictly (even if some fields are empty)
+        please add experiences description if there is not provided for each jobs
+        Return JSON with the following structure:
+        {
+            "name": "string",
+            "email": "string",
+            "phone": "string",
+            "location": "string",
+            "summary": "string",
+            "jobrole": "string",
+            "linkedin_url":"string",
+            "git_url":"string",
+            "portfolio_url":"string",
+            "experiences": [
+            {
+                "title": "string",
+                "company": "string",
+                "duration": "string",
+                "description": "string"
+            }
+            ],
+            "educations": [
+            {
+                "degree": "string",
+                "school": "string",
+                "year": "string"
+            }
+            ],
+            "skills": [
+            {
+                "skill": "string"
+            }
+            ],
+            "projects": [
+            {
+                "name": "string",
+                "description": "string"
+            }
+            ],
+            "certifications": [
+            {
+                "name": "string",
+                "issuer": "string",
+                "year": "string"
+            }
+            ],
+            "languages": [
+            {
+                "language": "string",
+                "proficiency": "string"
+            }
+            ],
+            "achievements": [
+            {
+                "title": "string",
+                "description": "string"
+            }
+            ],
+            "keywords": ["string", "..."]
+        }
+response:
+{
+  "name": "Sandeep Kumar",
+  "email": "sandeep.kumar@example.com",
+  "phone": "+91-9876543210",
+  "location": "Bengaluru, India",
+  "summary": "Highly accomplished Senior Software Engineer with 8+ years of experience specializing in robust backend development using PHP and Laravel. Proven expertise in designing, developing, and deploying scalable web applications, RESTful APIs, and microservices. Adept at leading cross-functional teams, mentoring junior developers, and driving architectural decisions to deliver high-quality, performant, and maintainable software solutions. Passionate about leveraging cutting-edge technologies to solve complex business challenges and enhance user experiences.",
+  "jobrole": "Senior Software Engineer",
+  "linkedin_url": "https://www.linkedin.com/in/sandeepkumar_seniorphp",
+  "git_url": "https://github.com/sandeepkumar-dev",
+  "portfolio_url": "https://www.sandeepkumardev.com",
+  "experiences": [
+    {
+      "title": "Senior Software Engineer",
+      "company": "Tech Innovations Pvt Ltd",
+      "duration": "January 2021 – Present",
+      "description": "Led the design and development of critical backend services and APIs using PHP and Laravel for a high-traffic e-commerce platform, handling over 1M daily requests. Architected and implemented a new microservices architecture to improve scalability and maintainability, reducing response times by 25%. Mentored a team of 4 junior and mid-level developers, fostering best practices in coding, testing, and deployment. Collaborated with product managers and cross-functional teams to define project requirements, technical specifications, and delivery timelines. Optimized database queries and application performance, resulting in a 30% improvement in load times for key modules. Integrated third-party services and payment gateways, ensuring secure and reliable data exchange."
+    },
+    {
+      "title": "Software Engineer (PHP/Laravel)",
+      "company": "Digital Solutions Inc.",
+      "duration": "July 2018 – December 2020",
+      "description": "Developed and maintained several core modules for a SaaS-based CRM application using PHP, Laravel, and MySQL. Implemented RESTful APIs for mobile and frontend client applications, ensuring secure data communication and efficient data retrieval. Wrote comprehensive unit and integration tests using PHPUnit to ensure code quality and prevent regressions. Participated in code reviews, contributing to a culture of high-quality code and continuous improvement. Collaborated with the DevOps team to streamline CI/CD pipelines and automate deployment processes. Troubleshooted and debugged production issues, ensuring high availability and performance of applications."
+    },
+    {
+      "title": "Junior Software Developer",
+      "company": "Web Pioneers",
+      "duration": "August 2016 – June 2018",
+      "description": "Assisted in the development of web applications using PHP, Laravel, and front-end technologies (HTML, CSS, JavaScript). Contributed to database design and management using MySQL. Implemented new features and resolved bugs under the guidance of senior developers. Gained hands-on experience with version control systems (Git) and Agile development methodologies. Prepared technical documentation for newly developed features and API endpoints."
+    }
+  ],
+  "educations": [
+    {
+      "degree": "Bachelor of Technology in Computer Science Engineering",
+      "school": "National Institute of Technology, Karnataka",
+      "year": "2016"
+    }
+  ],
+  "skills": [
+    {
+      "skill": "PHP"
+    },
+    {
+      "skill": "Laravel"
+    },
+    {
+      "skill": "RESTful APIs"
+    },
+    {
+      "skill": "Microservices"
+    },
+    {
+      "skill": "MySQL"
+    },
+    {
+      "skill": "PostgreSQL"
+    },
+    {
+      "skill": "Redis"
+    },
+    {
+      "skill": "AWS (EC2, S3, RDS)"
+    },
+    {
+      "skill": "Docker"
+    },
+    {
+      "skill": "Git"
+    },
+    {
+      "skill": "JavaScript"
+    },
+    {
+      "skill": "Vue.js"
+    },
+    {
+      "skill": "Jira"
+    },
+    {
+      "skill": "Agile Methodologies"
+    },
+    {
+      "skill": "CI/CD"
+    },
+    {
+      "skill": "PHPUnit"
+    },
+    {
+      "skill": "Queueing Systems (RabbitMQ, Kafka)"
+    },
+    {
+      "skill": "System Design"
+    },
+    {
+      "skill": "API Security"
+    },
+    {
+      "skill": "Performance Optimization"
+    }
+  ],
+  "projects": [
+    {
+      "name": "E-commerce Backend Service",
+      "description": "Designed and developed a scalable, fault-tolerant backend for an e-commerce platform using Laravel and Lumen, handling product catalogs, user authentication, order processing, and payment gateway integrations. Implemented a Redis-based caching system to reduce database load by 40% during peak traffic."
+    },
+    {
+      "name": "Real-time Notification System",
+      "description": "Built a real-time notification microservice using Laravel Echo, Redis, and WebSockets to deliver instant updates to users. Integrated with various application modules for events like order status changes, new messages, and system alerts."
+    }
+  ],
+  "certifications": [
+    {
+      "name": "AWS Certified Developer – Associate",
+      "issuer": "Amazon Web Services",
+      "year": "2022"
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "proficiency": "Fluent"
+    },
+    {
+      "language": "Hindi",
+      "proficiency": "Native"
+    }
+  ],
+  "achievements": [
+    {
+      "title": "Performance Improvement Lead",
+      "description": "Led an initiative to refactor legacy code and optimize database interactions across critical modules, resulting in a 30% reduction in average API response times and a significant improvement in user experience."
+    },
+    {
+      "title": "Successful Microservices Migration",
+      "description": "Successfully spearheaded the migration of a monolithic application to a microservices architecture for key modules, enhancing system scalability, resilience, and developer productivity while minimizing downtime."
+    }
+  ],
+  "keywords": [
+    "PHP",
+    "Laravel",
+    "Senior Software Engineer",
+    "Backend Development",
+    "API Development",
+    "Microservices",
+    "Database Optimization",
+    "MySQL",
+    "Redis",
+    "AWS",
+    "Docker",
+    "System Design",
+    "Architecture",
+    "Leadership",
+    "Mentoring",
+    "Agile",
+    "RESTful",
+    "Git",
+    "CI/CD",
+    "Web Applications",
+    "Scalability",
+    "Performance",
+    "E-commerce",
+    "SaaS",
+    "Full-stack (backend-focused)",
+    "PHPUnit",
+    "Vue.js",
+    "JavaScript",
+    "Software Development Life Cycle (SDLC)"
+  ]
+}
+
+------------------------------------------
+timestamp: 2025-11-15T08:49:09.681015
+user_id: 1
+user_email: sandeep@gmail.com
+model: gemini-2.5-flash
+prompt:
+Generate a JSON resume for a Senior Software Engineer.
+        Experience level: senior.
+        Additional info: PHP Laravel Developer 7 years experience
+Name Sandeep Kumar .
+
+        need tobe ATS based data. object with the following schema strictly (even if some fields are empty)
+        please add experiences description if there is not provided for each jobs
+        Return JSON with the following structure:
+        {
+            "name": "string",
+            "email": "string",
+            "phone": "string",
+            "location": "string",
+            "summary": "string",
+            "jobrole": "string",
+            "linkedin_url":"string",
+            "git_url":"string",
+            "portfolio_url":"string",
+            "experiences": [
+            {
+                "title": "string",
+                "company": "string",
+                "duration": "string",
+                "description": "string"
+            }
+            ],
+            "educations": [
+            {
+                "degree": "string",
+                "school": "string",
+                "year": "string"
+            }
+            ],
+            "skills": [
+            {
+                "skill": "string"
+            }
+            ],
+            "projects": [
+            {
+                "name": "string",
+                "description": "string"
+            }
+            ],
+            "certifications": [
+            {
+                "name": "string",
+                "issuer": "string",
+                "year": "string"
+            }
+            ],
+            "languages": [
+            {
+                "language": "string",
+                "proficiency": "string"
+            }
+            ],
+            "achievements": [
+            {
+                "title": "string",
+                "description": "string"
+            }
+            ],
+            "keywords": ["string", "..."]
+        }
+response:
+{
+  "name": "Sandeep Kumar",
+  "email": "sandeep.kumar.dev@example.com",
+  "phone": "+91-9876543210",
+  "location": "Bengaluru, India",
+  "summary": "Highly accomplished and results-driven Senior Software Engineer with 7 years of extensive experience specializing in PHP and the Laravel framework. Proven expertise in designing, developing, and deploying robust, scalable, and high-performance web applications. Adept at leading development teams, mentoring junior engineers, and driving complex projects from conception to successful delivery. Possesses strong analytical, problem-solving, and communication skills with a commitment to clean code and best practices. Seeking to leverage advanced technical skills and leadership abilities to contribute to innovative software solutions.",
+  "jobrole": "Senior Software Engineer (PHP Laravel)",
+  "linkedin_url": "https://www.linkedin.com/in/sandeepkumar_seniorphpdev",
+  "git_url": "https://github.com/sandeepkumar_dev",
+  "portfolio_url": "https://www.sandeepkumardev.com",
+  "experiences": [
+    {
+      "title": "Senior Laravel Developer",
+      "company": "Tech Solutions Inc.",
+      "duration": "January 2021 – Present",
+      "description": "Led the architecture, design, and development of mission-critical web applications using PHP, Laravel, and Vue.js. Spearheaded the migration of legacy systems to modern Laravel-based microservices, improving system performance by 30% and reducing maintenance overhead. Mentored a team of 4 junior and mid-level developers, providing technical guidance, code reviews, and fostering professional growth. Implemented RESTful APIs for seamless integration with third-party services and front-end applications. Optimized database queries and application performance, resulting in a significant reduction in page load times. Collaborated closely with product managers and UI/UX designers to translate business requirements into technical specifications and deliver innovative features."
+    },
+    {
+      "title": "Software Engineer (PHP & Laravel)",
+      "company": "Innovate Web Services",
+      "duration": "July 2017 – December 2020",
+      "description": "Developed and maintained complex web applications using PHP and Laravel, contributing to all phases of the development lifecycle. Designed and implemented new features and modules, ensuring high quality, scalability, and responsiveness. Integrated various third-party APIs (payment gateways, CRM, analytics) to extend application functionality. Performed comprehensive unit and integration testing to ensure robust and error-free code. Actively participated in daily stand-ups, sprint planning, and retrospective meetings within an Agile/Scrum environment. Collaborated with cross-functional teams to define, design, and ship new features."
+    }
+  ],
+  "educations": [
+    {
+      "degree": "Bachelor of Technology in Computer Science Engineering",
+      "school": "Jawaharlal Nehru Technological University",
+      "year": "2017"
+    }
+  ],
+  "skills": [
+    {
+      "skill": "PHP"
+    },
+    {
+      "skill": "Laravel Framework"
+    },
+    {
+      "skill": "RESTful APIs"
+    },
+    {
+      "skill": "MySQL"
+    },
+    {
+      "skill": "PostgreSQL"
+    },
+    {
+      "skill": "Vue.js"
+    },
+    {
+      "skill": "JavaScript"
+    },
+    {
+      "skill": "HTML5"
+    },
+    {
+      "skill": "CSS3"
+    },
+    {
+      "skill": "jQuery"
+    },
+    {
+      "skill": "Git"
+    },
+    {
+      "skill": "Docker"
+    },
+    {
+      "skill": "AWS"
+    },
+    {
+      "skill": "Jira"
+    },
+    {
+      "skill": "Agile/Scrum"
+    },
+    {
+      "skill": "Unit Testing (PHPUnit)"
+    },
+    {
+      "skill": "TDD"
+    },
+    {
+      "skill": "Microservices"
+    },
+    {
+      "skill": "Redis"
+    },
+    {
+      "skill": "Elasticsearch"
+    },
+    {
+      "skill": "OOP"
+    },
+    {
+      "skill": "MVC"
+    },
+    {
+      "skill": "Software Architecture"
+    },
+    {
+      "skill": "Team Leadership"
+    },
+    {
+      "skill": "Mentoring"
+    }
+  ],
+  "projects": [
+    {
+      "name": "E-commerce Platform Refactor",
+      "description": "Led the complete refactoring and modernization of an existing e-commerce platform using Laravel 9, Vue.js 3, and MySQL. Implemented a robust product catalog, secure payment gateway integrations, and real-time order tracking. Achieved a 40% improvement in page load speeds and increased conversion rates by 15% through performance optimizations and UX enhancements."
+    },
+    {
+      "name": "Custom CRM Development",
+      "description": "Designed and developed a scalable Custom Relationship Management (CRM) system from scratch for internal use, leveraging Laravel for the backend API and React.js for the frontend. Features included lead management, task assignment, communication logs, and custom reporting tools, significantly improving team productivity and client engagement tracking."
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Laravel Certified Developer",
+      "issuer": "Laravel Official",
+      "year": "2020"
+    },
+    {
+      "name": "AWS Certified Developer – Associate",
+      "issuer": "Amazon Web Services",
+      "year": "2022"
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "proficiency": "Fluent"
+    },
+    {
+      "language": "Hindi",
+      "proficiency": "Native"
+    }
+  ],
+  "achievements": [
+    {
+      "title": "System Performance Enhancement",
+      "description": "Reduced API response times by an average of 30% for a high-traffic application by optimizing database queries, implementing caching strategies (Redis), and refactoring critical code paths, directly impacting user satisfaction and system scalability."
+    },
+    {
+      "title": "Successful Project Migration Lead",
+      "description": "Successfully led the migration of a monolithic PHP application to a Laravel-based microservices architecture, reducing deployment time by 50% and improving overall system resilience and maintainability, completed 2 weeks ahead of schedule."
+    },
+    {
+      "title": "Mentorship and Skill Development",
+      "description": "Mentored 4 junior developers, guiding them through complex features and best practices, resulting in 2 of them being promoted to mid-level positions within 18 months, significantly strengthening team capabilities."
+    }
+  ],
+  "keywords": [
+    "Senior Software Engineer",
+    "PHP",
+    "Laravel",
+    "Backend Development",
+    "Full-stack Development",
+    "API Development",
+    "MySQL",
+    "Vue.js",
+    "JavaScript",
+    "AWS",
+    "Docker",
+    "Git",
+    "Microservices",
+    "System Design",
+    "Scalability",
+    "Performance Optimization",
+    "Agile",
+    "Scrum",
+    "Team Leadership",
+    "Mentoring",
+    "Object-Oriented Programming (OOP)",
+    "Test-Driven Development (TDD)",
+    "RESTful APIs",
+    "Redis",
+    "PostgreSQL",
+    "Problem Solving",
+    "Architectural Design"
+  ]
+}

@@ -1298,3 +1298,384 @@ response:
         ]
     }
 }
+
+------------------------------------------
+timestamp: 2025-11-15T08:56:07.449097
+user_id: 1
+user_email: sandeep@gmail.com
+model: gemini-2.5-flash
+prompt:
+You are an advanced Applicant Tracking System (ATS) evaluator and resume optimizer.
+
+    Analyze the following resume text and return an objective, machine-readable evaluation and a reconstructed improved resume.
+
+    Follow these precise instructions:
+
+    Follow these precise instructions:
+
+    The current date is **November 15, 2025**.
+    Do not use or assume any future dates beyond this date. 
+    If any job experience has an end date later than today, replace it with "Present".
+
+    Continue with your analysis below:
+
+    ### OUTPUT FORMAT
+    Return a **single JSON object** with exactly these top-level keys:
+    - "overall": integer (0–100) — total ATS compatibility score.
+    - "breakdown": object with keys:
+        - "formatting", "keywords", "experience", "education", "skills", "contact"
+        - Each key’s value must be an integer (0–100).
+    - "missingData": array of objects:
+    - Each object must include:
+        - "category": string (e.g. "Skills", "Experience", "Formatting")
+        - "items": array of strings describing issues or missing information
+        - "severity": one of "critical", "warning", or "info".
+    - "suggestions": array of short actionable suggestion strings to improve the resume.
+    - "improvedResume": need tobe ATS based data. object with the following schema strictly (even if some fields are empty):
+
+    ```json{
+        "overall": 0-100,
+        "breakdown": {
+            "formatting": 0-100,
+            "keywords": 0-100,
+            "experience": 0-100,
+            "education": 0-100,
+            "skills": 0-100,
+            "contact": 0-100
+        },
+        "missingData": [
+            {
+            "category": "string",
+            "items": ["string", "..."],
+            "severity": "critical|warning|info"
+            }
+        ],
+        "suggestions": ["string", "..."],
+        "improvedResume": {
+            "name": "string",
+            "email": "string",
+            "phone": "string",
+            "location": "string",
+            "summary": "string",
+            "jobrole": "string",
+            "linkedin_url":"string",
+            "git_url":"string",
+            "portfolio_url":"string",
+            "experiences": [
+            {
+                "title": "string",
+                "company": "string",
+                "duration": "string",
+                "description": "string"
+            }
+            ],
+            "educations": [
+            {
+                "degree": "string",
+                "school": "string",
+                "year": "string"
+            }
+            ],
+            "skills": [
+            {
+                "skill": "string"
+            }
+            ],
+            "projects": [
+            {
+                "name": "string",
+                "description": "string"
+            }
+            ],
+            "certifications": [
+            {
+                "name": "string",
+                "issuer": "string",
+                "year": "string"
+            }
+            ],
+            "languages": [
+            {
+                "language": "string",
+                "proficiency": "string"
+            }
+            ],
+            "achievements": [
+            {
+                "title": "string",
+                "description": "string"
+            }
+            ],
+            "keywords": ["string", "..."]
+        }
+    }
+    Resume:
+    SANDEEP KUMAR K P 
+Email: sandeepkoovery@gmail.com 
+Phone: 9995774899 
+CAREER OBJECTIVE 
+              A dynamic and result-oriented IT professional, leveraging a strong foundation in 
+web development, database management, and project execution. Eager to contribute 
+technical skills and creativity to a forward-thinking organization, while continuously 
+enhancing my expertise. 
+TECHNICAL SKILLS 
+❖ Web Development: 
+      Laravel, PHP, HTML, CSS, JavaScript, jQuery, Ajax, JSON, Bootstrap 
+❖ Database Management: 
+      MySQL, MongoDB 
+WORK EXPERIENCE 
+❖ Senior Application Developer at Design Direct UK 
+April 2021 – Present 
+    - Lead full-stack development and implementation of robust web solutions for clients. 
+    - Collaborate with cross-functional teams to design and execute user-centric applications. 
+    - Maintain project documentation, timelines, and delivery schedules. 
+❖ Senior Web Developer at Yarddiant Web Lounge, Cyberpark, Calicut 
+March 2019 – March 2021 
+  - Developed and maintained dynamic websites, focusing on performance optimization. 
+  - Spearheaded complex web development projects from planning to deployment. 
+  - Collaborated with the design team to ensure high-quality user interfaces. 
+
+❖ Web Developer at Acodez IT Solutions, UL Cyberpark, Calicut 
+August 2016 – March 2019 
+    - Worked on end-to-end website development, utilizing modern web technologies. 
+    - Integrated APIs and third-party services to enhance website functionalities. 
+    - Provided maintenance and updates for ongoing projects. 
+❖ PHP Programmer at Erigo IT Solutions, Calicut, Kerala 
+2015 –2016 
+     - Developed PHP-based applications and streamlined database functionalities. 
+❖ PHP Programmer at Brounsho Solutions, Ernakulam, Kerala 
+2013 – 2014 
+      - Contributed to the development of dynamic web applications with a focus on efficiency. 
+PROJECTS 
+Some of the projects done are following: 
+LetsBid Property  
+          LetsBid is an auction platform controlled by estate agents, browse a wide range of 
+properties and establish a relationship with professional agents and find your next home. 
+ 
+CDS Hotel Booking 
+          This hotel booking website typically allows users to search and reserve 
+accommodations at various properties. It features filters like location, dates, room type, and 
+amenities to help refine searches. 
+ 
+Boat Market Place  
+            A boat marketing website focused on the UK typically showcases a wide variety of 
+vessels for sale, including yachts, sailboats, motorboats, and fishing boats. Listings often 
+provide detailed specifications, such as size, engine type, features, and year of manufacture, 
+along with high-quality images and pricing. 
+ 
+ 
+ 
+
+Imatico  
+Website for renting, buying, or selling property in a European country typically features 
+listings for apartments, houses, and commercial properties. Users can search by location, 
+price range, and property type  
+EDUCATIONAL QUALIFICATIONS 
+❖ MCA – Anna University of Technology, Coimbatore, Tamil Nadu (2008-2011), 
+Scored 81.3% in the Master's program. 
+❖  BSc Electronics – Kannur University, Kerala (2005-2008), Graduated with 79.86% 
+❖ Plus Two – Kerala Higher Secondary Board (2005), Achieved 67.3%. 
+❖ Xth – Kerala State Board (2003), Passed with 71%. 
+PERSONAL DETAILS 
+❖ Date of Birth : 05-12-1987 
+❖ Gender : Male 
+❖ Nationality : Indian 
+❖ Languages Known: English, Malayalam 
+❖ Address : Nila, Kottakkanam, Kooveri (P.O), Kannur, Kerala, 670581 
+DECLARATION 
+I hereby declare that the above information is true to the best of my knowledge, and I am 
+committed to delivering my best efforts to any organization I join. 
+Place: 
+Date:
+response:
+{
+    "overall": 75,
+    "breakdown": {
+        "formatting": 65,
+        "keywords": 80,
+        "experience": 70,
+        "education": 85,
+        "skills": 90,
+        "contact": 70
+    },
+    "missingData": [
+        {
+            "category": "Contact",
+            "items": [
+                "Missing LinkedIn profile URL",
+                "Missing GitHub profile URL",
+                "Missing Portfolio URL"
+            ],
+            "severity": "critical"
+        },
+        {
+            "category": "Summary",
+            "items": [
+                "Uses a 'Career Objective' instead of a 'Professional Summary'",
+                "Summary lacks quantifiable achievements and specific career focus"
+            ],
+            "severity": "critical"
+        },
+        {
+            "category": "Experience",
+            "items": [
+                "Lack of quantifiable achievements or metrics in job descriptions",
+                "Older job descriptions are too brief and lack detail",
+                "Inconsistent date format (some entries are year-only)"
+            ],
+            "severity": "critical"
+        },
+        {
+            "category": "Education",
+            "items": [
+                "Includes high school (Plus Two, Xth) education, which is typically omitted for experienced professionals"
+            ],
+            "severity": "warning"
+        },
+        {
+            "category": "Personal Information",
+            "items": [
+                "Includes non-professional personal details (Date of Birth, Gender, Nationality, detailed Address, Declaration)"
+            ],
+            "severity": "warning"
+        },
+        {
+            "category": "Projects",
+            "items": [
+                "Project descriptions do not explicitly mention technologies used or specific impact/results"
+            ],
+            "severity": "info"
+        },
+        {
+            "category": "General",
+            "items": [
+                "No clear target job role explicitly stated (though implied by experience)"
+            ],
+            "severity": "info"
+        }
+    ],
+    "suggestions": [
+        "Replace 'Career Objective' with a concise 'Professional Summary' highlighting 10+ years of experience and key skills, tailored to a Senior Full Stack Developer role.",
+        "Add LinkedIn, GitHub, and any personal portfolio URLs to the contact information section.",
+        "Incorporate quantifiable achievements and metrics into job descriptions (e.g., 'Improved performance by X%', 'Managed Y projects', 'Reduced Z by A%').",
+        "Standardize date formats for all work experiences to 'Month Year – Month Year' for better ATS parsing.",
+        "Remove all non-professional personal details (Date of Birth, Gender, Nationality, detailed Address, Declaration) to focus on professional qualifications and reduce bias.",
+        "Omit high school (Plus Two, Xth) education as professional experience and higher education are more relevant for an experienced candidate.",
+        "Expand descriptions for older work experiences (PHP Programmer roles) to detail responsibilities and contributions.",
+        "For projects, add a 'Technologies Used' bullet point and, if possible, 'Impact' or 'Results' to showcase technical skills and contributions.",
+        "Ensure consistent use of strong action verbs at the start of each bullet point in experience and project sections.",
+        "Consider adding a 'Technologies' sub-section within projects to list specific tools/languages utilized for each."
+    ],
+    "improvedResume": {
+        "name": "SANDEEP KUMAR K P",
+        "email": "sandeepkoovery@gmail.com",
+        "phone": "+91 9995774899",
+        "location": "Kannur, Kerala, India",
+        "summary": "Highly accomplished and results-driven Senior Full Stack Developer with over 12 years of experience in web development, database management, and project execution. Proficient in Laravel, PHP, HTML, CSS, JavaScript, MySQL, and MongoDB. Proven ability to lead full-stack development, optimize website performance, integrate complex APIs, and collaborate with cross-functional teams to deliver robust, user-centric web solutions. Seeking to leverage advanced technical skills and leadership experience to contribute to innovative projects in a forward-thinking organization.",
+        "jobrole": "Senior Full Stack Developer",
+        "linkedin_url": "",
+        "git_url": "",
+        "portfolio_url": "",
+        "experiences": [
+            {
+                "title": "Senior Application Developer",
+                "company": "Design Direct UK",
+                "duration": "April 2021 – Present",
+                "description": "• Led full-stack development and implementation of robust web solutions for diverse clients, enhancing client satisfaction and project delivery efficiency.\n• Collaborated effectively with cross-functional design and product teams to conceptualize and execute user-centric applications, resulting in seamless user experiences.\n• Managed project documentation, timelines, and delivery schedules, ensuring projects were completed on time and within scope."
+            },
+            {
+                "title": "Senior Web Developer",
+                "company": "Yarddiant Web Lounge, Cyberpark, Calicut",
+                "duration": "March 2019 – March 2021",
+                "description": "• Developed and maintained dynamic websites with a strong focus on performance optimization, improving site load times and user engagement.\n• Spearheaded complex web development projects from initial planning through deployment, consistently meeting project objectives and deadlines.\n• Collaborated closely with the design team to translate UI/UX wireframes into high-quality, responsive user interfaces."
+            },
+            {
+                "title": "Web Developer",
+                "company": "Acodez IT Solutions, UL Cyberpark, Calicut",
+                "duration": "August 2016 – March 2019",
+                "description": "• Executed end-to-end website development projects, leveraging modern web technologies (PHP, JavaScript, HTML, CSS) to build functional and scalable solutions.\n• Integrated various APIs and third-party services, expanding website functionalities and enhancing user experience.\n• Provided ongoing maintenance, troubleshooting, and updates for active projects, ensuring continuous operation and client satisfaction."
+            },
+            {
+                "title": "PHP Programmer",
+                "company": "Erigo IT Solutions, Calicut, Kerala",
+                "duration": "January 2015 – December 2016",
+                "description": "• Developed and deployed PHP-based web applications, optimizing database functionalities (MySQL) to improve application performance and data integrity."
+            },
+            {
+                "title": "PHP Programmer",
+                "company": "Brounsho Solutions, Ernakulam, Kerala",
+                "duration": "January 2013 – December 2014",
+                "description": "• Contributed to the development of dynamic web applications, focusing on backend efficiency, database interaction, and feature implementation."
+            }
+        ],
+        "educations": [
+            {
+                "degree": "Master of Computer Applications (MCA)",
+                "school": "Anna University of Technology, Coimbatore",
+                "year": "2011"
+            },
+            {
+                "degree": "Bachelor of Science (BSc) in Electronics",
+                "school": "Kannur University, Kerala",
+                "year": "2008"
+            }
+        ],
+        "skills": [
+            {"skill": "PHP"},
+            {"skill": "Laravel"},
+            {"skill": "HTML"},
+            {"skill": "CSS"},
+            {"skill": "JavaScript"},
+            {"skill": "jQuery"},
+            {"skill": "Ajax"},
+            {"skill": "JSON"},
+            {"skill": "Bootstrap"},
+            {"skill": "MySQL"},
+            {"skill": "MongoDB"},
+            {"skill": "Full Stack Development"},
+            {"skill": "Web Application Development"},
+            {"skill": "Database Management"},
+            {"skill": "API Integration"},
+            {"skill": "Performance Optimization"},
+            {"skill": "Project Management"},
+            {"skill": "Git"},
+            {"skill": "SDLC (Software Development Life Cycle)"},
+            {"skill": "User Interface (UI) Development"},
+            {"skill": "Backend Development"},
+            {"skill": "Frontend Development"}
+        ],
+        "projects": [
+            {
+                "name": "LetsBid Property",
+                "description": "An auction platform for real estate, connecting users with estate agents to browse and find properties. Features property listings, agent interaction, and auction functionalities for a seamless bidding experience."
+            },
+            {
+                "name": "CDS Hotel Booking",
+                "description": "A hotel booking website enabling users to search and reserve accommodations at various properties. Includes robust filters for location, dates, room type, and amenities to help refine searches."
+            },
+            {
+                "name": "Boat Market Place",
+                "description": "A UK-focused boat marketing website showcasing a wide variety of vessels for sale, including yachts, sailboats, motorboats, and fishing boats. Listings provide detailed specifications, high-quality images, and pricing."
+            },
+            {
+                "name": "Imatico",
+                "description": "A property platform for renting, buying, or selling properties in European countries. Features comprehensive listings for apartments, houses, and commercial properties, with search functionality by location, price range, and property type."
+            }
+        ],
+        "certifications": [],
+        "languages": [
+            {
+                "language": "English",
+                "proficiency": "Proficient"
+            },
+            {
+                "language": "Malayalam",
+                "proficiency": "Native"
+            }
+        ],
+        "achievements": [],
+        "keywords": [
+            "Senior Full Stack Developer", "Web Development", "PHP", "Laravel", "HTML", "CSS", "JavaScript", "jQuery", "Ajax", "JSON", "Bootstrap", "MySQL", "MongoDB", "Database Management", "API Integration", "Performance Optimization", "Project Management", "SDLC", "User-centric Applications", "Robust Web Solutions", "Cross-functional Teams", "UI/UX", "Backend Development", "Frontend Development", "Software Development", "Agile", "Version Control", "Git", "Lead Developer", "Application Development", "Website Maintenance", "Web Solutions Architecture", "System Design"
+        ]
+    }
+}
