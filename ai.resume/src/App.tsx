@@ -18,14 +18,28 @@ import { PricingPlans } from './components/PricingPlans';
 import { SettingsPage } from './components/SettingsPage';
 import ProtectedRoute from "./routes/ProtectedRoute";
 import PublicRoute from "./routes/PublicRoute";
+import { ContactPage } from './components/ContactPage';
+import { AboutPage } from './components/AboutPage';
+import { PrivacyPage } from './components/PrivacyPage';
+import { TermsPage } from './components/TermsPage';
+import { CookiePage } from './components/CookiePage';
+import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
   return (
     <ThemeProvider>
       <Router>
+        {/* FIX: ScrollToTop must always be inside Router */}
+        <ScrollToTop />
         <div className="min-h-screen bg-gray-50">
           <Routes>
             <Route path="/" element={<LandingPageOne />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
+            <Route path="/terms" element={<TermsPage />} />
+            <Route path="/cookies" element={<CookiePage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
             <Route element={<PublicRoute />}>
               <Route path="/" element={<Navigate to="/login" replace />} />
               <Route path="/preview_page.html" element={<Navigate to="/login" replace />} />

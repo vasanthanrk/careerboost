@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { authService } from "../services/authService";
 
-console.log(import.meta.env);
 const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:8082";
 
 const api = axios.create({

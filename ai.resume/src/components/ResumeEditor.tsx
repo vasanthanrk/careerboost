@@ -156,6 +156,7 @@ export function ResumeEditor() {
       const res = await api.post('/resume', cleanData);
       setResumeData(res.data);
       toast.success('Resume saved successfully!');
+      setIsOpen(true)
     } catch (err) {
       toast.error('Error saving resume');
     } finally {
@@ -977,13 +978,13 @@ export function ResumeEditor() {
 
             {/* Action Buttons */}
             <div className="flex gap-3">
-              <Button onClick={handleSave} variant="outline" className="flex-1">
+              {/* <Button onClick={handleSave} variant="outline" className="flex-1">
                 <Save className="w-4 h-4 mr-2" />
                 {isSaving ? 'Saving...' : 'Save Resume'}
-              </Button>
-              <Button onClick={() => setIsOpen(true)} className="flex-1 bg-violet-600 hover:bg-violet-700">
+              </Button> */}
+              <Button onClick={handleSave} className="flex-1 bg-violet-600 hover:bg-violet-700">
                 <Download className="w-4 h-4 mr-2" />
-                Download PDF
+                {isSaving ? 'Saving...' : 'Save and Download PDF'}
               </Button>
             </div>
           </div>):null}

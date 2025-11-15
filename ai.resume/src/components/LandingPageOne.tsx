@@ -8,7 +8,6 @@ import {
   Mail, 
   Target, 
   Linkedin, 
-  Briefcase,
   Sparkles,
   ArrowRight,
   Check,
@@ -25,15 +24,10 @@ import {
   Scan
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { ThemeToggle } from './ThemeToggle';
+import { Header } from "./header";
+import { Footer } from "./footer";
 
 export function LandingPageOne() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    setIsLoggedIn(!!storedUser); // ✅ true if user exists
-  }, []);
 
   const features = [
     {
@@ -99,45 +93,7 @@ export function LandingPageOne() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-violet-50/30 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-violet-600 to-purple-600 rounded-xl flex items-center justify-center">
-                <Sparkles className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-gray-900 dark:text-white">CareerBoost</span>
-            </div>
-            <div className="flex items-center gap-3">
-              {/* <ThemeToggle /> */}
-              {isLoggedIn ? (
-                <Link to="/dashboard">
-                  <Button
-                    variant="ghost"
-                    className="text-base font-medium text-violet-600 hover:bg-violet-50"
-                  >
-                    View Dashboard
-                  </Button>
-                </Link>
-              ) : (
-                <>
-                  <Link to="/login">
-                    <Button variant="ghost" className="text-base font-medium">
-                      Sign In
-                    </Button>
-                  </Link>
-                  <Link to="/signup">
-                    <Button className="bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700">
-                      Get Started Free
-                    </Button>
-                  </Link>
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-      </nav>
-
+      <Header/>
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-20 pb-28">
         <div className="absolute top-0 right-0 w-96 h-96 bg-violet-300/20 rounded-full blur-3xl"></div>
@@ -522,57 +478,7 @@ export function LandingPageOne() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-violet-600 to-purple-600 rounded-lg flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-white" />
-                </div>
-                <span>CareerBoost</span>
-              </div>
-              <p className="text-gray-400">
-                AI-powered tools to accelerate your career journey.
-              </p>
-            </div>
-            
-            <div>
-              <h4 className="text-white mb-4">Features</h4>
-              <div className="space-y-2">
-                <Link to="/resume-builder" className="block text-gray-400 hover:text-white transition-colors">Resume Builder</Link>
-                <Link to="/ats-checker" className="block text-gray-400 hover:text-white transition-colors">ATS Checker</Link>
-                <Link to="/cover-letter" className="block text-gray-400 hover:text-white transition-colors">Cover Letter</Link>
-                <Link to="/job-fit" className="block text-gray-400 hover:text-white transition-colors">Job Fit Analyzer</Link>
-                <Link to="/linkedin-optimizer" className="block text-gray-400 hover:text-white transition-colors">LinkedIn Optimizer</Link>
-              </div>
-            </div>
-            
-            <div>
-              <h4 className="text-white mb-4">Company</h4>
-              <div className="space-y-2">
-                {/* <Link to="/pricing" className="block text-gray-400 hover:text-white transition-colors">Pricing</Link> */}
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">About Us</a>
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">Contact</a>
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">Blog</a>
-              </div>
-            </div>
-            
-            <div>
-              <h4 className="text-white mb-4">Legal</h4>
-              <div className="space-y-2">
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">Terms of Service</a>
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">Cookie Policy</a>
-              </div>
-            </div>
-          </div>
-          
-          <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 CareerBoost. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   );
 }

@@ -93,7 +93,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
               {/* Logo */}
-              <Link to="/dashboard" className="flex items-center gap-3 group">
+              <Link to="/" className="flex items-center gap-3 group">
                 <div className="w-10 h-10 bg-gradient-to-br from-violet-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all">
                   <Sparkles className="w-5 h-5 text-white" />
                 </div>
