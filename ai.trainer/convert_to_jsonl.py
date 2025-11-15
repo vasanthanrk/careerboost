@@ -13,7 +13,8 @@ FILE_PROMPTS = {
     "resume.txt": "Generate a professional resume based on the details below.",
     "cover_letter.txt": "Generate a professional cover letter based on the details below.",
     "job_fit.txt": "Analyze the job fit based on the following resume and job description.",
-    "linkedin.txt": "Optimize the LinkedIn profile based on the details below."
+    "linkedin.txt": "Optimize the LinkedIn profile based on the details below.",
+    "ats_check.txt": "uploaded resume ats checker data."
 }
 
 

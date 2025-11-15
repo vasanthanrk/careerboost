@@ -39,7 +39,10 @@ export function SignupPage() {
       });
 
       toast.success('Account created successfully!');
-      localStorage.setItem('token', response.data.token);
+      
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+
       navigate('/dashboard');
     } catch (err: any) {
       const message = err.response?.data?.detail || 'Signup failed';

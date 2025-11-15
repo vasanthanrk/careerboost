@@ -28,6 +28,7 @@ export function ResumeEditor() {
   const [isSaving, setIsSaving] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [newSkill, setNewSkill] = useState('');
+  const [newKeyword, setNewKeyword] = useState('');
 
   const [isOpen, setIsOpen] = useState(false);
   const [templates, setTemplates] = useState([]);
@@ -80,7 +81,8 @@ export function ResumeEditor() {
             experiences: [],
             educations: [],
             skills: [],
-            projects: []
+            projects: [],
+            keywords:[]
           });
         } else {
           console.error("Resume fetch error:", err);
@@ -236,7 +238,20 @@ export function ResumeEditor() {
       toast.success(`PDF downloaded: ${fileName}`);
     } catch (err) {
       console.error("Error downloading PDF:", err);
-      toast.error("Failed to download PDF");
+
+      if (err.response) {
+        const status = err.response.status;
+        const detail = err.response.data?.detail;
+
+        if (status === 404) {
+          toast.error(detail || "Resume not found. Please create a resume first.");
+          return;
+        }
+
+        toast.error(detail || "Failed to download PDF");
+        return;
+      }
+      toast.error("Network error. Please try again.");
     }
   };
 
@@ -261,10 +276,44 @@ export function ResumeEditor() {
     }
   };
 
+  // When user presses Enter
+  const handleKeywordKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const keyword = newKeyword.trim();
+
+      if (!keyword) return;
+
+      // Avoid duplicates (case-insensitive)
+      if (
+        resumeData.keywords &&
+        resumeData.keywords.some(
+          (k) => k.toLowerCase() === keyword.toLowerCase()
+        )
+      ) {
+        toast.warning("Keyword already added!");
+        setNewKeyword("");
+        return;
+      }
+
+      const updatedKeywords = [...(resumeData.keywords || []), keyword];
+
+      setResumeData((prev) => ({...prev,keywords: updatedKeywords,}));
+      setNewKeyword("");
+    }
+  };
+
   const handleRemoveSkill = (index: number) => {
     setResumeData((prev: any) => ({
       ...prev,
       skills: prev.skills.filter((_: any, i: number) => i !== index)
+    }));
+  };
+
+  const handleRemoveKeyword = (keyword) => {
+    setResumeData((prev) => ({
+      ...prev,
+      keywords: prev.keywords.filter((k) => k !== keyword)
     }));
   };
 
@@ -521,6 +570,7 @@ export function ResumeEditor() {
                         { value: "certifications", label: "Certifications" },
                         { value: "languages", label: "Languages" },
                         { value: "achievements", label: "Achievements" },
+                        { value: "keywords", label: "Keywords" },
                       ].map((tab) => (
                         <TabsTrigger
                           key={tab.value}
@@ -769,6 +819,18 @@ export function ResumeEditor() {
                   <Button variant="outline" className="w-full" onClick={() => setResumeData({ ...resumeData, achievements: [...resumeData.achievements, { title: '', description: '' }] })}>
                     <Plus className="w-4 h-4 mr-2" /> Add Achievement
                   </Button>
+                </TabsContent>
+
+                <TabsContent value="keywords" className="space-y-4">
+                  <div className="flex flex-wrap gap-2">
+                    {resumeData?.keywords?.map((keyword, index) => (
+                      <div key={index} className="px-3 py-1 bg-violet-100 text-violet-700 rounded-full flex items-center gap-2">
+                        {keyword}
+                        <button className="hover:text-violet-900" onClick={() => handleRemoveKeyword(keyword)}>×</button>
+                      </div>
+                    ))}
+                  </div>
+                  <Input placeholder="Add a keyword and press Enter" value={newKeyword} onChange={(e) => setNewKeyword(e.target.value)} onKeyDown={handleKeywordKeyDown}/>
                 </TabsContent>
 
               </Tabs>

@@ -108,6 +108,26 @@
       <div class="contact-info">
         {{ resume.email }} | {{ resume.phone }} | {{ resume.location }}
       </div>
+
+      <div class="contact-info">
+        {% set contacts = [] %}
+
+        {% if resume.linkedin_url %}
+            {% set _ = contacts.append(resume.linkedin_url) %}
+        {% endif %}
+
+        {% if resume.git_url %}
+            {% set _ = contacts.append(resume.git_url) %}
+        {% endif %}
+
+        {% if resume.portfolio_url %}
+            {% set _ = contacts.append(resume.portfolio_url) %}
+        {% endif %}
+
+        {% if contacts %}
+            {{ contacts | join(' | ') }}
+        {% endif %}
+      </div>
     </div>
 
     <div class="content">
@@ -116,45 +136,95 @@
       <div class="two-column">
         <!-- Left Column -->
         <div class="main-section">
-          <h2>Experience</h2>
-          {% for exp in resume.experiences %}
-            <div class="experience-item">
-              <div class="job-title">{{ exp.title }}</div>
-              <div class="company-duration">{{ exp.company }} • {{ exp.duration }}</div>
-              <p class="description">{{ exp.description }}</p>
-            </div>
-          {% endfor %}
+          {% if resume.experiences and resume.experiences|length > 0 %}
+            <h2>Experience</h2>
+            {% for exp in resume.experiences %}
+              <div class="experience-item">
+                <div class="job-title">{{ exp.title }}</div>
+                <div class="company-duration">{{ exp.company }} • {{ exp.duration }}</div>
+                <p class="description">{{ exp.description }}</p>
+              </div>
+            {% endfor %}
+          {% endif %}
+          {% if resume.projects and resume.projects|length > 0 %}
+            <h3>Projects</h3>
+            {% for proj in resume.projects %}
+              <div class="project-item">
+                <div class="project-name">{{ proj.name }}</div>
+                <p class="description">{{ proj.description }}</p>
+              </div>
+            {% endfor %}
+          {% endif %}
 
-          <h3>Projects</h3>
-          {% for proj in resume.projects %}
-            <div class="project-item">
-              <div class="project-name">{{ proj.name }}</div>
-              <p class="description">{{ proj.description }}</p>
-            </div>
-          {% endfor %}
+          {% if resume.achievement and resume.achievements|length > 0 %}
+            <h3>Achievement</h3>
+            {% for achi in resume.achievements %}
+              <div class="project-item">
+                <div class="project-name">{{ achi.title }}</div>
+                <p class="description">{{ achi.description }}</p>
+              </div>
+            {% endfor %}
+          {% endif %}
         </div>
 
         <!-- Right Column -->
         <div class="sidebar-section">
-          <h2>Skills</h2>
-          <div>
-            {% for skill in resume.skills %}
-              <span class="skill-tag">{{ skill.skill }}</span>
-            {% endfor %}
-          </div>
-
-          <h3 style="margin-top: 35px;">Education</h3>
-          {% for edu in resume.educations %}
-            <div class="education-item">
-              <div style="font-weight: 600; color: #2c3e50;">{{ edu.degree }}</div>
-              <div style="color: #7f8c8d; font-size: 0.9em; margin-top: 5px;">
-                {{ edu.school }}
-              </div>
-              <div style="color: #16a085; font-size: 0.85em; margin-top: 3px; font-weight: 500;">
-                {{ edu.year }}
-              </div>
+          {% if resume.skills and resume.skills|length > 0 %}
+            <h2>Skills</h2>
+            <div>
+              {% for skill in resume.skills %}
+                <span class="skill-tag">{{ skill.skill }}</span>
+              {% endfor %}
             </div>
-          {% endfor %}
+          {% endif %}
+
+          {% if resume.languages and resume.languages|length > 0 %}
+            <h2>Skills</h2>
+            <div>
+              {% for language in resume.languages %}
+                <span class="skill-tag">{{ language.language }} - {{ language.proficiency }}</span>
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          {% if resume.educations and resume.educations|length > 0 %}
+            <h3 style="margin-top: 35px;">Education</h3>
+            {% for edu in resume.educations %}
+              <div class="education-item">
+                <div style="font-weight: 600; color: #2c3e50;">{{ edu.degree }}</div>
+                <div style="color: #7f8c8d; font-size: 0.9em; margin-top: 5px;">
+                  {{ edu.school }}
+                </div>
+                <div style="color: #16a085; font-size: 0.85em; margin-top: 3px; font-weight: 500;">
+                  {{ edu.year }}
+                </div>
+              </div>
+            {% endfor %}
+          {% endif %}
+
+          {% if resume.certifications and resume.certifications|length > 0 %}
+            <h3 style="margin-top: 35px;">Education</h3>
+            {% for cert in resume.certifications %}
+              <div class="education-item">
+                <div style="font-weight: 600; color: #2c3e50;">{{ cert.name }}</div>
+                <div style="color: #7f8c8d; font-size: 0.9em; margin-top: 5px;">
+                  {{ cert.issuer }}
+                </div>
+                <div style="color: #16a085; font-size: 0.85em; margin-top: 3px; font-weight: 500;">
+                  {{ cert.year }}
+                </div>
+              </div>
+            {% endfor %}
+          {% endif %}
+
+          {% if resume.keywords and resume.keywords|length > 0 %}
+            <h2>Other</h2>
+            <div>
+              {% for keyword in resume.keywords %}
+                <span class="skill-tag">{{ keyword }}</span>
+              {% endfor %}
+            </div>
+          {% endif %}
         </div>
       </div>
     </div>

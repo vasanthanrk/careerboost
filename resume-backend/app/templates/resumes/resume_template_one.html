@@ -61,37 +61,81 @@
   <p class="contact-info">
     {{ resume.email }} | {{ resume.phone }} | {{ resume.location }}
   </p>
+  <p class="contact-info"></p>
+    {% set contacts = [] %}
 
+    {% if resume.linkedin_url %}
+        {% set _ = contacts.append(resume.linkedin_url) %}
+    {% endif %}
+
+    {% if resume.git_url %}
+        {% set _ = contacts.append(resume.git_url) %}
+    {% endif %}
+
+    {% if resume.portfolio_url %}
+        {% set _ = contacts.append(resume.portfolio_url) %}
+    {% endif %}
+
+    {% if contacts %}
+        {{ contacts | join(' | ') }}
+    {% endif %}
+  </p>
+  
   <div class="section">
     <h2>Summary</h2>
     <p>{{ resume.summary }}</p>
   </div>
 
-  <div class="section">
-    <h2>Experience</h2>
-    {% for exp in resume.experiences %}
-      <div style="margin-bottom: 15px;">
-        <div class="job-title">{{ exp.title }}</div>
-        <div class="company">{{ exp.company }} ({{ exp.duration }})</div>
-        <p class="description">{{ exp.description }}</p>
-      </div>
-    {% endfor %}
-  </div>
+  {% if resume.experiences and resume.experiences|length > 0 %}
+    <div class="section">
+      <h2>Experience</h2>
+      {% for exp in resume.experiences %}
+        <div style="margin-bottom: 15px;">
+          <div class="job-title">{{ exp.title }}</div>
+          <div class="company">{{ exp.company }} ({{ exp.duration }})</div>
+          <p class="description">{{ exp.description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
 
-  <div class="section">
-    <h2>Education</h2>
-    {% for edu in resume.educations %}
-      <p><strong>{{ edu.degree }}</strong>, {{ edu.school }} ({{ edu.year }})</p>
-    {% endfor %}
-  </div>
+  {% if resume.certifications and resume.certifications|length > 0 %}
+    <div class="section">
+      <h2>Education</h2>
+      {% for cert in resume.certifications %}
+        <p><strong>{{ cert.name }}</strong>, {{ cert.issuer }} ({{ cert.year }})</p>
+      {% endfor %}
+    </div>
+  {% endif %}
 
-  <div class="section">
-    <h2>Skills</h2>
-    {% for skill in resume.skills %}
-      <span class="skill-tag">{{ skill.skill }}</span>
-    {% endfor %}
-  </div>
+  {% if resume.educations and resume.educations|length > 0 %}
+    <div class="section">
+      <h2>Education</h2>
+      {% for edu in resume.educations %}
+        <p><strong>{{ edu.degree }}</strong>, {{ edu.school }} ({{ edu.year }})</p>
+      {% endfor %}
+    </div>
+  {% endif %}
 
+  {% if resume.skills and resume.skills|length > 0 %}
+    <div class="section">
+      <h2>Skills</h2>
+      {% for skill in resume.skills %}
+        <span class="skill-tag">{{ skill.skill }}</span>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if resume.languages and resume.languages|length > 0 %}
+    <div class="section">
+      <h2>Languages</h2>
+      {% for language in resume.languages %}
+        <span class="skill-tag">{{ language.languages }}  - {{ language.proficiency }}</span>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if resume.projects and resume.projects|length > 0 %}
   <div class="section">
     <h2>Projects</h2>
     {% for proj in resume.projects %}
@@ -101,5 +145,27 @@
       </div>
     {% endfor %}
   </div>
+  {% endif %}
+
+  {% if resume.achievements and resume.achievements|length > 0 %}
+  <div class="section">
+    <h2>Achievements</h2>
+    {% for achi in resume.achievements %}
+      <div style="margin-bottom: 12px;">
+        <div class="project-name">{{ achi.title }}</div>
+        <p class="description">{{ achi.description }}</p>
+      </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if resume.keywords and resume.keywords|length > 0 %}
+    <div class="section">
+      <h2>Other</h2>
+      {% for keyword in resume.keywords %}
+        <span class="skill-tag">#{{ keyword }}</span>
+      {% endfor %}
+    </div>
+  {% endif %}
 </body>
 </html>

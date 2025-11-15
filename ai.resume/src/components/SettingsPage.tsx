@@ -456,8 +456,12 @@ export function SettingsPage() {
                     />
                   </div>
                 </div>
+                <Button onClick={handleSaveSettings} className="bg-violet-600 hover:bg-violet-700">
+                  <Save className="w-4 h-4 mr-2" />
+                  Save Preferences
+                </Button>
               </CardContent>
-              <CardHeader>
+              {/* <CardHeader>
                 <CardTitle>Preferences</CardTitle>
                 <CardDescription>Customize your experience</CardDescription>
               </CardHeader>
@@ -479,7 +483,7 @@ export function SettingsPage() {
                   <Save className="w-4 h-4 mr-2" />
                   Save Preferences
                 </Button>
-              </CardContent>
+              </CardContent> */}
             </Card>
             {/* Preferences */}
           </TabsContent>

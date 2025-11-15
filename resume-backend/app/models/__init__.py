@@ -14,9 +14,5 @@ from app.models.feature_request import FeatureRequest
 from app.models.ats import ATSResult
 
 __all__ = [
-    "User", "UserMetrics", "UserFeedback", "FeatureRequest", "ATSResult"
-    "Resume",
-    "Portfolio", "PortfolioPersonal", "PortfolioExperience", "PortfolioSkill", "PortfolioProject",
-    "CoverLetter", "JobFitAnalysis", "LinkedInProfile",
-    "Subscription", "UserActivity", "Notification", "PrivacySetting"
+    "User", "UserMetrics", "UserFeedback", "FeatureRequest", "ATSResult", "Resume", "Portfolio", "PortfolioPersonal", "PortfolioExperience", "PortfolioSkill", "PortfolioProject", "CoverLetter", "JobFitAnalysis", "LinkedInProfile", "Subscription", "UserActivity", "Notification", "PrivacySetting"
 ]

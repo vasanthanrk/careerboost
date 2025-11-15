@@ -36,9 +36,12 @@ services:
     env_file:
       - ./resume-backend/.env
     volumes:
-      - ./resume-backend:/app # sync local code
-      - /app/__pycache__      # avoid cache overwrite
+      - ./resume-backend:/app
+      - ./resume-backend/alembic:/app/alembic  # proper host ↔ container sync
+      - /app/__pycache__
+
     environment:
+      # - DATABASE_URL=${DATABASE_URL}
       - WATCHFILES_FORCE_POLLING=true
     command: >
       sh -c "
@@ -86,6 +89,7 @@ services:
 
 volumes:
   mysql_data:
+  alembic_data:
 
 networks:
   default:
