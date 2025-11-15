@@ -903,3 +903,398 @@ response:
     ]
   }
 }
+
+------------------------------------------
+timestamp: 2025-11-15T04:40:11.234949
+user_id: 1
+user_email: vasanthan.raju@gmail.com
+model: gemini-2.5-flash
+prompt:
+You are an advanced Applicant Tracking System (ATS) evaluator and resume optimizer.
+
+    Analyze the following resume text and return an objective, machine-readable evaluation and a reconstructed improved resume.
+
+    Follow these precise instructions:
+
+    Follow these precise instructions:
+
+    The current date is **November 15, 2025**.
+    Do not use or assume any future dates beyond this date. 
+    If any job experience has an end date later than today, replace it with "Present".
+
+    Continue with your analysis below:
+
+    ### OUTPUT FORMAT
+    Return a **single JSON object** with exactly these top-level keys:
+    - "overall": integer (0–100) — total ATS compatibility score.
+    - "breakdown": object with keys:
+        - "formatting", "keywords", "experience", "education", "skills", "contact"
+        - Each key’s value must be an integer (0–100).
+    - "missingData": array of objects:
+    - Each object must include:
+        - "category": string (e.g. "Skills", "Experience", "Formatting")
+        - "items": array of strings describing issues or missing information
+        - "severity": one of "critical", "warning", or "info".
+    - "suggestions": array of short actionable suggestion strings to improve the resume.
+    - "improvedResume": need tobe ATS based data. object with the following schema strictly (even if some fields are empty):
+
+    ```json{
+        "overall": 0-100,
+        "breakdown": {
+            "formatting": 0-100,
+            "keywords": 0-100,
+            "experience": 0-100,
+            "education": 0-100,
+            "skills": 0-100,
+            "contact": 0-100
+        },
+        "missingData": [
+            {
+            "category": "string",
+            "items": ["string", "..."],
+            "severity": "critical|warning|info"
+            }
+        ],
+        "suggestions": ["string", "..."],
+        "improvedResume": {
+            "name": "string",
+            "email": "string",
+            "phone": "string",
+            "location": "string",
+            "summary": "string",
+            "jobrole": "string",
+            "linkedin_url":"string",
+            "git_url":"string",
+            "portfolio_url":"string",
+            "experiences": [
+            {
+                "title": "string",
+                "company": "string",
+                "duration": "string",
+                "description": "string"
+            }
+            ],
+            "educations": [
+            {
+                "degree": "string",
+                "school": "string",
+                "year": "string"
+            }
+            ],
+            "skills": [
+            {
+                "skill": "string"
+            }
+            ],
+            "projects": [
+            {
+                "name": "string",
+                "description": "string"
+            }
+            ],
+            "certifications": [
+            {
+                "name": "string",
+                "issuer": "string",
+                "year": "string"
+            }
+            ],
+            "languages": [
+            {
+                "language": "string",
+                "proficiency": "string"
+            }
+            ],
+            "achievements": [
+            {
+                "title": "string",
+                "description": "string"
+            }
+            ],
+            "keywords": ["string", "..."]
+        }
+    }
+    Resume:
+    Vasanthan RK
+vasanthan.raju@gmail.com | 9037291443 | Calicut, Kerala
+Summary
+Highly experienced and results-driven Senior Software Engineer with over +10 years of expertise in full-stack
+development, including recent experience as a Lead Software Development Engineer. Proven ability to lead
+complex projects from conception to deployment, design robust architectures, and mentor junior engineers.
+Specializes in developing scalable web applications using PHP (Laravel, CodeIgniter), Python (Django), and
+JavaScript frameworks (Vue.js, jQuery, AngularJS), with extensive experience in database management (MySQL,
+MongoDB) and RESTful API design. Adept at leveraging AI for innovative solutions and contributing to diverse
+domains including career building, e-commerce, healthcare, and booking systems.
+Experience
+Sr Software Engineer
+NCDA Services Pvt Ltd (Jun 2025 - Oct 2025)
+Led the development of innovative AI-based applications. Project 1: Designed and built an AI-powered career
+build application featuring AI-based resume creation (with diverse templates), AI-based cover letter generation
+from job descriptions, AI job fit analysis with suggestions, and AI-powered LinkedIn profile optimization. Project 2:
+Developed a comprehensive support ticketing application.
+Senior Software Engineer
+Tuna Software Solutions Pvt Ltd (Nov 2023 - May 2025)
+Responsible for designing architecture, technical, and domain requirements, as well as development. Key
+projects included: A theater booking application for a top US theater group; an online medical application
+integrating with SAP for product retrieval, price tiers, and order synchronization; and a QR code based restaurant
+food booking application for a major amusement group in the US, allowing customers to view menus and book
+from scanned QR codes.
+Sr PHP developer
+TechMaven IT Solutions Pvt. Ltd (May 2021 - Aug 2023)
+Participated in the design and architecture of scalable, reliable, and high-performance software solutions.
+Developed, tested, and maintained software applications using industry best practices. Collaborated effectively
+with product managers and designers to gather requirements and provide technical expertise. Provided
+leadership and mentorship to junior engineers, guiding them in software development processes.
+Senior Software Engineer
+AlignMinds Technologies (Nov 2020 - Mar 2021)
+Played a crucial role in the design, development, and deployment of complex software solutions. Worked
+collaboratively with a talented team of engineers and contributed to the successful completion of various projects
+across different domains.
+Senior Software Developer
+Innoxgen Solutions Pvt Ltd (Jan 2019 - Oct 2020)
+Played a pivotal role in the development and delivery of high-quality software solutions. Contributed significantly
+to architectural decisions and technical strategies, with a strong focus on scalability, security, and performance.
+Maintained awareness of emerging technologies and industry trends, proactively recommending their adoption to
+enhance development processes and project outcomes. Actively participated in refining and optimizing software
+development methodologies within the organization.
+Senior Software Engineer
+Acodez IT Solutions Pvt. Ltd. (Aug 2016 - Jan 2019)
+Successfully led and developed major software projects on time and within budget as a Senior Software Engineer.
+Worked with a custom application development team, handling individual projects from scratch, including: Okazjo
+(Event management portal), 12amclub, filtr3 (Dating application), and True-parking (Customer book parking slots
+based on vacancy).
+PHP Developer
+Adwaita technology (Nov 2014 - Jul 2016)
+
+Worked on the development of a major School management system. Assessed initial set-up requirements and
+implemented appropriate hardware and software solutions. Contributed to various projects including the School
+management system and a Ticketing System.
+Education
+BCA, Bharathiyar University (2011)
+Skills
+FastAPI  
+Angular  
+AWS  
+React  
+AI Integrations  
+PHP  
+PHP Frameworks  
+Laravel 11  
+Python  
+Django
+MySQL  
+MongoDB  
+VUE3  
+REST APIs  
+Software Design  
+Requirements Analysis  
+Git  
+Ubuntu
+Agile Methodologies  
+Docker
+Projects
+AI-based Career Building Application
+Developed an AI-powered platform for job hunters, featuring AI-based resume building (with diverse templates),
+AI-generated cover letters from job descriptions, AI job fit analysis with personalized suggestions, and AI-driven
+LinkedIn profile optimization.
+Support Ticketing Application
+Developed a comprehensive system for managing support tickets.
+Theater Seat Booking Application
+Designed and developed a theater booking system for a leading US theater group, handling online reservations
+and ticketing.
+Online Medical Application (SAP Integration)
+Built an online medical platform that integrates with SAP for retrieving product details and price tiers, and
+synchronizing order information back to SAP.
+QR Code Restaurant Food Booking Application
+Created a QR code-based system for a top amusement group in the US, allowing customers to scan a QR code at
+their table to view menus and place food orders directly.
+12amclub
+Contributed to the development of the 12amclub project.
+filtr3 (Dating Application)
+Developed features for the filtr3 dating application.
+True-parking (Parking Slot Booking)
+Built an application for customers to book parking slots based on real-time vacancy.
+School Management System
+Worked on a major school management system, including assessing setup requirements and implementing
+software solutions.
+Ticketing System
+Developed a general-purpose ticketing system.
+response:
+{
+    "overall": 87,
+    "breakdown": {
+        "formatting": 80,
+        "keywords": 95,
+        "experience": 90,
+        "education": 60,
+        "skills": 95,
+        "contact": 70
+    },
+    "missingData": [
+        {
+            "category": "Contact",
+            "items": ["LinkedIn profile URL", "GitHub profile URL", "Portfolio URL"],
+            "severity": "critical"
+        },
+        {
+            "category": "Education",
+            "items": ["Graduation month for BCA", "Location of university for BCA"],
+            "severity": "warning"
+        },
+        {
+            "category": "Experience",
+            "items": ["Quantifiable achievements (e.g., metrics, percentages) to demonstrate impact more clearly, especially for older roles."],
+            "severity": "info"
+        },
+        {
+            "category": "Formatting",
+            "items": ["Consolidate project descriptions directly under relevant job experiences if they were part of that role, or clearly delineate personal projects from work projects to avoid redundancy."],
+            "severity": "warning"
+        },
+        {
+            "category": "Skills",
+            "items": ["Categorize skills (e.g., Programming Languages, Frameworks, Databases, Cloud Platforms, Tools, Methodologies) for improved readability and ATS parsing efficiency."],
+            "severity": "info"
+        }
+    ],
+    "suggestions": [
+        "Add LinkedIn, GitHub, and a portfolio URL to the contact information section to provide recruiters with essential professional context and demonstrate your work.",
+        "For each experience entry, quantify achievements with specific metrics (e.g., 'improved performance by X%', 'reduced bug reports by Y%', 'managed a team of Z engineers') to highlight concrete impact.",
+        "Review the 'Projects' section: integrate work-related projects directly into their respective job experience descriptions, or explicitly label projects as personal/freelance if they were not part of an employed role to avoid redundancy.",
+        "Expand education details to include the graduation month and the location of Bharathiyar University for completeness.",
+        "Consider categorizing your skills (e.g., 'Programming Languages', 'Frameworks', 'Databases', 'Cloud Platforms', 'Tools', 'Methodologies') for enhanced readability and ATS keyword matching efficiency.",
+        "Tailor the resume summary and keywords slightly for each specific job application to align perfectly with the target role's requirements, using keywords from the job description."
+    ],
+    "improvedResume": {
+        "name": "Vasanthan RK",
+        "email": "vasanthan.raju@gmail.com",
+        "phone": "9037291443",
+        "location": "Calicut, Kerala",
+        "summary": "Highly experienced and results-driven Senior Software Engineer with over +10 years of expertise in full-stack development, including recent experience as a Lead Software Development Engineer. Proven ability to lead complex projects from conception to deployment, design robust architectures, and mentor junior engineers. Specializes in developing scalable web applications using PHP (Laravel, CodeIgniter), Python (Django), and JavaScript frameworks (Vue.js, jQuery, AngularJS), with extensive experience in database management (MySQL, MongoDB) and RESTful API design. Adept at leveraging AI for innovative solutions and contributing to diverse domains including career building, e-commerce, healthcare, and booking systems.",
+        "jobrole": "Senior Software Engineer",
+        "linkedin_url": "",
+        "git_url": "",
+        "portfolio_url": "",
+        "experiences": [
+            {
+                "title": "Sr Software Engineer",
+                "company": "NCDA Services Pvt Ltd",
+                "duration": "Jun 2025 - Oct 2025",
+                "description": "Led the development of innovative AI-based applications. Designed and built an AI-powered career build application featuring AI-based resume creation (with diverse templates), AI-based cover letter generation from job descriptions, AI job fit analysis with suggestions, and AI-powered LinkedIn profile optimization. Developed a comprehensive support ticketing application."
+            },
+            {
+                "title": "Senior Software Engineer",
+                "company": "Tuna Software Solutions Pvt Ltd",
+                "duration": "Nov 2023 - May 2025",
+                "description": "Responsible for designing architecture, technical, and domain requirements, as well as development. Key projects included: A theater booking application for a top US theater group; an online medical application integrating with SAP for product retrieval, price tiers, and order synchronization; and a QR code based restaurant food booking application for a major amusement group in the US, allowing customers to view menus and book from scanned QR codes."
+            },
+            {
+                "title": "Sr PHP developer",
+                "company": "TechMaven IT Solutions Pvt. Ltd",
+                "duration": "May 2021 - Aug 2023",
+                "description": "Participated in the design and architecture of scalable, reliable, and high-performance software solutions. Developed, tested, and maintained software applications using industry best practices. Collaborated effectively with product managers and designers to gather requirements and provide technical expertise. Provided leadership and mentorship to junior engineers, guiding them in software development processes."
+            },
+            {
+                "title": "Senior Software Engineer",
+                "company": "AlignMinds Technologies",
+                "duration": "Nov 2020 - Mar 2021",
+                "description": "Played a crucial role in the design, development, and deployment of complex software solutions. Worked collaboratively with a talented team of engineers and contributed to the successful completion of various projects across different domains."
+            },
+            {
+                "title": "Senior Software Developer",
+                "company": "Innoxgen Solutions Pvt Ltd",
+                "duration": "Jan 2019 - Oct 2020",
+                "description": "Played a pivotal role in the development and delivery of high-quality software solutions. Contributed significantly to architectural decisions and technical strategies, with a strong focus on scalability, security, and performance. Maintained awareness of emerging technologies and industry trends, proactively recommending their adoption to enhance development processes and project outcomes. Actively participated in refining and optimizing software development methodologies within the organization."
+            },
+            {
+                "title": "Senior Software Engineer",
+                "company": "Acodez IT Solutions Pvt. Ltd.",
+                "duration": "Aug 2016 - Jan 2019",
+                "description": "Successfully led and developed major software projects on time and within budget as a Senior Software Engineer. Worked with a custom application development team, handling individual projects from scratch, including: Okazjo (Event management portal), 12amclub, filtr3 (Dating application), and True-parking (Customer book parking slots based on vacancy)."
+            },
+            {
+                "title": "PHP Developer",
+                "company": "Adwaita technology",
+                "duration": "Nov 2014 - Jul 2016",
+                "description": "Worked on the development of a major School management system. Assessed initial set-up requirements and implemented appropriate hardware and software solutions. Contributed to various projects including the School management system and a Ticketing System."
+            }
+        ],
+        "educations": [
+            {
+                "degree": "BCA",
+                "school": "Bharathiyar University",
+                "year": "2011"
+            }
+        ],
+        "skills": [
+            {"skill": "FastAPI"},
+            {"skill": "Angular"},
+            {"skill": "AWS"},
+            {"skill": "React"},
+            {"skill": "AI Integrations"},
+            {"skill": "PHP"},
+            {"skill": "PHP Frameworks"},
+            {"skill": "Laravel 11"},
+            {"skill": "Python"},
+            {"skill": "Django"},
+            {"skill": "MySQL"},
+            {"skill": "MongoDB"},
+            {"skill": "VUE3"},
+            {"skill": "REST APIs"},
+            {"skill": "Software Design"},
+            {"skill": "Requirements Analysis"},
+            {"skill": "Git"},
+            {"skill": "Ubuntu"},
+            {"skill": "Agile Methodologies"},
+            {"skill": "Docker"}
+        ],
+        "projects": [
+            {
+                "name": "AI-based Career Building Application",
+                "description": "Developed an AI-powered platform for job hunters, featuring AI-based resume building (with diverse templates), AI-generated cover letters from job descriptions, AI job fit analysis with personalized suggestions, and AI-driven LinkedIn profile optimization."
+            },
+            {
+                "name": "Support Ticketing Application",
+                "description": "Developed a comprehensive system for managing support tickets."
+            },
+            {
+                "name": "Theater Seat Booking Application",
+                "description": "Designed and developed a theater booking system for a leading US theater group, handling online reservations and ticketing."
+            },
+            {
+                "name": "Online Medical Application (SAP Integration)",
+                "description": "Built an online medical platform that integrates with SAP for retrieving product details and price tiers, and synchronizing order information back to SAP."
+            },
+            {
+                "name": "QR Code Restaurant Food Booking Application",
+                "description": "Created a QR code-based system for a top amusement group in the US, allowing customers to scan a QR code at their table to view menus and place food orders directly."
+            },
+            {
+                "name": "12amclub",
+                "description": "Contributed to the development of the 12amclub project."
+            },
+            {
+                "name": "filtr3 (Dating Application)",
+                "description": "Developed features for the filtr3 dating application."
+            },
+            {
+                "name": "True-parking (Parking Slot Booking)",
+                "description": "Built an application for customers to book parking slots based on real-time vacancy."
+            },
+            {
+                "name": "School Management System",
+                "description": "Worked on a major school management system, including assessing setup requirements and implementing software solutions."
+            },
+            {
+                "name": "Ticketing System",
+                "description": "Developed a general-purpose ticketing system."
+            }
+        ],
+        "certifications": [],
+        "languages": [],
+        "achievements": [],
+        "keywords": [
+            "Senior Software Engineer", "Lead Software Development Engineer", "Full-stack development", "PHP", "Laravel", "CodeIgniter", "Python", "Django", "JavaScript", "Vue.js", "jQuery", "AngularJS", "MySQL", "MongoDB", "RESTful API", "AI", "scalable web applications", "project leadership", "architectural design", "mentorship", "career building", "e-commerce", "healthcare", "booking systems", "FastAPI", "Angular", "AWS", "React", "AI Integrations", "PHP Frameworks", "Laravel 11", "Python", "Django", "MySQL", "MongoDB", "VUE3", "REST APIs", "Software Design", "Requirements Analysis", "Git", "Ubuntu", "Agile Methodologies", "Docker", "AI-based applications", "resume creation", "cover letter generation", "job fit analysis", "LinkedIn profile optimization", "support ticketing", "theater booking", "SAP integration", "QR code", "software solutions", "industry best practices", "technical expertise", "scalability", "security", "performance", "emerging technologies", "software development methodologies", "complex projects", "robust architectures", "junior engineers", "web applications", "database management", "deployment"
+        ]
+    }
+}

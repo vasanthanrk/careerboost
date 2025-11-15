@@ -48,6 +48,9 @@ async def create_or_update_resume(request: Request,db: Session = Depends(get_db)
 def get_resume(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
     resume = db.query(Resume).filter(Resume.user_id == current_user.id).first()
 
+    if not resume:
+        return {}
+    
     return resume.resume_data or {}
 
 @router.get("/resume/templates")

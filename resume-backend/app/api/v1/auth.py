@@ -32,13 +32,17 @@ def signup(user_data: UserCreate, db: Session = Depends(get_db)):
 
     token = create_access_token({"sub": str(new_user.id)})
 
-    return UserResponse(
-        id=new_user.id,
-        name=new_user.full_name,
-        email=new_user.email,
-        career_level=new_user.career_level,
-        token=token
-    )
+    return {
+        "status": "success",
+        "token": token,
+        "user": {
+            "id": new_user.id,
+            "full_name": new_user.full_name,
+            "email": new_user.email,
+            "career_level": new_user.career_level,
+            "avatar_url": ''
+        },
+    }
 
 @router.post("/login")
 def login(request_data: LoginRequest, request: Request, db: Session = Depends(get_db)):

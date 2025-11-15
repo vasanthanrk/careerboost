@@ -134,19 +134,61 @@
         {{ resume.location }}
       </div>
 
-      <h2>Skills</h2>
-      {% for skill in resume.skills %}
-        <div class="skill-item">{{ skill.skill }}</div>
-      {% endfor %}
+      {% if resume.skills and resume.skills|length > 0 %}
+        <h2>Skills</h2>
+        {% for skill in resume.skills %}
+          <div class="skill-item">{{ skill.skill }}</div>
+        {% endfor %}
+      {% endif %}
 
-      <h2>Education</h2>
-      {% for edu in resume.educations %}
-        <div class="education-item">
-          <div style="font-weight: bold;">{{ edu.degree }}</div>
-          <div style="font-size: 0.9em; margin-top: 3px;">{{ edu.school }}</div>
-          <div style="font-size: 0.85em; opacity: 0.9;">{{ edu.year }}</div>
-        </div>
-      {% endfor %}
+      {% if resume.languages and resume.languages|length > 0 %}
+        <h2>Languages</h2>
+        {% for language in resume.languages %}
+          <div class="skill-item">{{ language.languages }} - {{ language.proficiency }}</div>
+        {% endfor %}
+      {% endif %}
+
+      {% if resume.educations and resume.educations|length > 0 %}
+        <h2>Education</h2>
+        {% for edu in resume.educations %}
+          <div class="education-item">
+            <div style="font-weight: bold;">{{ edu.degree }}</div>
+            <div style="font-size: 0.9em; margin-top: 3px;">{{ edu.school }}</div>
+            <div style="font-size: 0.85em; opacity: 0.9;">{{ edu.year }}</div>
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      {% if resume.certifications and resume.certifications|length > 0 %}
+        <h2>Certifications</h2>
+        {% for cert in resume.certifications %}
+          <div class="education-item">
+            <div style="font-weight: bold;">{{ cert.name }}</div>
+            <div style="font-size: 0.9em; margin-top: 3px;">{{ cert.issuer }}</div>
+            <div style="font-size: 0.85em; opacity: 0.9;">{{ cert.year }}</div>
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      <div class="contact-info">
+        {% if resume.linkedin_url %}
+          {{ resume.linkedin_url }}<br>
+        {% endif %}
+
+        {% if resume.git_url %}
+          {{ resume.git_url }}<br>
+        {% endif %}
+
+        {% if resume.portfolio_url %}
+          {{ resume.portfolio_url }}<br>
+        {% endif %}
+      </div>
+      {% if resume.keywords and resume.keywords|length > 0 %}
+        <h2>Other</h2>
+        {% for keyword in resume.keywords %}
+          <div class="skill-item">#{{ keyword }}</div>
+        {% endfor %}
+      {% endif %}
     </div>
 
     <!-- Main Content -->
@@ -154,22 +196,36 @@
       <h2>Professional Summary</h2>
       <p class="summary">{{ resume.summary }}</p>
 
-      <h2>Work Experience</h2>
-      {% for exp in resume.experiences %}
-        <div class="experience-item">
-          <div class="job-title">{{ exp.title }}</div>
-          <div class="company-info">{{ exp.company }} | {{ exp.duration }}</div>
-          <p class="description">{{ exp.description }}</p>
-        </div>
-      {% endfor %}
+      {% if resume.experiences and resume.experiences|length > 0 %}
+        <h2>Work Experience</h2>
+        {% for exp in resume.experiences %}
+          <div class="experience-item">
+            <div class="job-title">{{ exp.title }}</div>
+            <div class="company-info">{{ exp.company }} | {{ exp.duration }}</div>
+            <p class="description">{{ exp.description }}</p>
+          </div>
+        {% endfor %}
+      {% endif %}
 
-      <h2>Featured Projects</h2>
-      {% for proj in resume.projects %}
-        <div class="project-item">
-          <div class="project-name">{{ proj.name }}</div>
-          <p class="description">{{ proj.description }}</p>
-        </div>
-      {% endfor %}
+      {% if resume.projects and resume.projects|length > 0 %}
+        <h2>Featured Projects</h2>
+        {% for proj in resume.projects %}
+          <div class="project-item">
+            <div class="project-name">{{ proj.name }}</div>
+            <p class="description">{{ proj.description }}</p>
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      {% if resume.achievements and resume.achievements|length > 0 %}
+        <h2>Achievements</h2>
+        {% for achi in resume.achievements %}
+          <div class="project-item">
+            <div class="project-name">{{ achi.title }}</div>
+            <p class="description">{{ achi.description }}</p>
+          </div>
+        {% endfor %}
+      {% endif %}
     </div>
   </div>
 </body>
