@@ -2,11 +2,25 @@ FROM python:3.11-slim AS base
 
 WORKDIR /app
 
-# Install system dependencies (for MySQL client, pymysql, etc.)
+# Install system dependencies and wkhtmltopdf from official apt repo
 RUN apt-get update && apt-get install -y \
-    build-essential \
-    default-libmysqlclient-dev \
-    && rm -rf /var/lib/apt/lists/*
+    wget \
+    gnupg \
+    ca-certificates \
+    xfonts-base \
+    xfonts-75dpi \
+    fontconfig \
+    libjpeg62-turbo \
+    libxrender1 \
+    libxext6 \
+    libfreetype6 \
+    libpng16-16 \
+    libssl3 \
+    default-mysql-client \
+    netcat-traditional && \
+    echo "deb http://deb.debian.org/debian bookworm-backports main contrib non-free" >> /etc/apt/sources.list && \
+    apt-get update && apt-get install -y wkhtmltopdf && \
+    rm -rf /var/lib/apt/lists/*
 
 # Copy dependency lists first (for Docker cache)
 COPY requirements.txt ./
