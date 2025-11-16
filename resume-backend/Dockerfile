@@ -28,20 +28,42 @@ RUN apt-get update && apt-get install -y \
 # Verify wkhtmltopdf installation
 RUN which wkhtmltopdf && wkhtmltopdf --version
 
-# Copy dependency list
 COPY requirements.txt .
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install ALL dependencies into /packages
+RUN pip install --upgrade pip && \
+    pip install --prefix=/packages -r requirements.txt
 
-# Copy all backend source
+# ============================
+# Stage 2 – Final Production Image
+# ============================
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Copy runtime system libs needed by WeasyPrint
+RUN apt-get update && apt-get install -y \
+    libcairo2 \
+    libpango-1.0-0 \
+    libpangocairo-1.0-0 \
+    libgdk-pixbuf-2.0-0 \
+    wkhtmltopdf \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy installed dependencies from builder stage
+COPY --from=builder /packages /usr/local
+
+# Copy backend source code
 COPY . .
 
-# Set wkhtmltopdf path
-ENV WKHTMLTOPDF_CMD=/usr/bin/wkhtmltopdf
-
-# Expose FastAPI port
+# Expose API port
 EXPOSE 8082
 
-# Run migrations + start API
-CMD ["bash", "-c", "until nc -z db 3306; do echo waiting for db...; sleep 2; done; alembic stamp head && alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8082"]
+# Run DB migrations automatically before starting backend
+CMD alembic upgrade head && \
+    gunicorn app.main:app \
+      -k uvicorn.workers.UvicornWorker \
+      --bind 0.0.0.0:8082 \
+      --timeout 120 \
+      --workers 4
