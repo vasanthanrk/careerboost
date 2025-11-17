@@ -101,7 +101,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                   <span className="bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
                     CareerBoost
                   </span>
-                  <p className="text-gray-500 -mt-1">AI-Powered</p>
+                  <p className="text-gray-500 -mt-1">AI-Powered Beta</p>
                 </div>
               </Link>
 

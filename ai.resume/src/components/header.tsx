@@ -21,7 +21,7 @@ export function Header() {
                     </div>
                     <div className="hidden sm:block">
                         <span className="text-gray-900 dark:text-white">CareerBoost</span>
-                        <p className="text-gray-500 -mt-1">AI-Powered</p>
+                        <p className="text-gray-500 -mt-1">AI-Powered Beta</p>
                     </div>
                 </Link>
               
