@@ -18,14 +18,12 @@ import google.generativeai as genai
 from app.core.database import get_db
 from app.core.security import get_current_user  # your function
 from app.models.ats import ATSResult
+from app.core.config import settings
 
 router = APIRouter()
 
 # configure gemini API key
-GEMINI_KEY = os.getenv("GEMINI_API_KEY")
-if not GEMINI_KEY:
-    raise RuntimeError("Please set GEMINI_API_KEY environment variable")
-genai.configure(api_key=GEMINI_KEY)
+genai.configure(api_key=settings.GEMINI_API_KEY)
 
 # Dir for resume HTML templates
 TEMPLATES_DIR = os.getenv("RESUME_TEMPLATES_DIR", "./templates/resume_templates")

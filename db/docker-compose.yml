@@ -1,14 +1,14 @@
 version: '3.8'
 
 services:
-  mysql:
+  db:
     image: mysql:8.0
     container_name: mysql_db
     environment:
-      MYSQL_ROOT_PASSWORD: rootpass
-      MYSQL_DATABASE: careerboost
-      MYSQL_USER: careerboost
-      MYSQL_PASSWORD: supersecret
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - "3306:3306"
     volumes:
@@ -18,13 +18,13 @@ services:
     image: phpmyadmin/phpmyadmin:latest
     container_name: phpmyadmin
     environment:
-      PMA_HOST: mysql
+      PMA_HOST: db
       PMA_USER: careerboost
       PMA_PASSWORD: supersecret
     ports:
       - "8083:80"
     depends_on:
-      - mysql
+      - db
 
 volumes:
   mysql_data:
