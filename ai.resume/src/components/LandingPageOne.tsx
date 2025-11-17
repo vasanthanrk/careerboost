@@ -153,7 +153,7 @@ useEffect(() => {
 
             <Link to="/resume-builder">
               <Button className="bg-violet-600 hover:bg-violet-700 text-white px-8 py-6 rounded-xl">
-                Get Started Free
+                Get Started Now
               </Button>
             </Link>
           </div>

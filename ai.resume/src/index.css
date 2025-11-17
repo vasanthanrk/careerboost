@@ -1852,7 +1852,8 @@
   }
 
   .bg-violet-600 {
-    background-color: var(--color-violet-600);
+    /* background-color: var(--color-violet-600); */
+    background-color: #2cacd5;
   }
 
   .bg-violet-600\/10 {
@@ -2719,7 +2720,8 @@
   }
 
   .text-violet-600 {
-    color: var(--color-violet-600);
+    /* color: var(--color-violet-600); */
+    color: #2cacd5;
   }
 
   .text-violet-700 {
@@ -3236,6 +3238,7 @@
 
   @media (hover: hover) {
     .hover\:bg-violet-600:hover {
+      /* background-color: var(--color-violet-600); */
       background-color: var(--color-violet-600);
     }
   }
