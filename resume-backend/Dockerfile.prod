@@ -19,18 +19,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     netcat-traditional \
     libxinerama1 \
     libx11-6 \
-    echo "deb http://deb.debian.org/debian bookworm-backports main contrib non-free" \
+    && rm -rf /var/lib/apt/lists/*
+
+# Add backports repo and install wkhtmltopdf
+RUN echo "deb http://deb.debian.org/debian bookworm-backports main contrib non-free" \
     > /etc/apt/sources.list.d/backports.list \
     && apt-get update \
     && apt-get install -y --no-install-recommends wkhtmltopdf \
     && rm -rf /var/lib/apt/lists/*
-
-# Install wkhtmltopdf (buster version works on slim images)
-# RUN wget -O /tmp/wkhtml.deb \
-#     https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.buster_amd64.deb \
-#     && apt-get update \
-#     && apt-get install -y --no-install-recommends /tmp/wkhtml.deb \
-#     && rm /tmp/wkhtml.deb
     
 # Copy dependency lists first (for Docker cache)
 COPY requirements.txt ./
