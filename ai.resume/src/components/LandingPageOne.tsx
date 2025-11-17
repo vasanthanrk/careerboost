@@ -34,13 +34,13 @@ export function LandingPageOne() {
   const [flipped, setFlipped] = useState(false);
 
   // Flip animation without jQuery
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setFlipped((prev) => !prev);
-    }, 2000);
+useEffect(() => {
+  const timer = setInterval(() => {
+    setFlipped((prev) => !prev);
+  }, 2000);
 
-    return () => clearInterval(interval);
-  }, []);
+  return () => clearInterval(timer);
+}, []);
 
   const features = [
     {
@@ -157,23 +157,16 @@ export function LandingPageOne() {
               </Button>
             </Link>
           </div>
-
           {/* RIGHT IMAGE - React Flip Effect */}
           <div className="relative flex justify-center items-center">
-            <div
-              className={`flip-wrapper ${
-                flipped ? "rotate-y-180" : "rotate-y-0"
-              }`}
-            >
-              <img
-                className="flip-image front"
-                src="https://website.cdn.novoresume.com/static/resume-templates/hybrid-resume-template.png"
-              />
-              <img
-                className="flip-image back"
-                src="https://piktochart.com/wp-content/uploads/2023/02/large-10-600x848.jpg"
-              />
+           <div className={`flip-wrapper ${flipped ? "flipped" : ""}`}>
+            <div className="side front">
+              <img src="https://marketplace.canva.com/EAGcEPEtKxs/1/0/1131w/canva-modern-minimalist-professional-cv-resume-lunzGAiAG3o.jpg" />
             </div>
+            <div className="side back">
+              <img src="https://i.pinimg.com/736x/c3/5f/5b/c35f5bc0a572f1aa3d236a8a311b3510.jpg" />
+            </div>
+          </div>
           </div>
         </div>
       </section>

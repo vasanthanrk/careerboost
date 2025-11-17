@@ -1,27 +1,60 @@
 .flip-wrapper {
-  width: 320px;
-  height: 420px;
   position: relative;
+  width: 400px;
+  height: 530px;
+  margin: 40px auto;
+
   transform-style: preserve-3d;
-  transition: transform 0.8s ease;
+  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+  perspective: 1600px;
+
+  /* Softer Enhancv-style tilt */
+  transform:
+    perspective(1600px)
+    rotateX(5deg)
+    rotateY(-3deg)
+    rotateZ(-1deg)
+    translateY(10px);
 }
 
-.rotate-y-180 {
-  transform: rotateY(180deg);
+.flip-wrapper.flipped {
+  transform:
+    rotateY(180deg)
+    perspective(1600px)
+    rotateX(5deg)
+    rotateY(-3deg)
+    rotateZ(-1deg)
+    translateY(10px);
 }
 
-.rotate-y-0 {
-  transform: rotateY(0deg);
-}
 
-.flip-image {
+/* CARD SIDES */
+.side {
+  position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 12px;
-  position: absolute;
   backface-visibility: hidden;
 }
 
-.flip-image.back {
+/* Enhancv-style image look */
+.side img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  border-radius: 14px;
+
+  /* stronger depth + soft outline */
+  box-shadow:
+    0px 15px 25px rgba(0,0,0,0.18),
+    0px 25px 40px rgba(0,0,0,0.12),
+    0 0 3px rgba(255,255,255,0.9) inset;
+
+  /* FIX FOR BLURRINESS: Forces hardware acceleration for crisp rendering */
+  transform: translateZ(0); 
+}
+
+/* Back side flipped */
+.back {
   transform: rotateY(180deg);
 }
