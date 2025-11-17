@@ -17,9 +17,9 @@ RUN apt-get update && apt-get install -y \
     libssl3 \
     default-mysql-client \
     netcat-traditional && \
-    wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.focal_amd64.deb && \
-    apt-get install -y ./wkhtmltox_0.12.6-1.focal_amd64.deb && \
-    rm -rf /var/lib/apt/lists/* wkhtmltox_0.12.6-1.focal_amd64.deb
+    wget https://gitee.com/mirrors/wkhtmltopdf/attach_files/1132797/download/wkhtmltox_0.12.6-1.focal_amd64.deb -O wkhtmltox.deb && \
+    apt-get install -y ./wkhtmltox.deb && \
+    rm -rf /var/lib/apt/lists/* wkhtmltox.deb
 
 # Copy dependency lists first (for Docker cache)
 COPY requirements.txt ./
