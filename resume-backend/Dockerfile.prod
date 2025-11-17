@@ -21,13 +21,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libx11-6 \
     && rm -rf /var/lib/apt/lists/*
 
-# Download & install wkhtmltopdf (Debian compatible .deb)
+# Install wkhtmltopdf (buster version works on slim images)
 RUN wget -O /tmp/wkhtml.deb \
-    https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.bookworm_amd64.deb \
+    https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.buster_amd64.deb \
     && apt-get update \
-    && apt-get install -y /tmp/wkhtml.deb \
+    && apt-get install -y --no-install-recommends /tmp/wkhtml.deb \
     && rm /tmp/wkhtml.deb
-
+    
 # Copy dependency lists first (for Docker cache)
 COPY requirements.txt ./
 
