@@ -7,6 +7,7 @@ class Settings(BaseSettings):
     DATABASE_URL: str
     JWT_SECRET: str
     GEMINI_API_KEY: str
+    CORS_ORIGINS:str
 
     class Config:
         env_file = ".env"
