@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
 import { Sparkles, Cookie } from 'lucide-react';
+import { Footer } from './footer';
 
 export function CookiePage() {
   return (
@@ -226,47 +227,7 @@ export function CookiePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <h4 className="mb-4">Product</h4>
-              <div className="space-y-2">
-                <Link to="/resume-builder" className="block text-gray-400 hover:text-white">Resume Builder</Link>
-                <Link to="/cover-letter" className="block text-gray-400 hover:text-white">Cover Letter</Link>
-                <Link to="/ats-checker" className="block text-gray-400 hover:text-white">ATS Checker</Link>
-              </div>
-            </div>
-            <div>
-              <h4 className="mb-4">Company</h4>
-              <div className="space-y-2">
-                <Link to="/about" className="block text-gray-400 hover:text-white">About Us</Link>
-                <Link to="/contact" className="block text-gray-400 hover:text-white">Contact</Link>
-                <Link to="/pricing" className="block text-gray-400 hover:text-white">Pricing</Link>
-              </div>
-            </div>
-            <div>
-              <h4 className="mb-4">Legal</h4>
-              <div className="space-y-2">
-                <Link to="/privacy" className="block text-gray-400 hover:text-white">Privacy Policy</Link>
-                <Link to="/terms" className="block text-gray-400 hover:text-white">Terms of Service</Link>
-                <Link to="/cookies" className="block text-gray-400 hover:text-white">Cookie Policy</Link>
-              </div>
-            </div>
-            <div>
-              <h4 className="mb-4">Connect</h4>
-              <div className="space-y-2">
-                <a href="#" className="block text-gray-400 hover:text-white">Twitter</a>
-                <a href="#" className="block text-gray-400 hover:text-white">LinkedIn</a>
-                <a href="#" className="block text-gray-400 hover:text-white">Facebook</a>
-              </div>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 CareerBoost. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   );
 }
