@@ -19,8 +19,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     netcat-traditional \
     libxinerama1 \
     libx11-6 \
-    wkhtmltopdf \
-    && rm -rf /var/lib/apt/lists/*
+    echo "deb http://deb.debian.org/debian bookworm-backports main contrib non-free" >> /etc/apt/sources.list && \
+    apt-get update && apt-get install -y wkhtmltopdf && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install wkhtmltopdf (buster version works on slim images)
 # RUN wget -O /tmp/wkhtml.deb \
