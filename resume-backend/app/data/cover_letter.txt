@@ -280,11 +280,7 @@ Sincerely,
 [Candidate Name]
 
 ------------------------------------------
-<<<<<<< HEAD
-timestamp: 2025-11-17T12:42:44.777545
-=======
 timestamp: 2025-11-17T12:45:13.875569
->>>>>>> ac4bef9 (Git ignore)
 user_id: 1
 user_email: vasanthan.raju@gmail.com
 model: gemini-2.5-flash
@@ -292,15 +288,6 @@ prompt:
 Write a personalized and well-structured cover letter.
 
             Details:
-<<<<<<< HEAD
-            - Job Role: Sr Devloper
-            - Company: Tuna
-            - Job Description: Need php, and laravel developer
-            - Desired Tone: confident
-
-            Guidelines:
-            - Use a confident tone throughout.
-=======
             - Job Role: Test
             - Company: Tuna
             - Job Description: Need php and laravel developer
@@ -308,7 +295,6 @@ Write a personalized and well-structured cover letter.
 
             Guidelines:
             - Use a enthusiastic tone throughout.
->>>>>>> ac4bef9 (Git ignore)
             - Make it concise but engaging.
             - Highlight relevant skills naturally.
             - Sign with "Sincerely, [Candidate Name]".
@@ -320,37 +306,20 @@ response:
 
 [Date]
 
-<<<<<<< HEAD
-Hiring Team
-Tuna
-=======
 Tuna Hiring Team
->>>>>>> ac4bef9 (Git ignore)
 [Company Address - If known, otherwise omit]
 
 Dear Tuna Hiring Team,
 
-<<<<<<< HEAD
-I am writing with significant enthusiasm to express my strong interest in the Sr Developer position at Tuna. With a robust background in developing high-performance web applications and a proven track record of architecting scalable solutions, I am confident I possess the expertise and drive to make an immediate and substantial contribution to your innovative team.
-
-My extensive experience aligns perfectly with Tuna's need for a skilled PHP and Laravel developer. For years, I have consistently leveraged the full power of the Laravel framework to design, develop, and maintain complex web solutions, ensuring optimal performance, security, and maintainability. I am adept at translating challenging requirements into elegant, efficient, and robust code, delivering projects that not only meet but exceed expectations.
-
-As a Senior Developer, I bring more than just coding proficiency; I offer a holistic approach to software development. My expertise extends to guiding best practices, optimizing system architecture, and ensuring project success from conception to deployment. I am passionate about crafting solutions that are built for future growth and innovation, qualities I believe are crucial for a dynamic company like Tuna. I am prepared to lead initiatives, mentor peers, and contribute significantly to your technological advancements.
-
-I am highly impressed by Tuna's work and am eager to bring my deep technical skills and leadership capabilities to your team. I am confident that my contributions would significantly benefit your ongoing projects. Thank you for considering my application; I look forward to the opportunity to discuss how I can contribute as your next Sr Developer.
-=======
 I am absolutely thrilled to express my enthusiastic interest in the 'Test' position at Tuna! Having followed Tuna's innovative work, I am genuinely excited by the prospect of contributing my robust PHP and Laravel development skills to your dynamic team.
 
 My professional journey has been deeply rooted in PHP development, with a significant emphasis on harnessing the power and elegance of the Laravel framework. I am passionate about crafting clean, efficient, and scalable web solutions, and I've consistently delivered projects utilizing Laravel's robust features for everything from API development to intricate database management. The idea of applying this expertise to the exciting projects at Tuna fills me with genuine enthusiasm, and I am confident in my ability to hit the ground running and make immediate contributions.
 
 I am incredibly enthusiastic about the possibility of joining Tuna and am genuinely eager to learn more about this 'Test' role and how my skills can perfectly align with your team's objectives. Thank you for considering my application; I am very much looking forward to the opportunity to discuss my qualifications further.
->>>>>>> ac4bef9 (Git ignore)
 
 Sincerely,
 
 [Candidate Name]
-<<<<<<< HEAD
-=======
 
 ------------------------------------------
 timestamp: 2025-11-17T12:50:08.387533
@@ -384,4 +353,3 @@ Thank you for considering my application. I am genuinely enthusiastic about the 
 
 Sincerely,
 [Candidate Name]
->>>>>>> ac4bef9 (Git ignore)
