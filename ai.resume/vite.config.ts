@@ -50,9 +50,12 @@
         '@': path.resolve(__dirname, './src'),
       },
     },
+    optimizeDeps: {
+      force: true,
+    },
     build: {
-      target: 'esnext',
-      outDir: 'build',
+      minify: "esbuild",
+      sourcemap: false,
     },
     server: {
       port: 8081,
