@@ -3,48 +3,59 @@
 <head>
   <meta charset="UTF-8" />
   <style>
-    body {
-      font-family: "Georgia", serif;
+    /* Remove default margins and set page size */
+    @page {
+      size: A4;
       margin: 0;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: "Georgia", serif;
       color: #1a1a1a;
       background-color: white;
     }
+
+    /* Layout: sidebar + main content */
     .template3 {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      min-height: 100%;
+      display: flex;
+      width: 100%;
     }
-    /* Sidebar & Main columns using inline-block for PDF safety */
-    .template3 .sidebar {
-      float: left;
+
+    .sidebar {
       width: 260px;
       background-color: #e74c3c;
       color: white;
       padding: 40px 25px;
       box-sizing: border-box;
-      min-height: 100vh;
+      page-break-inside: avoid; /* keep sidebar intact */
     }
-    
-    .template3 .sidebar h1 {
+
+    .sidebar h1 {
       margin: 0 0 10px 0;
       font-size: 2em;
       line-height: 1.2;
     }
-    .template3 .sidebar .contact-info {
+
+    .sidebar .contact-info {
       font-size: 0.85em;
       line-height: 1.6;
       margin-bottom: 30px;
       opacity: 0.95;
       font-family: 'Arial', sans-serif;
     }
-    .template3 .sidebar h2 {
+
+    .sidebar h2 {
       font-size: 1.2em;
       margin-top: 25px;
       margin-bottom: 12px;
       border-bottom: 2px solid rgba(255,255,255,0.3);
       padding-bottom: 5px;
     }
-    .template3 .sidebar .skill-item {
+
+    .sidebar .skill-item {
       background-color: rgba(255,255,255,0.2);
       padding: 5px 10px;
       margin: 5px 0;
@@ -52,14 +63,21 @@
       font-size: 0.9em;
       font-family: 'Arial', sans-serif;
     }
-    .template3 .main-content {
-      margin-left: 260px; /* matches sidebar width */
+
+    .main-content {
+      flex: 1;
       padding: 40px;
       background-color: white;
       box-sizing: border-box;
-      min-height: 100vh;
+
+      /* 👇 critical for multi-page rendering */
+      page-break-inside: auto;
+      page-break-before: auto;
+      page-break-after: auto;
+      overflow: visible;
     }
-    .template3 .main-content h2 {
+
+    .main-content h2 {
       color: #e74c3c;
       font-size: 1.6em;
       margin-top: 25px;
@@ -67,58 +85,47 @@
       border-bottom: 2px solid #e74c3c;
       padding-bottom: 8px;
     }
-    .template3 .experience-item,
-    .template3 .project-item {
+
+    .experience-item,
+    .project-item,
+    .education-item,
+    .achievement-item {
       margin-bottom: 20px;
       position: relative;
       padding-left: 0;
+      page-break-inside: avoid; /* keep each item together */
     }
-    .template3 .job-title,
-    .template3 .project-name {
+
+    .job-title,
+    .project-name {
       font-weight: bold;
       color: #2c3e50;
       font-size: 1.15em;
     }
-    .template3 .company-info {
+
+    .company-info {
       color: #7f8c8d;
       font-style: italic;
       margin-top: 3px;
       font-size: 0.95em;
     }
-    .template3 .description {
+
+    .description {
       margin-top: 8px;
       line-height: 1.7;
       color: #444;
     }
-    .template3 .education-item {
-      margin-bottom: 15px;
-    }
-    .template3 .summary {
+
+    .summary {
       line-height: 1.7;
       color: #444;
       font-size: 1.05em;
     }
-    /* Print/PDF-specific fixes */
+
     @media print {
       body {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
-      }
-
-      .sidebar {
-        float: left;
-        width: 260px;
-        background-color: #e74c3c !important;
-        color: white !important;
-      }
-
-      .main-content {
-        margin-left: 260px;
-        page-break-inside: auto;
-      }
-
-      .template3 {
-        overflow: visible;
       }
     }
   </style>
@@ -134,21 +141,21 @@
         {{ resume.location }}
       </div>
 
-      {% if resume.skills and resume.skills|length > 0 %}
+      {% if resume.skills %}
         <h2>Skills</h2>
         {% for skill in resume.skills %}
           <div class="skill-item">{{ skill.skill }}</div>
         {% endfor %}
       {% endif %}
 
-      {% if resume.languages and resume.languages|length > 0 %}
+      {% if resume.languages %}
         <h2>Languages</h2>
         {% for language in resume.languages %}
           <div class="skill-item">{{ language.languages }} - {{ language.proficiency }}</div>
         {% endfor %}
       {% endif %}
 
-      {% if resume.educations and resume.educations|length > 0 %}
+      {% if resume.educations %}
         <h2>Education</h2>
         {% for edu in resume.educations %}
           <div class="education-item">
@@ -159,7 +166,7 @@
         {% endfor %}
       {% endif %}
 
-      {% if resume.certifications and resume.certifications|length > 0 %}
+      {% if resume.certifications %}
         <h2>Certifications</h2>
         {% for cert in resume.certifications %}
           <div class="education-item">
@@ -171,19 +178,12 @@
       {% endif %}
 
       <div class="contact-info">
-        {% if resume.linkedin_url %}
-          {{ resume.linkedin_url }}<br>
-        {% endif %}
-
-        {% if resume.git_url %}
-          {{ resume.git_url }}<br>
-        {% endif %}
-
-        {% if resume.portfolio_url %}
-          {{ resume.portfolio_url }}<br>
-        {% endif %}
+        {% if resume.linkedin_url %}{{ resume.linkedin_url }}<br>{% endif %}
+        {% if resume.git_url %}{{ resume.git_url }}<br>{% endif %}
+        {% if resume.portfolio_url %}{{ resume.portfolio_url }}<br>{% endif %}
       </div>
-      {% if resume.keywords and resume.keywords|length > 0 %}
+
+      {% if resume.keywords %}
         <h2>Other</h2>
         {% for keyword in resume.keywords %}
           <div class="skill-item">#{{ keyword }}</div>
@@ -196,7 +196,7 @@
       <h2>Professional Summary</h2>
       <p class="summary">{{ resume.summary }}</p>
 
-      {% if resume.experiences and resume.experiences|length > 0 %}
+      {% if resume.experiences %}
         <h2>Work Experience</h2>
         {% for exp in resume.experiences %}
           <div class="experience-item">
@@ -207,7 +207,7 @@
         {% endfor %}
       {% endif %}
 
-      {% if resume.projects and resume.projects|length > 0 %}
+      {% if resume.projects %}
         <h2>Featured Projects</h2>
         {% for proj in resume.projects %}
           <div class="project-item">
@@ -217,10 +217,10 @@
         {% endfor %}
       {% endif %}
 
-      {% if resume.achievements and resume.achievements|length > 0 %}
+      {% if resume.achievements %}
         <h2>Achievements</h2>
         {% for achi in resume.achievements %}
-          <div class="project-item">
+          <div class="achievement-item">
             <div class="project-name">{{ achi.title }}</div>
             <p class="description">{{ achi.description }}</p>
           </div>

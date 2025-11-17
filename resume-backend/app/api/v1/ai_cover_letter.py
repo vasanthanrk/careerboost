@@ -4,11 +4,11 @@ import google.generativeai as genai
 import os
 from app.core.security import get_current_user  # optional if user-specific
 from app.core.config import settings
-import pdfkit
 from jinja2 import Environment, FileSystemLoader
 from app.utils.activity_tracker import track_activity, log_user_activity
 from sqlalchemy.orm import Session
 from app.core.database import get_db
+from app.utils.pdf_generator import generate_pdf_from_html
 
 genai.configure(api_key=settings.GEMINI_API_KEY)
 TEMPLATES_DIR = os.path.join(os.path.dirname(__file__), "../../templates/cover-letter")
@@ -104,7 +104,7 @@ def generate_cover_letter_pdf(request: CoverLetterPdfRequest, current_user=Depen
         )
 
         # Generate PDF
-        pdf_bytes = pdfkit.from_string(html_content, False)
+        pdf_bytes = generate_pdf_from_html(html_content)
 
         track_activity(db, current_user.id, "cover_letter_download")
         log_user_activity(

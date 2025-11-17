@@ -1,11 +1,11 @@
 # =========================
 # Backend Dockerfile (Clean fix without .deb files)
 # =========================
-FROM python:3.11-slim-bookworm
+FROM python:3.11-slim-bookworm 
 
 WORKDIR /app
 
-# Install system dependencies and wkhtmltopdf from official apt repo
+# Install system dependencies and from official apt repo
 RUN apt-get update && apt-get install -y \
     wget \
     gnupg \
@@ -21,12 +21,7 @@ RUN apt-get update && apt-get install -y \
     libssl3 \
     default-mysql-client \
     netcat-traditional && \
-    echo "deb http://deb.debian.org/debian bookworm-backports main contrib non-free" >> /etc/apt/sources.list && \
-    apt-get update && apt-get install -y wkhtmltopdf && \
     rm -rf /var/lib/apt/lists/*
-
-# Verify wkhtmltopdf installation
-RUN which wkhtmltopdf && wkhtmltopdf --version
 
 COPY requirements.txt .
 
@@ -47,12 +42,11 @@ RUN apt-get update && apt-get install -y \
     libpango-1.0-0 \
     libpangocairo-1.0-0 \
     libgdk-pixbuf-2.0-0 \
-    wkhtmltopdf \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy installed dependencies from builder stage
-COPY --from=builder /packages /usr/local
+# COPY --from=builder /packages /usr/local   # <-- now it works
 
 # Copy backend source code
 COPY . .

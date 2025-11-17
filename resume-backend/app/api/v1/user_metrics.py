@@ -9,7 +9,7 @@ from pydantic import BaseModel, EmailStr, Field
 
 router = APIRouter()
 
-LIMIT_PER_FEATURE = 3
+LIMIT_PER_FEATURE = 20
 
 @router.get("/check-feature/{feature_name}")
 def check_feature_usage(feature_name: str, db: Session = Depends(get_db), current_user=Depends(get_current_user)):

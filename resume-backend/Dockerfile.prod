@@ -1,10 +1,14 @@
-FROM python:3.11-slim AS base
+# =========================
+# Backend Dockerfile (Clean fix without .deb files)
+# =========================
+FROM python:3.11-slim-bookworm 
 
 WORKDIR /app
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
+# Install system dependencies and from official apt repo
+RUN apt-get update && apt-get install -y \
     wget \
+    gnupg \
     ca-certificates \
     xfonts-base \
     xfonts-75dpi \
@@ -16,22 +20,30 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libpng16-16 \
     libssl3 \
     default-mysql-client \
-    netcat-traditional \
-    libxinerama1 \
-    libx11-6 \
-    && rm -rf /var/lib/apt/lists/*
+    netcat-traditional && \
+    rm -rf /var/lib/apt/lists/*
 
-# Add backports repo and install wkhtmltopdf
-RUN echo "deb http://deb.debian.org/debian bookworm-backports main contrib non-free" \
-    > /etc/apt/sources.list.d/backports.list \
-    && apt-get update \
-    && apt-get install -y --no-install-recommends wkhtmltopdf \
-    && rm -rf /var/lib/apt/lists/*
-    
-# Copy dependency lists first (for Docker cache)
-COPY requirements.txt ./
+COPY requirements.txt .
 
-RUN pip install --no-cache-dir -r requirements.txt
+# Install ALL dependencies into /packages
+RUN pip install --upgrade pip && \
+    pip install --prefix=/packages -r requirements.txt
+
+# ============================
+# Stage 2 – Final Production Image
+# ============================
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Copy runtime system libs needed by WeasyPrint
+RUN apt-get update && apt-get install -y \
+    libcairo2 \
+    libpango-1.0-0 \
+    libpangocairo-1.0-0 \
+    libgdk-pixbuf-2.0-0 \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy backend app
 COPY . .
