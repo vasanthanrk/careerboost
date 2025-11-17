@@ -28,8 +28,7 @@ services:
     container_name: cb_backend
     restart: unless-stopped
     depends_on:
-      db:
-        condition: service_healthy
+      - db
     env_file:
       - ./resume-backend/.env
     environment:
