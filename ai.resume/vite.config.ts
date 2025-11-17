@@ -54,8 +54,10 @@
       force: true,
     },
     build: {
-      minify: "esbuild",
+      outDir: 'dist',
       sourcemap: false,
+      minify: 'esbuild',
+      emptyOutDir: true,
     },
     server: {
       port: 8081,
