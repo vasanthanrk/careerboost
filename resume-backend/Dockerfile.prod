@@ -2,8 +2,8 @@ FROM python:3.11-slim AS base
 
 WORKDIR /app
 
-# Install dependencies + wkhtmltopdf manually
-RUN apt-get update && apt-get install -y \
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
     wget \
     ca-certificates \
     xfonts-base \
@@ -16,11 +16,17 @@ RUN apt-get update && apt-get install -y \
     libpng16-16 \
     libssl3 \
     default-mysql-client \
-    netcat-traditional && \
-    add-apt-repository ppa:savoirfairelinux/wkhtmltopdf -y && \
-    apt-get update && \
-    apt-get install -y wkhtmltopdf && \
-    rm -rf /var/lib/apt/lists/*
+    netcat-traditional \
+    libxinerama1 \
+    libx11-6 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Download & install wkhtmltopdf (Debian compatible .deb)
+RUN wget -O /tmp/wkhtml.deb \
+    https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.bookworm_amd64.deb \
+    && apt-get update \
+    && apt-get install -y /tmp/wkhtml.deb \
+    && rm /tmp/wkhtml.deb
 
 # Copy dependency lists first (for Docker cache)
 COPY requirements.txt ./
