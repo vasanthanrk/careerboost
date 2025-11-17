@@ -3021,3 +3021,248 @@ response:
     "Architectural Design"
   ]
 }
+
+------------------------------------------
+timestamp: 2025-11-17T10:55:04.049125
+user_id: 3
+user_email: renjumini001@gmail.com
+model: gemini-2.5-flash
+prompt:
+Generate a JSON resume for a Senior tele marketing executive .
+        Experience level: mid.
+        Additional info: Telemarketing, customer handling, customer support .
+
+        need tobe ATS based data. object with the following schema strictly (even if some fields are empty)
+        please add experiences description if there is not provided for each jobs
+        Return JSON with the following structure:
+        {
+            "name": "string",
+            "email": "string",
+            "phone": "string",
+            "location": "string",
+            "summary": "string",
+            "jobrole": "string",
+            "linkedin_url":"string",
+            "git_url":"string",
+            "portfolio_url":"string",
+            "experiences": [
+            {
+                "title": "string",
+                "company": "string",
+                "duration": "string",
+                "description": "string"
+            }
+            ],
+            "educations": [
+            {
+                "degree": "string",
+                "school": "string",
+                "year": "string"
+            }
+            ],
+            "skills": [
+            {
+                "skill": "string"
+            }
+            ],
+            "projects": [
+            {
+                "name": "string",
+                "description": "string"
+            }
+            ],
+            "certifications": [
+            {
+                "name": "string",
+                "issuer": "string",
+                "year": "string"
+            }
+            ],
+            "languages": [
+            {
+                "language": "string",
+                "proficiency": "string"
+            }
+            ],
+            "achievements": [
+            {
+                "title": "string",
+                "description": "string"
+            }
+            ],
+            "keywords": ["string", "..."]
+        }
+response:
+{
+  "name": "Aisha Khan",
+  "email": "aisha.khan.tm@email.com",
+  "phone": "+1 (555) 123-4567",
+  "location": "New York, NY",
+  "summary": "Highly motivated and results-driven Senior Telemarketing Executive with 5+ years of progressive experience in driving sales, generating qualified leads, and building robust customer relationships. Proven expertise in telemarketing, customer handling, and customer support, consistently exceeding sales targets and enhancing client satisfaction. Adept at developing compelling sales pitches, utilizing CRM systems, and resolving complex customer inquiries to achieve business objectives. Seeking to leverage advanced communication and persuasion skills to contribute to a dynamic sales environment.",
+  "jobrole": "Senior Telemarketing Executive",
+  "linkedin_url": "https://www.linkedin.com/in/aishakhan_telemarketing",
+  "git_url": "",
+  "portfolio_url": "",
+  "experiences": [
+    {
+      "title": "Senior Telemarketing Executive",
+      "company": "Global Connect Solutions",
+      "duration": "January 2021 – Present",
+      "description": "Led a team of 3 junior telemarketing representatives, providing training and mentorship on sales techniques and customer service best practices. Successfully managed and grew a portfolio of high-value accounts, consistently exceeding monthly sales targets by an average of 15%. Developed and implemented effective telemarketing campaigns for new product launches, resulting in a 20% increase in qualified leads. Handled complex customer inquiries and complaints, ensuring timely resolution and maintaining high levels of customer satisfaction. Utilized advanced CRM software (e.g., Salesforce) for pipeline management, reporting, and data analysis to optimize outreach strategies. Collaborated with marketing and sales teams to refine scripts and improve conversion rates."
+    },
+    {
+      "title": "Telemarketing Executive",
+      "company": "Pinnacle Outreach Inc.",
+      "duration": "June 2018 – December 2020",
+      "description": "Executed high-volume outbound calls to prospective clients, introducing products/services and qualifying leads for the sales team. Consistently achieved 110% of monthly lead generation and appointment setting targets. Developed strong rapport with potential customers, effectively communicating value propositions and overcoming objections through persuasive communication. Managed and updated customer information within the company's CRM system (e.g., HubSpot) to ensure data accuracy and effective follow-up. Provided initial customer support by answering product-related questions and directing complex issues to appropriate departments. Participated in regular sales training sessions to enhance product knowledge and refine telemarketing techniques."
+    },
+    {
+      "title": "Customer Service Representative",
+      "company": "Elite Customer Care",
+      "duration": "August 2016 – May 2018",
+      "description": "Provided exceptional customer support via phone and email, addressing inquiries, resolving issues, and processing orders for a diverse customer base. Maintained a first-call resolution rate of 85%, significantly contributing to customer satisfaction scores. Successfully upsold and cross-sold products/services when appropriate, identifying customer needs and offering relevant solutions. Documented all customer interactions and resolutions accurately in the customer support system. Collaborated with technical support and billing departments to streamline problem-solving processes and improve service delivery."
+    }
+  ],
+  "educations": [
+    {
+      "degree": "Bachelor of Business Administration (BBA)",
+      "school": "City University of New York",
+      "year": "2016"
+    }
+  ],
+  "skills": [
+    {
+      "skill": "Telemarketing"
+    },
+    {
+      "skill": "Outbound Sales"
+    },
+    {
+      "skill": "Lead Generation"
+    },
+    {
+      "skill": "Customer Handling"
+    },
+    {
+      "skill": "Customer Support"
+    },
+    {
+      "skill": "Sales Targets Achievement"
+    },
+    {
+      "skill": "CRM Software (Salesforce, HubSpot)"
+    },
+    {
+      "skill": "Active Listening"
+    },
+    {
+      "skill": "Negotiation"
+    },
+    {
+      "skill": "Persuasion"
+    },
+    {
+      "skill": "Communication (Verbal & Written)"
+    },
+    {
+      "skill": "Problem-Solving"
+    },
+    {
+      "skill": "Client Relationship Management"
+    },
+    {
+      "skill": "Data Entry"
+    },
+    {
+      "skill": "Microsoft Office Suite"
+    },
+    {
+      "skill": "Sales Strategy"
+    },
+    {
+      "skill": "Objection Handling"
+    },
+    {
+      "skill": "Call Center Operations"
+    },
+    {
+      "skill": "Market Research"
+    },
+    {
+      "skill": "Team Leadership"
+    }
+  ],
+  "projects": [],
+  "certifications": [
+    {
+      "name": "Certified Inside Sales Professional (CISP)",
+      "issuer": "AA-ISP (American Association of Inside Sales Professionals)",
+      "year": "2020"
+    },
+    {
+      "name": "Customer Service Excellence Certification",
+      "issuer": "National Association of Sales Professionals (NASP)",
+      "year": "2018"
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "proficiency": "Native"
+    },
+    {
+      "language": "Spanish",
+      "proficiency": "Conversational"
+    }
+  ],
+  "achievements": [
+    {
+      "title": "Top Performer in Lead Conversion",
+      "description": "Recognized as the top telemarketing executive for converting leads to qualified opportunities for 6 consecutive quarters at Pinnacle Outreach Inc."
+    },
+    {
+      "title": "Exceeded Sales Targets",
+      "description": "Consistently surpassed monthly and quarterly sales targets by an average of 15% during tenure as Senior Telemarketing Executive."
+    },
+    {
+      "title": "Customer Satisfaction Award",
+      "description": "Received 'Excellence in Customer Satisfaction' award at Elite Customer Care for maintaining high resolution rates and positive feedback."
+    }
+  ],
+  "keywords": [
+    "Telemarketing",
+    "Senior Telemarketing Executive",
+    "Sales",
+    "Outbound Sales",
+    "Inside Sales",
+    "Lead Generation",
+    "Customer Handling",
+    "Customer Support",
+    "Client Relations",
+    "Account Management",
+    "CRM",
+    "Salesforce",
+    "HubSpot",
+    "Communication",
+    "Negotiation",
+    "Persuasion",
+    "Problem Solving",
+    "Target Achievement",
+    "Business Development",
+    "Sales Executive",
+    "Direct Marketing",
+    "Telesales",
+    "Customer Service",
+    "Relationship Building",
+    "Market Research",
+    "Conversion Rates",
+    "Cold Calling",
+    "Warm Calling",
+    "Up-selling",
+    "Cross-selling",
+    "Appointment Setting",
+    "Pipeline Management",
+    "Team Leadership",
+    "Mentoring"
+  ]
+}
