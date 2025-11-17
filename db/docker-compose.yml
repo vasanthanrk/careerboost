@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: careerboost
+      MYSQL_USER: careerboost
+      MYSQL_PASSWORD: supersecret
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: careerboost
+      PMA_PASSWORD: supersecret
+    ports:
+      - "8083:80"
+    depends_on:
+      - mysql
+
+volumes:
+  mysql_data:

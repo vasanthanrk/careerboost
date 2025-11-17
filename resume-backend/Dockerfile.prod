@@ -55,3 +55,11 @@ ENV PYTHONUNBUFFERED=1
 
 # Default command is set in docker-compose.prod.yml
 EXPOSE 8082
+
+# Run DB migrations automatically before starting backend
+CMD alembic upgrade head && \
+    gunicorn app.main:app \
+      -k uvicorn.workers.UvicornWorker \
+      --bind 0.0.0.0:8082 \
+      --timeout 120 \
+      --workers 4
