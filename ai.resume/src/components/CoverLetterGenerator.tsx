@@ -1,3 +1,4 @@
+import "react-quill/dist/quill.snow.css";
 import { useState } from 'react';
 import { DashboardLayout } from './DashboardLayout';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
@@ -43,7 +44,9 @@ export function CoverLetterGenerator() {
 
       setIsGenerating(true);
       const res = await api.post('/ai/cover-letter', formData);
-      setGeneratedLetter(res.data.cover_letter.replace(/\n/g, "<br/>"));
+      const cover = res.data.cover_letter.split("\n").map(line => line.trim() ? `<p>${line}</p>` : "<p><br/></p>").join("");
+
+      setGeneratedLetter(cover);
       toast.success('Cover letter generated successfully!');
     } catch (error) {
       console.error(error);

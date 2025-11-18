@@ -101,7 +101,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                   <span className="bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
                     CareerBoost
                   </span>
-                  <p className="text-gray-500 -mt-1">AI-Powered</p>
+                  <p className="text-gray-500 -mt-1">AI-Powered Beta</p>
                 </div>
               </Link>
 
@@ -356,6 +356,13 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       <main className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
         {children}
       </main>
+      <footer className="bg-gray-900 text-white py-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center text-gray-400">
+            <p>&copy; 2025 CareerBoost. All rights reserved.</p>
+            </div>
+        </div>
+      </footer>
     </div>
   );
 }

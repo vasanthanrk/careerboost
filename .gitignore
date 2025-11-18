@@ -1,4 +1,4 @@
-# Python
+e# Python
 __pycache__/
 *.pyc
 *.pyo
@@ -28,4 +28,4 @@ __MACOSX/
 
 .vscode/
 resume-backend/alembic/versions
-resume-backend/app/data/*
+resume-backend/app/data/*.txt

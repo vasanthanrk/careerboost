@@ -56,11 +56,11 @@ def get_resume(db: Session = Depends(get_db), current_user: User = Depends(get_c
 @router.get("/resume/templates")
 def get_resume_templates():
     return [
-        {"id": "one", "name": "Resume template one", "thumbnail": "/public/static/resume_thumbs/one.png"},
-        {"id": "two", "name": "Resume template two", "thumbnail": "/public/static/resume_thumbs/two.png"},
-        {"id": "three", "name": "Resume template three", "thumbnail": "/public/static/resume_thumbs/three.png"},
-        {"id": "four", "name": "Resume template four", "thumbnail": "/public/static/resume_thumbs/four.png"},
-        {"id": "five", "name": "Resume template five", "thumbnail": "/public/static/resume_thumbs/five.png"},
+        {"id": "one", "name": "Resume template one", "thumbnail": "/static/resume_thumbs/one.png"},
+        {"id": "two", "name": "Resume template two", "thumbnail": "/static/resume_thumbs/two.png"},
+        {"id": "three", "name": "Resume template three", "thumbnail": "/static/resume_thumbs/three.png"},
+        {"id": "four", "name": "Resume template four", "thumbnail": "/static/resume_thumbs/four.png"},
+        {"id": "five", "name": "Resume template five", "thumbnail": "/static/resume_thumbs/five.png"},
     ]
 
 @router.get("/resume/download/{template_id}")

@@ -9,7 +9,7 @@ from app.utils.activity_tracker import log_user_activity
 
 router = APIRouter()
 
-@router.post("/signup", response_model=UserResponse)
+@router.post("/signup")
 def signup(user_data: UserCreate, db: Session = Depends(get_db)):
     # Check if email exists
     existing_user = db.query(User).filter(User.email == user_data.email).first()

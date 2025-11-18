@@ -19,8 +19,6 @@ services:
     container_name: phpmyadmin
     environment:
       PMA_HOST: db
-      PMA_USER: careerboost
-      PMA_PASSWORD: supersecret
     ports:
       - "8083:80"
     depends_on:
