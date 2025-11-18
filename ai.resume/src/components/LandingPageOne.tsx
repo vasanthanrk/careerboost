@@ -112,7 +112,6 @@ useEffect(() => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-violet-50/30 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900">
       <Header />
-
       {/* HERO SECTION */}
       <section className="py-16 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -171,141 +170,169 @@ useEffect(() => {
         </div>
       </section>
 
-      <section className="relative overflow-hidden pt-20 pb-28">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-violet-300/20 rounded-full blur-3xl"></div>
+    <section className="relative overflow-hidden py-24 bg-white dark:bg-gray-900">
+  {/* Decorative Blurs */}
+  <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-violet-300/20 rounded-full blur-[160px]"></div>
+  <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-300/20 rounded-full blur-[160px]"></div>
 
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-300/20 rounded-full blur-3xl"></div>
+  {/* MATCH SAME WIDTH AS HERO SECTION */}
+  <div className="relative max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 dark:bg-violet-900/30 rounded-full mb-6">
-            <Sparkles className="w-4 h-4 text-violet-600 dark:text-violet-400" />
+    {/* LEFT SIDE – LARGE STATS CARDS */}
+    <div className="flex flex-col gap-5">
+  <div className="flex gap-5">
+    {/* CARD 1 */}
+    <div className="h3_bg bg-white dark:bg-gray-800 
+                    p-8 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)]
+                    transform hover:-translate-y-1 transition-all">
+      <h3 className="myh3 text-4xl font-bold text-sky-500">15M+</h3>
+      <p className="text-lg text-gray-700 dark:text-gray-300 mt-2">
+        resumes created
+      </p>
+    </div>
 
-            <span className="text-violet-700 dark:text-violet-300">
-              AI-Powered Career Platform
-            </span>
-          </div>
+    {/* CARD 2 */}
+    <div className="h3_bg bg-white dark:bg-gray-800 
+                    p-8 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)]
+                    transform hover:-translate-y-1 transition-all">
+      <h3 className="myh3 text-4xl font-bold text-sky-500">10M+</h3>
+      <p className="text-lg text-gray-700 dark:text-gray-300 mt-2">
+        resume examples
+      </p>
+    </div>
+  </div>
 
-          <h1 className="text-gray-900 dark:text-white mb-6 max-w-4xl mx-auto">
-            Transform Your Career with AI-Powered Tools
-          </h1>
+  <div className="flex gap-5">
+    {/* CARD 3 */}
+    <div className="h3_bg bg-white dark:bg-gray-800 
+                    p-8 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)]
+                    transform hover:-translate-y-1 transition-all">
+      <h3 className="myh3 text-4xl font-bold text-sky-500">8 years</h3>
+      <p className="text-lg text-gray-700 dark:text-gray-300 mt-2">
+        helping job seekers
+      </p>
+    </div>
 
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-10">
-            Build professional resumes, generate cover letters, analyze job
-            matches, optimize your LinkedIn profile, and create stunning
-            portfolios — all powered by advanced AI technology.
-          </p>
+    {/* CARD 4 */}
+    <div className="h3_bg bg-white dark:bg-gray-800 
+                    p-8 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)]
+                    transform hover:-translate-y-1 transition-all">
+      <h3 className="myh3 text-4xl font-bold text-sky-500">1M+</h3>
+      <p className="text-lg text-gray-700 dark:text-gray-300 mt-2">
+        monthly blog readers
+      </p>
+    </div>
+  </div>
+</div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link to="/signup">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 gap-2 px-8 py-6"
-              >
-                <Sparkles className="w-5 h-5" />
-                Start Building for Free
-              </Button>
-            </Link>
 
-            {/* <Link to="/pricing">
+    {/* RIGHT SIDE – TEXT CONTENT */}
+    <div>
+      <h2 className="text-5xl sm:text-6xl font-extrabold text-gray-900 dark:text-white leading-tight mb-8">
+        Chosen by <span className="text-violet-600">10 million</span> job
+        applicants around the world
+      </h2>
 
-              <Button size="lg" variant="outline" className="gap-2 px-8 py-6">
+      <p className="text-xl text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+        Quick CV Maker is a modern resume builder that helps you create applications
+        with personality and professionalism. Our tools are trusted by millions.
+      </p>
 
-                <Zap className="w-5 h-5" />
+      <p className="text-xl text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+        We combine flexible, ATS-friendly templates with intuitive tools and
+        tailored suggestions. The resume builder supports multiple languages
+        and adds smart content recommendations.
+      </p>
 
-                View Pricing
-
-              </Button>
-
-            </Link> */}
-          </div>
-
-          {/* Stats */}
-
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-20 max-w-4xl mx-auto">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="p-6 rounded-2xl bg-white dark:bg-gray-800 border-2 border-gray-100 dark:border-gray-700 shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <stat.icon className="w-8 h-8 text-violet-600 dark:text-violet-400 mb-3 mx-auto" />
-
-                <div className="text-gray-900 dark:text-white mb-1">
-                  {stat.value}
-                </div>
-
-                <p className="text-gray-600 dark:text-gray-400">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
+        At Quick CV Maker, we help job seekers present a complete, polished story
+        that increases interviews and job success.
+      </p>
+    </div>
+  </div>
+</section>
 
       {/* Features Section */}
 
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 dark:bg-violet-900/30 rounded-full mb-4">
-              <Zap className="w-4 h-4 text-violet-600 dark:text-violet-400" />
+     <section className="py-24 bg-white dark:bg-gray-900">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-              <span className="text-violet-700 dark:text-violet-300">
-                Powerful Features
-              </span>
+    {/* SECTION HEADER */}
+    <div className="text-center mb-20">
+      <div className="inline-flex items-center gap-2 px-5 py-3 bg-violet-100 dark:bg-violet-900/30 rounded-full mb-6">
+        <Zap className="w-5 h-5 text-violet-600 dark:text-violet-400" />
+        <span className="text-lg font-semibold text-violet-700 dark:text-violet-300">
+          Powerful Features
+        </span>
+      </div>
+
+      <h2 className="text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
+        Everything You Need to Succeed
+      </h2>
+
+      <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+        Our comprehensive suite of AI-powered tools helps you at every stage of your job search journey.
+      </p>
+    </div>
+
+    {/* FEATURES GRID */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+      {features.map((feature, index) => (
+        <Card
+          key={index}
+          className="group relative overflow-hidden bg-white dark:bg-gray-800
+                     border border-gray-200 dark:border-gray-700 rounded-3xl
+                     hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+        >
+          {/* HOVER GRADIENT */}
+          <div
+            className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 
+                        group-hover:opacity-10 transition-opacity duration-300`}
+          ></div>
+
+          <CardContent className="p-10 relative">
+
+            {/* ICON */}
+            <div
+              className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.gradient} flex 
+                          items-center justify-center shadow-md mb-8`}
+            >
+              <feature.icon className="w-8 h-8 text-white" />
             </div>
 
-            <h2 className="text-gray-900 dark:text-white mb-4">
-              Everything You Need to Succeed
-            </h2>
+            {/* TITLE */}
+            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+              {feature.title}
+            </h3>
 
-            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              Our comprehensive suite of AI-powered tools helps you at every
-              stage of your job search journey.
+            {/* DESCRIPTION */}
+            <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+              {feature.description}
             </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <Card
-                key={index}
-                className="group relative overflow-hidden border-2 border-gray-100 dark:border-gray-700 hover:border-violet-200 dark:hover:border-violet-600 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+            {/* BUTTON */}
+            <Link to={feature.link}>
+              <Button
+                variant="ghost"
+                className="gap-2 group/btn p-0 h-auto hover:bg-transparent"
               >
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-5 transition-opacity`}
-                ></div>
+                <span className="text-lg font-medium text-violet-600 dark:text-violet-400">
+                  Try it now
+                </span>
 
-                <CardContent className="p-8 relative">
-                  <div
-                    className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-6 shadow-lg`}
-                  >
-                    <feature.icon className="w-7 h-7 text-white" />
-                  </div>
+                <ArrowRight
+                  className="w-5 h-5 text-violet-600 dark:text-violet-400 
+                             group-hover/btn:translate-x-1 transition-transform"
+                />
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
 
-                  <h3 className="text-gray-900 dark:text-white mb-3">
-                    {feature.title}
-                  </h3>
-
-                  <p className="text-gray-600 dark:text-gray-400 mb-6">
-                    {feature.description}
-                  </p>
-
-                  <Link to={feature.link}>
-                    <Button
-                      variant="ghost"
-                      className="gap-2 group/btn p-0 h-auto hover:bg-transparent"
-                    >
-                      <span className="text-violet-600 dark:text-violet-400">
-                        Try it now
-                      </span>
-
-                      <ArrowRight className="w-4 h-4 text-violet-600 dark:text-violet-400 group-hover/btn:translate-x-1 transition-transform" />
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ATS Score Checker Section */}
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Button } from './ui/button';
 import { Link } from 'react-router-dom';
 import { Sparkles } from 'lucide-react';
+import logo from "../assets/logo.png";
 
 export function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -13,18 +14,21 @@ export function Header() {
   return (
       <nav className="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+          <div className="flex justify-between items-center h-36">
             <div className="flex items-center gap-2">
                 <Link to="/" className="flex items-center gap-3 group">
-                    <div className="w-10 h-10 bg-gradient-to-br from-violet-600 to-purple-600 rounded-xl flex items-center justify-center">
-                        <Sparkles className="w-6 h-6 text-white" />
-                    </div>
-                    <div className="hidden sm:block">
-                        <span className="text-gray-900 dark:text-white">CareerBoost</span>
-                        <p className="text-gray-500 -mt-1">AI-Powered</p>
-                    </div>
-                </Link>
-              
+                  <img 
+                      src={logo}
+                      alt="Quick CV Maker"
+                      className="w-35 h-20"
+                  />
+                  {/* <div className="hidden sm:block">
+                      <span className="text-gray-900 dark:text-white">
+                          Quick CV Maker
+                      </span>
+                      <p className="text-gray-500 -mt-1">AI-Powered</p>
+                  </div> */}
+              </Link>
             </div>
             <div className="flex items-center gap-3">
               {/* <ThemeToggle /> */}

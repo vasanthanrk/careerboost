@@ -58,3 +58,16 @@
 .back {
   transform: rotateY(180deg);
 }
+
+.myh3 {
+    font-family: "Lexend",sans-serif;
+    font-style: normal;
+    color: #0d8bb3;
+    font-weight: 500;
+    font-size: 58px;
+    line-height: 76px;
+}
+.h3_bg {
+    background-color: #def4fb;
+    text-align: center;
+}
