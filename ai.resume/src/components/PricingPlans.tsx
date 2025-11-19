@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { DashboardLayout } from './DashboardLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
@@ -5,12 +6,35 @@ import { Badge } from './ui/badge';
 import { Check, Sparkles, Zap, Crown } from 'lucide-react';
 import { toast } from 'sonner';
 import { SEO } from './SEO';
+import { toast } from 'sonner@2.0.3';
+import SubscribeButton from "../components/SubscribeButton";
+import api from '../api/axiosClient';
 
 export function PricingPlans() {
+  useEffect(() => {
+    const fetchResume = async () => {
+      try {
+        const res = await api.get('/subscription/status');
+
+        // Handle case where backend returns nested resume_data
+        const data = res.data?.resume_data ? res.data.resume_data : res.data;
+        console.log(data)
+
+      } catch (err: any) {
+        
+      } finally {
+        
+      }
+    };
+
+    fetchResume();
+  }, []);
+
+  const user = JSON.parse(localStorage.getItem("user"));
   const plans = [
     {
       name: 'Free',
-      price: '$0',
+      price: '0 Rs',
       period: 'forever',
       description: 'Perfect for getting started',
       icon: Sparkles,
@@ -30,13 +54,13 @@ export function PricingPlans() {
     },
     {
       name: 'Pro',
-      price: '$19',
+      price: '199 Rs',
       period: 'per month',
       description: 'For serious job seekers',
       icon: Zap,
       iconColor: 'text-violet-600',
       bgColor: 'bg-violet-50',
-      buttonVariant: 'default' as const,
+      buttonVariant: 'pro' as const,
       buttonText: 'Upgrade to Pro',
       popular: true,
       features: [
@@ -78,7 +102,7 @@ export function PricingPlans() {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {plans.map((plan) => (
             <Card
               key={plan.name}
@@ -107,14 +131,12 @@ export function PricingPlans() {
               </CardHeader>
 
               <CardContent className="space-y-6">
-                <Button
-                  variant={plan.buttonVariant}
-                  className={`w-full ${plan.buttonVariant === 'default' ? 'bg-violet-600 hover:bg-violet-700' : ''}`}
-                  onClick={() => handleUpgrade(plan.name)}
-                >
-                  {plan.buttonText}
-                </Button>
-
+                <SubscribeButton 
+                  userId={user.id} 
+                  planId={plan.buttonVariant} 
+                  className={`w-full ${plan.buttonVariant === 'pro' ? 'bg-violet-600 hover:bg-violet-700' : ''}`}
+                  planText={plan.buttonText}
+                />
                 <div className="space-y-3">
                   <p className="text-gray-900">Features included:</p>
                   <ul className="space-y-3">

@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api.v1 import health, auth, resume, ai_resume, ai_cover_letter, job_analyzer, linkedin_optimizer, portfolio, user, feedback, user_metrics, ats
+from app.api.v1 import health, auth, resume, ai_resume, ai_cover_letter, job_analyzer, linkedin_optimizer, portfolio, user, feedback, user_metrics, ats, payments, plans, subscription
 from fastapi.staticfiles import StaticFiles
 import os
 from app.core.config import settings
@@ -39,6 +39,9 @@ app.include_router(user.router, prefix="/api/v1", tags=["User Settings"])
 app.include_router(feedback.router, prefix="/api/v1", tags=["User FeedBack"])
 app.include_router(user_metrics.router, prefix="/api/v1", tags=["User metrics"])
 app.include_router(ats.router, prefix="/api/v1", tags=["ats"])
+app.include_router(payments.router, prefix="/api/v1", tags=["Payment Process"])
+app.include_router(plans.router, prefix="/api/v1", tags=["Plans"])
+app.include_router(subscription.router, prefix="/api/v1", tags=["Subscription section"])
 
 # Serve uploaded avatars
 # ✅ Mount uploads folder to serve files
