@@ -15,6 +15,7 @@ router = APIRouter()
 @router.get("/user/me")
 def get_me(request: Request,current_user: User = Depends(get_current_user)):
     avatar_url = ''
+    print(request.base_url)
     if current_user.avatar_url:
         # ✅ Dynamically build full backend URL (no hardcoding)
         # This ensures correct protocol, host, and port are used automatically.
