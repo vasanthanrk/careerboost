@@ -210,80 +210,7 @@ export function LandingPageOne() {
           </div>
         </div>
       </section>
-      {/* Resume Templates Showcase */}
-      {templates.length > 0 ? (
-        <section className="py-20 bg-gradient-to-br from-violet-50 via-purple-50/30 to-pink-50/20 overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
-            <div className="text-center">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full mb-4">
-                <FileText className="w-4 h-4 text-violet-600" />
-                <span className="text-violet-700">Professional Templates</span>
-              </div>
-              <h2 className="text-gray-900 mb-4">Choose from Premium Resume Templates</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Hand-crafted, ATS-friendly templates designed by career experts to help you stand out
-              </p>
-            </div>
-          </div>
-
-          {/* Infinite Sliding Templates */}
-          <div className="relative">
-            {/* Gradient Overlays */}
-            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-violet-50 to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-pink-50/20 to-transparent z-10 pointer-events-none"></div>
-            
-            <div className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth px-4 pt-4" ref={scrollContainerRef} onScroll={checkScrollPosition}>
-              {/* First Set */}
-              {templates.map((template, index) => (
-                <div key={index} className="flex-shrink-0 w-80 group">
-                  <div data-slot="card" className="bg-card text-card-foreground flex flex-col rounded-xl overflow-hidden border-2 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                    <div className={`aspect-[8.5/11] bg-gradient-to-br relative h-72`}>
-                      <ImageWithFallback 
-                        src={template.thumbnail}
-                        alt={`${template.name} Resume Template`}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div data-slot="card-content" className="p-3 text-center">
-                      <h4 className="text-gray-900">{template.name}</h4>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Scroll Buttons */}
-            <button
-              className={`absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border-2 border-gray-200 flex items-center justify-center transition-all ${
-                canScrollLeft ? 'opacity-100 hover:bg-white hover:shadow-xl' : 'opacity-0 pointer-events-none'
-              }`}
-              onClick={() => scroll('left')}
-              disabled={!canScrollLeft}
-            >
-              <ChevronLeft className="w-6 h-6 text-gray-700" />
-            </button>
-            <button
-              className={`absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border-2 border-gray-200 flex items-center justify-center transition-all ${
-                canScrollRight ? 'opacity-100 hover:bg-white hover:shadow-xl' : 'opacity-0 pointer-events-none'
-              }`}
-              onClick={() => scroll('right')}
-              disabled={!canScrollRight}
-            >
-              <ChevronRight className="w-6 h-6 text-gray-700" />
-            </button>
-          </div>
-
-          <div className="text-center mt-10">
-            <Link to="/resume-builder">
-              <Button size="lg" className="bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 gap-2">
-                <FileText className="w-5 h-5" />
-                Browse All Templates
-                <ArrowRight className="w-5 h-5" />
-              </Button>
-            </Link>
-          </div>
-        </section>
-      ): null}
+      
 
       <section className="relative overflow-hidden py-24 bg-white dark:bg-gray-900">
         {/* Decorative Blurs */}
@@ -368,84 +295,157 @@ export function LandingPageOne() {
       </section>
       {/* Features Section */}
 
-     <section className="py-24 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     {/* Features Section */}
 
-          {/* SECTION HEADER */}
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-2 px-5 py-3 bg-violet-100 dark:bg-violet-900/30 rounded-full mb-6">
-              <Zap className="w-5 h-5 text-violet-600 dark:text-violet-400" />
-              <span className="text-lg font-semibold text-violet-700 dark:text-violet-300">
-                Powerful Features
-              </span>
+<section className="py-16 bg-white dark:bg-gray-900">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
+
+    {/* SECTION HEADER - MODIFIED */}
+    <div className="text-center mb-20">
+      {/* REMOVED: Powerful Features Sub-heading */}
+
+      <h2 className="text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
+        Everything You Need to Succeed
+      </h2>
+
+      <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed mb-10">
+        Our comprehensive suite of AI-powered tools helps you at every stage of your job search journey.
+      </p>
+    </div>
+
+    {/* FEATURES GRID */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+      {features.map((feature, index) => (
+        <Card
+          key={index}
+          className="group relative overflow-hidden bg-white dark:bg-gray-800
+                         border border-gray-200 dark:border-gray-700 rounded-3xl
+                         hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+        >
+          {/* HOVER GRADIENT */}
+          <div
+            className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 
+                          group-hover:opacity-10 transition-opacity duration-300`}
+          ></div>
+
+          {/* ADJUSTED PADDING FOR BETTER SPACING ON MOBILE/TABLET */}
+          <CardContent className="p-6 md:p-8 lg:p-10 relative">
+
+            {/* ICON */}
+            <div
+              className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.gradient} flex 
+                            items-center justify-center shadow-md mb-8`}
+            >
+              <feature.icon className="w-8 h-8 text-white" />
             </div>
 
-            <h2 className="text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
-              Everything You Need to Succeed
-            </h2>
+            {/* TITLE */}
+            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+              {feature.title}
+            </h3>
 
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
-              Our comprehensive suite of AI-powered tools helps you at every stage of your job search journey.
+            {/* DESCRIPTION */}
+            <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+              {feature.description}
             </p>
-          </div>
 
-          {/* FEATURES GRID */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-            {features.map((feature, index) => (
-              <Card
-                key={index}
-                className="group relative overflow-hidden bg-white dark:bg-gray-800
-                          border border-gray-200 dark:border-gray-700 rounded-3xl
-                          hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+            {/* BUTTON */}
+            <Link to={feature.link}>
+              <Button
+                variant="ghost"
+                className="gap-2 group/btn p-0 h-auto hover:bg-transparent"
               >
-                {/* HOVER GRADIENT */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 
-                              group-hover:opacity-10 transition-opacity duration-300`}
-                ></div>
+                <span className="text-lg font-medium text-violet-600 dark:text-violet-400">
+                  Try it now
+                </span>
 
-                <CardContent className="p-10 relative">
+                <ArrowRight
+                  className="w-5 h-5 text-violet-600 dark:text-violet-400 
+                              group-hover/btn:translate-x-1 transition-transform"
+                />
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
 
-                  {/* ICON */}
-                  <div
-                    className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.gradient} flex 
-                                items-center justify-center shadow-md mb-8`}
-                  >
-                    <feature.icon className="w-8 h-8 text-white" />
-                  </div>
-
-                  {/* TITLE */}
-                  <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                    {feature.title}
-                  </h3>
-
-                  {/* DESCRIPTION */}
-                  <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-                    {feature.description}
-                  </p>
-
-                  {/* BUTTON */}
-                  <Link to={feature.link}>
-                    <Button
-                      variant="ghost"
-                      className="gap-2 group/btn p-0 h-auto hover:bg-transparent"
-                    >
-                      <span className="text-lg font-medium text-violet-600 dark:text-violet-400">
-                        Try it now
-                      </span>
-
-                      <ArrowRight
-                        className="w-5 h-5 text-violet-600 dark:text-violet-400 
-                                  group-hover/btn:translate-x-1 transition-transform"
-                      />
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
+      {/* Resume Templates Showcase */}
+      {templates.length > 0 ? (
+        <section className="py-20 bg-gradient-to-br from-violet-50 via-purple-50/30 to-pink-50/20 overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
+            <div className="text-center">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full mb-4">
+                <FileText className="w-4 h-4 text-violet-600" />
+                <span className="text-violet-700">Professional Templates</span>
+              </div>
+              <h2 className="text-gray-900 mb-4">Choose from Premium Resume Templates</h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Hand-crafted, ATS-friendly templates designed by career experts to help you stand out
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+
+          {/* Infinite Sliding Templates */}
+          <div className="relative">
+            {/* Gradient Overlays */}
+            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-violet-50 to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-pink-50/20 to-transparent z-10 pointer-events-none"></div>
+            
+            <div className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth px-4 pt-4" ref={scrollContainerRef} onScroll={checkScrollPosition}>
+              {/* First Set */}
+              {templates.map((template, index) => (
+                <div key={index} className="flex-shrink-0 w-80 group">
+                  <div data-slot="card" className="bg-card text-card-foreground flex flex-col rounded-xl overflow-hidden border-2 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                    <div className={`aspect-[8.5/11] bg-gradient-to-br relative h-72`}>
+                      <ImageWithFallback 
+                        src={template.thumbnail}
+                        alt={`${template.name} Resume Template`}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div data-slot="card-content" className="p-3 text-center">
+                      <h4 className="text-gray-900">{template.name}</h4>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Scroll Buttons */}
+            <button
+              className={`absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border-2 border-gray-200 flex items-center justify-center transition-all ${
+                canScrollLeft ? 'opacity-100 hover:bg-white hover:shadow-xl' : 'opacity-0 pointer-events-none'
+              }`}
+              onClick={() => scroll('left')}
+              disabled={!canScrollLeft}
+            >
+              <ChevronLeft className="w-6 h-6 text-gray-700" />
+            </button>
+            <button
+              className={`absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border-2 border-gray-200 flex items-center justify-center transition-all ${
+                canScrollRight ? 'opacity-100 hover:bg-white hover:shadow-xl' : 'opacity-0 pointer-events-none'
+              }`}
+              onClick={() => scroll('right')}
+              disabled={!canScrollRight}
+            >
+              <ChevronRight className="w-6 h-6 text-gray-700" />
+            </button>
+          </div>
+
+          <div className="text-center mt-10">
+            <Link to="/resume-builder">
+              <Button size="lg" className="bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 gap-2">
+                <FileText className="w-5 h-5" />
+                Browse All Templates
+                <ArrowRight className="w-5 h-5" />
+              </Button>
+            </Link>
+          </div>
+        </section>
+      ): null}
 
 
       {/* ATS Score Checker Section */}
