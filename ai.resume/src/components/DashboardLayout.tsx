@@ -309,7 +309,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
                 <div className="h-px bg-gray-200 my-2"></div>
 
-                <Link
+                {/* <Link
                   to="/pricing"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`
@@ -331,7 +331,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                     <CreditCard className="w-5 h-5" />
                   </div>
                   <span className="font-medium">Pricing</span>
-                </Link>
+                </Link> */}
 
                 <div className="h-px bg-gray-200 my-2"></div>
 

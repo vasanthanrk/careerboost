@@ -1,11 +1,13 @@
-# =========================
-# Backend Dockerfile
-# =========================
+########################################
+# STAGE 1: Builder
+########################################
 FROM python:3.11-slim-bookworm AS builder
 
 WORKDIR /app
 
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
+    build-essential \
     wget \
     gnupg \
     ca-certificates \
@@ -24,39 +26,41 @@ RUN apt-get update && apt-get install -y \
 
 COPY requirements.txt .
 
+# Install Python packages to /usr/local
 RUN pip install --upgrade pip && \
-    pip install --prefix=/packages -r requirements.txt
+    pip install --no-cache-dir -r requirements.txt
 
 
-# ============================
-# Stage 2 – Final Image
-# ============================
-FROM python:3.11-slim
+########################################
+# STAGE 2: Final Runtime Image
+########################################
+FROM python:3.11-slim AS final
 
 WORKDIR /app
 
-# install needed libs + mysql client + nc
+# Install runtime libs WeasyPrint needs
 RUN apt-get update && apt-get install -y \
     libcairo2 \
     libpango-1.0-0 \
     libpangocairo-1.0-0 \
     libgdk-pixbuf-2.0-0 \
-    default-mysql-client \
-    netcat-traditional \
+    libjpeg62-turbo \
+    fontconfig \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# copy python deps
-COPY --from=builder /packages /usr/local
+# Copy installed Python packages from builder
+COPY --from=builder /usr/local /usr/local
 
-# copy app code
+# Copy backend source
 COPY . .
 
 EXPOSE 8082
 
-CMD alembic upgrade head && \
-    gunicorn app.main:app \
-    -k uvicorn.workers.UvicornWorker \
-    --bind 0.0.0.0:8082 \
-    --timeout 120 \
-    --workers 4
+CMD ["bash", "-c", "\
+    until nc -z db 3306; do \
+        echo 'waiting for db...'; sleep 2; \
+    done; \
+    alembic upgrade head && \
+    uvicorn app.main:app --host 0.0.0.0 --port 8082 \
+"]

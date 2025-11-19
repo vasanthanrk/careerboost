@@ -13,7 +13,10 @@ from app.models.user_feedback import UserFeedback
 from app.models.feature_request import FeatureRequest
 from app.models.ats import ATSResult
 from app.models.visitor_log import VisitorLog
+from app.models.payment import Payment
+from app.models.plan import SubscriptionPlan
+from app.models.subscription import Subscription
 
 __all__ = [
-    "User", "UserMetrics", "UserFeedback", "FeatureRequest", "ATSResult", "Resume", "Portfolio", "PortfolioPersonal", "PortfolioExperience", "PortfolioSkill", "PortfolioProject", "CoverLetter", "JobFitAnalysis", "LinkedInProfile", "Subscription", "UserActivity", "Notification", "PrivacySetting", "VisitorLog"
+    "User", "UserMetrics", "UserFeedback", "FeatureRequest", "ATSResult", "Resume", "Portfolio", "PortfolioPersonal", "PortfolioExperience", "PortfolioSkill", "PortfolioProject", "CoverLetter", "JobFitAnalysis", "LinkedInProfile", "Subscription", "UserActivity", "Notification", "PrivacySetting", "Payment", "SubscriptionPlan", "VisitorLog"
 ]

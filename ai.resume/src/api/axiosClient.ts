@@ -18,9 +18,19 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response && error.response.status === 401) {
+    const requestUrl = error?.config?.url;
+
+    // Do NOT logout if error came from login or signup API
+    const authEndpoints = ["/login", "/signup", "/auth/login", "/auth/signup"];
+
+    if (
+      error.response &&
+      error.response.status === 401 &&
+      !authEndpoints.some((e) => requestUrl?.includes(e))
+    ) {
       authService.logout();
     }
+
     return Promise.reject(error);
   }
 );
