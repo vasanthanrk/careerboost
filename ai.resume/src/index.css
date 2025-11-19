@@ -3341,6 +3341,12 @@
   }
 
   @media (hover: hover) {
+    .hover\:bg-cyan-700:hover {
+      background-color: var(--color-cyan-700);
+    }
+  }
+
+  @media (hover: hover) {
     .hover\:bg-destructive\/90:hover {
       background-color: var(--destructive);
     }

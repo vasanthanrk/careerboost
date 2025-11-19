@@ -20,7 +20,7 @@ export function Header() {
                   <img 
                       src={logo}
                       alt="Quick CV Maker"
-                      className="w-35 h-20"
+                      className="w-30 h-14"
                   />
                   {/* <div className="hidden sm:block">
                       <span className="text-gray-900 dark:text-white">

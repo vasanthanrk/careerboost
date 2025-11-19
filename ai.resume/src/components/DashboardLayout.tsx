@@ -31,6 +31,7 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 import { logout } from "../utils/auth";
 import api from '../api/axiosClient';
+import logo from "../assets/logo.png";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -94,11 +95,12 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             <div className="flex items-center justify-between h-16">
               {/* Logo */}
               <Link to="/" className="flex items-center gap-3 group">
-                <div className="w-10 h-10 bg-gradient-to-br from-violet-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all">
+                <img src={logo} alt="Quick CV Maker" className="w-30 h-14"/>
+                {/* <div className="w-10 h-10 bg-gradient-to-br from-violet-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all">
                   <Sparkles className="w-5 h-5 text-white" />
-                </div>
+                </div> */}
                 <div className="hidden sm:block">
-                  <span className="bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r text-cyan-600 bg-clip-text">
                     SmartCV Maker
                   </span>
                   <p className="text-gray-500 -mt-1">AI-Powered Beta</p>
