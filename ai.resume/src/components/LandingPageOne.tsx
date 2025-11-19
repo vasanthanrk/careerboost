@@ -254,17 +254,14 @@ useEffect(() => {
 
       {/* Features Section */}
 
-     <section className="py-24 bg-white dark:bg-gray-900">
+   {/* Features Section */}
+
+<section className="py-24 bg-white dark:bg-gray-900">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    {/* SECTION HEADER */}
+    {/* SECTION HEADER - MODIFIED */}
     <div className="text-center mb-20">
-      <div className="inline-flex items-center gap-2 px-5 py-3 bg-violet-100 dark:bg-violet-900/30 rounded-full mb-6">
-        <Zap className="w-5 h-5 text-violet-600 dark:text-violet-400" />
-        <span className="text-lg font-semibold text-violet-700 dark:text-violet-300">
-          Powerful Features
-        </span>
-      </div>
+      {/* REMOVED: Powerful Features Sub-heading */}
 
       <h2 className="text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
         Everything You Need to Succeed
@@ -276,26 +273,27 @@ useEffect(() => {
     </div>
 
     {/* FEATURES GRID */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
       {features.map((feature, index) => (
         <Card
           key={index}
           className="group relative overflow-hidden bg-white dark:bg-gray-800
-                     border border-gray-200 dark:border-gray-700 rounded-3xl
-                     hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+                         border border-gray-200 dark:border-gray-700 rounded-3xl
+                         hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
         >
           {/* HOVER GRADIENT */}
           <div
             className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 
-                        group-hover:opacity-10 transition-opacity duration-300`}
+                          group-hover:opacity-10 transition-opacity duration-300`}
           ></div>
 
-          <CardContent className="p-10 relative">
+          {/* ADJUSTED PADDING FOR BETTER SPACING ON MOBILE/TABLET */}
+          <CardContent className="p-6 md:p-8 lg:p-10 relative">
 
             {/* ICON */}
             <div
               className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.gradient} flex 
-                          items-center justify-center shadow-md mb-8`}
+                            items-center justify-center shadow-md mb-8`}
             >
               <feature.icon className="w-8 h-8 text-white" />
             </div>
@@ -322,7 +320,7 @@ useEffect(() => {
 
                 <ArrowRight
                   className="w-5 h-5 text-violet-600 dark:text-violet-400 
-                             group-hover/btn:translate-x-1 transition-transform"
+                              group-hover/btn:translate-x-1 transition-transform"
                 />
               </Button>
             </Link>
@@ -332,6 +330,7 @@ useEffect(() => {
     </div>
   </div>
 </section>
+
 
 
       {/* ATS Score Checker Section */}
