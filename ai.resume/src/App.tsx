@@ -24,6 +24,7 @@ import { PrivacyPage } from './components/PrivacyPage';
 import { TermsPage } from './components/TermsPage';
 import { CookiePage } from './components/CookiePage';
 import ScrollToTop from './components/ScrollToTop';
+import Plans from './components/Plans';
 
 export default function App() {
   return (
@@ -60,6 +61,7 @@ export default function App() {
               <Route path="/portfolio/preview" element={<PortfolioPreview />} /> */}
               <Route path="/pricing" element={<PricingPlans />} />
               <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/plans" element={<Plans />} />
             </Route>
             
             <Route path="*" element={<Navigate to="/login" replace />} />

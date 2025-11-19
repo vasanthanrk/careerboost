@@ -1,23 +1,29 @@
-from sqlalchemy import Column, Integer, String, Enum, DateTime, ForeignKey
-from sqlalchemy.sql import func
-from app.core.database import Base
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey, Enum, DECIMAL
+from sqlalchemy.orm import relationship
 import enum
-
+from datetime import datetime
+from app.core.database import Base
 
 class SubscriptionStatus(enum.Enum):
     active = "active"
-    cancelled = "cancelled"
+    canceled = "canceled"
     expired = "expired"
-
 
 class Subscription(Base):
     __tablename__ = "subscriptions"
 
-    id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"))
-    plan_name = Column(String(50))
-    payment_id = Column(String(100))
-    status = Column(Enum(SubscriptionStatus))
-    start_date = Column(DateTime)
-    end_date = Column(DateTime)
-    next_billing = Column(DateTime)
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    plan_id = Column(Integer, ForeignKey("subscription_plans.id"))
+    status = Column(Enum(SubscriptionStatus), default=SubscriptionStatus.active)
+
+    current_period_start = Column(DateTime, default=datetime.utcnow)
+    current_period_end = Column(DateTime)
+    next_billing_date = Column(DateTime)
+
+    cancel_at_period_end = Column(Boolean, default=False)
+
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow)
+
+    plan = relationship("SubscriptionPlan", back_populates="subscriptions")
