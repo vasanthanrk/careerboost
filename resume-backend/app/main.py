@@ -5,7 +5,7 @@ from fastapi.staticfiles import StaticFiles
 import os
 
 app = FastAPI(
-    title="CareerBoost AI Backend",
+    title="SmartCV Maker AI Backend",
     description="Backend API for AI Resume & Career Booster Platform",
     version="1.0.0"
 )
@@ -43,4 +43,4 @@ app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
 @app.get("/")
 def root():
-    return {"message": "CareerBoost AI Backend Running"}
+    return {"message": "SmartCV Maker AI Backend Running"}

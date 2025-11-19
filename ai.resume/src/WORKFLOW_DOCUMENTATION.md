@@ -1,4 +1,4 @@
-# CareerBoost AI - Workflow Documentation
+# SmartCV Maker AI - Workflow Documentation
 
 ## Table of Contents
 1. [Authentication Pages](#authentication-pages)
@@ -24,7 +24,7 @@
 **Route:** `/login`
 
 **Purpose:**
-Allow existing users to authenticate and access their CareerBoost account.
+Allow existing users to authenticate and access their SmartCV Maker account.
 
 **User Workflow:**
 1. User lands on login page
@@ -58,7 +58,7 @@ Allow existing users to authenticate and access their CareerBoost account.
 **Route:** `/signup`
 
 **Purpose:**
-Enable new users to create a CareerBoost account.
+Enable new users to create a SmartCV Maker account.
 
 **User Workflow:**
 1. User lands on signup page
@@ -1020,7 +1020,7 @@ Allow users to manage their account, profile, preferences, and subscription sett
 
 **Top Bar (Header):**
 - **Left Side:**
-  - CareerBoost logo with sparkles icon
+  - SmartCV Maker logo with sparkles icon
   - Company name with gradient text
   - Tagline: "AI-Powered"
 
@@ -1116,7 +1116,7 @@ Each tab shows:
 7. Note recommended skills
 8. Open LinkedIn in new tab
 9. Update profile with optimizations
-10. Return to CareerBoost
+10. Return to SmartCV Maker
 11. Build portfolio to match
 12. Share portfolio on LinkedIn
 
@@ -1243,4 +1243,4 @@ Each tab shows:
 
 *Last Updated: October 24, 2025*
 *Version: 1.0*
-*CareerBoost AI - Empowering careers with artificial intelligence*
+*SmartCV Maker AI - Empowering careers with artificial intelligence*

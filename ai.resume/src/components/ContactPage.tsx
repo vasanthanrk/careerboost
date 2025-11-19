@@ -57,7 +57,7 @@ export function ContactPage() {
                   <Mail className="w-7 h-7 text-violet-600" />
                 </div>
                 <h3 className="text-gray-900 mb-2">Email Us</h3>
-                <p className="text-gray-600 mb-2">support@careerboost.com</p>
+                <p className="text-gray-600 mb-2">support@smartcvmaker.com</p>
                 <p className="text-gray-500">We reply within 24 hours</p>
               </CardContent>
             </Card>

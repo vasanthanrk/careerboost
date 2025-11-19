@@ -60,7 +60,7 @@ export function SignupPage() {
           <div className="flex items-center justify-center mb-6">
             <Briefcase className="w-16 h-16" />
           </div>
-          <h1 className="mb-4">Join CareerBoost AI</h1>
+          <h1 className="mb-4">Join SmartCV Maker AI</h1>
           <p className="text-violet-100 max-w-md">
             Start your journey to career success with our AI-powered tools.
           </p>
@@ -72,7 +72,7 @@ export function SignupPage() {
         <div className="w-full max-w-md">
           <div className="mb-8">
             <h2 className="mb-2">Create Account</h2>
-            <p className="text-gray-600">Get started with CareerBoost today</p>
+            <p className="text-gray-600">Get started with SmartCV Maker today</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">

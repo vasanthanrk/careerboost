@@ -23,7 +23,7 @@ export function Footer() {
                 <div className="w-8 h-8 bg-gradient-to-br from-violet-600 to-purple-600 rounded-lg flex items-center justify-center">
                     <Sparkles className="w-5 h-5 text-white" />
                 </div>
-                <span>CareerBoost</span>
+                <span>SmartCV Maker</span>
                 </div>
                 <p className="text-gray-400">
                 AI-powered tools to accelerate your career journey.
@@ -62,7 +62,7 @@ export function Footer() {
             </div>
             
             <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 CareerBoost. All rights reserved.</p>
+            <p>&copy; 2025 SmartCV Maker. All rights reserved.</p>
             </div>
         </div>
     </footer>

@@ -71,7 +71,7 @@ export function PrivacyPage() {
                 <li>With your consent or at your direction</li>
                 <li>With service providers who perform services on our behalf</li>
                 <li>To comply with legal obligations</li>
-                <li>To protect the rights, property, and safety of CareerBoost and our users</li>
+                <li>To protect the rights, property, and safety of SmartCV Maker and our users</li>
                 <li>In connection with a merger, sale, or acquisition</li>
               </ul>
             </div>
@@ -132,7 +132,7 @@ export function PrivacyPage() {
                 If you have any questions about this Privacy Policy, please contact us at:
               </p>
               <p className="text-gray-600">
-                Email: privacy@careerboost.com<br />
+                Email: privacy@smartcvmaker.com<br />
                 Address: 123 Career Street, San Francisco, CA 94102
               </p>
             </div>
