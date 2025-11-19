@@ -15,7 +15,7 @@ export function AboutPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full mb-6">
             <Heart className="w-4 h-4 text-violet-600" />
-            <span className="text-violet-700">About CareerBoost</span>
+            <span className="text-violet-700">About SmartCV Maker</span>
           </div>
           
           <h1 className="text-gray-900 mb-6">
@@ -23,7 +23,7 @@ export function AboutPage() {
           </h1>
           
           <p className="text-gray-600 max-w-2xl mx-auto">
-            CareerBoost is on a mission to democratize access to professional career development tools. We believe everyone deserves a fair shot at landing their dream job, regardless of their background or resources.
+            SmartCV Maker is on a mission to democratize access to professional career development tools. We believe everyone deserves a fair shot at landing their dream job, regardless of their background or resources.
           </p>
         </div>
       </section>
@@ -57,7 +57,7 @@ export function AboutPage() {
           <div className="text-center mb-16">
             <h2 className="text-gray-900 mb-4">Our Core Values</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              These principles guide everything we do at CareerBoost
+              These principles guide everything we do at SmartCV Maker
             </p>
           </div>
 
@@ -102,7 +102,7 @@ export function AboutPage() {
             Ready to Transform Your Career?
           </h2>
           <p className="text-violet-100 mb-8">
-            Join thousands of professionals who have already boosted their careers with CareerBoost.
+            Join thousands of professionals who have already boosted their careers with SmartCV Maker.
           </p>
           <Link to="/signup">
             <Button size="lg" className="bg-white text-violet-600 hover:bg-gray-100">

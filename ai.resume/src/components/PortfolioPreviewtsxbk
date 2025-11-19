@@ -259,7 +259,7 @@ import { Button } from './ui/button';
                       © 2025 {portfolioData.name}. All rights reserved.
                     </p>
                     <p className="text-gray-500 flex items-center gap-2 justify-center md:justify-start">
-                      Built with <Sparkles className="w-4 h-4 text-violet-400" /> CareerBoost AI
+                      Built with <Sparkles className="w-4 h-4 text-violet-400" /> SmartCV Maker AI
                     </p>
                   </div>
                   <div className="flex gap-4">
@@ -293,7 +293,7 @@ import { Button } from './ui/button';
                     </p>
                     <div className="flex gap-2">
                       <Input
-                        value="johndoe.careerboost.com"
+                        value="johndoe.smartcvmaker.com"
                         readOnly
                         className="bg-white border-violet-300"
                       />

@@ -35,14 +35,14 @@ export function TermsPage() {
             <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 border-2 border-gray-100">
               <h2 className="text-gray-900 mb-4">1. Acceptance of Terms</h2>
               <p className="text-gray-600 mb-4">
-                By accessing or using CareerBoost's services, you agree to be bound by these Terms of Service and our Privacy Policy. If you do not agree to these terms, please do not use our services.
+                By accessing or using SmartCV Maker's services, you agree to be bound by these Terms of Service and our Privacy Policy. If you do not agree to these terms, please do not use our services.
               </p>
             </div>
 
             <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 border-2 border-gray-100">
               <h2 className="text-gray-900 mb-4">2. Description of Service</h2>
               <p className="text-gray-600 mb-4">
-                CareerBoost provides AI-powered career development tools including:
+                SmartCV Maker provides AI-powered career development tools including:
               </p>
               <ul className="text-gray-600 space-y-2 mb-4">
                 <li>Resume builder and optimization</li>
@@ -71,7 +71,7 @@ export function TermsPage() {
             <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 border-2 border-gray-100">
               <h2 className="text-gray-900 mb-4">4. User Content</h2>
               <p className="text-gray-600 mb-4">
-                You retain ownership of any content you submit to CareerBoost. By submitting content, you grant us a license to:
+                You retain ownership of any content you submit to SmartCV Maker. By submitting content, you grant us a license to:
               </p>
               <ul className="text-gray-600 space-y-2 mb-4">
                 <li>Use, modify, and process your content to provide our services</li>
@@ -122,7 +122,7 @@ export function TermsPage() {
             <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 border-2 border-gray-100">
               <h2 className="text-gray-900 mb-4">7. Intellectual Property</h2>
               <p className="text-gray-600 mb-4">
-                All content, features, and functionality of CareerBoost are owned by us and are protected by intellectual property laws. You may not:
+                All content, features, and functionality of SmartCV Maker are owned by us and are protected by intellectual property laws. You may not:
               </p>
               <ul className="text-gray-600 space-y-2 mb-4">
                 <li>Copy, modify, or create derivative works</li>
@@ -188,7 +188,7 @@ export function TermsPage() {
                 For questions about these Terms of Service, please contact us at:
               </p>
               <p className="text-gray-600">
-                Email: legal@careerboost.com<br />
+                Email: legal@smartcvmaker.com<br />
                 Address: 123 Career Street, San Francisco, CA 94102
               </p>
             </div>
