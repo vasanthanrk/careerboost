@@ -227,9 +227,9 @@ export function LandingPageOne() {
               <div className="h3_bg bg-white dark:bg-gray-800 
                               p-8 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)]
                               transform hover:-translate-y-1 transition-all">
-                <h3 className="myh3 text-4xl font-bold text-sky-500">15M+</h3>
+                <h3 className="myh3 text-4xl font-bold text-sky-500">15K+</h3>
                 <p className="text-lg text-gray-700 dark:text-gray-300 mt-2">
-                  resumes created
+                  Active Users
                 </p>
               </div>
 
@@ -237,9 +237,9 @@ export function LandingPageOne() {
               <div className="h3_bg bg-white dark:bg-gray-800 
                               p-8 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)]
                               transform hover:-translate-y-1 transition-all">
-                <h3 className="myh3 text-4xl font-bold text-sky-500">10M+</h3>
+                <h3 className="myh3 text-4xl font-bold text-sky-500">10K+</h3>
                 <p className="text-lg text-gray-700 dark:text-gray-300 mt-2">
-                  resume examples
+                  Resume Created
                 </p>
               </div>
             </div>
@@ -249,9 +249,9 @@ export function LandingPageOne() {
               <div className="h3_bg bg-white dark:bg-gray-800 
                               p-8 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)]
                               transform hover:-translate-y-1 transition-all">
-                <h3 className="myh3 text-4xl font-bold text-sky-500">8 years</h3>
+                <h3 className="myh3 text-4xl font-bold text-sky-500">85%</h3>
                 <p className="text-lg text-gray-700 dark:text-gray-300 mt-2">
-                  helping job seekers
+                  Success Rate
                 </p>
               </div>
 
@@ -259,9 +259,9 @@ export function LandingPageOne() {
               <div className="h3_bg bg-white dark:bg-gray-800 
                               p-8 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)]
                               transform hover:-translate-y-1 transition-all">
-                <h3 className="myh3 text-4xl font-bold text-sky-500">1M+</h3>
+                <h3 className="myh3 text-4xl font-bold text-sky-500">100%</h3>
                 <p className="text-lg text-gray-700 dark:text-gray-300 mt-2">
-                  monthly blog readers
+                  Secure & Private
                 </p>
               </div>
             </div>
@@ -293,7 +293,6 @@ export function LandingPageOne() {
           </div>
         </div>
       </section>
-      {/* Features Section */}
 
      {/* Features Section */}
 
@@ -374,14 +373,14 @@ export function LandingPageOne() {
 
       {/* Resume Templates Showcase */}
       {templates.length > 0 ? (
-        <section className="py-20 bg-gradient-to-br from-violet-50 via-purple-50/30 to-pink-50/20 overflow-hidden">
+        <section className="py-20 bg-white dark:bg-gray-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
             <div className="text-center">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full mb-4">
+              {/* <div className="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full mb-4">
                 <FileText className="w-4 h-4 text-violet-600" />
                 <span className="text-violet-700">Professional Templates</span>
-              </div>
-              <h2 className="text-gray-900 mb-4">Choose from Premium Resume Templates</h2>
+              </div> */}
+              <h2 className="text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">Choose from Premium Resume Templates</h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
                 Hand-crafted, ATS-friendly templates designed by career experts to help you stand out
               </p>
@@ -437,7 +436,7 @@ export function LandingPageOne() {
 
           <div className="text-center mt-10">
             <Link to="/resume-builder">
-              <Button size="lg" className="bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 gap-2">
+               <Button className="bg-violet-600 hover:bg-violet-700 text-white px-8 py-6 rounded-xl">
                 <FileText className="w-5 h-5" />
                 Browse All Templates
                 <ArrowRight className="w-5 h-5" />
@@ -453,15 +452,14 @@ export function LandingPageOne() {
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-teal-100 dark:bg-teal-900/30 rounded-full mb-4">
+            {/* <div className="inline-flex items-center gap-2 px-4 py-2 bg-teal-100 dark:bg-teal-900/30 rounded-full mb-4">
               <Scan className="w-4 h-4 text-teal-600 dark:text-teal-400" />
-
               <span className="text-teal-700 dark:text-teal-300">
                 ATS Compatibility
               </span>
-            </div>
+            </div> */}
 
-            <h2 className="text-gray-900 dark:text-white mb-4">
+            <h2 className="text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
               Beat the Applicant Tracking System
             </h2>
 
@@ -720,158 +718,9 @@ export function LandingPageOne() {
 
       {/* Benefits Section */}
 
-      <section className="py-20 bg-gradient-to-br from-violet-50 to-purple-50/30 dark:from-gray-900 dark:to-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 rounded-full mb-6 shadow-sm">
-                <Check className="w-4 h-4 text-green-600 dark:text-green-400" />
-
-                <span className="text-gray-700 dark:text-gray-300">
-                  Why Choose SmartCV Maker
-                </span>
-              </div>
-
-              <h2 className="text-gray-900 dark:text-white mb-6">
-                Your All-in-One Career Platform
-              </h2>
-
-              <p className="text-gray-600 dark:text-gray-400 mb-8">
-                SmartCV Maker combines cutting-edge AI technology with intuitive
-                design to help you create professional career documents and
-                stand out in the job market.
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                {benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <div className="flex-shrink-0 w-6 h-6 bg-green-100 dark:bg-green-900/50 rounded-full flex items-center justify-center">
-                      <Check className="w-4 h-4 text-green-600 dark:text-green-400" />
-                    </div>
-
-                    <span className="text-gray-700 dark:text-gray-300">
-                      {benefit}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              <Link to="/signup">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 gap-2"
-                >
-                  <Sparkles className="w-5 h-5" />
-                  Get Started Today
-                </Button>
-              </Link>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-4">
-                <div className="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border-2 border-violet-100 dark:border-violet-800">
-                  <FileText className="w-8 h-8 text-violet-600 dark:text-violet-400 mb-3" />
-
-                  <h4 className="text-gray-900 dark:text-white mb-2">
-                    Smart Templates
-                  </h4>
-
-                  <p className="text-gray-600 dark:text-gray-400">
-                    Professional designs that get noticed
-                  </p>
-                </div>
-
-                <div className="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border-2 border-blue-100 dark:border-blue-800">
-                  <Sparkles className="w-8 h-8 text-blue-600 dark:text-blue-400 mb-3" />
-
-                  <h4 className="text-gray-900 dark:text-white mb-2">
-                    AI-Powered
-                  </h4>
-
-                  <p className="text-gray-600 dark:text-gray-400">
-                    Intelligent suggestions and optimization
-                  </p>
-                </div>
-              </div>
-
-              <div className="space-y-4 pt-8">
-                <div className="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border-2 border-green-100 dark:border-green-800">
-                  <Shield className="w-8 h-8 text-green-600 dark:text-green-400 mb-3" />
-
-                  <h4 className="text-gray-900 dark:text-white mb-2">
-                    Secure & Private
-                  </h4>
-
-                  <p className="text-gray-600 dark:text-gray-400">
-                    Your data is safe with us
-                  </p>
-                </div>
-
-                <div className="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border-2 border-orange-100 dark:border-orange-800">
-                  <TrendingUp className="w-8 h-8 text-orange-600 dark:text-orange-400 mb-3" />
-
-                  <h4 className="text-gray-900 dark:text-white mb-2">
-                    Proven Results
-                  </h4>
-
-                  <p className="text-gray-600 dark:text-gray-400">
-                    85% success rate with users
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
 
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-violet-600 via-purple-600 to-pink-600 p-12 md:p-16 text-center">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-300/20 rounded-full blur-3xl"></div>
-
-            <div className="relative z-10">
-              <h2 className="text-white mb-6 max-w-3xl mx-auto">
-                Ready to Accelerate Your Career?
-              </h2>
-
-              <p className="text-violet-100 mb-8 max-w-2xl mx-auto">
-                Join thousands of professionals who have successfully landed
-                their dream jobs using SmartCV Maker.
-              </p>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Link to="/signup">
-                  <Button
-                    size="lg"
-                    className="bg-white text-violet-600 hover:bg-violet-50 gap-2 px-8 py-6 shadow-xl"
-                  >
-                    <Sparkles className="w-5 h-5" />
-                    Start Free Trial
-                  </Button>
-                </Link>
-
-                {/* <Link to="/pricing">
-
-                  <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm gap-2 px-8 py-6">
-
-                    View Pricing Plans
-
-                    <ArrowRight className="w-5 h-5" />
-
-                  </Button>
-
-                </Link> */}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
+        <Footer />
     </div>
   );
 }
