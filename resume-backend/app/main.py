@@ -6,7 +6,7 @@ import os
 
 app = FastAPI(
     title="SmartCV Maker AI Backend",
-    description="Backend API for AI Resume & Career Booster Platform",
+    description="Backend API for AI Resume & SmartCV Maker Platform",
     version="1.0.0"
 )
 
