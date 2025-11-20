@@ -13,12 +13,15 @@ import { User, Lock, CreditCard, Bell, Moon, Save, Sparkles, Phone } from 'lucid
 import { toast } from 'sonner@2.0.3';
 import { Link } from 'react-router-dom';
 import api from '../api/axiosClient';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from './ui/dialog';
 
 export function SettingsPage() {
   const [loading, setLoading] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
   const [emailNotifications, setEmailNotifications] = useState(true);
   const [marketingEmails, setMarketingEmails] = useState(false);
+  const [showCancelPopup, setShowCancelPopup] = useState(false);
+  const [cancelInProcess, setCancelInProcess] = useState(false);
   const [passwords, setPasswords] = useState({
     old_password: "",
     new_password: "",
@@ -30,7 +33,8 @@ export function SettingsPage() {
     phone: '',
     location: '',
     career_level:'',
-    avatar_url:''
+    avatar_url:'',
+    subscription:''
   });
 
    async function loadUser() {
@@ -45,6 +49,7 @@ export function SettingsPage() {
         location: user.location || '',
         career_level: user.career_level || "",
         avatar_url: user.avatar_url || "",
+        subscription: user.subscription || null,
       });
 
       setDarkMode(user.settings?.darkMode || false);
@@ -156,9 +161,55 @@ export function SettingsPage() {
     }
   };
 
+  const handleCancelSubscription = async () => {
+    try {
+      setCancelInProcess(true);
+
+      const res = await api.post("/subscription/cancel");
+      setShowCancelPopup(false);
+      if (res.data.message) {
+        toast.success(res.data.message);
+
+        loadUser();
+      } else {
+        toast.error("Cancellation failed");
+      }
+    } catch (error) {
+      console.error(error);
+      setShowCancelPopup(false);
+      toast.error("Something went wrong while cancelling.");
+    }
+  };
 
   return (
     <DashboardLayout>
+      <Dialog open={showCancelPopup} onOpenChange={setShowCancelPopup}>
+        <DialogContent className='max-w-2xl'>
+          <DialogHeader>
+            <DialogTitle>Cancel Subscription?</DialogTitle>
+            <DialogDescription>
+              Are you sure you want to cancel your subscription? Your subscription will be cancelled, but you’ll keep plan access until your plan expires..
+            </DialogDescription>
+          </DialogHeader>
+
+            {
+              cancelInProcess ? (
+                <div className="flex justify-end gap-3 p-4">
+                  <span className="text-gray-600 mr-auto">Processing cancellation...</span>
+                </div>
+              ) : (
+                <div className="flex justify-end gap-3 p-4">
+                  <Button variant="outline" onClick={() => setShowCancelPopup(false)}>
+                    Keep Subscription
+                  </Button>
+
+                  <Button className="bg-red-500 hover:bg-red-700 text-white" onClick={handleCancelSubscription}>
+                    Yes, Cancel
+                  </Button>
+                </div>
+            )}
+        </DialogContent>
+      </Dialog>
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Header */}
         <div>
@@ -170,10 +221,10 @@ export function SettingsPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="profile" className="w-full">
-          <TabsList className="grid grid-cols-1 lg:grid-cols-3 mb-6">
+          <TabsList className="grid grid-cols-1 lg:grid-cols-4 mb-6">
             <TabsTrigger value="profile">Profile</TabsTrigger>
             <TabsTrigger value="security">Security</TabsTrigger>
-            {/* <TabsTrigger value="subscription">Subscription</TabsTrigger> */}
+            <TabsTrigger value="subscription">Subscription</TabsTrigger>
             <TabsTrigger value="settings">Settings</TabsTrigger>
           </TabsList>
 
@@ -336,7 +387,7 @@ export function SettingsPage() {
           </TabsContent>
 
           {/* Subscription Tab */}
-          {/* <TabsContent value="subscription" className="space-y-6">
+          <TabsContent value="subscription" className="space-y-6">
             <Card>
               <CardHeader>
                 <div className="flex items-center gap-2">
@@ -348,17 +399,39 @@ export function SettingsPage() {
                 <div className="flex items-start justify-between">
                   <div>
                     <div className="flex items-center gap-2 mb-2">
-                      <h3 className="text-gray-900">Free Plan</h3>
+                      <h3 className="text-gray-900">{profileData.subscription?.plan
+  ? profileData.subscription.plan.charAt(0).toUpperCase() +
+    profileData.subscription.plan.slice(1).toLowerCase()
+  : ""} Plan</h3>
                       <Badge variant="outline">Active</Badge>
                     </div>
-                    <p className="text-gray-600 mb-4">
-                      You're currently on the Free plan with limited features
-                    </p>
-                    <Link to="/pricing">
-                      <Button className="bg-violet-600 hover:bg-violet-700">
-                        Upgrade Plan
+                    {
+                      profileData.subscription?.plan == 'free' ? (
+                        <p className="text-gray-600 mb-4">
+                          You're currently on the Free plan with limited features
+                        </p>
+                    ): (
+                      <p className="text-gray-600 mb-4">
+                        You're currently on the Pro plan with unlimited features
+                      </p>
+                    )}
+                    {
+                      profileData.subscription?.status == 'canceled' && profileData.subscription?.plan == 'pro' ? (
+                        <Button className="bg-violet-600 hover:bg-violet-700">
+                          Current Plan
+                        </Button>
+                    ): profileData.subscription?.status == 'Active' && profileData.subscription?.plan == 'pro' ?(
+                      <Button onClick={setShowCancelPopup(true)} className="w-full bg-red-500 hover:bg-red-900 text-white py-3 rounded-xl"> 
+                        Cancel Subscription
                       </Button>
-                    </Link>
+                    ) : profileData.subscription?.status == 'Active' && profileData.subscription?.plan == 'pro' ?(
+                        <Link to="/pricing">
+                          <Button className="bg-violet-600 hover:bg-violet-700">
+                            Upgrade Plan
+                          </Button>
+                        </Link>
+                    ): null}
+                    
                   </div>
                 </div>
 
@@ -367,16 +440,25 @@ export function SettingsPage() {
                   <div className="space-y-3">
                     <div className="flex justify-between">
                       <span className="text-gray-600">Plan Type</span>
-                      <span className="text-gray-900">Free</span>
+                      <span className="text-gray-900">{profileData.subscription?.plan
+  ? profileData.subscription.plan.charAt(0).toUpperCase() +
+    profileData.subscription.plan.slice(1).toLowerCase()
+  : ""}</span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Billing Cycle</span>
-                      <span className="text-gray-900">-</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Next Billing Date</span>
-                      <span className="text-gray-900">-</span>
-                    </div>
+                    {
+                      profileData.subscription?.expires_on != null ? (
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">Billing Cycle</span>
+                          <span className="text-gray-900">{profileData.subscription?.expires_on}</span>
+                        </div>
+                    ): null}
+                    {
+                      profileData.subscription?.next_billing_date != null ? (
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Next Billing Date</span>
+                        <span className="text-gray-900">{profileData.subscription?.next_billing_date}</span>
+                      </div>
+                    ): null}
                   </div>
                 </div>
               </CardContent>
@@ -416,7 +498,7 @@ export function SettingsPage() {
                 </div>
               </CardContent>
             </Card>
-          </TabsContent> */}
+          </TabsContent>
 
           {/* Notifications Tab */}
           <TabsContent value="settings" className="space-y-6">

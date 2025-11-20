@@ -8,8 +8,10 @@ from app.models.plan import SubscriptionPlan
 from app.utils.payment_service import record_payment
 from app.utils.razorpay_service import create_razorpay_order
 from app.utils.stripe_service import create_stripe_checkout_session
+from app.utils.subscription_service import get_subscription_info
 from pydantic import BaseModel
 from app.core.security import get_current_user
+from datetime import datetime
 
 router = APIRouter()
 
@@ -48,29 +50,11 @@ def start_subscription(payload: SubscriptionStartRequest, db: Session = Depends(
 
 @router.get("/subscription/status")
 def subscription_status(current_user=Depends(get_current_user), db: Session = Depends(get_db)):
-    sub = db.query(Subscription).filter_by(user_id=current_user.id, status='active').first()
-    
-    plan = 'free'
-    if sub:
-        plan = sub.plan.name    
-    
-    from datetime import datetime
-    now = datetime.utcnow()
-    
-    active = (sub.status.value == "active" or (sub.status.value == "canceled" and sub.current_period_end > now))
-    if not active:
-        plan = 'free'
-
-    return {
-        "active": active,
-        "plan":plan,
-        "status": sub.status,
-        "expires_on": sub.current_period_end
-    }
+    return get_subscription_info(current_user, db)
 
 @router.post("/subscription/cancel")
-def cancel_subscription(user_id: int, db: Session = Depends(get_db)):
-    sub = db.query(Subscription).filter_by(user_id=user_id, status="active").first()
+def cancel_subscription(current_user=Depends(get_current_user), db: Session = Depends(get_db)):
+    sub = db.query(Subscription).filter_by(user_id=current_user.id, status="active").first()
 
     if not sub:
         raise HTTPException(404, "Active subscription not found")
@@ -79,4 +63,4 @@ def cancel_subscription(user_id: int, db: Session = Depends(get_db)):
     sub.status = "canceled"
     db.commit()
 
-    return {"message": "Subscription canceled. Will remain active until the end of billing cycle."}
+    return {"message": "Subscription canceled. Plan will remain active until the end of billing cycle."}

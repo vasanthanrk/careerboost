@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, status, Request
 from sqlalchemy.orm import Session
 from app.core.database import get_db
 from app.models.user import User
-from app.schemas.user_schema import UserCreate, UserResponse, LoginRequest
+from app.schemas.user_schema import UserCreate, LoginRequest
 from app.core.security import hash_password, create_access_token, verify_password
 from app.core.security import get_current_user
 from app.utils.activity_tracker import log_user_activity
@@ -24,6 +24,7 @@ def signup(user_data: UserCreate, db: Session = Depends(get_db)):
         email=user_data.email,
         password_hash=hashed_pw,
         career_level=user_data.career_level,
+        phone=user_data.phone,
     )
 
     db.add(new_user)
@@ -40,6 +41,7 @@ def signup(user_data: UserCreate, db: Session = Depends(get_db)):
             "full_name": new_user.full_name,
             "email": new_user.email,
             "career_level": new_user.career_level,
+            "phone": new_user.phone,
             "avatar_url": ''
         },
     }
@@ -77,6 +79,7 @@ def login(request_data: LoginRequest, request: Request, db: Session = Depends(ge
             "full_name": user.full_name,
             "email": user.email,
             "career_level": user.career_level,
+            "phone": user.phone,
             "avatar_url": avatar_url
         },
     }
@@ -100,6 +103,7 @@ def verify_token(request: Request, current_user: User = Depends(get_current_user
             "full_name": current_user.full_name,
             "email": current_user.email,
             "career_level": current_user.career_level,
+            "phone": current_user.phone,
             "avatar_url": avatar_url
         }
     }
