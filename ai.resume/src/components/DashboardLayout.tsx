@@ -220,7 +220,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               {/* Additional Nav Items */}
               <div className="h-6 w-px bg-gray-200 mx-2"></div>
               
-              {/* <Link
+              <Link
                 to="/pricing"
                 className={`
                   group relative flex items-center gap-2 px-4 py-2.5 rounded-xl 
@@ -241,7 +241,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                   <CreditCard className="w-4 h-4" />
                 </div>
                 <span className="font-medium">Pricing</span>
-              </Link> */}
+              </Link>
 
               <Link
                 to="/settings"

@@ -6,6 +6,8 @@ import { Label } from './ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Briefcase, User, Mail, Lock } from 'lucide-react';
 import { toast } from 'sonner';
+import { Briefcase, User, Mail, Lock, Phone } from 'lucide-react';
+import { toast } from 'sonner@2.0.3';
 import api from '../api/axiosClient';
 import { SEO } from './SEO';
 
@@ -17,7 +19,8 @@ export function SignupPage() {
     email: '',
     password: '',
     confirmPassword: '',
-    careerLevel: ''
+    careerLevel: '',
+    phone:''
   });
 
   const [errors, setErrors] = useState<any>({});
@@ -52,6 +55,7 @@ export function SignupPage() {
         email: formData.email,
         password: formData.password,
         career_level: formData.careerLevel,
+        phone: formData.phone,
       });
 
       toast.success('Account created successfully!');
@@ -130,6 +134,21 @@ export function SignupPage() {
                 />
               </div>
               {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">Phone</Label>
+              <div className="relative">
+                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Input
+                  id="phone"
+                  type="phone"
+                  placeholder="9876543210"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  className="pl-10"
+                  required
+                />
+              </div>
             </div>
 
             {/* Password */}

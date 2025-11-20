@@ -8,7 +8,8 @@ export default function SubscribeButton({ userId, planId, className, planText })
   const [loading, setLoading] = useState(false);
 
   const gateway = import.meta.env.VITE_APP_PAYMENT_GATEWAY;
-
+  const user = JSON.parse(localStorage.getItem("user"));
+  
   const startSubscription = async () => {
     setLoading(true);
 
@@ -28,7 +29,7 @@ export default function SubscribeButton({ userId, planId, className, planText })
       }
     } catch (err) {
       console.error(err);
-      toast.error("Unable to start subscription");
+      toast.error(err.response.data.detail || "Unable to start subscription");
     }
 
     setLoading(false);
@@ -48,7 +49,7 @@ export default function SubscribeButton({ userId, planId, className, planText })
       key: import.meta.env.VITE_APP_RAZORPAY_KEY,
       amount: order.amount,
       currency: "INR",
-      name: "CareerBay",
+      name: "SmartCV Maker",
       description: "Subscription Payment",
       order_id: order.id,
       handler: async function (response) {
@@ -66,8 +67,17 @@ export default function SubscribeButton({ userId, planId, className, planText })
         window.location.reload();
       },
       prefill: {
-        name: "User",
-        email: "user@example.com",
+        name: user.name,
+        email: user.email,       // 👈 This forces Razorpay to show user's email
+        contact: user.phone || "" // 👈 Optional: remove or pass empty string if phone not available
+      },
+      method: {
+        card: true,      // allow card
+        netbanking: true, // allow netbanking
+        upi: true,       // allow UPI
+        wallet: false,   // disable wallet
+        emi: false,      // disable EMI
+        paylater: false, // disable Pay Later
       },
       theme: {
         color: "#0ab37c",
@@ -81,7 +91,7 @@ export default function SubscribeButton({ userId, planId, className, planText })
   return (
     <Button
       disabled={loading}
-      onClick={startSubscription}
+      onClick={() => { if(planId !== 'free') {startSubscription()}}}
       className={`
         px-6 py-3 text-white rounded-md
         ${className}

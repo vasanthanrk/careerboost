@@ -7,13 +7,14 @@ from app.core.security import get_current_user
 from app.core.security import hash_password, verify_password, get_current_user
 from app.utils.activity_tracker import log_user_activity
 from app.utils.change_ditect import get_changed_fields
+from app.utils.subscription_service import get_subscription_info
 import os
 
 UPLOAD_DIR = "uploads/avatars"
 
 router = APIRouter()
 @router.get("/user/me")
-def get_me(request: Request,current_user: User = Depends(get_current_user)):
+def get_me(request: Request,current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):
     avatar_url = ''
     print(request.base_url)
     if current_user.avatar_url:
@@ -21,6 +22,8 @@ def get_me(request: Request,current_user: User = Depends(get_current_user)):
         # This ensures correct protocol, host, and port are used automatically.
         base_url = str(request.base_url).rstrip("/")
         avatar_url = f"{base_url}{current_user.avatar_url}"
+
+    subscription = get_subscription_info(current_user, db)
 
     return {
         "id": current_user.id,
@@ -34,6 +37,7 @@ def get_me(request: Request,current_user: User = Depends(get_current_user)):
         "settings": current_user.settings or {},
         "created_at": current_user.created_at,
         "updated_at": current_user.updated_at,
+        "subscription": subscription
     }
 
 @router.post("/user/upload-avatar")

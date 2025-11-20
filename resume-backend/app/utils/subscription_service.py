@@ -3,6 +3,7 @@ from dateutil.relativedelta import relativedelta
 from sqlalchemy.orm import Session
 from app.models.subscription import Subscription, SubscriptionStatus
 from app.models.plan import SubscriptionPlan
+from datetime import datetime
 
 def create_subscription(db: Session, user_id: int, plan: SubscriptionPlan):
     now = datetime.utcnow()
@@ -61,3 +62,38 @@ def expire_subscriptions(db: Session):
         sub.updated_at = now
 
     db.commit()
+
+def get_subscription_info(current_user, db):
+    sub = db.query(Subscription).filter_by(user_id=current_user.id).first()
+
+    from datetime import datetime
+    now = datetime.utcnow()
+
+    if not sub:
+        return {
+            "active": False,
+            "plan": "free",
+            "status": "none",
+            "expires_on": None,
+            "next_billing_date": None
+        }
+
+    # Determine if subscription is still active
+    active = (
+        sub.status.value == "active" 
+        or (
+            sub.status.value == "canceled" 
+            and sub.current_period_end > now
+        )
+    )
+
+    plan = sub.plan.name if active else "free"
+
+    return {
+        "active": active,
+        "plan": plan,
+        "status": sub.status.value,
+        "expires_on": sub.current_period_end.strftime("%d-%m-%Y"),
+        "next_billing_date": sub.next_billing_date.strftime("%d-%m-%Y")
+    }
+
