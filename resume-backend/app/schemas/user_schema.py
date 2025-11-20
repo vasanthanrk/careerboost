@@ -6,6 +6,7 @@ class UserCreate(BaseModel):
     name: str
     email: EmailStr
     password: str
+    phone:str
     career_level: Optional[str] = None
 
 

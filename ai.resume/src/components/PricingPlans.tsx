@@ -6,29 +6,53 @@ import { Badge } from './ui/badge';
 import { Check, Sparkles, Zap, Crown } from 'lucide-react';
 import { toast } from 'sonner';
 import { SEO } from './SEO';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
 import { toast } from 'sonner@2.0.3';
 import SubscribeButton from "../components/SubscribeButton";
 import api from '../api/axiosClient';
+import { Link } from 'react-router-dom';
 
 export function PricingPlans() {
+  const [currentPlanStatus, setCurrentPlanStatus] = useState({});
+  const [showCancelPopup, setShowCancelPopup] = useState(false);
+  const [cancelInProcess, setCancelInProcess] = useState(false);
+
+  const fetchStatus = async () => {
+    try {
+      const res = await api.get('/subscription/status');
+
+      // Handle case where backend returns nested resume_data
+      const data = res.data?.resume_data ? res.data.resume_data : res.data;
+      setCurrentPlanStatus(data)
+
+    } catch (err: any) {
+      
+    }
+  };
+
   useEffect(() => {
-    const fetchResume = async () => {
-      try {
-        const res = await api.get('/subscription/status');
-
-        // Handle case where backend returns nested resume_data
-        const data = res.data?.resume_data ? res.data.resume_data : res.data;
-        console.log(data)
-
-      } catch (err: any) {
-        
-      } finally {
-        
-      }
-    };
-
-    fetchResume();
+    fetchStatus();
   }, []);
+
+  const handleCancelSubscription = async () => {
+    try {
+      setCancelInProcess(true);
+
+      const res = await api.post("/subscription/cancel");
+      setShowCancelPopup(false);
+      if (res.data.message) {
+        toast.success(res.data.message);
+
+        fetchStatus();
+      } else {
+        toast.error("Cancellation failed");
+      }
+    } catch (error) {
+      console.error(error);
+      setShowCancelPopup(false);
+      toast.error("Something went wrong while cancelling.");
+    }
+  };
 
   const user = JSON.parse(localStorage.getItem("user"));
   const plans = [
@@ -40,22 +64,20 @@ export function PricingPlans() {
       icon: Sparkles,
       iconColor: 'text-gray-600',
       bgColor: 'bg-gray-50',
-      buttonVariant: 'outline' as const,
+      buttonVariant: 'free' as const,
       buttonText: 'Current Plan',
       features: [
-        '3 AI resume generations per month',
-        'Basic resume templates',
-        '1 cover letter per month',
-        'Job fit analysis (5 per month)',
-        'LinkedIn profile review',
-        'Basic portfolio builder',
-        'Community support'
+        '3 AI resume generations',
+        '3 Basic resume templates download',
+        '3 Job fit analysis',
+        '1 ATS Resume review',
+        '1 cover letter generation',
       ]
     },
     {
       name: 'Pro',
       price: '199 Rs',
-      period: 'per month',
+      period: 'Month',
       description: 'For serious job seekers',
       icon: Zap,
       iconColor: 'text-violet-600',
@@ -65,26 +87,15 @@ export function PricingPlans() {
       popular: true,
       features: [
         'Unlimited AI resume generations',
-        'Premium resume templates',
+        'Premium resume templates download',
+        'Unlimited ATS Resume review',
         'Unlimited cover letters',
         'Unlimited job fit analysis',
-        'Advanced LinkedIn optimization',
-        'Pro portfolio themes',
-        'Custom domain support',
+        'LinkedIn optimization',
         'Priority email support',
-        'Resume download in multiple formats',
-        'AI-powered interview prep'
       ]
     },
   ];
-
-  const handleUpgrade = (planName: string) => {
-    if (planName === 'Free') {
-      toast.info('You are currently on the Free plan');
-    } else {
-      toast.success(`Redirecting to checkout for ${planName} plan...`);
-    }
-  };
 
   return (
     <DashboardLayout>
@@ -92,6 +103,33 @@ export function PricingPlans() {
         title="Pricing Plans"
         description="Choose the perfect plan for your career journey. Free and Pro options available."
       />
+      <Dialog open={showCancelPopup} onOpenChange={setShowCancelPopup}>
+        <DialogContent className='max-w-2xl'>
+          <DialogHeader>
+            <DialogTitle>Cancel Subscription?</DialogTitle>
+            <DialogDescription>
+              Are you sure you want to cancel your subscription? Your subscription will be cancelled, but you’ll keep plan access until your plan expires..
+            </DialogDescription>
+          </DialogHeader>
+
+            {
+              cancelInProcess ? (
+                <div className="flex justify-end gap-3 p-4">
+                  <span className="text-gray-600 mr-auto">Processing cancellation...</span>
+                </div>
+              ) : (
+                <div className="flex justify-end gap-3 p-4">
+                  <Button variant="outline" onClick={() => setShowCancelPopup(false)}>
+                    Keep Subscription
+                  </Button>
+
+                  <Button className="bg-red-500 hover:bg-red-700 text-white" onClick={handleCancelSubscription}>
+                    Yes, Cancel
+                  </Button>
+                </div>
+            )}
+        </DialogContent>
+      </Dialog>
       <div className="max-w-7xl mx-auto space-y-8">
         {/* Header */}
         <div className="text-center">
@@ -122,21 +160,52 @@ export function PricingPlans() {
                 </div>
                 <CardTitle>{plan.name}</CardTitle>
                 <CardDescription>{plan.description}</CardDescription>
-                <div className="pt-4">
+                <div className="pt-2">
                   <div className="flex items-baseline gap-1">
                     <span className="text-gray-900">{plan.price}</span>
-                    <span className="text-gray-600">/{plan.period}</span>
+                    <span className="text-gray-600">/ {plan.period}</span>
                   </div>
+                  { currentPlanStatus?.plan != 'free' && currentPlanStatus?.plan == plan.buttonVariant && currentPlanStatus?.status == 'active' ? (
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-gray-900">Next Billing</span>
+                      <span className="text-gray-600"> - {currentPlanStatus?.next_billing_date}</span>
+                    </div>
+                  ) : currentPlanStatus?.plan != 'free' && currentPlanStatus?.plan == plan.buttonVariant && currentPlanStatus?.status == 'canceled' ? (
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-gray-900">Expires On</span>
+                      <span className="text-gray-600"> - {currentPlanStatus?.expires_on}</span>
+                    </div>
+                  ) : null}
                 </div>
               </CardHeader>
 
-              <CardContent className="space-y-6">
-                <SubscribeButton 
-                  userId={user.id} 
-                  planId={plan.buttonVariant} 
-                  className={`w-full ${plan.buttonVariant === 'pro' ? 'bg-violet-600 hover:bg-violet-700' : ''}`}
-                  planText={plan.buttonText}
-                />
+              <CardContent className="space-y-6"> 
+                {currentPlanStatus?.plan === "pro" && plan.buttonVariant === "free" ? (
+                  // ⭐ FREE card when user already has PRO → disable button
+                  <Button disabled className="w-full bg-gray-300 text-gray-600 cursor-not-allowed">
+                    
+                  </Button>
+                ) : currentPlanStatus?.plan === plan.buttonVariant && plan.buttonVariant === "pro" ? (
+                  // ⭐ PRO card when user has PRO → show cancel button
+                  <Button
+                    onClick={() => { if(currentPlanStatus?.status == 'active') { setShowCancelPopup(true)}}}
+                    className="w-full bg-red-500 hover:bg-red-900 text-white py-3 rounded-xl"
+                  >
+                    {currentPlanStatus?.status == 'active' ? 'Cancel Subscription' : 'Current Plan'}
+                  </Button>
+                ) : (
+                  // ⭐ Normal Subscribe button for all other cases
+                  <SubscribeButton
+                    userId={user.id}
+                    planId={plan.buttonVariant}
+                    className={`w-full ${
+                      plan.buttonVariant === "pro"
+                        ? "bg-violet-600 hover:bg-violet-700"
+                        : "bg-gray-200 hover:bg-gray-300"
+                    }`}
+                    planText={plan.buttonText}
+                  />
+                )}
                 <div className="space-y-3">
                   <p className="text-gray-900">Features included:</p>
                   <ul className="space-y-3">
@@ -172,37 +241,32 @@ export function PricingPlans() {
                 <tbody>
                   <tr className="border-b">
                     <td className="py-4 px-4 text-gray-700">AI Resume Generations</td>
-                    <td className="text-center py-4 px-4">3/month</td>
+                    <td className="text-center py-4 px-4">3</td>
                     <td className="text-center py-4 px-4">Unlimited</td>
                   </tr>
                   <tr className="border-b">
                     <td className="py-4 px-4 text-gray-700">Resume Templates</td>
-                    <td className="text-center py-4 px-4">Basic</td>
-                    <td className="text-center py-4 px-4">Premium</td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="py-4 px-4 text-gray-700">Cover Letter Generation</td>
-                    <td className="text-center py-4 px-4">1/month</td>
-                    <td className="text-center py-4 px-4">Unlimited</td>
+                    <td className="text-center py-4 px-4">3 Basic Download</td>
+                    <td className="text-center py-4 px-4">Unlimited Premium Download</td>
                   </tr>
                   <tr className="border-b">
                     <td className="py-4 px-4 text-gray-700">Job Fit Analysis</td>
-                    <td className="text-center py-4 px-4">5/month</td>
+                    <td className="text-center py-4 px-4">3</td>
                     <td className="text-center py-4 px-4">Unlimited</td>
                   </tr>
                   <tr className="border-b">
-                    <td className="py-4 px-4 text-gray-700">Portfolio Builder</td>
-                    <td className="text-center py-4 px-4"><Check className="w-5 h-5 text-green-600 mx-auto" /></td>
-                    <td className="text-center py-4 px-4"><Check className="w-5 h-5 text-green-600 mx-auto" /></td>
+                    <td className="py-4 px-4 text-gray-700">ATS Resume Review</td>
+                    <td className="text-center py-4 px-4">1</td>
+                    <td className="text-center py-4 px-4">Unlimited</td>
                   </tr>
                   <tr className="border-b">
-                    <td className="py-4 px-4 text-gray-700">Custom Domain</td>
-                    <td className="text-center py-4 px-4">-</td>
-                    <td className="text-center py-4 px-4"><Check className="w-5 h-5 text-green-600 mx-auto" /></td>
+                    <td className="py-4 px-4 text-gray-700">Cover Letter Generation</td>
+                    <td className="text-center py-4 px-4">1</td>
+                    <td className="text-center py-4 px-4">Unlimited</td>
                   </tr>
                   <tr>
                     <td className="py-4 px-4 text-gray-700">Support</td>
-                    <td className="text-center py-4 px-4">Community</td>
+                    <td className="text-center py-4 px-4">No</td>
                     <td className="text-center py-4 px-4">Priority Email</td>
                   </tr>
                 </tbody>
@@ -227,21 +291,21 @@ export function PricingPlans() {
               <div>
                 <h4 className="text-gray-900 mb-2">What payment methods do you accept?</h4>
                 <p className="text-gray-600">
-                  We accept all major credit cards, PayPal, and offer annual billing for additional savings.
+                  We accept all major cards, UPI, and Net Banking.
                 </p>
               </div>
               <div>
                 <h4 className="text-gray-900 mb-2">Is there a free trial for paid plans?</h4>
                 <p className="text-gray-600">
-                  Yes! All paid plans come with a 7-day free trial. No credit card required to start.
+                  Yes! All paid plans come with limited trial. No credit card required to start.
                 </p>
               </div>
-              <div>
+              {/* <div>
                 <h4 className="text-gray-900 mb-2">Can I upgrade or downgrade my plan?</h4>
                 <p className="text-gray-600">
                   Absolutely! You can change your plan at any time. Upgrades are prorated, and you'll get credit for unused time when downgrading.
                 </p>
-              </div>
+              </div> */}
             </div>
           </CardContent>
         </Card>
@@ -253,9 +317,11 @@ export function PricingPlans() {
             <p className="text-violet-100 mb-6 max-w-2xl mx-auto">
               Our team is here to help you choose the right plan for your career goals
             </p>
-            <Button size="lg" variant="secondary">
-              Contact Sales
-            </Button>
+            <Link to="/contact">
+              <Button size="lg" variant="secondary">
+                Contact Sales
+              </Button>
+            </Link>
           </CardContent>
         </Card>
       </div>
