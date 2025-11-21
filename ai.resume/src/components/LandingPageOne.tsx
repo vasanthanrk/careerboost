@@ -264,7 +264,7 @@ export function LandingPageOne() {
             </h2>
 
             <p className="text-xl text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-              Quick CV Maker is a modern resume builder that helps you create applications
+              SmartCV Maker is a modern resume builder that helps you create applications
               with personality and professionalism. Our tools are trusted by millions.
             </p>
 
