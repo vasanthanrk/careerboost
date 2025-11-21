@@ -14,7 +14,7 @@ export function CookiePage() {
               <div className="w-10 h-10 bg-gradient-to-br from-violet-600 to-purple-600 rounded-xl flex items-center justify-center">
                 <Sparkles className="w-6 h-6 text-white" />
               </div>
-              <span className="text-gray-900">CareerBoost</span>
+              <span className="text-gray-900">SmartCV Maker</span>
             </Link>
             <div className="flex items-center gap-3">
               <Link to="/login">
@@ -215,7 +215,7 @@ export function CookiePage() {
                 If you have questions about our use of cookies, please contact us at:
               </p>
               <p className="text-gray-600">
-                Email: privacy@careerboost.com<br />
+                Email: privacy@smartcvmaker.com<br />
                 Address: 123 Career Street, San Francisco, CA 94102
               </p>
               <p className="text-gray-600 mt-4">

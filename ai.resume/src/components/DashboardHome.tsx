@@ -76,7 +76,7 @@ export function DashboardHome() {
           <div className="absolute bottom-0 left-0 w-72 h-72 bg-purple-300/20 rounded-full blur-3xl"></div>
           
           <div className="relative z-10">
-            <h1 className="text-white mb-3">Welcome to CareerBoost! 👋</h1>
+            <h1 className="text-white mb-3">Welcome to SmartCV Maker! 👋</h1>
             <p className="text-violet-100 mb-8 max-w-3xl">
               Your all-in-one platform for career success. Use our AI-powered tools to create professional resumes, cover letters, and more.
             </p>

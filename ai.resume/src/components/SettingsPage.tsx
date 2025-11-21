@@ -424,7 +424,7 @@ export function SettingsPage() {
                       <Button onClick={setShowCancelPopup(true)} className="w-full bg-red-500 hover:bg-red-900 text-white py-3 rounded-xl"> 
                         Cancel Subscription
                       </Button>
-                    ) : profileData.subscription?.status == 'Active' && profileData.subscription?.plan == 'pro' ?(
+                    ) : profileData.subscription?.plan == 'free' ?(
                         <Link to="/pricing">
                           <Button className="bg-violet-600 hover:bg-violet-700">
                             Upgrade Plan
@@ -463,41 +463,42 @@ export function SettingsPage() {
                 </div>
               </CardContent>
             </Card>
-
-            <Card>
-              <CardHeader>
-                <div className="flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-violet-600" />
-                  <CardTitle>AI Credits</CardTitle>
-                </div>
-                <CardDescription>Your remaining AI generation credits</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between p-4 bg-violet-50 rounded-lg">
-                    <div>
-                      <p className="text-gray-900">Resume Generations</p>
-                      <p className="text-violet-600">2 of 3 remaining this month</p>
+            
+            {
+              profileData.subscription?.plan == 'free' ? (
+                <Card>
+                  <CardHeader>
+                    <CardDescription>Your remaining feature details</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between p-4 bg-violet-50 rounded-lg">
+                        <div>
+                          <p className="text-gray-900">Resume AI Generations</p>
+                          <p className="text-violet-600">2 of 3 remaining this month</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between p-4 bg-violet-50 rounded-lg">
+                        <div>
+                          <p className="text-gray-900">Cover Letters</p>
+                          <p className="text-violet-600">1 of 1 remaining this month</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between p-4 bg-violet-50 rounded-lg">
+                        <div>
+                          <p className="text-gray-900">Job Fit Analysis</p>
+                          <p className="text-violet-600">3 of 5 remaining this month</p>
+                        </div>
+                      </div>
+                      <p className="text-gray-600">
+                        Credits reset on the 1st of each month. Upgrade for unlimited access.
+                      </p>
                     </div>
-                  </div>
-                  <div className="flex items-center justify-between p-4 bg-violet-50 rounded-lg">
-                    <div>
-                      <p className="text-gray-900">Cover Letters</p>
-                      <p className="text-violet-600">1 of 1 remaining this month</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between p-4 bg-violet-50 rounded-lg">
-                    <div>
-                      <p className="text-gray-900">Job Fit Analysis</p>
-                      <p className="text-violet-600">3 of 5 remaining this month</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-600">
-                    Credits reset on the 1st of each month. Upgrade for unlimited access.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+                  </CardContent>
+                </Card>
+              ) : null
+            }
+            
           </TabsContent>
 
           {/* Notifications Tab */}

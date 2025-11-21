@@ -38,7 +38,7 @@ export function PortfolioPreview() {
   });
 
   const handlePublish = () => {
-    toast.success('Portfolio published! Available at johndoe.careerboost.com');
+    toast.success('Portfolio published! Available at johndoe.smartcvmaker.com');
   };
 
   const handleDownload = () => {

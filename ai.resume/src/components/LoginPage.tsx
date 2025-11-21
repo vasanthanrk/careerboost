@@ -48,7 +48,7 @@ export function LoginPage() {
           <div className="flex items-center justify-center mb-6">
             <Briefcase className="w-16 h-16" />
           </div>
-          <h1 className="mb-4">CareerBoost AI</h1>
+          <h1 className="mb-4">SmartCV Maker AI</h1>
           <p className="text-violet-100 max-w-md">
             Elevate your career with AI-powered Resume building, ATS Resume Checker, Cover letters, and Job matching.
           </p>
@@ -60,7 +60,7 @@ export function LoginPage() {
         <div className="w-full max-w-md">
           <div className="mb-8">
             <h2 className="mb-2">Welcome Back</h2>
-            <p className="text-gray-600">Sign in to continue to CareerBoost</p>
+            <p className="text-gray-600">Sign in to continue to SmartCV Maker</p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-6">

@@ -1,7 +1,7 @@
 # Dark Mode Implementation Guide
 
 ## Overview
-CareerBoost now includes a comprehensive dark mode feature that allows users to toggle between light and dark themes. The theme preference is persisted in localStorage and automatically applied on subsequent visits.
+SmartCV Maker now includes a comprehensive dark mode feature that allows users to toggle between light and dark themes. The theme preference is persisted in localStorage and automatically applied on subsequent visits.
 
 ## Features Implemented
 

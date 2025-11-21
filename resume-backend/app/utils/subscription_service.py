@@ -93,7 +93,10 @@ def get_subscription_info(current_user, db):
         "active": active,
         "plan": plan,
         "status": sub.status.value,
-        "expires_on": sub.current_period_end.strftime("%d-%m-%Y"),
-        "next_billing_date": sub.next_billing_date.strftime("%d-%m-%Y")
+        "expires_on": (sub.current_period_end.strftime("%d-%m-%Y") if active else None),
+        "next_billing_date": (
+        sub.next_billing_date.strftime("%d-%m-%Y")
+        if sub.status.value == "active"
+        else None)
     }
 

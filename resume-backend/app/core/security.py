@@ -9,7 +9,7 @@ from sqlalchemy.orm import Session
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-SECRET_KEY = "supersecretcareerboostkey"  # use env variable in production!
+SECRET_KEY = "supersecretSmartCV Makerkey"  # use env variable in production!
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24  # 1 day
 
