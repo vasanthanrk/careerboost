@@ -158,8 +158,9 @@ export function LandingPageOne() {
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* LEFT */}
           <div>
-            <h2 className="text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
+            <h2 className="pr_head lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
               Create a Job-Winning{" "}
+              <br/>
               <span className="text-violet-600">AI-Powered Resume</span>
             </h2>
 
@@ -212,71 +213,58 @@ export function LandingPageOne() {
       </section>
       
 
-      <section className="relative overflow-hidden py-24 bg-white dark:bg-gray-900">
-        {/* Decorative Blurs */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-violet-300/20 rounded-full blur-[160px]"></div>
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-300/20 rounded-full blur-[160px]"></div>
+      <section className="relative overflow-hidden py-12 sm:py-16 lg:py-24 bg-white dark:bg-gray-900">
+  {/* Decorative Blurs */}
+  <div className="absolute top-0 right-0 w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] bg-violet-300/20 rounded-full blur-[120px]"></div>
+  <div className="absolute bottom-0 left-0 w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] bg-purple-300/20 rounded-full blur-[120px]"></div>
 
-        {/* MATCH SAME WIDTH AS HERO SECTION */}
-        <div className="relative max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+  <div className="relative max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-24 items-center">
 
-          {/* LEFT SIDE – LARGE STATS CARDS */}
-          <div className="flex flex-col gap-5">
-            <div className="flex gap-5">
-              {/* CARD 1 */}
-              <div className="h3_bg bg-white dark:bg-gray-800 
-                              p-8 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)]
-                              transform hover:-translate-y-1 transition-all">
-                <h3 className="myh3 text-4xl font-bold text-sky-500">15K+</h3>
-                <p className="text-lg text-gray-700 dark:text-gray-300 mt-2">
-                  Active Users
-                </p>
-              </div>
+    {/* LEFT – RESPONSIVE CARDS */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      {/* CARD 1 */}
+      <div className="h3_bg bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all">
+        <h3 className="myh3 text-4xl font-bold text-sky-500">15K+</h3>
+        <p className="text-xl sm:text-lg text-gray-700 dark:text-gray-300 mt-2">
+          Active Users
+        </p>
+      </div>
 
-              {/* CARD 2 */}
-              <div className="h3_bg bg-white dark:bg-gray-800 
-                              p-8 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)]
-                              transform hover:-translate-y-1 transition-all">
-                <h3 className="myh3 text-4xl font-bold text-sky-500">10K+</h3>
-                <p className="text-lg text-gray-700 dark:text-gray-300 mt-2">
-                  Resume Created
-                </p>
-              </div>
-            </div>
+      {/* CARD 2 */}
+      <div className="h3_bg bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all">
+        <h3 className="myh3 text-4xl font-bold text-sky-500">10K+</h3>
+        <p className="text-xl sm:text-lg text-gray-700 dark:text-gray-300 mt-2">
+          Resume Created
+        </p>
+      </div>
 
-            <div className="flex gap-5">
-              {/* CARD 3 */}
-              <div className="h3_bg bg-white dark:bg-gray-800 
-                              p-8 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)]
-                              transform hover:-translate-y-1 transition-all">
-                <h3 className="myh3 text-4xl font-bold text-sky-500">85%</h3>
-                <p className="text-lg text-gray-700 dark:text-gray-300 mt-2">
-                  Success Rate
-                </p>
-              </div>
+      {/* CARD 3 */}
+      <div className="h3_bg bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all">
+        <h3 className="myh3 text-4xl font-bold text-sky-500">85%</h3>
+        <p className="text-xl sm:text-lg text-gray-700 dark:text-gray-300 mt-2">
+          Success Rate
+        </p>
+      </div>
 
-              {/* CARD 4 */}
-              <div className="h3_bg bg-white dark:bg-gray-800 
-                              p-8 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)]
-                              transform hover:-translate-y-1 transition-all">
-                <h3 className="myh3 text-4xl font-bold text-sky-500">100%</h3>
-                <p className="text-lg text-gray-700 dark:text-gray-300 mt-2">
-                  Secure & Private
-                </p>
-              </div>
-            </div>
-          </div>
+      {/* CARD 4 */}
+      <div className="h3_bg bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all">
+        <h3 className="myh3 text-4xl font-bold text-sky-500">100%</h3>
+        <p className="text-xl sm:text-lg text-gray-700 dark:text-gray-300 mt-2">
+          Secure & Private
+        </p>
+      </div>
 
+    </div>
 
-          {/* RIGHT SIDE – TEXT CONTENT */}
-          <div>
-            <h2 className="text-5xl sm:text-6xl font-extrabold text-gray-900 dark:text-white leading-tight mb-8">
-              Chosen by <span className="text-violet-600">10 million</span> job
+    {/* RIGHT – TEXT CONTENT */}
+    <div>
+            <h2 className="pr_head sm:text-6xl font-extrabold text-gray-900 dark:text-white leading-tight mb-8">
+              Chosen by <br/><span className="text-violet-600">10 million</span> job
               applicants around the world
             </h2>
 
             <p className="text-xl text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-              Quick CV Maker is a modern resume builder that helps you create applications
+              SmartCV Maker is a modern resume builder that helps you create applications
               with personality and professionalism. Our tools are trusted by millions.
             </p>
 
@@ -291,8 +279,10 @@ export function LandingPageOne() {
               that increases interviews and job success.
             </p>
           </div>
-        </div>
-      </section>
+
+  </div>
+</section>
+
 
      {/* Features Section */}
 
@@ -380,7 +370,7 @@ export function LandingPageOne() {
                 <FileText className="w-4 h-4 text-violet-600" />
                 <span className="text-violet-700">Professional Templates</span>
               </div> */}
-              <h2 className="text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">Choose from Premium Resume Templates</h2>
+              <h2 className="pr_head lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">Choose from Premium Resume Templates</h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
                 Hand-crafted, ATS-friendly templates designed by career experts to help you stand out
               </p>
@@ -459,7 +449,7 @@ export function LandingPageOne() {
               </span>
             </div> */}
 
-            <h2 className="text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
+            <h2 className="pr_head lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
               Beat the Applicant Tracking System
             </h2>
 

@@ -17,10 +17,26 @@ services:
       - mysql_data:/var/lib/mysql
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-p${MYSQL_ROOT_PASSWORD}"]
+      test: ["CMD", "mysqladmin", "--ssl-mode=DISABLED", "ping", "-h", "127.0.0.1", "-p${MYSQL_ROOT_PASSWORD}"]
       interval: 10s
       timeout: 5s
       retries: 10
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: cb_phpmyadmin
+    restart: always
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_USER: ${MYSQL_USER}
+      PMA_PASSWORD: ${MYSQL_PASSWORD}
+      PMA_PORT: 3306
+    ports:
+      - "8083:80"
+    volumes:
+      - ./phpmyadmin.conf:/etc/apache2/conf-enabled/servername.conf
 
   backend:
     build:
@@ -39,19 +55,17 @@ services:
       - ./resume-backend:/app
       - ./resume-backend/alembic:/app/alembic  # proper host ↔ container sync
       - /app/__pycache__
-
     environment:
       # - DATABASE_URL=${DATABASE_URL}
       - WATCHFILES_FORCE_POLLING=true
     command: >
       sh -c "
-        until mysqladmin ping -h db -u${MYSQL_USER} -p${MYSQL_PASSWORD} --silent; do
+        until nc -z db 3306; do
           echo 'Waiting for MySQL...'; sleep 2;
         done;
         alembic upgrade head &&
         uvicorn app.main:app --host 0.0.0.0 --port 8082 --reload
       "
-
   frontend:
     build:
       context: ./ai.resume
@@ -70,22 +84,6 @@ services:
     depends_on:
       - backend
     restart: always
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
-    container_name: cb_phpmyadmin
-    restart: always
-    depends_on:
-      - db
-    environment:
-      PMA_HOST: db
-      PMA_USER: ${MYSQL_USER}
-      PMA_PASSWORD: ${MYSQL_PASSWORD}
-      PMA_PORT: 3306
-    ports:
-      - "8083:80"
-    volumes:
-      - ./phpmyadmin.conf:/etc/apache2/conf-enabled/servername.conf
 
 volumes:
   mysql_data:

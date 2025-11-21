@@ -15,6 +15,7 @@ import { Sparkles, Download, Save, Plus, Trash2, FileText, Eye, Wand2 } from 'lu
 import { toast } from 'sonner@2.0.3';
 import api from '../api/axiosClient';
 import { handleFeatureCheck } from '../utils/featureCheck'
+import MinimalPdfViewer from './MinimalPdfViewer';
 
 export function ResumeEditor() {
   const [isGenerating, setIsGenerating] = useState(false);
@@ -38,6 +39,9 @@ export function ResumeEditor() {
 
   const [showLimitPopup, setShowLimitPopup] = useState(false);
   const [activeFeature, setActiveFeature] = useState("");
+
+  const [previewPdf, setPreviewPdf] = useState(null);
+  const [showPreview, setShowPreview] = useState(false);
 
   const user = JSON.parse(localStorage.getItem("user"));
   
@@ -94,6 +98,16 @@ export function ResumeEditor() {
     };
 
     fetchResume();
+
+    const handler = (e) => {
+      if (e.ctrlKey || e.metaKey) {
+        if (["s", "p"].includes(e.key.toLowerCase())) {
+          e.preventDefault();
+        }
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
   }, []);
 
 
@@ -188,6 +202,30 @@ export function ResumeEditor() {
     setResumeData({ ...resumeData, experiences: updated });
   };
 
+  const handlePreview = async () => {
+    if (!selectedTemplate) {
+      toast.error("Please select a template first");
+      return;
+    }
+
+    const res = await api.get(`/resume/preview/${selectedTemplate}`);
+    const base64 = res.data.pdf;
+
+    // Base64 → binary string
+    const binary = atob(base64);
+
+    // binary → Uint8Array
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+      bytes[i] = binary.charCodeAt(i);
+    }
+
+    setPreviewPdf(bytes);
+    setIsOpen(false);
+    setShowPreview(true);
+  };
+
+
   const handleDownload = async () => {
     try {
       const allowed = await handleFeatureCheck("resume_download");
@@ -227,7 +265,7 @@ export function ResumeEditor() {
 
       // Clean up memory
       window.URL.revokeObjectURL(url);
-      setIsOpen(false)
+      setIsOpen(false);
 
       const showFeedback = response.headers["x-show-feedback"] === "true";
       console.log(response.headers);
@@ -375,6 +413,35 @@ export function ResumeEditor() {
         />
       )}
 
+      <Dialog open={showPreview} onOpenChange={setShowPreview}>
+        <DialogContent className="max-w-6xl p-0">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-semibold">
+              Preview Resume PDF
+            </DialogTitle>
+          </DialogHeader>
+          <div className="relative">
+            {/* Disable Right Click / Print */}
+            <div onContextMenu={(e) => e.preventDefault()} className="select-none">
+              {previewPdf ? (
+                <MinimalPdfViewer pdfData={previewPdf} />
+              ) : (
+                <p>Loading preview...</p>
+              )}
+            </div>
+
+            <div className="p-4 border-t flex justify-end gap-3 bg-white">
+              <Button variant="outline" onClick={() => {setShowPreview(false); setIsOpen(true);}}>
+                Close
+              </Button>
+              <Button className="bg-violet-600 hover:bg-violet-700" onClick={handleDownload}>
+                Download PDF
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
           <DialogContent
@@ -442,9 +509,9 @@ export function ResumeEditor() {
                 <Button
                   className="bg-violet-600 hover:bg-violet-700"
                   disabled={!selectedTemplate}
-                  onClick={handleDownload}
+                  onClick={handlePreview}
                 >
-                  Download Selected Template
+                  Preview Selected Template
                 </Button>
               </div>
             </div>
@@ -984,7 +1051,7 @@ export function ResumeEditor() {
               </Button> */}
               <Button onClick={handleSave} className="flex-1 bg-violet-600 hover:bg-violet-700">
                 <Download className="w-4 h-4 mr-2" />
-                {isSaving ? 'Saving...' : 'Save and Download PDF'}
+                {isSaving ? 'Saving...' : 'Save and Select Template'}
               </Button>
             </div>
           </div>):null}
