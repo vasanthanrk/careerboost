@@ -8,7 +8,7 @@ from app.core.security import get_current_user  # token auth helper
 from app.utils.pdf_generator import generate_pdf_from_html
 from jinja2 import Environment, FileSystemLoader
 from app.utils.activity_tracker import track_activity, log_user_activity
-import io, os
+import io, os, base64
 from app.utils.change_ditect import get_changed_fields
 from app.models.user_feedback import UserFeedback
 
@@ -64,6 +64,32 @@ def get_resume_templates():
         {"id": "six", "name": "Resume template six", "thumbnail": "/static/resume_thumbs/five.png"},
     ]
 
+@router.get("/resume/preview/{template_id}")
+def resume_preview(template_id: str, db: Session = Depends(get_db), current_user=Depends(get_current_user)):
+    resume = db.query(Resume).filter_by(user_id=current_user.id).first()
+    if not resume:
+        raise HTTPException(status_code=404, detail="Resume not found")
+
+    template_name = f"resume_template_{template_id}.html"
+    template_path = f"app/templates/resumes/{template_name}"
+
+    if not os.path.exists(template_path):
+        raise HTTPException(status_code=404, detail="Template not found")
+
+    # Load Jinja2 template
+    # template = env.get_template("resume_template_one.html")
+    template = env.get_template(template_name)
+    html_content = template.render(resume=resume.resume_data)
+
+    # Generate PDF
+    pdf_bytes = generate_pdf_from_html(html_content)
+
+    # Return Base64 for safe inline preview
+    base64_pdf = base64.b64encode(pdf_bytes).decode("utf-8")
+
+    return {"pdf": base64_pdf}
+
+
 @router.get("/resume/download/{template_id}")
 def download_resume(template_id: str, db: Session = Depends(get_db), current_user=Depends(get_current_user)):
     resume = db.query(Resume).filter_by(user_id=current_user.id).first()
@@ -118,7 +144,6 @@ def generate_resume_pdf(db: Session = Depends(get_db), current_user = Depends(ge
     if not resume:
         return Response(status_code=404, content="Resume not found")
 
-    print()
     # Load Jinja2 template
     template = env.get_template("resume_template_one.html")
     html_content = template.render(resume=resume)
