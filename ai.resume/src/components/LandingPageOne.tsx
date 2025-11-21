@@ -259,7 +259,7 @@ export function LandingPageOne() {
     {/* RIGHT – TEXT CONTENT */}
     <div>
             <h2 className="pr_head sm:text-6xl font-extrabold text-gray-900 dark:text-white leading-tight mb-8">
-              Chosen by <br/><span className="text-violet-600">10 million</span> job
+              Chosen by <span className="text-violet-600">10 million</span> job
               applicants around the world
             </h2>
 
@@ -293,7 +293,7 @@ export function LandingPageOne() {
     <div className="text-center mb-20">
       {/* REMOVED: Powerful Features Sub-heading */}
 
-      <h2 className="text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
+      <h2 className="pr_head lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
         Everything You Need to Succeed
       </h2>
 
@@ -363,7 +363,7 @@ export function LandingPageOne() {
 
       {/* Resume Templates Showcase */}
       {templates.length > 0 ? (
-        <section className="py-20 bg-white dark:bg-gray-900">
+        <section className="py-16 bg-white dark:bg-gray-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
             <div className="text-center">
               {/* <div className="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full mb-4">
@@ -439,7 +439,7 @@ export function LandingPageOne() {
 
       {/* ATS Score Checker Section */}
 
-      <section className="py-20 bg-white dark:bg-gray-900">
+      <section className="py-16 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             {/* <div className="inline-flex items-center gap-2 px-4 py-2 bg-teal-100 dark:bg-teal-900/30 rounded-full mb-4">
