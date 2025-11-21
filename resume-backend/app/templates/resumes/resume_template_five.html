@@ -3,235 +3,256 @@
 <head>
   <meta charset="UTF-8" />
   <style>
+    /* PAGE SETUP */
     @page {
-      size: A4;          /* or 'letter', or custom size like 210mm 297mm */
-      margin: 0;         /* removes all margins */
+      size: A4;
+      margin: 0;
     }
-    html, body { margin: 0; padding: 0; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       font-family: "Segoe UI", sans-serif;
-      margin: 0;
       color: #333;
+      margin: 0;
     }
+
     .template5 {
-      max-width: 100%;
+      width: 100%;
+      page-break-inside: avoid;
     }
-    .template5 .header {
+
+    /* HEADER */
+    .header {
       padding: 50px 45px 40px;
       background-color: white;
       border-bottom: 4px solid #16a085;
     }
-    .template5 h1 {
+
+    .header h1 {
       margin: 0;
       font-size: 2.6em;
       color: #2c3e50;
       font-weight: 300;
     }
-    .template5 .contact-info {
+
+    .contact-info {
       margin-top: 12px;
       font-size: 0.95em;
       color: #7f8c8d;
     }
-    .template5 .content {
+
+    /* CONTENT */
+    .content {
       padding: 35px 45px;
     }
-    .template5 .two-column {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      gap: 40px;
-    }
-    .template5 h2 {
-      color: #16a085;
-      margin-top: 0;
-      margin-bottom: 18px;
-      font-size: 1.3em;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .template5 h3 {
-      color: #16a085;
-      margin-top: 25px;
-      margin-bottom: 18px;
-      font-size: 1.3em;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .template5 .skill-tag {
-      background-color: white;
-      color: #16a085;
-      padding: 7px 15px;
-      border-radius: 4px;
-      margin: 4px;
-      display: inline-block;
-      font-size: 0.85em;
-      border: 2px solid #16a085;
-      font-weight: 500;
-    }
-    .template5 .experience-item,
-    .template5 .project-item {
-      margin-bottom: 22px;
-      position: relative;
-    }
-    .template5 .job-title,
-    .template5 .project-name {
-      font-weight: 600;
-      color: #2c3e50;
-      font-size: 1.1em;
-    }
-    .template5 .company-duration {
-      color: #7f8c8d;
-      font-size: 0.9em;
-      margin-top: 3px;
-    }
-    .template5 .description {
-      margin-top: 8px;
-      line-height: 1.7;
-      color: #555;
-    }
-    .template5 .education-item {
-      margin-bottom: 15px;
-      padding: 15px;
-      background-color: #f8f9fa;
-      border-left: 3px solid #16a085;
-    }
-    .template5 .summary {
+
+    /* SUMMARY */
+    .summary {
       line-height: 1.7;
       color: #555;
       margin-bottom: 30px;
       padding: 20px;
       background-color: #f8f9fa;
       border-left: 4px solid #16a085;
+      page-break-inside: avoid;
+    }
+
+    /* TWO COLUMN LAYOUT – TABLE (WeasyPrint Safe) */
+    .two-column {
+      width: 100%;
+      /* border-spacing: 40px 0; */
+    }
+    .col-left {
+      width: 70%;
+      vertical-align: top;
+    }
+    .col-right {
+      width: 25%;
+      vertical-align: top;
+    }
+
+    /* SECTION TITLES */
+    h2, h3 {
+      color: #16a085;
+      font-size: 1.3em;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 25px;
+      margin-bottom: 18px;
+      page-break-after: avoid;
+    }
+
+    /* EXPERIENCE, PROJECTS, ACHIEVEMENTS */
+    .experience-item,
+    .project-item {
+      margin-bottom: 22px;
+      page-break-inside: avoid;
+    }
+
+    .job-title, .project-name {
+      font-weight: 600;
+      color: #2c3e50;
+      font-size: 1.1em;
+    }
+
+    .company-duration {
+      color: #7f8c8d;
+      font-size: 0.9em;
+      margin-top: 3px;
+    }
+
+    .description {
+      margin-top: 8px;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    /* SKILLS, KEYWORDS */
+    .skill-tag {
+      background-color: white;
+      color: #16a085;
+      padding: 7px 15px;
+      border-radius: 4px;
+      display: inline-block;
+      font-size: 0.85em;
+      border: 2px solid #16a085;
+      font-weight: 500;
+      margin: 4px;
+      page-break-inside: avoid;
+    }
+
+    /* EDUCATION */
+    .education-item {
+      margin-bottom: 15px;
+      padding: 15px;
+      background-color: #f8f9fa;
+      border-left: 3px solid #16a085;
+      page-break-inside: avoid;
     }
   </style>
 </head>
+
 <body>
   <div class="template5">
+
+    <!-- HEADER -->
     <div class="header">
       <h1>{{ resume.name }}</h1>
+
       <div class="contact-info">
         {{ resume.email }} | {{ resume.phone }} | {{ resume.location }}
       </div>
 
       <div class="contact-info">
         {% set contacts = [] %}
-
-        {% if resume.linkedin_url %}
-            {% set _ = contacts.append(resume.linkedin_url) %}
-        {% endif %}
-
-        {% if resume.git_url %}
-            {% set _ = contacts.append(resume.git_url) %}
-        {% endif %}
-
-        {% if resume.portfolio_url %}
-            {% set _ = contacts.append(resume.portfolio_url) %}
-        {% endif %}
-
-        {% if contacts %}
-            {{ contacts | join(' | ') }}
-        {% endif %}
+        {% if resume.linkedin_url %}{% set _ = contacts.append(resume.linkedin_url) %}{% endif %}
+        {% if resume.git_url %}{% set _ = contacts.append(resume.git_url) %}{% endif %}
+        {% if resume.portfolio_url %}{% set _ = contacts.append(resume.portfolio_url) %}{% endif %}
+        {% if contacts %} {{ contacts | join(' | ') }} {% endif %}
       </div>
     </div>
 
     <div class="content">
+
+      <!-- SUMMARY -->
+      {% if resume.summary %}
       <p class="summary">{{ resume.summary }}</p>
+      {% endif %}
 
-      <div class="two-column">
-        <!-- Left Column -->
-        <div class="main-section">
-          {% if resume.experiences and resume.experiences|length > 0 %}
-            <h2>Experience</h2>
-            {% for exp in resume.experiences %}
-              <div class="experience-item">
-                <div class="job-title">{{ exp.title }}</div>
-                <div class="company-duration">{{ exp.company }} • {{ exp.duration }}</div>
-                <p class="description">{{ exp.description }}</p>
-              </div>
-            {% endfor %}
-          {% endif %}
-          {% if resume.projects and resume.projects|length > 0 %}
-            <h3>Projects</h3>
-            {% for proj in resume.projects %}
-              <div class="project-item">
-                <div class="project-name">{{ proj.name }}</div>
-                <p class="description">{{ proj.description }}</p>
-              </div>
-            {% endfor %}
-          {% endif %}
+      <!-- TWO COLUMN LAYOUT -->
+      <table class="two-column">
+        <tr>
+          <!-- LEFT COLUMN -->
+          <td class="col-left">
 
-          {% if resume.achievement and resume.achievements|length > 0 %}
-            <h3>Achievement</h3>
-            {% for achi in resume.achievements %}
-              <div class="project-item">
-                <div class="project-name">{{ achi.title }}</div>
-                <p class="description">{{ achi.description }}</p>
-              </div>
-            {% endfor %}
-          {% endif %}
-        </div>
+            {% if resume.experiences and resume.experiences|length > 0 %}
+              <h2>Experience</h2>
+              {% for exp in resume.experiences %}
+                <div class="experience-item">
+                  <div class="job-title">{{ exp.title }}</div>
+                  <div class="company-duration">{{ exp.company }} • {{ exp.duration }}</div>
+                  <p class="description">{{ exp.description }}</p>
+                </div>
+              {% endfor %}
+            {% endif %}
 
-        <!-- Right Column -->
-        <div class="sidebar-section">
-          {% if resume.skills and resume.skills|length > 0 %}
-            <h2>Skills</h2>
-            <div>
+            {% if resume.projects and resume.projects|length > 0 %}
+              <h3>Projects</h3>
+              {% for proj in resume.projects %}
+                <div class="project-item">
+                  <div class="project-name">{{ proj.name }}</div>
+                  <p class="description">{{ proj.description }}</p>
+                </div>
+              {% endfor %}
+            {% endif %}
+
+            {% if resume.achievements and resume.achievements|length > 0 %}
+              <h3>Achievements</h3>
+              {% for achi in resume.achievements %}
+                <div class="project-item">
+                  <div class="project-name">{{ achi.title }}</div>
+                  <p class="description">{{ achi.description }}</p>
+                </div>
+              {% endfor %}
+            {% endif %}
+
+          </td>
+
+          <!-- RIGHT COLUMN -->
+          <td class="col-right">
+
+            {% if resume.skills and resume.skills|length > 0 %}
+              <h2>Skills</h2>
               {% for skill in resume.skills %}
                 <span class="skill-tag">{{ skill.skill }}</span>
               {% endfor %}
-            </div>
-          {% endif %}
+            {% endif %}
 
-          {% if resume.languages and resume.languages|length > 0 %}
-            <h2>Skills</h2>
-            <div>
-              {% for language in resume.languages %}
-                <span class="skill-tag">{{ language.language }} - {{ language.proficiency }}</span>
+            {% if resume.languages and resume.languages|length > 0 %}
+              <h2>Languages</h2>
+              {% for lang in resume.languages %}
+                <span class="skill-tag">{{ lang.language }} - {{ lang.proficiency }}</span>
               {% endfor %}
-            </div>
-          {% endif %}
+            {% endif %}
 
-          {% if resume.educations and resume.educations|length > 0 %}
-            <h3 style="margin-top: 35px;">Education</h3>
-            {% for edu in resume.educations %}
-              <div class="education-item">
-                <div style="font-weight: 600; color: #2c3e50;">{{ edu.degree }}</div>
-                <div style="color: #7f8c8d; font-size: 0.9em; margin-top: 5px;">
-                  {{ edu.school }}
+            {% if resume.educations and resume.educations|length > 0 %}
+              <h3>Education</h3>
+              {% for edu in resume.educations %}
+                <div class="education-item">
+                  <div style="font-weight:600; color:#2c3e50;">{{ edu.degree }}</div>
+                  <div style="color:#7f8c8d; margin-top:5px;">{{ edu.school }}</div>
+                  <div style="color:#16a085; font-size:0.85em; margin-top:3px;">{{ edu.year }}</div>
                 </div>
-                <div style="color: #16a085; font-size: 0.85em; margin-top: 3px; font-weight: 500;">
-                  {{ edu.year }}
-                </div>
-              </div>
-            {% endfor %}
-          {% endif %}
+              {% endfor %}
+            {% endif %}
 
-          {% if resume.certifications and resume.certifications|length > 0 %}
-            <h3 style="margin-top: 35px;">Education</h3>
-            {% for cert in resume.certifications %}
-              <div class="education-item">
-                <div style="font-weight: 600; color: #2c3e50;">{{ cert.name }}</div>
-                <div style="color: #7f8c8d; font-size: 0.9em; margin-top: 5px;">
-                  {{ cert.issuer }}
+            {% if resume.certifications and resume.certifications|length > 0 %}
+              <h3>Certifications</h3>
+              {% for cert in resume.certifications %}
+                <div class="education-item">
+                  <div style="font-weight:600; color:#2c3e50;">{{ cert.name }}</div>
+                  <div style="color:#7f8c8d; margin-top:5px;">{{ cert.issuer }}</div>
+                  <div style="color:#16a085; font-size:0.85em; margin-top:3px;">{{ cert.year }}</div>
                 </div>
-                <div style="color: #16a085; font-size: 0.85em; margin-top: 3px; font-weight: 500;">
-                  {{ cert.year }}
-                </div>
-              </div>
-            {% endfor %}
-          {% endif %}
+              {% endfor %}
+            {% endif %}
 
-          {% if resume.keywords and resume.keywords|length > 0 %}
-            <h2>Other</h2>
-            <div>
+            {% if resume.keywords and resume.keywords|length > 0 %}
+              <h2>Other</h2>
               {% for keyword in resume.keywords %}
                 <span class="skill-tag">{{ keyword }}</span>
               {% endfor %}
-            </div>
-          {% endif %}
-        </div>
-      </div>
+            {% endif %}
+
+          </td>
+        </tr>
+      </table>
+
     </div>
   </div>
 </body>
