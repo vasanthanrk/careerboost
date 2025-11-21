@@ -273,7 +273,7 @@ export function ResumeEditor() {
       // Clean up memory
       window.URL.revokeObjectURL(url);
       setIsOpen(false);
-      setShowPreview(true);
+      setShowPreview(false);
       setDownloadInProcess(false);
 
       const showFeedback = response.headers["x-show-feedback"] === "true";
