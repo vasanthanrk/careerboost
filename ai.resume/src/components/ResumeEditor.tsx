@@ -43,6 +43,9 @@ export function ResumeEditor() {
   const [previewPdf, setPreviewPdf] = useState(null);
   const [showPreview, setShowPreview] = useState(false);
 
+  const [previewInProcess, setPreviewInProcess] = useState(false);
+  const [downloadInProcess, setDownloadInProcess] = useState(false);
+
   const user = JSON.parse(localStorage.getItem("user"));
   
   useEffect(() => {
@@ -208,6 +211,8 @@ export function ResumeEditor() {
       return;
     }
 
+    setPreviewInProcess(true);
+
     const res = await api.get(`/resume/preview/${selectedTemplate}`);
     const base64 = res.data.pdf;
 
@@ -223,6 +228,7 @@ export function ResumeEditor() {
     setPreviewPdf(bytes);
     setIsOpen(false);
     setShowPreview(true);
+    setPreviewInProcess(false);
   };
 
 
@@ -236,6 +242,7 @@ export function ResumeEditor() {
         return
       };
       
+      setDownloadInProcess(true);
       // Make API call to generate PDF
       const response = await api.get("/resume/download/" + selectedTemplate, {
         responseType: "blob", // Important for binary data
@@ -266,6 +273,8 @@ export function ResumeEditor() {
       // Clean up memory
       window.URL.revokeObjectURL(url);
       setIsOpen(false);
+      setShowPreview(true);
+      setDownloadInProcess(false);
 
       const showFeedback = response.headers["x-show-feedback"] === "true";
       console.log(response.headers);
@@ -435,7 +444,7 @@ export function ResumeEditor() {
                 Close
               </Button>
               <Button className="bg-violet-600 hover:bg-violet-700" onClick={handleDownload}>
-                Download PDF
+                {downloadInProcess? 'download in progress...' : 'Download PDF'}
               </Button>
             </div>
           </div>
@@ -511,7 +520,7 @@ export function ResumeEditor() {
                   disabled={!selectedTemplate}
                   onClick={handlePreview}
                 >
-                  Preview Selected Template
+                  {previewInProcess? 'Preview Loading...' : 'Preview Selected Template'}
                 </Button>
               </div>
             </div>
