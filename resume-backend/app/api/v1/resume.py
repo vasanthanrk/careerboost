@@ -137,22 +137,3 @@ def download_resume(template_id: str, db: Session = Depends(get_db), current_use
             "X-Show-Feedback": "true" if show_feedback else "false"
         }
     )
-
-@router.get("/resume/pdf")
-def generate_resume_pdf(db: Session = Depends(get_db), current_user = Depends(get_current_user)):
-    resume = db.query(Resume).filter(Resume.user_id == current_user.id).first()
-    if not resume:
-        return Response(status_code=404, content="Resume not found")
-
-    # Load Jinja2 template
-    template = env.get_template("resume_template_one.html")
-    html_content = template.render(resume=resume)
-
-    # Generate PDF
-    pdf_bytes = generate_pdf_from_html(html_content)
-
-    return Response(
-        content=pdf_bytes,
-        media_type="application/pdf",
-        headers={"Content-Disposition": "attachment; filename=resume.pdf"}
-    )

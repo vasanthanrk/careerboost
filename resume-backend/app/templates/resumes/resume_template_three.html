@@ -1,143 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <style>
-    /* Remove default margins and set page size */
-    @page {
-      size: A4;
-      margin: 0;
-    }
+<meta charset="UTF-8" />
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: "Georgia", serif;
-      color: #1a1a1a;
-      background-color: white;
-    }
+<style>
+/* ---------- PAGE RULES ---------- */
+@page:first {
+  margin: 0;
+}
 
-    /* Layout: sidebar + main content */
-    .template3 {
-      display: flex;
-      width: 100%;
-    }
+@page {
+  size: A4;
+  margin: 40px 0 40px 0;    /* top margin for page 2+ */
+}
 
-    .sidebar {
-      width: 260px;
-      background-color: #e74c3c;
-      color: white;
-      padding: 40px 25px;
-      box-sizing: border-box;
-      page-break-inside: avoid; /* keep sidebar intact */
-    }
 
-    .sidebar h1 {
-      margin: 0 0 10px 0;
-      font-size: 2em;
-      line-height: 1.2;
-    }
+/* Prevent default */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Georgia", serif;
+  background: white;
+  color: #1a1a1a;
+}
 
-    .sidebar .contact-info {
-      font-size: 0.85em;
-      line-height: 1.6;
-      margin-bottom: 30px;
-      opacity: 0.95;
-      font-family: 'Arial', sans-serif;
-    }
+/* ---------- LAYOUT: TABLE (SAFE FOR WEASYPRINT) ---------- */
+.layout-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
 
-    .sidebar h2 {
-      font-size: 1.2em;
-      margin-top: 25px;
-      margin-bottom: 12px;
-      border-bottom: 2px solid rgba(255,255,255,0.3);
-      padding-bottom: 5px;
-    }
+.sidebar {
+  width: 260px;
+  background-color: #e74c3c;
+  color: white;
+  padding: 40px 25px;
+  vertical-align: top;
+  page-break-inside: avoid;
+}
 
-    .sidebar .skill-item {
-      background-color: rgba(255,255,255,0.2);
-      padding: 5px 10px;
-      margin: 5px 0;
-      border-radius: 3px;
-      font-size: 0.9em;
-      font-family: 'Arial', sans-serif;
-    }
+.main-content {
+  padding: 40px;
+  vertical-align: top;
+}
 
-    .main-content {
-      flex: 1;
-      padding: 40px;
-      background-color: white;
-      box-sizing: border-box;
+/* ---------- SIDEBAR ---------- */
+.sidebar h1 {
+  font-size: 2em;
+  margin: 0 0 10px 0;
+}
 
-      /* 👇 critical for multi-page rendering */
-      page-break-inside: auto;
-      page-break-before: auto;
-      page-break-after: auto;
-      overflow: visible;
-    }
+.sidebar .contact-info {
+  font-size: 0.85em;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
 
-    .main-content h2 {
-      color: #e74c3c;
-      font-size: 1.6em;
-      margin-top: 25px;
-      margin-bottom: 15px;
-      border-bottom: 2px solid #e74c3c;
-      padding-bottom: 8px;
-    }
+.sidebar h2 {
+  font-size: 1.2em;
+  margin-top: 25px;
+  margin-bottom: 12px;
+  border-bottom: 2px solid rgba(255,255,255,0.3);
+  padding-bottom: 5px;
+}
 
-    .experience-item,
-    .project-item,
-    .education-item,
-    .achievement-item {
-      margin-bottom: 20px;
-      position: relative;
-      padding-left: 0;
-      page-break-inside: avoid; /* keep each item together */
-    }
+.skill-item {
+  background-color: rgba(255,255,255,0.2);
+  padding: 5px 10px;
+  margin: 4px 0;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
 
-    .job-title,
-    .project-name {
-      font-weight: bold;
-      color: #2c3e50;
-      font-size: 1.15em;
-    }
+/* ---------- MAIN CONTENT ---------- */
+.main-content h2 {
+  color: #e74c3c;
+  font-size: 1.5em;
+  border-bottom: 2px solid #e74c3c;
+  margin-top: 25px;
+  padding-bottom: 5px;
+}
 
-    .company-info {
-      color: #7f8c8d;
-      font-style: italic;
-      margin-top: 3px;
-      font-size: 0.95em;
-    }
+.summary {
+  line-height: 1.6;
+  margin-bottom: 20px;
+  page-break-inside: avoid;
+}
 
-    .description {
-      margin-top: 8px;
-      line-height: 1.7;
-      color: #444;
-    }
+.experience-item,
+.project-item,
+.achievement-item {
+  margin-bottom: 20px;
+  page-break-inside: avoid;
+}
 
-    .summary {
-      line-height: 1.7;
-      color: #444;
-      font-size: 1.05em;
-    }
+.job-title {
+  font-weight: bold;
+  font-size: 1.15em;
+}
 
-    @media print {
-      body {
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-      }
-    }
-  </style>
+.company-info {
+  color: #7f8c8d;
+  font-size: 0.95em;
+  margin-top: 2px;
+}
+
+.description {
+  margin-top: 8px;
+  line-height: 1.6;
+}
+
+/* Ensure printing keeps colors */
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+</style>
+
 </head>
 <body>
-  <div class="template3">
-    <!-- Sidebar -->
-    <div class="sidebar">
+
+<table class="layout-table">
+<tr>
+  <!-- SIDEBAR (Repeats every page automatically) -->
+  <td class="sidebar">
       <h1>{{ resume.name }}</h1>
       <div class="contact-info">
-        {{ resume.email }}<br />
-        {{ resume.phone }}<br />
+        {{ resume.email }}<br>
+        {{ resume.phone }}<br>
         {{ resume.location }}
       </div>
 
@@ -150,30 +143,30 @@
 
       {% if resume.languages %}
         <h2>Languages</h2>
-        {% for language in resume.languages %}
-          <div class="skill-item">{{ language.languages }} - {{ language.proficiency }}</div>
+        {% for lang in resume.languages %}
+          <div class="skill-item">{{ lang.language }} - {{ lang.proficiency }}</div>
         {% endfor %}
       {% endif %}
 
       {% if resume.educations %}
         <h2>Education</h2>
         {% for edu in resume.educations %}
-          <div class="education-item">
-            <div style="font-weight: bold;">{{ edu.degree }}</div>
-            <div style="font-size: 0.9em; margin-top: 3px;">{{ edu.school }}</div>
-            <div style="font-size: 0.85em; opacity: 0.9;">{{ edu.year }}</div>
-          </div>
+        <div class="skill-item">
+            <strong>{{ edu.degree }}</strong><br>
+            {{ edu.school }}<br>
+            {{ edu.year }}
+        </div>
         {% endfor %}
       {% endif %}
 
       {% if resume.certifications %}
         <h2>Certifications</h2>
         {% for cert in resume.certifications %}
-          <div class="education-item">
-            <div style="font-weight: bold;">{{ cert.name }}</div>
-            <div style="font-size: 0.9em; margin-top: 3px;">{{ cert.issuer }}</div>
-            <div style="font-size: 0.85em; opacity: 0.9;">{{ cert.year }}</div>
-          </div>
+        <div class="skill-item">
+            <strong>{{ cert.name }}</strong><br>
+            {{ cert.issuer }}<br>
+            {{ cert.year }}
+        </div>
         {% endfor %}
       {% endif %}
 
@@ -189,44 +182,47 @@
           <div class="skill-item">#{{ keyword }}</div>
         {% endfor %}
       {% endif %}
-    </div>
+  </td>
 
-    <!-- Main Content -->
-    <div class="main-content">
+  <!-- MAIN CONTENT -->
+  <td class="main-content">
       <h2>Professional Summary</h2>
       <p class="summary">{{ resume.summary }}</p>
 
       {% if resume.experiences %}
         <h2>Work Experience</h2>
         {% for exp in resume.experiences %}
-          <div class="experience-item">
-            <div class="job-title">{{ exp.title }}</div>
-            <div class="company-info">{{ exp.company }} | {{ exp.duration }}</div>
-            <p class="description">{{ exp.description }}</p>
-          </div>
+        <div class="experience-item">
+          <div class="job-title">{{ exp.title }}</div>
+          <div class="company-info">{{ exp.company }} | {{ exp.duration }}</div>
+          <p class="description">{{ exp.description }}</p>
+        </div>
         {% endfor %}
       {% endif %}
 
       {% if resume.projects %}
         <h2>Featured Projects</h2>
         {% for proj in resume.projects %}
-          <div class="project-item">
-            <div class="project-name">{{ proj.name }}</div>
-            <p class="description">{{ proj.description }}</p>
-          </div>
+        <div class="project-item">
+          <div class="job-title">{{ proj.name }}</div>
+          <p class="description">{{ proj.description }}</p>
+        </div>
         {% endfor %}
       {% endif %}
 
       {% if resume.achievements %}
         <h2>Achievements</h2>
-        {% for achi in resume.achievements %}
-          <div class="achievement-item">
-            <div class="project-name">{{ achi.title }}</div>
-            <p class="description">{{ achi.description }}</p>
-          </div>
+        {% for ach in resume.achievements %}
+        <div class="achievement-item">
+          <strong>{{ ach.title }}</strong>
+          <p class="description">{{ ach.description }}</p>
+        </div>
         {% endfor %}
       {% endif %}
-    </div>
-  </div>
+  </td>
+
+</tr>
+</table>
+
 </body>
 </html>
