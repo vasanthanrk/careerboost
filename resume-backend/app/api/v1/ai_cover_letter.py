@@ -56,21 +56,12 @@ def generate_cover_letter(request: CoverLetterRequest, current_user=Depends(get_
 
         from app.utils.ai_logger import save_ai_interaction
         ai_response = f"{text}"
-        # Save the interaction
-        save_ai_interaction(
-            user=current_user,
-            prompt=prompt,
-            response=ai_response,
-            requirement_type='cover_letter',
-            model_name="gemini-2.5-flash"
-        )
+        
+        # Save the interactions
+        save_ai_interaction(user=current_user,prompt=prompt,response=ai_response,requirement_type='cover_letter',model_name="gemini-2.5-flash")
         track_activity(db, current_user.id, "ai_cover_letter_generate")
-        log_user_activity(
-            db=db, 
-            user_id=current_user.id, 
-            action="ai_cover_letter_generate", 
-            meta_data={"fields": 'changed_fields'}
-        )
+        log_user_activity(db=db, user_id=current_user.id, action="ai_cover_letter_generate", meta_data={"fields": 'changed_fields'})
+
         return {"cover_letter": text}
 
     except Exception as e:

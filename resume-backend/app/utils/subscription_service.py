@@ -64,7 +64,7 @@ def expire_subscriptions(db: Session):
     db.commit()
 
 def get_subscription_info(current_user, db):
-    sub = db.query(Subscription).filter_by(user_id=current_user.id).first()
+    sub = db.query(Subscription).filter_by(user_id=current_user.id).order_by(Subscription.created_at.desc()).first()
 
     from datetime import datetime
     now = datetime.utcnow()
