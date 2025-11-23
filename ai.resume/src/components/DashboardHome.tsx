@@ -93,12 +93,12 @@ export function DashboardHome() {
                   Start Building Resume
                 </Button>
               </Link>
-              {/* <Link to="/pricing">
+              <Link to="/pricing">
                 <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm gap-2">
                   <Zap className="w-4 h-4" />
                   View Pricing Plans
                 </Button>
-              </Link> */}
+              </Link>
             </div>
           </div>
         </div>
@@ -186,7 +186,7 @@ export function DashboardHome() {
         </Card>
 
         {/* Upgrade Banner */}
-        {/* <Card className="border-2 border-yellow-200 bg-gradient-to-r from-yellow-50 to-orange-50 shadow-lg overflow-hidden">
+        <Card className="border-2 border-yellow-200 bg-gradient-to-r from-yellow-50 to-orange-50 shadow-lg overflow-hidden">
           <CardContent className="py-6">
             <div className="flex flex-col md:flex-row gap-6 items-center">
               <div className="flex-shrink-0">
@@ -208,7 +208,7 @@ export function DashboardHome() {
               </div>
             </div>
           </CardContent>
-        </Card> */}
+        </Card>
       </div>
     </DashboardLayout>
   );

@@ -44,7 +44,7 @@ export function Footer() {
             <div>
                 <h4 className="text-white mb-4">Company</h4>
                 <div className="space-y-2">
-                {/* <Link to="/pricing" className="block text-gray-400 hover:text-white transition-colors">Pricing</Link> */}
+                <Link to="/pricing" className="block text-gray-400 hover:text-white transition-colors">Pricing</Link>
                 <Link to="/about" className="block text-gray-400 hover:text-white transition-colors">About Us</Link>
                 <Link to="/contact" className="block text-gray-400 hover:text-white transition-colors">Contact</Link>
                 <a href="#" className="block text-gray-400 hover:text-white transition-colors">Blog</a>
