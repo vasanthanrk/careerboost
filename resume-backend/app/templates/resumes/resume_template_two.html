@@ -3,9 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <style>
+    .experience-item {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .project-item {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .education-item {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .summary {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    /* First page: no top margin */
+    @page:first {
+      margin-top: 0;
+    }
+
     @page {
       size: A4;          /* or 'letter', or custom size like 210mm 297mm */
-      margin: 0;         /* removes all margins */
+      margin-top: 40px;
+      margin-left: 0;
+      margin-right: 0;
     }
     html, body { margin: 0; padding: 0; }
     body {
@@ -33,7 +59,7 @@
       opacity: 0.95;
     }
     .template2 .content {
-      padding: 40px;
+      padding: 15px;
     }
     .template2 h2 {
       color: #667eea;
