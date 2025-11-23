@@ -26,9 +26,10 @@ RUN apt-get update && apt-get install -y \
 
 COPY requirements.txt .
 
-# Install Python packages to /usr/local
-RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+# Install Python packages to /packages
+RUN pip install --upgrade pip
+RUN pip install --prefix=/packages -r requirements.txt
+RUN cp -r /packages/* /usr/local/
 
 
 ########################################
