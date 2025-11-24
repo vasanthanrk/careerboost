@@ -5,11 +5,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/
 import { Button } from './ui/button';
 import { Textarea } from './ui/textarea';
 import { Upload, FileText, Target } from 'lucide-react';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import { Progress } from './ui/progress';
 import api from '../api/axiosClient';
-import FeatureLimitPopup from "./FeatureLimitPopup" 
+import FeatureLimitPopup from "./FeatureLimitPopup"
 import { handleFeatureCheck } from '../utils/featureCheck'
+import { SEO } from './SEO';
 
 export function JobFitAnalyzer() {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ export function JobFitAnalyzer() {
     processJD(formData);
   };
 
-  const processJD = async (formData) => {
+  const processJD = async (formData: FormData) => {
     const allowed = await handleFeatureCheck("job_fit_analysis");
     if (!allowed) {
       setActiveFeature("job_fit_analysis");
@@ -59,7 +60,7 @@ export function JobFitAnalyzer() {
       if (progress >= 95) progress = 95; // cap at 95% until API finishes
       setAnalysisProgress(progress);
     }, 300);
-    
+
     try {
       const res = await api.post("/job/analyze", formData, {
         headers: { "Content-Type": "multipart/form-data" },
@@ -78,9 +79,13 @@ export function JobFitAnalyzer() {
       setIsAnalyzing(false);
     }
   }
-  
+
   return (
     <DashboardLayout>
+      <SEO
+        title="Job Fit Analyzer"
+        description="Analyze how well your resume matches a specific job description and get actionable improvement tips."
+      />
       {showLimitPopup && (
         <FeatureLimitPopup
           featureName={activeFeature}

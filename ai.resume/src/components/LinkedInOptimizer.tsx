@@ -8,8 +8,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Progress } from './ui/progress';
 import { Badge } from './ui/badge';
 import { Sparkles, Copy, ArrowRight, TrendingUp } from 'lucide-react';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import api from '../api/axiosClient';
+import { SEO } from './SEO';
 
 export function LinkedInOptimizer() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -25,12 +26,12 @@ export function LinkedInOptimizer() {
   const [optimizedText, setOptimizedText] = useState('');
   const [improvementScore, setImprovementScore] = useState(0);
   const [profileMetrics, setProfileMetrics] = useState(0);
-  const [improvements, setImprovements] = useState([]);
+  const [improvements, setImprovements] = useState<any[]>([]);
   const [optimizedHeadline, setOptimizedHeadline] = useState('');
   // helper: chunk an array into N columns (here 2)
-  function chunkArray(arr, n) {
-    const cols = Array.from({ length: n }, () => []);
-    arr.forEach((item, i) => {
+  function chunkArray(arr: any[], n: number) {
+    const cols = Array.from({ length: n }, () => [] as any[]);
+    arr.forEach((item: any, i: number) => {
       cols[i % n].push(item);
     });
     return cols;
@@ -80,6 +81,10 @@ export function LinkedInOptimizer() {
 
   return (
     <DashboardLayout>
+      <SEO
+        title="LinkedIn Optimizer"
+        description="Optimize your LinkedIn profile with AI to attract more recruiters and job opportunities."
+      />
       <div className="max-w-6xl mx-auto space-y-6">
         {/* Header */}
         <div>
@@ -102,7 +107,7 @@ export function LinkedInOptimizer() {
               <Label htmlFor="targetRole">Target Role</Label>
               <Select
                 value={formData.targetRole}
-                onValueChange={(value) => setFormData({ ...formData, targetRole: value })}
+                onValueChange={(value: string) => setFormData({ ...formData, targetRole: value })}
               >
                 <SelectTrigger id="targetRole">
                   <SelectValue placeholder="Select your target role" />
@@ -233,7 +238,7 @@ export function LinkedInOptimizer() {
                 </CardContent>
               </Card>
             )}
-            
+
             {/* Comparison */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Original */}
@@ -296,10 +301,9 @@ export function LinkedInOptimizer() {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {Array.isArray(improvements) && improvements.map((col, colIndex) => (
-                  <div key={colIndex} className="space-y-3">
-                    {col.map((imp, idx) => {
-                      return (
+                  {Array.isArray(improvements) && improvements.map((col: any[], colIndex: number) => (
+                    <div key={colIndex} className="space-y-3">
+                      {col.map((imp: any, idx: number) => (
                         <div key={idx} className="flex items-start gap-3">
                           <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 text-green-700 font-bold">
                             ✓
@@ -308,9 +312,8 @@ export function LinkedInOptimizer() {
                             <h4 className="text-gray-900 mb-1">{imp}</h4>
                           </div>
                         </div>
-                      );
-                    })}
-                  </div>
+                      ))}
+                    </div>
                   ))}
                 </div>
               </CardContent>
@@ -338,7 +341,8 @@ export function LinkedInOptimizer() {
               </CardContent>
             </Card>
           </>
-        )}
+        )
+        }
 
         {/* Tips */}
         <Card className="bg-violet-50 border-violet-200">
@@ -358,7 +362,7 @@ export function LinkedInOptimizer() {
             </div>
           </CardContent>
         </Card>
-      </div>
-    </DashboardLayout>
+      </div >
+    </DashboardLayout >
   );
 }

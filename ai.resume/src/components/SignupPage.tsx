@@ -5,8 +5,9 @@ import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Briefcase, User, Mail, Lock } from 'lucide-react';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import api from '../api/axiosClient';
+import { SEO } from './SEO';
 
 export function SignupPage() {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ export function SignupPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    
+
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
@@ -39,7 +40,7 @@ export function SignupPage() {
       });
 
       toast.success('Account created successfully!');
-      
+
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.user));
 
@@ -54,6 +55,10 @@ export function SignupPage() {
 
   return (
     <div className="min-h-screen flex">
+      <SEO
+        title="Sign Up"
+        description="Create your free SmartCV Maker account to start building professional resumes and cover letters with AI."
+      />
       {/* Left Panel - Branding */}
       <div className="hidden lg:flex lg:w-1/2 bg-violet-600 items-center justify-center p-12">
         <div className="text-white text-center">
@@ -142,9 +147,9 @@ export function SignupPage() {
 
             <div className="space-y-2">
               <Label htmlFor="careerLevel">Career Level</Label>
-              <Select 
-                value={formData.careerLevel} 
-                onValueChange={(value) => setFormData({ ...formData, careerLevel: value })}
+              <Select
+                value={formData.careerLevel}
+                onValueChange={(value: string) => setFormData({ ...formData, careerLevel: value })}
                 required
               >
                 <SelectTrigger id="careerLevel">
@@ -158,8 +163,8 @@ export function SignupPage() {
               </Select>
             </div>
 
-            <Button 
-              type="submit" 
+            <Button
+              type="submit"
               className="w-full bg-violet-600 hover:bg-violet-700"
               disabled={isLoading}
             >

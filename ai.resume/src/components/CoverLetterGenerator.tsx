@@ -8,11 +8,12 @@ import { Label } from './ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Textarea } from './ui/textarea';
 import { Sparkles, Copy, RefreshCw, Download, Mail, Wand2, FileText } from 'lucide-react';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import api from '../api/axiosClient';
 import ReactQuill from "react-quill";
-import FeatureLimitPopup from "./FeatureLimitPopup" 
+import FeatureLimitPopup from "./FeatureLimitPopup"
 import { handleFeatureCheck } from '../utils/featureCheck'
+import { SEO } from './SEO';
 
 
 export function CoverLetterGenerator() {
@@ -21,7 +22,7 @@ export function CoverLetterGenerator() {
     jobRole: '',
     companyName: '',
     jobDescription: '',
-    tone:''
+    tone: ''
   });
   const [generatedLetter, setGeneratedLetter] = useState('');
 
@@ -44,7 +45,7 @@ export function CoverLetterGenerator() {
 
       setIsGenerating(true);
       const res = await api.post('/ai/cover-letter', formData);
-      const cover = res.data.cover_letter.split("\n").map(line => line.trim() ? `<p>${line}</p>` : "<p><br/></p>").join("");
+      const cover = res.data.cover_letter.split("\n").map((line: string) => line.trim() ? `<p>${line}</p>` : "<p><br/></p>").join("");
 
       setGeneratedLetter(cover);
       toast.success('Cover letter generated successfully!');
@@ -109,19 +110,23 @@ export function CoverLetterGenerator() {
 
   return (
     <DashboardLayout>
+      <SEO
+        title="Cover Letter Generator"
+        description="Generate personalized cover letters for any job application using AI."
+      />
       {showLimitPopup && (
         <FeatureLimitPopup
           featureName={activeFeature}
           onClose={() => setShowLimitPopup(false)}
         />
       )}
-      
+
       <div className="max-w-6xl mx-auto space-y-6">
         {/* Modern Header */}
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-green-600 via-emerald-600 to-teal-600 p-8 text-white shadow-xl">
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-emerald-300/20 rounded-full blur-3xl"></div>
-          
+
           <div className="relative z-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full mb-3">
               <Mail className="w-4 h-4" />
@@ -185,7 +190,7 @@ export function CoverLetterGenerator() {
                   <Label htmlFor="tone" className="text-gray-700">Tone Preference</Label>
                   <Select
                     value={formData.tone}
-                    onValueChange={(value) => setFormData({ ...formData, tone: value })}
+                    onValueChange={(value: string) => setFormData({ ...formData, tone: value })}
                   >
                     <SelectTrigger id="tone">
                       <SelectValue placeholder="Select a tone" />

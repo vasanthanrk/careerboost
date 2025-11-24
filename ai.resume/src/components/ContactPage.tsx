@@ -9,6 +9,7 @@ import { toast } from 'sonner';
 import { useState } from 'react';
 import { Header } from './header';
 import { Footer } from './footer';
+import { SEO } from './SEO';
 
 export function ContactPage() {
   const [formData, setFormData] = useState({
@@ -26,8 +27,12 @@ export function ContactPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-violet-50/30">
+      <SEO
+        title="Contact Us"
+        description="Get in touch with the SmartCV Maker team for support, feedback, or inquiries."
+      />
       {/* Navigation */}
-      <Header/>
+      <Header />
 
       {/* Hero Section */}
       <section className="py-20 text-center">
@@ -36,11 +41,11 @@ export function ContactPage() {
             <MessageSquare className="w-4 h-4 text-violet-600" />
             <span className="text-violet-700">Get in Touch</span>
           </div>
-          
+
           <h1 className="text-gray-900 mb-6">
             We'd Love to Hear From You
           </h1>
-          
+
           <p className="text-gray-600 max-w-2xl mx-auto">
             Have questions, feedback, or need support? Our team is here to help you succeed in your career journey.
           </p>
@@ -140,9 +145,9 @@ export function ContactPage() {
                   />
                 </div>
 
-                <Button 
-                  type="submit" 
-                  size="lg" 
+                <Button
+                  type="submit"
+                  size="lg"
                   className="w-full bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700"
                 >
                   <Send className="w-5 h-5 mr-2" />
@@ -155,7 +160,7 @@ export function ContactPage() {
       </section>
 
       {/* Footer */}
-      <Footer/>
+      <Footer />
     </div>
   );
 }

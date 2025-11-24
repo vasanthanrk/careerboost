@@ -10,9 +10,10 @@ import { Badge } from './ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { User, Lock, CreditCard, Bell, Moon, Save, Sparkles, Phone } from 'lucide-react';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import { Link } from 'react-router-dom';
 import api from '../api/axiosClient';
+import { SEO } from './SEO';
 
 export function SettingsPage() {
   const [loading, setLoading] = useState(true);
@@ -29,11 +30,11 @@ export function SettingsPage() {
     email: '',
     phone: '',
     location: '',
-    career_level:'',
-    avatar_url:''
+    career_level: '',
+    avatar_url: ''
   });
 
-   async function loadUser() {
+  async function loadUser() {
     try {
       const res = await api.get("/user/me");
       const user = res.data;
@@ -63,20 +64,20 @@ export function SettingsPage() {
       setLoading(false);
     }
   }
-  
+
   useEffect(() => {
     loadUser();
   }, []);
 
   function getInitials(fullName?: string): string {
     if (!fullName) return "NA";
-    
+
     const words = fullName.trim().split(" ").filter(Boolean);
-    
+
     if (words.length >= 2) {
       return (words[0][0] + words[1][0]).toUpperCase();
     }
-    
+
     if (words.length === 1) {
       return words[0].substring(0, 2).toUpperCase();
     }
@@ -159,6 +160,10 @@ export function SettingsPage() {
 
   return (
     <DashboardLayout>
+      <SEO
+        title="Settings"
+        description="Manage your account settings, profile information, and preferences."
+      />
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Header */}
         <div>
@@ -191,13 +196,13 @@ export function SettingsPage() {
                 {/* Avatar */}
                 <div className="flex items-center gap-4">
                   <Avatar className="w-20 h-20">
-                     {profileData.avatar_url ? (
-                        <img src={`${profileData.avatar_url}`} alt="Avatar" className="w-full h-full object-cover rounded-full" style={{ objectFit: 'cover' }} />
-                      ) : (
-                        <AvatarFallback className="bg-violet-600 text-white text-xl">
-                          {getInitials(profileData.full_name)}
-                        </AvatarFallback>
-                      )}
+                    {profileData.avatar_url ? (
+                      <img src={`${profileData.avatar_url}`} alt="Avatar" className="w-full h-full object-cover rounded-full" style={{ objectFit: 'cover' }} />
+                    ) : (
+                      <AvatarFallback className="bg-violet-600 text-white text-xl">
+                        {getInitials(profileData.full_name)}
+                      </AvatarFallback>
+                    )}
                   </Avatar>
                   <div>
                     <Button variant="outline" size="sm" onClick={() => document.getElementById('avatarUpload')?.click()}>
@@ -254,9 +259,9 @@ export function SettingsPage() {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="career_level">Career Level</Label>
-                    <Select 
-                      value={profileData.career_level} 
-                      onValueChange={(value) => setFormData({ ...profileData, career_level: value })}
+                    <Select
+                      value={profileData.career_level}
+                      onValueChange={(value: string) => setProfileData({ ...profileData, career_level: value })}
                       required
                     >
                       <SelectTrigger id="careerLevel">
@@ -293,22 +298,22 @@ export function SettingsPage() {
                 <div className="space-y-2">
                   <Label htmlFor="currentPassword">Current Password</Label>
                   <Input id="currentPassword" required type="password" placeholder="••••••••" value={passwords.old_password} onChange={(e) =>
-                      setPasswords({ ...passwords, old_password: e.target.value })
-                    }/>
+                    setPasswords({ ...passwords, old_password: e.target.value })
+                  } />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="newPassword">New Password</Label>
                   <Input id="newPassword" required type="password" placeholder="••••••••" value={passwords.new_password}
                     onChange={(e) =>
                       setPasswords({ ...passwords, new_password: e.target.value })
-                    }/>
+                    } />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="confirmPassword">Confirm New Password</Label>
                   <Input id="confirmPassword" required type="password" placeholder="••••••••" value={passwords.confirm_password}
                     onChange={(e) =>
                       setPasswords({ ...passwords, confirm_password: e.target.value })
-                    }/>
+                    } />
                 </div>
                 <Button onClick={handleChangePassword} className="bg-violet-600 hover:bg-violet-700">
                   Update Password

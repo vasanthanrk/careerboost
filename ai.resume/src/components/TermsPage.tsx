@@ -3,12 +3,17 @@ import { Button } from './ui/button';
 import { Sparkles, FileText } from 'lucide-react';
 import { Header } from './header';
 import { Footer } from './footer';
+import { SEO } from './SEO';
 
 export function TermsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-violet-50/30">
+      <SEO
+        title="Terms of Service"
+        description="Review our Terms of Service to understand the rules and regulations for using SmartCV Maker."
+      />
       {/* Navigation */}
-      <Header/>
+      <Header />
 
       {/* Hero Section */}
       <section className="py-20 text-center">
@@ -17,11 +22,11 @@ export function TermsPage() {
             <FileText className="w-4 h-4 text-blue-600" />
             <span className="text-blue-700">Terms of Service</span>
           </div>
-          
+
           <h1 className="text-gray-900 mb-6">
             Terms of Service
           </h1>
-          
+
           <p className="text-gray-600 max-w-2xl mx-auto mb-4">
             Last Updated: November 12, 2025
           </p>
@@ -196,8 +201,8 @@ export function TermsPage() {
         </div>
       </section>
 
-        {/* Footer */}
-        <Footer/>
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
