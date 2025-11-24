@@ -1,282 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sandeep Kumar - Senior Quality Assurance Engineer</title>
-    <style>
-        /* General Styles */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-        }
-        .container {
-            width: 850px;
-            margin: 30px auto;
-            background-color: #fff;
-            padding: 40px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
+<meta charset="UTF-8">
+<style>
 
-        /* Header and Contact */
-        .header {
-            border-bottom: 3px solid #007bff;
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .header h1 {
-            margin: 0;
-            color: #2c3e50;
-            font-size: 2.5em;
-        }
-        .header h2 {
-            margin: 5px 0 0;
-            color: #007bff;
-            font-size: 1.2em;
-            font-weight: 600;
-        }
-        .contact-info {
-            text-align: right;
-            font-size: 0.9em;
-            color: #555;
-        }
-        .contact-info p {
-            margin: 2px 0;
-        }
-        .contact-info a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-        
-        /* Section Styles */
-        .section {
-            margin-bottom: 30px;
-        }
-        .section h3 {
-            color: #2c3e50;
-            font-size: 1.4em;
-            border-bottom: 2px solid #ecf0f1;
-            padding-bottom: 5px;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
+/* ---------- PAGE RULES ---------- */
+@page {
+  size: A4;
+  margin: 30px;
+}
 
-        /* Summary */
-        .summary p {
-            font-style: italic;
-            text-align: justify;
-            margin: 0;
-        }
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: white;
+  color: #333;
+  font-size: 13px;
+  line-height: 1.5;
+}
 
-        /* Experience */
-        .job-item {
-            margin-bottom: 20px;
-            padding-left: 15px;
-            border-left: 3px solid #007bff;
-        }
-        .job-item:last-child {
-            margin-bottom: 0;
-        }
-        .job-item h4 {
-            margin: 0;
-            font-size: 1.2em;
-            color: #34495e;
-        }
-        .job-item .job-details {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9em;
-            color: #7f8c8d;
-            margin-bottom: 8px;
-        }
-        .job-item ul {
-            list-style: disc;
-            margin: 5px 0 0 20px;
-            padding: 0;
-        }
-        .job-item li {
-            margin-bottom: 5px;
-        }
+/* MAIN CONTAINER (A4 SAFE WIDTH) */
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+}
 
-        /* Education */
-        .education-item {
-            margin-bottom: 15px;
-        }
-        .education-item strong {
-            display: block;
-            font-size: 1.1em;
-            color: #34495e;
-        }
-        .education-item span {
-            font-size: 0.95em;
-            color: #7f8c8d;
-        }
+/* HEADER */
+.header {
+  border-bottom: 3px solid #007bff;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
 
-        /* Skills and Certifications */
-        .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .skill-tag {
-            background-color: #eaf3ff;
-            color: #007bff;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 0.9em;
-            white-space: nowrap;
-            border: 1px solid #cce0ff;
-        }
+.header-name {
+  font-size: 28px;
+  margin: 0;
+  color: #2c3e50;
+}
 
-        /* Projects and Achievements */
-        .project-item {
-            margin-bottom: 15px;
-        }
-        .project-item strong {
-            font-size: 1.1em;
-            color: #34495e;
-            display: block;
-        }
-        .achievement-item {
-            list-style: disc;
-            margin-left: 20px;
-        }
-    </style>
+.header-role {
+  font-size: 16px;
+  margin: 3px 0 10px 0;
+  color: #007bff;
+  font-weight: bold;
+}
+
+/* CONTACT INFO (NO FLEX, PDF SAFE) */
+.contact-info p {
+  margin: 2px 0;
+  font-size: 12px;
+}
+
+.contact-info a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+/* SECTION TITLE */
+.section-title {
+  font-size: 17px;
+  font-weight: bold;
+  color: #2c3e50;
+  border-bottom: 2px solid #e5e5e5;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  padding-bottom: 4px;
+}
+
+/* SUMMARY */
+.summary {
+  font-style: italic;
+  text-align: justify;
+}
+
+/* EXPERIENCE */
+.job-item {
+  margin-bottom: 15px;
+  padding-left: 10px;
+  border-left: 3px solid #007bff;
+  page-break-inside: avoid;
+}
+
+.job-item h4 {
+  margin: 0;
+  font-size: 15px;
+  color: #34495e;
+}
+
+.job-details {
+  font-size: 12px;
+  color: #7f8c8d;
+}
+
+.job-item ul {
+  margin: 5px 0 0 20px;
+  padding: 0;
+}
+
+.job-item li {
+  margin-bottom: 4px;
+}
+
+/* SKILLS */
+.skills-grid {
+  display: block;
+  column-count: 3;
+  column-gap: 15px;
+  page-break-inside: avoid;
+}
+
+.skill-tag {
+  background: #eaf3ff;
+  border: 1px solid #cce0ff;
+  color: #007bff;
+  padding: 4px 6px;
+  border-radius: 3px;
+  font-size: 12px;
+  margin-bottom: 4px;
+  display: inline-block;
+  width: 100%;
+}
+
+/* PROJECTS */
+.project-item {
+  page-break-inside: avoid;
+  margin-bottom: 10px;
+}
+
+.project-item strong {
+  font-size: 14px;
+  color: #34495e;
+}
+
+/* ACHIEVEMENTS */
+.achievement-item {
+  margin-left: 20px;
+}
+
+/* EDUCATION */
+.education-item {
+  margin-bottom: 12px;
+  page-break-inside: avoid;
+}
+
+.education-item strong {
+  font-size: 14px;
+  color: #34495e;
+}
+
+/* PRINT COLOR FIX */
+@media print {
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+</style>
 </head>
 <body>
-    <div class="container">
-        
-        <div class="header">
-            <div>
-                <h1>Sandeep Kumar</h1>
-                <h2>Senior Quality Assurance Engineer</h2>
-            </div>
-            <div class="contact-info">
-                <p><strong>Email:</strong> sandeep@example.com</p>
-                <p><strong>Phone:</strong> +1-555-123-4567</p>
-                <p><strong>Location:</strong> Bengaluru, India</p>
-                <p><a href="https://www.linkedin.com/in/sandeep-qa" target="_blank">LinkedIn</a> | <a href="https://github.com/sandeep-qa" target="_blank">GitHub</a> | <a href="#">Portfolio</a></p>
-            </div>
-        </div>
-        
-        <div class="section summary">
-            <h3>Professional Summary</h3>
-            <p>Highly motivated and detail-oriented **Senior Tester** with **4.5 years** of progressive experience in Quality Assurance, including **2.5 years dedicated to test automation**. Proven ability to lead testing efforts across the full SDLC, design comprehensive test plans, and implement efficient automated test scripts using tools like **Selenium and Python**. Adept at identifying defects, ensuring high product quality, and collaborating with cross-functional teams in Agile environments. Seeking to leverage expertise in both manual and automation testing to drive product excellence and contribute to successful software delivery.</p>
-        </div>
-        
-        <div class="section">
-            <h3>Experience</h3>
-            
-            <div class="job-item">
-                <h4>Senior Quality Assurance Engineer</h4>
-                <div class="job-details">
-                    <span>NexGen Solutions</span>
-                    <span>May 2022 – Present</span>
-                </div>
-                <ul>
-                    <li>Spearheaded the design and implementation of comprehensive test strategies and plans for enterprise-level web and API applications, contributing to a **15% reduction in critical defect leakage**.</li>
-                    <li>Developed and maintained robust automated test scripts using **Selenium WebDriver with Python and Pytest/TestNG frameworks**, achieving over **80% test automation coverage** for critical paths.</li>
-                    <li>Integrated automated tests into **CI/CD pipelines (Jenkins)** to support continuous testing and accelerate release cycles.</li>
-                    <li>Led functional, regression, integration, and user acceptance testing (UAT) cycles, collaborating closely with product owners and developers in an **Agile Scrum environment**.</li>
-                    <li>Utilized **Jira** for comprehensive defect tracking, reporting, and lifecycle management, contributing to a **20% reduction in average defect resolution time**.</li>
-                    <li>Mentored a team of 2 junior QA engineers on automation best practices, test case design, and effective bug reporting.</li>
-                    <li>Conducted **API testing** using **Postman and Rest Assured** to validate backend functionalities and data integrity.</li>
-                </ul>
-            </div>
 
-            <div class="job-item">
-                <h4>Quality Assurance Engineer</h4>
-                <div class="job-details">
-                    <span>Global Innovators Ltd.</span>
-                    <span>February 2020 – April 2022</span>
-                </div>
-                <ul>
-                    <li>Executed **manual test cases** for new features and existing functionalities across web and mobile platforms, ensuring high quality before deployment.</li>
-                    <li>Authored detailed test cases, test data, and comprehensive bug reports, ensuring clear communication of issues to development teams.</li>
-                    <li>Collaborated effectively with cross-functional teams (development, product management) to clarify requirements and ensure testability of features.</li>
-                    <li>Performed extensive **regression testing** to maintain application stability following regular updates and new feature implementations.</li>
-                    <li>Gained initial exposure to automation concepts, assisting in the development and execution of basic sanity test scripts using open-source tools.</li>
-                    <li>Actively participated in daily stand-ups, sprint reviews, and retrospective meetings within an **Agile framework**.</li>
-                    <li>Contributed to the improvement of QA processes and documentation, enhancing overall team efficiency.</li>
-                </ul>
-            </div>
-        </div>
+<div class="container">
 
-        <div class="section">
-            <h3>Technical Skills</h3>
-            <div class="skills-grid">
-                <span class="skill-tag">Selenium WebDriver</span>
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">Java (Basic)</span>
-                <span class="skill-tag">Pytest</span>
-                <span class="skill-tag">TestNG</span>
-                <span class="skill-tag">API Testing</span>
-                <span class="skill-tag">Postman</span>
-                <span class="skill-tag">Rest Assured</span>
-                <span class="skill-tag">Jira</span>
-                <span class="skill-tag">Confluence</span>
-                <span class="skill-tag">Git</span>
-                <span class="skill-tag">Jenkins (CI/CD)</span>
-                <span class="skill-tag">SQL</span>
-                <span class="skill-tag">Manual Testing</span>
-                <span class="skill-tag">Functional Testing</span>
-                <span class="skill-tag">Regression Testing</span>
-                <span class="skill-tag">UAT</span>
-                <span class="skill-tag">Agile Methodologies (Scrum)</span>
-                <span class="skill-tag">Test Plan Development</span>
-                <span class="skill-tag">Cross-Browser Testing</span>
-            </div>
-        </div>
+    <div class="header">
+        <h1 class="header-name">Sandeep Kumar</h1>
+        <h2 class="header-role">Senior Quality Assurance Engineer</h2>
 
-        <div class="section">
-            <h3>Key Projects</h3>
-            <div class="project-item">
-                <strong>E-commerce Platform Automation Framework</strong>
-                <p>Developed and maintained a comprehensive automation framework using **Selenium WebDriver with Python and Pytest** for an e-commerce platform. The framework covered end-to-end user flows, checkout processes, and API integrations, **significantly reducing manual regression effort and accelerating release cycles**.</p>
-            </div>
-            <div class="project-item">
-                <strong>CRM Application Manual & API Testing</strong>
-                <p>Led the manual functional and regression testing efforts for a critical CRM application, ensuring all new features met business requirements. Additionally, performed extensive **API testing using Postman** to validate data integrity and backend service functionality, **identifying several critical defects prior to deployment**.</p>
-            </div>
-        </div>
-
-        <div class="section" style="display: flex; gap: 40px;">
-            <div style="flex: 1;">
-                <h3>Achievements</h3>
-                <ul class="achievement-item">
-                    <li>**Improved Defect Leakage Rate:** Successfully reduced critical defect leakage into production by **15%** through enhanced test strategy implementation and increased automation coverage.</li>
-                    <li>**Enhanced Test Automation Coverage:** Achieved over **80%** test automation coverage for critical user flows and functionalities, significantly decreasing manual testing effort.</li>
-                    <li>**Mentored Junior QA Engineers:** Guided two junior QA engineers in automation framework development, test case optimization, and best practices.</li>
-                </ul>
-            </div>
-            <div style="flex: 1;">
-                <h3>Education & Certification</h3>
-                <div class="education-item">
-                    <strong>Bachelor of Technology in Computer Science and Engineering</strong>
-                    <span>Anna University • 2019</span>
-                </div>
-                <div class="education-item">
-                    <strong>ISTQB Certified Tester Foundation Level (CTFL)</strong>
-                    <span>ISTQB • 2021</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h3>Languages</h3>
-            <p>English (**Professional Working Proficiency**) | Malayalam (**Native**) | Hindi (**Conversational**)</p>
+        <div class="contact-info">
+            <p><strong>Email:</strong> sandeep@example.com</p>
+            <p><strong>Phone:</strong> +91-XXXXXXXXXX</p>
+            <p><strong>Location:</strong> Bengaluru, India</p>
+            <p>
+                <a href="#">LinkedIn</a> |
+                <a href="#">GitHub</a> |
+                <a href="#">Portfolio</a>
+            </p>
         </div>
     </div>
+
+    <!-- SUMMARY -->
+    <div>
+        <h3 class="section-title">Professional Summary</h3>
+        <p class="summary">
+            Highly motivated Senior Tester with 4.5 years...
+        </p>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div>
+        <h3 class="section-title">Experience</h3>
+
+        <div class="job-item">
+            <h4>Senior Quality Assurance Engineer</h4>
+            <div class="job-details">NexGen Solutions | May 2022 – Present</div>
+            <ul>
+                <li>Designed and implemented...</li>
+                <li>Developed automation...</li>
+            </ul>
+        </div>
+
+        <div class="job-item">
+            <h4>Quality Assurance Engineer</h4>
+            <div class="job-details">Global Innovators Ltd. | Feb 2020 – Apr 2022</div>
+            <ul>
+                <li>Executed manual test cases...</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div>
+        <h3 class="section-title">Technical Skills</h3>
+        <div class="skills-grid">
+            <span class="skill-tag">Selenium</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Postman</span>
+            <span class="skill-tag">Rest Assured</span>
+            <span class="skill-tag">Jira</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">SQL</span>
+        </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <div>
+        <h3 class="section-title">Key Projects</h3>
+        <div class="project-item">
+            <strong>E-commerce Automation</strong>
+            <p>Developed framework using Selenium + Pytest.</p>
+        </div>
+    </div>
+
+    <!-- ACHIEVEMENTS & EDUCATION -->
+    <div>
+        <h3 class="section-title">Achievements</h3>
+        <ul class="achievement-item">
+            <li>Reduced defect leakage by 15%</li>
+        </ul>
+
+        <h3 class="section-title">Education & Certification</h3>
+        <div class="education-item">
+            <strong>B.Tech in CSE</strong>
+            <span>Anna University • 2019</span>
+        </div>
+    </div>
+
+</div>
+
 </body>
 </html>
