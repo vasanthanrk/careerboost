@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <style>
@@ -22,51 +23,68 @@
       page-break-inside: avoid;
       break-inside: avoid;
     }
+
     /* First page: no top margin */
-    @page:first {
+    @page: first {
       margin-top: 0;
     }
 
     /* Other pages: add top margin */
     @page {
-      margin-top: 40px; /* change as needed */
-      size: A4;          /* or 'letter', or custom size like 210mm 297mm */
+      margin-top: 40px;
+      /* change as needed */
+      size: A4;
+      /* or 'letter', or custom size like 210mm 297mm */
       margin-left: 0;
       margin-right: 0;
     }
-    html, body { margin: 0; padding: 0; }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       font-family: "Times New Roman", serif;
       margin: 0;
       color: #1a1a1a;
       background-color: #fafafa;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
+
     .template4 {
       max-width: 100%;
     }
+
     .template4 .header {
       background-color: #2c3e50;
       color: white;
       padding: 45px 50px;
       border-bottom: 5px solid #c0a062;
     }
+
     .template4 h1 {
       margin: 0;
       font-size: 3em;
       letter-spacing: 3px;
       font-weight: normal;
     }
+
     .template4 .contact-info {
       margin-top: 12px;
       font-size: 0.95em;
       letter-spacing: 1px;
       font-family: 'Arial', sans-serif;
     }
+
     .template4 .content {
       padding: 45px 50px;
       background-color: white;
       margin: 20px;
     }
+
     .template4 h2 {
       color: #2c3e50;
       margin-top: 30px;
@@ -78,68 +96,81 @@
       padding-bottom: 8px;
       font-weight: normal;
     }
+
     .template4 .skill-container {
       display: flex;
       flex-wrap: wrap;
-      gap: 15px; /* CORRECTED: Added space between skill tags */
+      gap: 15px;
+      /* CORRECTED: Added space between skill tags */
       margin-top: 15px;
     }
+
     .template4 .skill-tag {
-    background-color: #2c3e50;
-    color: white;
-    padding: 5px 10px;  
-    font-size: 0.80em;
-    font-family: 'Arial', sans-serif;
-    border: 1px solid #c0a062;
-    border-radius: 3px;
-    white-space: nowrap;
-    flex: 0 0 auto;
-    margin: 0 10px 10px 0; /* ADDED MARGIN: 10px spacing below and to the right */
+      background-color: #2c3e50;
+      color: white;
+      padding: 5px 10px;
+      font-size: 0.80em;
+      font-family: 'Arial', sans-serif;
+      border: 1px solid #c0a062;
+      border-radius: 3px;
+      white-space: nowrap;
+      flex: 0 0 auto;
+      margin: 0 10px 10px 0;
+      /* ADDED MARGIN: 10px spacing below and to the right */
     }
+
     .template4 .experience-item,
     .template4 .project-item {
       margin-bottom: 25px;
       padding-bottom: 20px;
       border-bottom: 1px solid #e0e0e0;
     }
+
     .template4 .experience-item:last-child,
     .template4 .project-item:last-child {
       border-bottom: none;
     }
+
     .template4 .job-header {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
       margin-bottom: 5px;
     }
+
     .template4 .job-title,
     .template4 .project-name {
       font-weight: bold;
       color: #2c3e50;
       font-size: 1.2em;
     }
+
     .template4 .duration {
       color: #c0a062;
       font-size: 0.95em;
       font-style: italic;
       font-family: 'Arial', sans-serif;
     }
+
     .template4 .company {
       color: #555;
       font-size: 1.05em;
       margin-bottom: 8px;
     }
+
     .template4 .description {
       line-height: 1.8;
       color: #444;
       font-size: 1em;
     }
+
     .template4 .education-item {
       margin-bottom: 15px;
       display: flex;
       justify-content: space-between;
       align-items: baseline;
     }
+
     .template4 .summary {
       line-height: 1.8;
       color: #444;
@@ -148,6 +179,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="template4">
     <div class="header">
@@ -159,19 +191,19 @@
         {% set contacts = [] %}
 
         {% if resume.linkedin_url %}
-            {% set _ = contacts.append(resume.linkedin_url) %}
+        {% set _ = contacts.append(resume.linkedin_url) %}
         {% endif %}
 
         {% if resume.git_url %}
-            {% set _ = contacts.append(resume.git_url) %}
+        {% set _ = contacts.append(resume.git_url) %}
         {% endif %}
 
         {% if resume.portfolio_url %}
-            {% set _ = contacts.append(resume.portfolio_url) %}
+        {% set _ = contacts.append(resume.portfolio_url) %}
         {% endif %}
 
         {% if contacts %}
-            {{ contacts | join(' • ') }}
+        {{ contacts | join(' • ') }}
         {% endif %}
       </div>
     </div>
@@ -186,14 +218,14 @@
       <div>
         <h2>Professional Experience</h2>
         {% for exp in resume.experiences %}
-          <div class="experience-item">
-            <div class="job-header">
-              <div class="job-title">{{ exp.title }}</div>
-              <div class="duration">{{ exp.duration }}</div>
-            </div>
-            <div class="company">{{ exp.company }}</div>
-            <p class="description">{{ exp.description }}</p>
+        <div class="experience-item">
+          <div class="job-header">
+            <div class="job-title">{{ exp.title }}</div>
+            <div class="duration">{{ exp.duration }}</div>
           </div>
+          <div class="company">{{ exp.company }}</div>
+          <p class="description">{{ exp.description }}</p>
+        </div>
         {% endfor %}
       </div>
       {% endif %}
@@ -202,13 +234,13 @@
       <div>
         <h2>Education</h2>
         {% for edu in resume.educations %}
-          <div class="education-item">
-            <div>
-              <strong style="font-size: 1.05em;">{{ edu.degree }}</strong>
-              <div style="color: #666; margin-top: 3px;">{{ edu.school }}</div>
-            </div>
-            <div class="duration">{{ edu.year }}</div>
+        <div class="education-item">
+          <div>
+            <strong style="font-size: 1.05em;">{{ edu.degree }}</strong>
+            <div style="color: #666; margin-top: 3px;">{{ edu.school }}</div>
           </div>
+          <div class="duration">{{ edu.year }}</div>
+        </div>
         {% endfor %}
       </div>
       {% endif %}
@@ -217,13 +249,13 @@
       <div>
         <h2>Certification</h2>
         {% for cert in resume.certifications %}
-          <div class="education-item">
-            <div>
-              <strong style="font-size: 1.05em;">{{ cert.name }}</strong>
-              <div style="color: #666; margin-top: 3px;">{{ cert.issuer }}</div>
-            </div>
-            <div class="duration">{{ cert.year }}</div>
+        <div class="education-item">
+          <div>
+            <strong style="font-size: 1.05em;">{{ cert.name }}</strong>
+            <div style="color: #666; margin-top: 3px;">{{ cert.issuer }}</div>
           </div>
+          <div class="duration">{{ cert.year }}</div>
+        </div>
         {% endfor %}
       </div>
       {% endif %}
@@ -233,7 +265,7 @@
         <h2>Core Competencies</h2>
         <div class="skill-container">
           {% for skill in resume.skills %}
-            <div class="skill-tag">{{ skill.skill }}</div>
+          <div class="skill-tag">{{ skill.skill }}</div>
           {% endfor %}
         </div>
       </div>
@@ -244,7 +276,7 @@
         <h2>Languages</h2>
         <div class="skill-container">
           {% for language in resume.languages %}
-            <div class="skill-tag">{{ language.language }} - {{ language.proficiency }}</div>
+          <div class="skill-tag">{{ language.language }} - {{ language.proficiency }}</div>
           {% endfor %}
         </div>
       </div>
@@ -254,10 +286,10 @@
       <div>
         <h2>Key Projects</h2>
         {% for proj in resume.projects %}
-          <div class="project-item">
-            <div class="project-name">{{ proj.name }}</div>
-            <p class="description">{{ proj.description }}</p>
-          </div>
+        <div class="project-item">
+          <div class="project-name">{{ proj.name }}</div>
+          <p class="description">{{ proj.description }}</p>
+        </div>
         {% endfor %}
       </div>
       {% endif %}
@@ -266,10 +298,10 @@
       <div>
         <h2>Achievements</h2>
         {% for achi in resume.achievements %}
-          <div class="project-item">
-            <div class="project-name">{{ achi.title }}</div>
-            <p class="description">{{ achi.description }}</p>
-          </div>
+        <div class="project-item">
+          <div class="project-name">{{ achi.title }}</div>
+          <p class="description">{{ achi.description }}</p>
+        </div>
         {% endfor %}
       </div>
       {% endif %}
@@ -279,7 +311,7 @@
         <h2>Other</h2>
         <div class="skill-container">
           {% for keyword in resume.keywords %}
-            <div class="skill-tag">{{ keyword }}</div>
+          <div class="skill-tag">{{ keyword }}</div>
           {% endfor %}
         </div>
       </div>
@@ -287,4 +319,5 @@
     </div>
   </div>
 </body>
+
 </html>

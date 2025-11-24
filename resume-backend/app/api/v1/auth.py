@@ -2,15 +2,18 @@ from fastapi import APIRouter, Depends, HTTPException, status, Request
 from sqlalchemy.orm import Session
 from app.core.database import get_db
 from app.models.user import User
-from app.schemas.user_schema import UserCreate, UserResponse, LoginRequest
+from app.schemas.user_schema import UserCreate, LoginRequest
 from app.core.security import hash_password, create_access_token, verify_password
 from app.core.security import get_current_user
 from app.utils.activity_tracker import log_user_activity
+from app.utils.email_service import new_user_mail_to_user, new_user_mail_to_admin
+from fastapi import BackgroundTasks
+import os
 
 router = APIRouter()
 
 @router.post("/signup")
-def signup(user_data: UserCreate, db: Session = Depends(get_db)):
+def signup(user_data: UserCreate, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
     # Check if email exists
     existing_user = db.query(User).filter(User.email == user_data.email).first()
     if existing_user:
@@ -30,7 +33,11 @@ def signup(user_data: UserCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(new_user)
 
-    token = create_access_token({"sub": str(new_user.id)})
+    token = create_access_token({"sub": new_user.email})
+
+    admin_email = os.getenv("ADMIN_EMAIL")
+    new_user_mail_to_user(background_tasks, [new_user.email], {"name": new_user.full_name})
+    new_user_mail_to_admin(background_tasks, [admin_email], data={"name": new_user.full_name,"email": new_user.email})
 
     return {
         "status": "success",
