@@ -3,248 +3,268 @@
 <head>
 <meta charset="UTF-8">
 <style>
-
 /* ---------- PAGE RULES ---------- */
 @page {
   size: A4;
-  margin: 30px;
+  margin: 0; /* Full bleed for header */
 }
 
 body {
   font-family: "Segoe UI", Tahoma, sans-serif;
   margin: 0;
   padding: 0;
-  background: white;
+  background: #F5F5F5; /* Light gray background */
   color: #333;
   font-size: 13px;
   line-height: 1.5;
 }
 
-/* MAIN CONTAINER (A4 SAFE WIDTH) */
-.container {
-  max-width: 700px;
-  margin: 0 auto;
-}
-
 /* HEADER */
 .header {
-  border-bottom: 3px solid #007bff;
-  padding-bottom: 10px;
-  margin-bottom: 20px;
+  background-color: #B04A75; /* Pink color from design */
+  color: white;
+  padding: 40px 50px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.profile-img-container {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid white;
+  flex-shrink: 0;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.header-content {
+  flex-grow: 1;
 }
 
 .header-name {
-  font-size: 28px;
-  margin: 0;
-  color: #2c3e50;
-}
-
-.header-role {
-  font-size: 16px;
-  margin: 3px 0 10px 0;
-  color: #007bff;
+  font-size: 42px;
   font-weight: bold;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1;
 }
 
-/* CONTACT INFO (NO FLEX, PDF SAFE) */
-.contact-info p {
-  margin: 2px 0;
+.header-contact {
+  text-align: right;
   font-size: 12px;
+  line-height: 1.6;
 }
 
-.contact-info a {
-  color: #007bff;
-  text-decoration: none;
+.header-contact div {
+  margin-bottom: 2px;
 }
 
-/* SECTION TITLE */
+/* SUMMARY BAR */
+.summary-bar {
+  background-color: #9E3F66; /* Slightly darker pink */
+  color: white;
+  padding: 15px 50px;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+/* MAIN CONTENT */
+.container {
+  padding: 30px 50px;
+}
+
+/* SECTIONS */
 .section-title {
-  font-size: 17px;
+  color: #B04A75;
+  font-size: 18px;
   font-weight: bold;
-  color: #2c3e50;
-  border-bottom: 2px solid #e5e5e5;
+  border-bottom: 1px solid #B04A75;
   margin-top: 25px;
-  margin-bottom: 10px;
-  padding-bottom: 4px;
-}
-
-/* SUMMARY */
-.summary {
-  font-style: italic;
-  text-align: justify;
-}
-
-/* EXPERIENCE */
-.job-item {
   margin-bottom: 15px;
-  padding-left: 10px;
-  border-left: 3px solid #007bff;
-  page-break-inside: avoid;
-}
-
-.job-item h4 {
-  margin: 0;
-  font-size: 15px;
-  color: #34495e;
-}
-
-.job-details {
-  font-size: 12px;
-  color: #7f8c8d;
-}
-
-.job-item ul {
-  margin: 5px 0 0 20px;
-  padding: 0;
-}
-
-.job-item li {
-  margin-bottom: 4px;
+  padding-bottom: 5px;
 }
 
 /* SKILLS */
-.skills-grid {
-  display: block;
-  column-count: 3;
-  column-gap: 15px;
-  page-break-inside: avoid;
+.skills-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.skill-tag {
-  background: #eaf3ff;
-  border: 1px solid #cce0ff;
-  color: #007bff;
-  padding: 4px 6px;
-  border-radius: 3px;
-  font-size: 12px;
-  margin-bottom: 4px;
-  display: inline-block;
+.skills-list li {
+  margin-bottom: 6px;
+  position: relative;
+  padding-left: 15px;
+  color: #444;
+}
+
+.skills-list li::before {
+  content: "•";
+  color: #B04A75;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+/* WORK HISTORY & EDUCATION - 2 COLUMN LAYOUT */
+.entry-grid {
+  display: table; /* Using table for PDF compatibility if flex fails in some renderers, but flex is standard */
   width: 100%;
-}
-
-/* PROJECTS */
-.project-item {
-  page-break-inside: avoid;
-  margin-bottom: 10px;
-}
-
-.project-item strong {
-  font-size: 14px;
-  color: #34495e;
-}
-
-/* ACHIEVEMENTS */
-.achievement-item {
-  margin-left: 20px;
-}
-
-/* EDUCATION */
-.education-item {
-  margin-bottom: 12px;
+  margin-bottom: 20px;
   page-break-inside: avoid;
 }
 
-.education-item strong {
-  font-size: 14px;
-  color: #34495e;
+.entry-left {
+  display: table-cell;
+  width: 25%;
+  vertical-align: top;
+  padding-right: 15px;
 }
 
-/* PRINT COLOR FIX */
+.entry-right {
+  display: table-cell;
+  width: 75%;
+  vertical-align: top;
+}
+
+.role-title {
+  font-weight: bold;
+  font-size: 14px;
+  color: #222;
+  margin-bottom: 2px;
+}
+
+.company-name {
+  font-style: italic;
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 2px;
+}
+
+.date-range {
+  font-size: 11px;
+  color: #666;
+  font-style: italic;
+}
+
+.entry-details ul {
+  margin: 5px 0 0 0;
+  padding-left: 15px;
+}
+
+.entry-details li {
+  margin-bottom: 4px;
+  color: #444;
+  font-size: 12px;
+}
+
+.entry-details li::marker {
+  color: #B04A75;
+}
+
+/* PRINT FIXES */
 @media print {
   body {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 }
-
 </style>
 </head>
 <body>
 
+<!-- HEADER -->
+<div class="header">
+    <div class="profile-img-container">
+        <!-- Using a placeholder if no image, or the user's image -->
+        <!-- In a real app, ensure this path is accessible by the PDF generator -->
+        <img src="{{ resume.profile_image if resume.profile_image else 'https://i.pravatar.cc/300' }}" class="profile-img" alt="Profile">
+    </div>
+    
+    <div class="header-content">
+        <h1 class="header-name">{{ resume.name }}</h1>
+    </div>
+
+    <div class="header-contact">
+        <div>{{ resume.location }}</div>
+        <div>{{ resume.email }}</div>
+        <div>{{ resume.phone }}</div>
+    </div>
+</div>
+
+<!-- SUMMARY BAR -->
+<div class="summary-bar">
+    {{ resume.summary }}
+</div>
+
 <div class="container">
 
-    <div class="header">
-        <h1 class="header-name">Sandeep Kumar</h1>
-        <h2 class="header-role">Senior Quality Assurance Engineer</h2>
-
-        <div class="contact-info">
-            <p><strong>Email:</strong> sandeep@example.com</p>
-            <p><strong>Phone:</strong> +91-XXXXXXXXXX</p>
-            <p><strong>Location:</strong> Bengaluru, India</p>
-            <p>
-                <a href="#">LinkedIn</a> |
-                <a href="#">GitHub</a> |
-                <a href="#">Portfolio</a>
-            </p>
-        </div>
-    </div>
-
-    <!-- SUMMARY -->
-    <div>
-        <h3 class="section-title">Professional Summary</h3>
-        <p class="summary">
-            Highly motivated Senior Tester with 4.5 years...
-        </p>
-    </div>
-
-    <!-- EXPERIENCE -->
-    <div>
-        <h3 class="section-title">Experience</h3>
-
-        <div class="job-item">
-            <h4>Senior Quality Assurance Engineer</h4>
-            <div class="job-details">NexGen Solutions | May 2022 – Present</div>
-            <ul>
-                <li>Designed and implemented...</li>
-                <li>Developed automation...</li>
-            </ul>
-        </div>
-
-        <div class="job-item">
-            <h4>Quality Assurance Engineer</h4>
-            <div class="job-details">Global Innovators Ltd. | Feb 2020 – Apr 2022</div>
-            <ul>
-                <li>Executed manual test cases...</li>
-            </ul>
-        </div>
-    </div>
-
     <!-- SKILLS -->
+    {% if resume.skills and resume.skills|length > 0 %}
     <div>
-        <h3 class="section-title">Technical Skills</h3>
-        <div class="skills-grid">
-            <span class="skill-tag">Selenium</span>
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">Postman</span>
-            <span class="skill-tag">Rest Assured</span>
-            <span class="skill-tag">Jira</span>
-            <span class="skill-tag">Git</span>
-            <span class="skill-tag">SQL</span>
-        </div>
-    </div>
-
-    <!-- PROJECTS -->
-    <div>
-        <h3 class="section-title">Key Projects</h3>
-        <div class="project-item">
-            <strong>E-commerce Automation</strong>
-            <p>Developed framework using Selenium + Pytest.</p>
-        </div>
-    </div>
-
-    <!-- ACHIEVEMENTS & EDUCATION -->
-    <div>
-        <h3 class="section-title">Achievements</h3>
-        <ul class="achievement-item">
-            <li>Reduced defect leakage by 15%</li>
+        <h3 class="section-title">Skills</h3>
+        <ul class="skills-list">
+            {% for skill in resume.skills %}
+            <li>{{ skill.skill }}</li>
+            {% endfor %}
         </ul>
-
-        <h3 class="section-title">Education & Certification</h3>
-        <div class="education-item">
-            <strong>B.Tech in CSE</strong>
-            <span>Anna University • 2019</span>
-        </div>
     </div>
+    {% endif %}
+
+    <!-- WORK HISTORY -->
+    {% if resume.experiences and resume.experiences|length > 0 %}
+    <div>
+        <h3 class="section-title">Work History</h3>
+        
+        {% for exp in resume.experiences %}
+        <div class="entry-grid">
+            <div class="entry-left">
+                <div class="role-title">{{ exp.title }}</div>
+                <div class="company-name">{{ exp.company }}</div>
+                <div class="date-range">{{ exp.duration }}</div>
+            </div>
+            <div class="entry-right">
+                <div class="entry-details">
+                    <!-- Assuming description might be HTML or plain text. If plain, wrap in p or ul -->
+                    <p>{{ exp.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- EDUCATION -->
+    {% if resume.educations and resume.educations|length > 0 %}
+    <div>
+        <h3 class="section-title">Education</h3>
+        
+        {% for edu in resume.educations %}
+        <div class="entry-grid">
+            <div class="entry-left">
+                <div class="date-range">{{ edu.year }}</div>
+            </div>
+            <div class="entry-right">
+                <div class="role-title">{{ edu.degree }}</div>
+                <div class="company-name">{{ edu.school }}</div>
+                <!-- <div class="entry-details">
+                    <ul>
+                        <li>Relevant Coursework...</li>
+                    </ul>
+                </div> -->
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
 
 </div>
 

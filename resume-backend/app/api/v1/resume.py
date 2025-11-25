@@ -61,7 +61,8 @@ def get_resume_templates():
         {"id": "three", "name": "Resume template three", "thumbnail": "/static/resume_thumbs/three.png"},
         {"id": "four", "name": "Resume template four", "thumbnail": "/static/resume_thumbs/four.png"},
         {"id": "five", "name": "Resume template five", "thumbnail": "/static/resume_thumbs/five.png"},
-        {"id": "six", "name": "Resume template six", "thumbnail": "/static/resume_thumbs/five.png"},
+        {"id": "six", "name": "Resume template six", "thumbnail": "/static/resume_thumbs/six.png"},
+        {"id": "seven", "name": "Resume template seven", "thumbnail": "/static/resume_thumbs/seven.png"},
     ]
 
 @router.get("/resume/preview/{template_id}")
