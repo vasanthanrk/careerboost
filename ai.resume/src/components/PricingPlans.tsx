@@ -3,7 +3,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { Check, Sparkles, Zap, Crown } from 'lucide-react';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
+import { SEO } from './SEO';
 
 export function PricingPlans() {
   const plans = [
@@ -63,6 +64,10 @@ export function PricingPlans() {
 
   return (
     <DashboardLayout>
+      <SEO
+        title="Pricing Plans"
+        description="Choose the perfect plan for your career journey. Free and Pro options available."
+      />
       <div className="max-w-7xl mx-auto space-y-8">
         {/* Header */}
         <div className="text-center">
@@ -75,7 +80,7 @@ export function PricingPlans() {
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {plans.map((plan) => (
-            <Card 
+            <Card
               key={plan.name}
               className={`relative ${plan.popular ? 'border-violet-600 border-2 shadow-xl' : ''}`}
             >

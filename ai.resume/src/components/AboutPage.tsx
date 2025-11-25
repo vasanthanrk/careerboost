@@ -3,12 +3,17 @@ import { Button } from './ui/button';
 import { Sparkles, Target, Users, Zap, Award, Heart } from 'lucide-react';
 import { Header } from './header';
 import { Footer } from './footer';
+import { SEO } from './SEO';
 
 export function AboutPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-violet-50/30">
+      <SEO
+        title="About Us"
+        description="Learn about SmartCV Maker's mission to empower careers through AI innovation."
+      />
       {/* Navigation */}
-      <Header/>
+      <Header />
 
       {/* Hero Section */}
       <section className="py-20 text-center">
@@ -17,11 +22,11 @@ export function AboutPage() {
             <Heart className="w-4 h-4 text-violet-600" />
             <span className="text-violet-700">About SmartCV Maker</span>
           </div>
-          
+
           <h1 className="text-gray-900 mb-6">
             Empowering Careers Through AI Innovation
           </h1>
-          
+
           <p className="text-gray-600 max-w-2xl mx-auto">
             SmartCV Maker is on a mission to democratize access to professional career development tools. We believe everyone deserves a fair shot at landing their dream job, regardless of their background or resources.
           </p>
@@ -113,7 +118,7 @@ export function AboutPage() {
       </section>
 
       {/* Footer */}
-      <Footer/>
+      <Footer />
     </div>
   );
 }

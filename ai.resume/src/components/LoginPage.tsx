@@ -4,8 +4,9 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Briefcase, Mail, Lock } from 'lucide-react';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import api from '../api/axiosClient';
+import { SEO } from './SEO';
 
 export function LoginPage() {
   const navigate = useNavigate();
@@ -52,6 +53,10 @@ export function LoginPage() {
 
   return (
     <div className="min-h-screen flex">
+      <SEO
+        title="Login"
+        description="Sign in to SmartCV Maker to access your AI-powered resume builder and career tools."
+      />
       {/* Left Panel - Branding */}
       <div className="hidden lg:flex lg:w-1/2 bg-violet-600 items-center justify-center p-12">
         <div className="text-white text-center">

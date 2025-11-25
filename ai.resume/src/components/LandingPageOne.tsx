@@ -33,13 +33,19 @@ import { Link } from "react-router-dom";
 import { Header } from "./header";
 import { Footer } from "./footer";
 import api from '../api/axiosClient';
+import { SEO } from "./SEO";
+
+interface Template {
+  name: string;
+  thumbnail: string;
+}
 
 export function LandingPageOne() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [flipped, setFlipped] = useState(false);
-  const [templates, setTemplates] = useState([]);
+  const [templates, setTemplates] = useState<Template[]>([]);
 
   useEffect(() => {
     api.get('/resume/templates').then(res => setTemplates(res.data));
@@ -152,6 +158,10 @@ export function LandingPageOne() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-violet-50/30 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900">
+      <SEO
+        title="AI Resume Builder & Career Tools"
+        description="Create professional, ATS-friendly resumes in minutes with AI-powered suggestions. Get instant feedback, cover letters, and job match analysis."
+      />
       <Header />
       {/* HERO SECTION */}
       <section className="py-16 bg-white dark:bg-gray-900">
@@ -256,6 +266,8 @@ export function LandingPageOne() {
 
           </div>
 
+          {/* RIGHT – TEXT CONTENT */}
+          <div>
           {/* RIGHT – TEXT CONTENT */}
           <div>
             <h2 className="pr_head sm:text-6xl font-extrabold text-gray-900 dark:text-white leading-tight mb-8">

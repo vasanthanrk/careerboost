@@ -3,12 +3,17 @@ import { Button } from './ui/button';
 import { Sparkles, Shield } from 'lucide-react';
 import { Header } from './header';
 import { Footer } from './footer';
+import { SEO } from './SEO';
 
 export function PrivacyPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-violet-50/30">
+      <SEO
+        title="Privacy Policy"
+        description="Read our Privacy Policy to understand how we collect, use, and protect your personal information."
+      />
       {/* Navigation */}
-      <Header/>
+      <Header />
 
       {/* Hero Section */}
       <section className="py-20 text-center">
@@ -17,11 +22,11 @@ export function PrivacyPage() {
             <Shield className="w-4 h-4 text-green-600" />
             <span className="text-green-700">Privacy Policy</span>
           </div>
-          
+
           <h1 className="text-gray-900 mb-6">
             Your Privacy Matters to Us
           </h1>
-          
+
           <p className="text-gray-600 max-w-2xl mx-auto mb-4">
             Last Updated: November 12, 2025
           </p>
@@ -141,7 +146,7 @@ export function PrivacyPage() {
       </section>
 
       {/* Footer */}
-      <Footer/>
+      <Footer />
     </div>
   );
 }

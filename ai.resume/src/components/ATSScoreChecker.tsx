@@ -24,7 +24,8 @@ import { toast } from 'sonner';
 import api from '../api/axiosClient';
 import { Link } from 'react-router-dom';
 import { handleFeatureCheck } from '../utils/featureCheck'
-import FeatureLimitPopup from "./FeatureLimitPopup" 
+import FeatureLimitPopup from "./FeatureLimitPopup"
+import { SEO } from './SEO';
 
 interface ScoreData {
   overall: number;
@@ -154,6 +155,10 @@ export function ATSScoreChecker() {
 
   return (
     <DashboardLayout>
+      <SEO
+        title="ATS Score Checker"
+        description="Check your resume's compatibility with Applicant Tracking Systems (ATS) and get actionable feedback."
+      />
       {showLimitPopup && (
         <FeatureLimitPopup
           featureName={activeFeature}

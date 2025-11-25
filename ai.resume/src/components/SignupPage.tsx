@@ -5,8 +5,9 @@ import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Briefcase, User, Mail, Lock } from 'lucide-react';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import api from '../api/axiosClient';
+import { SEO } from './SEO';
 
 export function SignupPage() {
   const navigate = useNavigate();
@@ -70,7 +71,11 @@ export function SignupPage() {
 
   return (
     <div className="min-h-screen flex">
-      {/* Left Panel */}
+      <SEO
+        title="Sign Up"
+        description="Create your free SmartCV Maker account to start building professional resumes and cover letters with AI."
+      />
+      {/* Left Panel - Branding */}
       <div className="hidden lg:flex lg:w-1/2 bg-violet-600 items-center justify-center p-12">
         <div className="text-white text-center">
           <div className="flex items-center justify-center mb-6">

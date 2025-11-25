@@ -1,55 +1,56 @@
 import { DashboardLayout } from './DashboardLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
-import { 
-  FileText, 
-  Target, 
-  Linkedin, 
-  Sparkles, 
+import {
+  FileText,
+  Target,
+  Linkedin,
+  Sparkles,
   Mail,
   Briefcase,
   Zap,
   ArrowRight
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { SEO } from './SEO';
 
 export function DashboardHome() {
   const tools = [
-    { 
-      icon: FileText, 
-      title: 'Resume Builder', 
+    {
+      icon: FileText,
+      title: 'Resume Builder',
       description: 'Create professional, ATS-friendly resumes with AI assistance',
-      link: '/resume-builder', 
+      link: '/resume-builder',
       gradient: 'from-violet-500 to-purple-500',
       bgColor: 'bg-violet-50',
       iconBg: 'bg-violet-100',
       iconColor: 'text-violet-600'
     },
-    { 
-      icon: Mail, 
-      title: 'Cover Letter Generator', 
+    {
+      icon: Mail,
+      title: 'Cover Letter Generator',
       description: 'Generate personalized cover letters for any job',
-      link: '/cover-letter', 
+      link: '/cover-letter',
       gradient: 'from-green-500 to-emerald-500',
       bgColor: 'bg-green-50',
       iconBg: 'bg-green-100',
       iconColor: 'text-green-600'
     },
-    { 
-      icon: Target, 
-      title: 'Job Fit Analyzer', 
+    {
+      icon: Target,
+      title: 'Job Fit Analyzer',
       description: 'Analyze how well you match job requirements',
-      link: '/job-fit', 
+      link: '/job-fit',
       gradient: 'from-orange-500 to-red-500',
       bgColor: 'bg-orange-50',
       iconBg: 'bg-orange-100',
       iconColor: 'text-orange-600'
     },
-    { 
-      icon: Linkedin, 
-      title: 'LinkedIn Optimizer', 
+    {
+      icon: Linkedin,
+      title: 'LinkedIn Optimizer',
       description: 'Optimize your LinkedIn profile to attract recruiters',
-      link: '/linkedin-optimizer', 
+      link: '/linkedin-optimizer',
       gradient: 'from-blue-600 to-indigo-600',
       bgColor: 'bg-blue-50',
       iconBg: 'bg-blue-100',
@@ -69,18 +70,22 @@ export function DashboardHome() {
 
   return (
     <DashboardLayout>
+      <SEO
+        title="Dashboard"
+        description="Manage your resumes, cover letters, and career tools from your SmartCV Maker dashboard."
+      />
       <div className="space-y-8">
         {/* Welcome Section */}
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-violet-600 via-purple-600 to-pink-600 p-8 md:p-12 text-white shadow-xl">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-72 h-72 bg-purple-300/20 rounded-full blur-3xl"></div>
-          
+
           <div className="relative z-10">
             <h1 className="text-white mb-3">Welcome to SmartCV Maker! 👋</h1>
             <p className="text-violet-100 mb-8 max-w-3xl">
               Your all-in-one platform for career success. Use our AI-powered tools to create professional resumes, cover letters, and more.
             </p>
-            
+
             <div className="flex flex-wrap gap-3">
               <Link to="/resume-builder">
                 <Button className="bg-white text-violet-600 hover:bg-violet-50 gap-2 shadow-lg">
@@ -112,7 +117,7 @@ export function DashboardHome() {
               <Link key={tool.title} to={tool.link}>
                 <Card className="group relative overflow-hidden border-2 border-gray-100 hover:border-violet-200 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer h-full">
                   <div className={`absolute inset-0 bg-gradient-to-br ${tool.gradient} opacity-0 group-hover:opacity-5 transition-opacity`}></div>
-                  
+
                   <CardHeader className="pb-4">
                     <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${tool.gradient} flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform`}>
                       <tool.icon className="w-7 h-7 text-white" />
@@ -156,7 +161,7 @@ export function DashboardHome() {
                   Customize your resume for each job application to match specific requirements
                 </p>
               </div>
-              
+
               <div className="p-5 rounded-xl bg-white border-2 border-violet-100 hover:border-violet-300 transition-colors">
                 <div className="w-10 h-10 bg-gradient-to-br from-violet-600 to-purple-600 rounded-xl flex items-center justify-center mb-3">
                   <span className="text-white">2</span>
@@ -166,7 +171,7 @@ export function DashboardHome() {
                   Include relevant keywords from job descriptions to pass ATS systems
                 </p>
               </div>
-              
+
               <div className="p-5 rounded-xl bg-white border-2 border-violet-100 hover:border-violet-300 transition-colors">
                 <div className="w-10 h-10 bg-gradient-to-br from-violet-600 to-purple-600 rounded-xl flex items-center justify-center mb-3">
                   <span className="text-white">3</span>
