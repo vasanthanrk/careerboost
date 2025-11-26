@@ -77,3 +77,11 @@
     font-size: 52px;
 
 }
+
+@media (max-width: 768px) {
+    .pr_head {
+        line-height: 52px;
+        font-size: 36px;
+
+    }
+}

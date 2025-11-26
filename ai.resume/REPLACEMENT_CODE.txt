@@ -1,0 +1,59 @@
+            {/* Sticky Header */}
+            <div className="px-6 pt-6 pb-4 border-b bg-white shrink-0">
+              <DialogHeader>
+                <DialogTitle className="text-xl font-semibold">
+                  Select Resume Template
+                </DialogTitle>
+                <DialogDescription>
+                  Preview available resume layouts and select one to download.
+                </DialogDescription>
+              </DialogHeader>
+            </div>
+
+            {/* Horizontal Scrollable Content */}
+            <div className="flex-1 px-6 py-6 bg-gray-50 overflow-hidden">
+              {templates.length === 0 ? (
+                <div className="flex items-center justify-center h-full text-gray-500">
+                  Loading templates...
+                </div>
+              ) : (
+                <div className="flex gap-6 overflow-x-auto pb-4 h-full">
+                  {templates.map((t) => (
+                    <div
+                      key={t.id}
+                      onClick={() => setSelectedTemplate(t.id)}
+                      className={`flex-shrink-0 w-64 border rounded-lg cursor-pointer bg-white shadow-sm hover:shadow-md transition-all ${
+                        selectedTemplate === t.id
+                          ? "border-violet-600 ring-2 ring-violet-400"
+                          : "border-gray-200"
+                      }`}
+                    >
+                      <div className="relative w-full h-80">
+                        <img
+                          src={t.thumbnail}
+                          alt={t.name}
+                          className="w-full h-full object-cover rounded-t-lg"
+                        />
+                      </div>
+                      <div className="p-3 text-center">
+                        <p className="font-medium text-gray-900">{t.name}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+            
+            {/* Sticky Footer */}
+            <div className="p-4 border-t bg-white flex justify-end gap-3 shrink-0">
+              <Button variant="outline" onClick={() => setIsOpen(false)}>
+                Cancel
+              </Button>
+              <Button
+                className="bg-violet-600 hover:bg-violet-700"
+                disabled={!selectedTemplate}
+                onClick={handlePreview}
+              >
+                {previewInProcess? 'Preview Loading...' : 'Preview Selected Template'}
+              </Button>
+            </div>

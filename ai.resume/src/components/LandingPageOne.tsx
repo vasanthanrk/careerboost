@@ -203,7 +203,7 @@ export function LandingPageOne() {
             </ul>
 
             <Link to="/resume-builder">
-              <Button className="bg-violet-600 hover:bg-violet-700 text-white px-8 py-6 rounded-xl">
+              <Button className="cursor-pointer bg-violet-600 hover:bg-violet-700 text-white px-8 py-6 rounded-xl">
                 Get Started Now
               </Button>
             </Link>
@@ -268,8 +268,9 @@ export function LandingPageOne() {
 
           {/* RIGHT – TEXT CONTENT */}
           <div>
+
             <h2 className="pr_head sm:text-6xl font-extrabold text-gray-900 dark:text-white leading-tight mb-8">
-              Chosen by <br /><span className="text-violet-600">10 million</span> job
+              Chosen by <span className="text-violet-600">10 million</span> job
               applicants around the world
             </h2>
 
@@ -288,8 +289,9 @@ export function LandingPageOne() {
               At Quick CV Maker, we help job seekers present a complete, polished story
               that increases interviews and job success.
             </p>
-          </div>
 
+
+          </div>
         </div>
       </section>
 
@@ -301,9 +303,7 @@ export function LandingPageOne() {
 
           {/* SECTION HEADER - MODIFIED */}
           <div className="text-center mb-20">
-            {/* REMOVED: Powerful Features Sub-heading */}
-
-            <h2 className="text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
+            <h2 className="pr_head lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
               Everything You Need to Succeed
             </h2>
 
@@ -352,7 +352,7 @@ export function LandingPageOne() {
                   <Link to={feature.link}>
                     <Button
                       variant="ghost"
-                      className="gap-2 group/btn p-0 h-auto hover:bg-transparent"
+                      className="cursor-pointer gap-2 group/btn p-0 h-auto hover:bg-transparent"
                     >
                       <span className="text-lg font-medium text-violet-600 dark:text-violet-400">
                         Try it now
@@ -372,82 +372,97 @@ export function LandingPageOne() {
       </section>
 
       {/* Resume Templates Showcase */}
-      {templates.length > 0 ? (
-        <section className="py-20 bg-white dark:bg-gray-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
-            <div className="text-center">
-              {/* <div className="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 rounded-full mb-4">
-                <FileText className="w-4 h-4 text-violet-600" />
-                <span className="text-violet-700">Professional Templates</span>
-              </div> */}
-              <h2 className="pr_head lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">Choose from Premium Resume Templates</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Hand-crafted, ATS-friendly templates designed by career experts to help you stand out
-              </p>
+      {
+        templates.length > 0 ? (
+          <section className="py-24 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+              <div className="text-center max-w-3xl mx-auto">
+                <h2 className="pr_head lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
+                  Choose from Premium Resume Templates
+                </h2>
+                <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                  Hand-crafted, ATS-friendly templates designed by career experts to help you stand out
+                </p>
+              </div>
             </div>
-          </div>
 
-          {/* Infinite Sliding Templates */}
-          <div className="relative">
-            {/* Gradient Overlays */}
-            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-violet-50 to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-pink-50/20 to-transparent z-10 pointer-events-none"></div>
+            {/* Slider Container */}
+            <div className="relative max-w-[1400px] mx-auto px-4 sm:px-12">
 
-            <div className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth px-4 pt-4" ref={scrollContainerRef} onScroll={checkScrollPosition}>
-              {/* First Set */}
-              {templates.map((template, index) => (
-                <div key={index} className="flex-shrink-0 w-80 group">
-                  <div data-slot="card" className="bg-card text-card-foreground flex flex-col rounded-xl overflow-hidden border-2 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                    <div className={`aspect-[8.5/11] bg-gradient-to-br relative h-72`}>
-                      <ImageWithFallback
-                        src={template.thumbnail}
-                        alt={`${template.name} Resume Template`}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div data-slot="card-content" className="p-3 text-center">
-                      <h4 className="text-gray-900">{template.name}</h4>
+              <div
+                className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth py-6 px-4"
+                ref={scrollContainerRef}
+                onScroll={checkScrollPosition}
+              >
+                {templates.map((template, index) => (
+                  <div key={index} className="flex-shrink-0 w-72 group relative">
+                    {/* Card Container - Enforcing Fixed Height Here */}
+                    <div className="h-[350px] bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-1 overflow-hidden border border-gray-100 dark:border-gray-700">
+
+                      {/* Image Area - Full Height of Parent */}
+                      <div className="h-full w-full bg-gray-100 dark:bg-gray-700 relative overflow-hidden group">
+                        <ImageWithFallback
+                          src={template.thumbnail}
+                          alt={`${template.name} Resume Template`}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+
+                        {/* Overlay on Hover */}
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+
+                        {/* Use Template Button (appears on hover) */}
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <Link to="/resume-builder">
+                            <Button className="cursor-pointer bg-violet-600 hover:bg-violet-700 text-white rounded-full px-6 py-2 shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 font-medium">
+                              Use Template
+                            </Button>
+                          </Link>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+
+              {/* Navigation Buttons - Only show if more than 6 templates */}
+              {templates.length > 6 && (
+                <>
+                  <button
+                    className={`cursor-pointer absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition-all duration-200 ${canScrollLeft ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4 pointer-events-none'
+                      }`}
+                    onClick={() => scroll('left')}
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
+
+                  <button
+                    className={`cursor-pointer absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition-all duration-200 ${canScrollRight ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4 pointer-events-none'
+                      }`}
+                    onClick={() => scroll('right')}
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </button>
+                </>
+              )}
             </div>
 
-            {/* Scroll Buttons */}
-            <button
-              className={`absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border-2 border-gray-200 flex items-center justify-center transition-all ${canScrollLeft ? 'opacity-100 hover:bg-white hover:shadow-xl' : 'opacity-0 pointer-events-none'
-                }`}
-              onClick={() => scroll('left')}
-              disabled={!canScrollLeft}
-            >
-              <ChevronLeft className="w-6 h-6 text-gray-700" />
-            </button>
-            <button
-              className={`absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border-2 border-gray-200 flex items-center justify-center transition-all ${canScrollRight ? 'opacity-100 hover:bg-white hover:shadow-xl' : 'opacity-0 pointer-events-none'
-                }`}
-              onClick={() => scroll('right')}
-              disabled={!canScrollRight}
-            >
-              <ChevronRight className="w-6 h-6 text-gray-700" />
-            </button>
-          </div>
 
-          <div className="text-center mt-10">
-            <Link to="/resume-builder">
-              <Button className="bg-violet-600 hover:bg-violet-700 text-white px-8 py-6 rounded-xl">
-                <FileText className="w-5 h-5" />
-                Browse All Templates
-                <ArrowRight className="w-5 h-5" />
-              </Button>
-            </Link>
-          </div>
-        </section>
-      ) : null}
+
+            <div className="text-center mt-12">
+              <Link to="/resume-builder">
+                <Button variant="outline" className="cursor-pointer border-violet-200 hover:border-violet-300 hover:bg-violet-50 text-violet-600 px-8 py-6 rounded-xl text-lg font-medium transition-all duration-300">
+                  See All Resume Templates
+                </Button>
+              </Link>
+            </div>
+          </section>
+        ) : null
+      }
 
 
       {/* ATS Score Checker Section */}
 
-      <section className="py-20 bg-white dark:bg-gray-900">
+      <section className="py-16 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             {/* <div className="inline-flex items-center gap-2 px-4 py-2 bg-teal-100 dark:bg-teal-900/30 rounded-full mb-4">
@@ -654,7 +669,7 @@ export function LandingPageOne() {
                 <Link to="/ats-checker">
                   <Button
                     size="lg"
-                    className="bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 gap-2"
+                    className="cursor-pointer bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 gap-2"
                   >
                     <Scan className="w-5 h-5" />
                     Check Your ATS Score Now
@@ -718,7 +733,9 @@ export function LandingPageOne() {
 
       {/* CTA Section */}
 
-      <Footer />
+      <div className="mt-20">
+        <Footer />
+      </div>
     </div>
   );
 }

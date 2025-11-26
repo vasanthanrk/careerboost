@@ -474,44 +474,47 @@ export function ResumeEditor() {
                 </DialogHeader>
               </div>
 
-              {/* ✅ Scrollable Main Content */}
-              <div className="px-6 py-4">
-                {/* This will scroll because DialogContent wraps an inner div with overflow-y-auto */}
-                <div className="space-y-4">
-                  <ScrollArea className="h-[70vh] px-6 py-4 bg-gray-50">
-                    <div className="flex-1 bg-gray-50">
-                      {templates.length === 0 ? (
-                        <div className="flex items-center justify-center h-64 text-gray-500">
-                          Loading templates...
+              {/* Horizontal Scrollable Content */}
+              <div className="flex-1 px-6 py-6 bg-gray-50 overflow-hidden">
+                {templates.length === 0 ? (
+                  <div className="flex items-center justify-center h-full text-gray-500">
+                    Loading templates...
+                  </div>
+                ) : (
+                  <div className="flex gap-6 overflow-x-auto pb-4 h-full">
+                    {templates.map((t) => (
+                      <div
+                        key={t.id}
+                        onClick={() => setSelectedTemplate(t.id)}
+                        className={`group relative flex-shrink-0 w-80 border rounded-lg cursor-pointer bg-white shadow-sm hover:shadow-xl transition-all ${
+                          selectedTemplate === t.id
+                            ? "border-violet-600 ring-2 ring-violet-400"
+                            : "border-gray-200"
+                        }`}
+                      >
+                        <div className="relative w-full h-96">
+                          <img
+                            src={t.thumbnail}
+                            alt={t.name}
+                            className="w-full h-full object-cover rounded-lg"
+                          />
                         </div>
-                      ) : (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                          {templates.map((t: any) => (
-                            <div
-                              key={t.id}
-                              onClick={() => setSelectedTemplate(t.id)}
-                              className={`border rounded-lg cursor-pointer bg-white shadow-sm hover:shadow-md transition-all ${selectedTemplate === t.id
-                                ? "border-violet-600 ring-2 ring-violet-400"
-                                : "border-gray-200"
-                                }`}
-                            >
-                              <div className="relative w-full h-72 ">
-                                <img
-                                  src={t.thumbnail}
-                                  alt={t.name}
-                                  className="w-full h-full object-cover"
-                                />
-                              </div>
-                              <div className="p-3 text-center">
-                                <p className="font-medium text-gray-900">{t.name}</p>
-                              </div>
-                            </div>
-                          ))}
+                        
+                        {/* Hover Popup - Large Preview */}
+                        <div className="absolute left-full ml-4 top-0 z-50 hidden group-hover:block pointer-events-none">
+                          <div className="bg-white rounded-lg shadow-2xl border-2 border-violet-500 p-2 w-96">
+                            <img
+                              src={t.thumbnail}
+                              alt={`${t.name} - Large Preview`}
+                              className="w-full h-auto object-contain rounded"
+                            />
+                            <p className="text-center mt-2 font-semibold text-gray-700">{t.name}</p>
+                          </div>
                         </div>
-                      )}
-                    </div>
-                  </ScrollArea>
-                </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
 
               {/* Sticky Footer */}

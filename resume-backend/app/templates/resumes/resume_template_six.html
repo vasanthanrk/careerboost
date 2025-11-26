@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+/* ---------- PAGE RULES ---------- */
+@page {
+  size: A4;
+  margin: 0; /* Full bleed for header */
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #F5F5F5; /* Light gray background */
+  color: #333;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* HEADER */
+.header {
+  background-color: #B04A75; /* Pink color from design */
+  color: white;
+  padding: 40px 50px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.profile-img-container {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid white;
+  flex-shrink: 0;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.header-content {
+  flex-grow: 1;
+}
+
+.header-name {
+  font-size: 42px;
+  font-weight: bold;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.header-contact {
+  text-align: right;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.header-contact div {
+  margin-bottom: 2px;
+}
+
+/* SUMMARY BAR */
+.summary-bar {
+  background-color: #9E3F66; /* Slightly darker pink */
+  color: white;
+  padding: 15px 50px;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+/* MAIN CONTENT */
+.container {
+  padding: 30px 50px;
+}
+
+/* SECTIONS */
+.section-title {
+  color: #B04A75;
+  font-size: 18px;
+  font-weight: bold;
+  border-bottom: 1px solid #B04A75;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+}
+
+/* SKILLS */
+.skills-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.skills-list li {
+  margin-bottom: 6px;
+  position: relative;
+  padding-left: 15px;
+  color: #444;
+}
+
+.skills-list li::before {
+  content: "•";
+  color: #B04A75;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+/* WORK HISTORY & EDUCATION - 2 COLUMN LAYOUT */
+.entry-grid {
+  display: table; /* Using table for PDF compatibility if flex fails in some renderers, but flex is standard */
+  width: 100%;
+  margin-bottom: 20px;
+  page-break-inside: avoid;
+}
+
+.entry-left {
+  display: table-cell;
+  width: 25%;
+  vertical-align: top;
+  padding-right: 15px;
+}
+
+.entry-right {
+  display: table-cell;
+  width: 75%;
+  vertical-align: top;
+}
+
+.role-title {
+  font-weight: bold;
+  font-size: 14px;
+  color: #222;
+  margin-bottom: 2px;
+}
+
+.company-name {
+  font-style: italic;
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 2px;
+}
+
+.date-range {
+  font-size: 11px;
+  color: #666;
+  font-style: italic;
+}
+
+.entry-details ul {
+  margin: 5px 0 0 0;
+  padding-left: 15px;
+}
+
+.entry-details li {
+  margin-bottom: 4px;
+  color: #444;
+  font-size: 12px;
+}
+
+.entry-details li::marker {
+  color: #B04A75;
+}
+
+/* PRINT FIXES */
+@media print {
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <div class="profile-img-container">
+        <!-- Using a placeholder if no image, or the user's image -->
+        <!-- In a real app, ensure this path is accessible by the PDF generator -->
+        <img src="{{ resume.profile_image if resume.profile_image else 'https://i.pravatar.cc/300' }}" class="profile-img" alt="Profile">
+    </div>
+    
+    <div class="header-content">
+        <h1 class="header-name">{{ resume.name }}</h1>
+    </div>
+
+    <div class="header-contact">
+        <div>{{ resume.location }}</div>
+        <div>{{ resume.email }}</div>
+        <div>{{ resume.phone }}</div>
+    </div>
+</div>
+
+<!-- SUMMARY BAR -->
+<div class="summary-bar">
+    {{ resume.summary }}
+</div>
+
+<div class="container">
+
+    <!-- SKILLS -->
+    {% if resume.skills and resume.skills|length > 0 %}
+    <div>
+        <h3 class="section-title">Skills</h3>
+        <ul class="skills-list">
+            {% for skill in resume.skills %}
+            <li>{{ skill.skill }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- WORK HISTORY -->
+    {% if resume.experiences and resume.experiences|length > 0 %}
+    <div>
+        <h3 class="section-title">Work History</h3>
+        
+        {% for exp in resume.experiences %}
+        <div class="entry-grid">
+            <div class="entry-left">
+                <div class="role-title">{{ exp.title }}</div>
+                <div class="company-name">{{ exp.company }}</div>
+                <div class="date-range">{{ exp.duration }}</div>
+            </div>
+            <div class="entry-right">
+                <div class="entry-details">
+                    <!-- Assuming description might be HTML or plain text. If plain, wrap in p or ul -->
+                    <p>{{ exp.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- EDUCATION -->
+    {% if resume.educations and resume.educations|length > 0 %}
+    <div>
+        <h3 class="section-title">Education</h3>
+        
+        {% for edu in resume.educations %}
+        <div class="entry-grid">
+            <div class="entry-left">
+                <div class="date-range">{{ edu.year }}</div>
+            </div>
+            <div class="entry-right">
+                <div class="role-title">{{ edu.degree }}</div>
+                <div class="company-name">{{ edu.school }}</div>
+                <!-- <div class="entry-details">
+                    <ul>
+                        <li>Relevant Coursework...</li>
+                    </ul>
+                </div> -->
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>

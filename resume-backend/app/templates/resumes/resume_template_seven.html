@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <style>
+    /* ---------- PAGE RULES ---------- */
+    @page {
+      size: A4;
+      margin: 0;
+      /* Full bleed */
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: white;
+      color: #333;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    /* HEADER */
+    .header {
+      background-color: #7B4397;
+      /* Purple */
+      color: white;
+      padding: 30px 40px;
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .profile-img-container {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid white;
+      flex-shrink: 0;
+    }
+
+    .profile-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .header-content {
+      flex-grow: 1;
+    }
+
+    .header-name {
+      font-size: 36px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .header-contact {
+      text-align: right;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    /* MAIN LAYOUT - 2 COLUMNS */
+    .main-container {
+      display: table;
+      width: 100%;
+      height: 100%;
+      /* Try to fill page */
+    }
+
+    .left-column {
+      display: table-cell;
+      width: 65%;
+      background-color: #E6E6E6;
+      /* Light Gray Background */
+      padding: 30px 40px;
+      vertical-align: top;
+    }
+
+    .right-column {
+      display: table-cell;
+      width: 35%;
+      background-color: #FFFFFF;
+      /* White Background */
+      padding: 30px 20px;
+      vertical-align: top;
+      border-left: 1px solid #ddd;
+      /* Optional separator */
+    }
+
+    /* SECTIONS */
+    .section-title {
+      color: #7B4397;
+      /* Purple */
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 0;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    .left-column .section-title {
+      border-bottom: 2px solid #7B4397;
+      padding-bottom: 5px;
+      margin-top: 25px;
+    }
+
+    .left-column .section-title:first-child {
+      margin-top: 0;
+    }
+
+    .right-column .section-title {
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+
+    /* SUMMARY */
+    .summary-text {
+      font-weight: 500;
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+
+    /* WORK HISTORY */
+    .job-item {
+      margin-bottom: 20px;
+    }
+
+    .role-title {
+      font-weight: bold;
+      font-size: 14px;
+      color: #222;
+    }
+
+    .company-row {
+      display: flex;
+      justify-content: space-between;
+      font-style: italic;
+      font-size: 12px;
+      color: #555;
+      margin-bottom: 5px;
+    }
+
+    .job-details ul {
+      margin: 5px 0 0 0;
+      padding-left: 15px;
+    }
+
+    .job-details li {
+      margin-bottom: 4px;
+    }
+
+    .job-details li::marker {
+      color: #7B4397;
+    }
+
+    /* EDUCATION & CERTIFICATIONS */
+    .edu-item,
+    .cert-item {
+      margin-bottom: 15px;
+    }
+
+    .edu-degree {
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .edu-school {
+      font-size: 12px;
+      color: #555;
+    }
+
+    /* SKILLS (Right Column) */
+    .skills-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .skills-list li {
+      margin-bottom: 8px;
+      padding-left: 15px;
+      position: relative;
+      font-weight: 500;
+      color: #444;
+    }
+
+    .skills-list li::before {
+      content: "•";
+      color: #7B4397;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+      font-size: 16px;
+      line-height: 14px;
+    }
+
+    /* PRINT FIXES */
+    @media print {
+      body {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="profile-img-container">
+      <img src="{{ resume.profile_image if resume.profile_image else 'https://i.pravatar.cc/300' }}" class="profile-img"
+        alt="Profile">
+    </div>
+
+    <div class="header-content">
+      <h1 class="header-name">{{ resume.name }}</h1>
+    </div>
+
+    <div class="header-contact">
+      <div>{{ resume.location }}</div>
+      <div>{{ resume.email }}</div>
+      <div>{{ resume.phone }}</div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT GRID -->
+  <div class="main-container">
+
+    <!-- LEFT COLUMN (MAIN) -->
+    <div class="left-column">
+
+      <!-- SUMMARY -->
+      <div class="summary-text">
+        {{ resume.summary }}
+      </div>
+
+      <!-- EXPERIENCE -->
+      {% if resume.experiences and resume.experiences|length > 0 %}
+      <div>
+        <h3 class="section-title">Professional Experience</h3>
+        {% for exp in resume.experiences %}
+        <div class="job-item">
+          <div class="role-title">{{ exp.title }}</div>
+          <div class="company-row">
+            <span>{{ exp.company }}</span>
+            <span>{{ exp.duration }}</span>
+          </div>
+          <div class="job-details">
+            <p>{{ exp.description }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <!-- EDUCATION -->
+      {% if resume.educations and resume.educations|length > 0 %}
+      <div>
+        <h3 class="section-title">Education</h3>
+        {% for edu in resume.educations %}
+        <div class="edu-item">
+          <div class="role-title">{{ edu.degree }}</div>
+          <div class="company-row">
+            <span>{{ edu.school }}</span>
+            <span>{{ edu.year }}</span>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <!-- CERTIFICATIONS (Optional if data exists, assuming mapped to achievements or separate) -->
+      {% if resume.achievements and resume.achievements|length > 0 %}
+      <div>
+        <h3 class="section-title">Certifications & Achievements</h3>
+        {% for ach in resume.achievements %}
+        <div class="cert-item">
+          <div class="role-title">{{ ach.title }}</div>
+          <div class="job-details">
+            <p>{{ ach.description }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+    </div>
+
+    <!-- RIGHT COLUMN (SIDEBAR) -->
+    <div class="right-column">
+
+      <!-- SKILLS -->
+      {% if resume.skills and resume.skills|length > 0 %}
+      <div>
+        <h3 class="section-title">Skills</h3>
+        <ul class="skills-list">
+          {% for skill in resume.skills %}
+          <li>{{ skill.skill }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+      <!-- LANGUAGES (If available) -->
+      {% if resume.languages and resume.languages|length > 0 %}
+      <div style="margin-top: 30px;">
+        <h3 class="section-title">Languages</h3>
+        <ul class="skills-list">
+          {% for lang in resume.languages %}
+          <li>{{ lang.languages }} ({{ lang.proficiency }})</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+
+</body>
+
+</html>
