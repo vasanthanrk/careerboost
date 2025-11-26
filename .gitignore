@@ -27,6 +27,6 @@ ai_resume_model/
 __MACOSX/
 
 .vscode/
-resume-backend/uploads
+resume-backend/uploads/avatars/
 resume-backend/alembic/versions
 resume-backend/app/data/*.txt
