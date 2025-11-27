@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
 
+# Allow all major search engines to crawl everything else
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
 Sitemap: https://smartcvmaker.com/sitemap.xml

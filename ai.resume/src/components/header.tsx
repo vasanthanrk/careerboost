@@ -19,12 +19,12 @@ export function Header() {
                 <Link to="/" className="flex items-center gap-3 group">
                   <img 
                       src={logo}
-                      alt="Quick CV Maker"
+                      alt="SmartCV Maker"
                       className="w-30 h-14"
                   />
                   {/* <div className="hidden sm:block">
                       <span className="text-gray-900 dark:text-white">
-                          Quick CV Maker
+                          SmartCV Maker
                       </span>
                       <p className="text-gray-500 -mt-1">AI-Powered</p>
                   </div> */}
