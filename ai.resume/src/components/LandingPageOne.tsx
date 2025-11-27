@@ -212,10 +212,10 @@ export function LandingPageOne() {
           <div className="relative flex justify-center items-center">
             <div className={`flip-wrapper ${flipped ? "flipped" : ""}`}>
               <div className="side front">
-                <img src="https://marketplace.canva.com/EAGcEPEtKxs/1/0/1131w/canva-modern-minimalist-professional-cv-resume-lunzGAiAG3o.jpg" alt="canva modern minimalist professional cv resume"/>
+                <img src="https://marketplace.canva.com/EAGcEPEtKxs/1/0/1131w/canva-modern-minimalist-professional-cv-resume-lunzGAiAG3o.jpg" alt="canva modern minimalist professional cv resume" fetchpriority="high"/>
               </div>
               <div className="side back">
-                <img src="https://i.pinimg.com/736x/c3/5f/5b/c35f5bc0a572f1aa3d236a8a311b3510.jpg" alt="canva modern minimalist professional cv resume back"/>
+                <img src="https://i.pinimg.com/736x/c3/5f/5b/c35f5bc0a572f1aa3d236a8a311b3510.jpg" alt="canva modern minimalist professional cv resume back" fetchpriority="high"/>
               </div>
             </div>
           </div>
