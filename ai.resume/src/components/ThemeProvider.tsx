@@ -18,9 +18,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       return savedTheme;
     }
     // Check system preference
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
-    }
+    // if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    //   return 'dark';
+    // }
     return 'light';
   });
 

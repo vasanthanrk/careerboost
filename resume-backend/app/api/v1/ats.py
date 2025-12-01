@@ -101,7 +101,9 @@ def call_gemini_analyze(resume_text: str, current_user):
         - "severity": one of "critical", "warning", or "info".
     - "suggestions": array of short actionable suggestion strings to improve the resume.
     - "improvedResume": need tobe ATS based data. object with the following schema strictly (even if some fields are empty):
-
+    - "summary" should be a concise professional summary relevant to the job role avoiding unnecessary elaboration .
+    - all the discriptions should be concise and to the point, avoiding unnecessary elaboration."
+    - keywords need to be specific to the job role and industry, and no need to include what have in skills section."
     ```json{{
         "overall": 0-100,
         "breakdown": {{

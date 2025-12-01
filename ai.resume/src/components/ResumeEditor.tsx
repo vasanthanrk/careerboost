@@ -17,6 +17,8 @@ import api from '../api/axiosClient';
 import { handleFeatureCheck } from '../utils/featureCheck'
 import MinimalPdfViewer from './MinimalPdfViewer';
 import { SEO } from './SEO';
+import { useSearchParams } from "react-router-dom";
+
 
 export function ResumeEditor() {
   const [isGenerating, setIsGenerating] = useState(false);
@@ -49,58 +51,66 @@ export function ResumeEditor() {
 
   const user = JSON.parse(localStorage.getItem("user") || "{}");
 
-  useEffect(() => {
-    const fetchResume = async () => {
-      try {
-        const res = await api.get('/resume');
+  const [searchParams] = useSearchParams();
+  const urlTemplate = searchParams.get("template");
+  const urlCategory = searchParams.get("category");
 
-        // Handle case where backend returns nested resume_data
-        const data = res.data?.resume_data ? res.data.resume_data : res.data;
+  const fetchResume = async () => {
+    try {
+      const res = await api.get('/resume');
 
-        // Validate structure and set default fields
+      // Handle case where backend returns nested resume_data
+      const data = res.data?.resume_data ? res.data.resume_data : res.data;
+
+      // Validate structure and set default fields
+      setResumeData({
+        name: data?.name || '',
+        email: data?.email || '',
+        phone: data?.phone || '',
+        location: data?.location || '',
+        jobrole: data?.jobrole || '',
+        linkedin_url: data?.linkedin_url || '',
+        git_url: data?.git_url || '',
+        portfolio_url: data?.portfolio_url || '',
+        summary: data?.summary || '',
+        template: urlTemplate ?? data?.template ?? '',
+        category: urlCategory ?? data?.category ?? '',
+        experiences: Array.isArray(data?.experiences) ? data.experiences : [],
+        educations: Array.isArray(data?.educations) ? data.educations : [],
+        skills: Array.isArray(data?.skills) ? data.skills : [],
+        projects: Array.isArray(data?.projects) ? data.projects : [],
+        certifications: Array.isArray(data?.certifications) ? data.certifications : [],
+        languages: Array.isArray(data?.languages) ? data.languages : [],
+        achievements: Array.isArray(data?.achievements) ? data.achievements : [],
+        keywords: Array.isArray(data?.keywords) ? data.keywords : []
+      });
+    } catch (err: any) {
+      if (err.response?.status === 404) {
+        // No resume yet — initialize empty
         setResumeData({
-          name: data?.name || '',
-          email: data?.email || '',
-          phone: data?.phone || '',
-          location: data?.location || '',
-          jobrole: data?.jobrole || '',
-          linkedin_url: data?.linkedin_url || '',
-          git_url: data?.git_url || '',
-          portfolio_url: data?.portfolio_url || '',
-          summary: data?.summary || '',
-          experiences: Array.isArray(data?.experiences) ? data.experiences : [],
-          educations: Array.isArray(data?.educations) ? data.educations : [],
-          skills: Array.isArray(data?.skills) ? data.skills : [],
-          projects: Array.isArray(data?.projects) ? data.projects : [],
-          certifications: Array.isArray(data?.certifications) ? data.certifications : [],
-          languages: Array.isArray(data?.languages) ? data.languages : [],
-          achievements: Array.isArray(data?.achievements) ? data.achievements : [],
-          keywords: Array.isArray(data?.keywords) ? data.keywords : []
+          name: '',
+          email: '',
+          phone: '',
+          location: '',
+          summary: '',
+          template: '',
+          category:'',
+          experiences: [],
+          educations: [],
+          skills: [],
+          projects: [],
+          keywords: []
         });
-      } catch (err: any) {
-        if (err.response?.status === 404) {
-          // No resume yet — initialize empty
-          setResumeData({
-            name: '',
-            email: '',
-            phone: '',
-            location: '',
-            summary: '',
-            experiences: [],
-            educations: [],
-            skills: [],
-            projects: [],
-            keywords: []
-          });
-        } else {
-          console.error("Resume fetch error:", err);
-          toast.error('Failed to load resume data');
-        }
-      } finally {
-        setIsLoading(false);
+      } else {
+        console.error("Resume fetch error:", err);
+        toast.error('Failed to load resume data');
       }
-    };
-
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  
+  useEffect(() => {
     fetchResume();
 
     const handler = (e: KeyboardEvent) => {
@@ -114,10 +124,18 @@ export function ResumeEditor() {
     return () => window.removeEventListener("keydown", handler);
   }, []);
 
+  useEffect(() => {
+    if (resumeData?.template) {
+      setSelectedTemplate(resumeData.template);
+    }
+  }, [resumeData]);
 
   useEffect(() => {
     if (isOpen) {
-      api.get('/resume/templates').then(res => setTemplates(res.data));
+      api.get('/resume/templates').then(res => {
+        const list = res.data;
+        setTemplates(list);
+      });
     }
   }, [isOpen]);
 
@@ -485,19 +503,25 @@ export function ResumeEditor() {
                     {templates.map((t) => (
                       <div
                         key={t.id}
-                        onClick={() => setSelectedTemplate(t.id)}
+                        onClick={() => { if(t.tier == 'free') {setSelectedTemplate(t.id)} } }
                         className={`group relative flex-shrink-0 w-80 border rounded-lg cursor-pointer bg-white shadow-sm hover:shadow-xl transition-all ${
                           selectedTemplate === t.id
                             ? "border-violet-600 ring-2 ring-violet-400"
                             : "border-gray-200"
-                        }`}
+                        } ${t.tier !== "free" ? "template-disabled" : ""}`}
                       >
+                        {/* Tier Badge */}
+                        <div className="absolute top-2 left-2">
+                          <span
+                            className={`px-2 py-1 text-xs font-semibold rounded-md text-white ${
+                              t.tier === "free" ? "badge-free" : "badge-premium"
+                            }`}
+                          >
+                            {t.tier === "free" ? "FREE" : "PREMIUM"}
+                          </span>
+                        </div>
                         <div className="relative w-full h-96">
-                          <img
-                            src={t.thumbnail}
-                            alt={t.name}
-                            className="w-full h-full object-cover rounded-lg"
-                          />
+                          <img src={t.thumbnail} alt={t.name} className="w-full h-full object-cover rounded-lg"/>
                         </div>
                         
                         {/* Hover Popup - Large Preview */}
@@ -553,7 +577,7 @@ export function ResumeEditor() {
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full mb-3">
                 <FileText className="w-4 h-4" />
-                <span>AI-Powered Resume Builder</span>
+                <span>AI-Powered Resume Builder {resumeData.template}</span>
               </div>
               <h1 className="text-white mb-2">Resume Builder</h1>
               <p className="text-cyan-100">Create a professional resume that stands out to employers</p>
@@ -719,17 +743,17 @@ export function ResumeEditor() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label>GitHub URL</Label>
-                      <Input
-                        value={resumeData.git_url}
-                        onChange={(e) => setResumeData({ ...resumeData, git_url: e.target.value })}
-                      />
-                    </div>
-                    <div className="space-y-2">
                       <Label>Portfolio URL</Label>
                       <Input
                         value={resumeData.portfolio_url}
                         onChange={(e) => setResumeData({ ...resumeData, portfolio_url: e.target.value })}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label>Other URL</Label>
+                      <Input
+                        value={resumeData.git_url}
+                        onChange={(e) => setResumeData({ ...resumeData, git_url: e.target.value })}
                       />
                     </div>
                   </TabsContent>
@@ -939,11 +963,15 @@ export function ResumeEditor() {
                       <span>{resumeData.phone || 'Phone'}</span> |
                       <span>{resumeData.location || "Location"}</span>
                     </div>
-                    <div className="flex flex-wrap gap-4 mt-2 text-gray-600">
-                      <span>{resumeData.linkedin_url || 'LinkedIn'}</span> |
-                      <span>{resumeData.git_url || 'Git'}</span> |
-                      <span>{resumeData.portfolio_url || 'Portfolio'}</span>
-                    </div>
+                    {
+                      (resumeData.linkedin_url || resumeData.git_url || resumeData.portfolio_url) && (
+                        <div className="flex flex-wrap gap-4 mt-2 text-gray-600">
+                          <span>{resumeData.linkedin_url || 'LinkedIn'}</span> |
+                          <span>{resumeData.git_url || 'Other'}</span> |
+                          <span>{resumeData.portfolio_url || 'Portfolio'}</span>
+                        </div>
+                      )
+                    }
                   </div>
 
                   {/* Summary */}

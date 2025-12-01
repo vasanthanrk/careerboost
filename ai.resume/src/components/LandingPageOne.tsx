@@ -67,7 +67,7 @@ export function LandingPageOne() {
       description:
         "Create professional, ATS-friendly resumes in minutes with AI-powered suggestions and real-time optimization.",
       gradient: "from-violet-500 to-purple-500",
-      link: "/resume-builder",
+      link: "/resume-templates",
     },
     {
       icon: CheckCircle2,
@@ -202,7 +202,7 @@ export function LandingPageOne() {
               </li>
             </ul>
 
-            <Link to="/resume-builder">
+            <Link to="/resume-templates">
               <Button className="cursor-pointer bg-violet-600 hover:bg-violet-700 text-white px-8 py-6 rounded-xl">
                 Get Started Now
               </Button>
@@ -412,7 +412,7 @@ export function LandingPageOne() {
 
                         {/* Use Template Button (appears on hover) */}
                         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <Link to="/resume-builder">
+                          <Link to="/resume-templates">
                             <Button className="cursor-pointer bg-violet-600 hover:bg-violet-700 text-white rounded-full px-6 py-2 shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 font-medium">
                               Use Template
                             </Button>
@@ -449,7 +449,7 @@ export function LandingPageOne() {
 
 
             <div className="text-center mt-12">
-              <Link to="/resume-builder">
+              <Link to="/resume-templates">
                 <Button variant="outline" className="cursor-pointer border-violet-200 hover:border-violet-300 hover:bg-violet-50 text-violet-600 px-8 py-6 rounded-xl text-lg font-medium transition-all duration-300">
                   See All Resume Templates
                 </Button>

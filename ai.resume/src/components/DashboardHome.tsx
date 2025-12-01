@@ -20,7 +20,7 @@ export function DashboardHome() {
       icon: FileText,
       title: 'Resume Builder',
       description: 'Create professional, ATS-friendly resumes with AI assistance',
-      link: '/resume-builder',
+      link: '/resume-templates',
       gradient: 'from-violet-500 to-purple-500',
       bgColor: 'bg-violet-50',
       iconBg: 'bg-violet-100',
@@ -87,7 +87,7 @@ export function DashboardHome() {
             </p>
 
             <div className="flex flex-wrap gap-3">
-              <Link to="/resume-builder">
+              <Link to="/resume-templates">
                 <Button className="bg-white text-violet-600 hover:bg-violet-50 gap-2 shadow-lg">
                   <Sparkles className="w-4 h-4" />
                   Start Building Resume

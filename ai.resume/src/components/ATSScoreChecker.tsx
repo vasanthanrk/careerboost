@@ -326,7 +326,7 @@ export function ATSScoreChecker() {
               {/* Quick Actions */}
               <Card>
                 <CardContent className="pt-6 space-y-3">
-                  <Link to="/resume-builder">
+                  <Link to="/resume-templates">
                     <Button className="w-full gap-2 bg-gradient-to-r from-violet-600 to-purple-600">
                       <Eye className="w-4 h-4" />
                       View AI-Enhanced Resume

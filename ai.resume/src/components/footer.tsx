@@ -33,7 +33,7 @@ export function Footer() {
             <div>
                 <h4 className="text-white mb-4">Features</h4>
                 <div className="space-y-2">
-                <Link to="/resume-builder" className="block text-gray-400 hover:text-white transition-colors">Resume Builder</Link>
+                <Link to="/resume-templates" className="block text-gray-400 hover:text-white transition-colors">Resume Builder</Link>
                 <Link to="/ats-checker" className="block text-gray-400 hover:text-white transition-colors">ATS Checker</Link>
                 <Link to="/cover-letter" className="block text-gray-400 hover:text-white transition-colors">Cover Letter</Link>
                 <Link to="/job-fit" className="block text-gray-400 hover:text-white transition-colors">Job Fit Analyzer</Link>

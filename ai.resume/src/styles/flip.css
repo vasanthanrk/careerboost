@@ -85,3 +85,58 @@
 
     }
 }
+
+/* FREE badge */
+.badge-free {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 4px 10px;
+  background-color: #16A34A; /* green-600 */
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+/* PREMIUM badge */
+.badge-premium {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 4px 10px;
+  background-color: #7C3AED; /* violet-600 */
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.template-disabled {
+  position: relative;
+  pointer-events: none;       /* Disable clicking */
+  opacity: 0.45;              /* Grey + faded look */
+  filter: grayscale(100%);    /* Full grayscale */
+}
+
+.template-disabled::after {
+  content: "LOCKED";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 8px;
+
+  z-index: 20;
+  backdrop-filter: blur(2px);
+}

@@ -77,7 +77,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
   const navItems = [
     { path: '/dashboard', icon: LayoutDashboard, label: 'Dashboard', gradient: 'from-violet-500 to-purple-500' },
-    { path: '/resume-builder', icon: FileText, label: 'Resume', gradient: 'from-blue-500 to-cyan-500' },
+    { path: '/resume-templates', icon: FileText, label: 'Resume', gradient: 'from-blue-500 to-cyan-500' },
     { path: '/ats-checker', icon: CheckCircle2, label: 'ATS Checker', gradient: 'from-teal-500 to-cyan-500' },
     { path: '/cover-letter', icon: Mail, label: 'Cover Letter', gradient: 'from-green-500 to-emerald-500' },
     { path: '/job-fit', icon: Target, label: 'Job Fit', gradient: 'from-orange-500 to-red-500' },

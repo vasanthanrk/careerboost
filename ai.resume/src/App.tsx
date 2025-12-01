@@ -24,6 +24,7 @@ import { PrivacyPage } from './components/PrivacyPage';
 import { TermsPage } from './components/TermsPage';
 import { CookiePage } from './components/CookiePage';
 import ScrollToTop from './components/ScrollToTop';
+import { ResumeTemplateSelector } from './components/ResumeTemplateSelector';
 
 export default function App() {
   return (
@@ -50,6 +51,7 @@ export default function App() {
 
             <Route element={<ProtectedRoute />}>
               <Route path="/dashboard" element={<DashboardHome />} />
+              <Route path="/resume-templates" element={<ResumeTemplateSelector />} />
               <Route path="/resume-builder" element={<ResumeEditor />} />
               <Route path="/ats-checker" element={<ATSScoreChecker />} />
               <Route path="/cover-letter" element={<CoverLetterGenerator />} />
