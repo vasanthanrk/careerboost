@@ -94,7 +94,7 @@ export function ResumeEditor() {
           location: '',
           summary: '',
           template: '',
-          category:'',
+          category: '',
           experiences: [],
           educations: [],
           skills: [],
@@ -109,7 +109,7 @@ export function ResumeEditor() {
       setIsLoading(false);
     }
   };
-  
+
   useEffect(() => {
     fetchResume();
 
@@ -499,31 +499,29 @@ export function ResumeEditor() {
                     Loading templates...
                   </div>
                 ) : (
-                  <div className="flex gap-6 overflow-x-auto pb-4 h-full">
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                     {templates.map((t) => (
                       <div
                         key={t.id}
-                        onClick={() => { if(t.tier == 'free') {setSelectedTemplate(t.id)} } }
-                        className={`group relative flex-shrink-0 w-80 border rounded-lg cursor-pointer bg-white shadow-sm hover:shadow-xl transition-all ${
-                          selectedTemplate === t.id
-                            ? "border-violet-600 ring-2 ring-violet-400"
-                            : "border-gray-200"
-                        } ${t.tier !== "free" ? "template-disabled" : ""}`}
+                        onClick={() => { if (t.tier == 'free') { setSelectedTemplate(t.id) } }}
+                        className={`group relative border rounded-lg cursor-pointer bg-white shadow-sm hover:shadow-xl transition-all ${selectedTemplate === t.id
+                          ? "border-violet-600 ring-2 ring-violet-400"
+                          : "border-gray-200"
+                          } ${t.tier !== "free" ? "template-disabled" : ""}`}
                       >
                         {/* Tier Badge */}
                         <div className="absolute top-2 left-2">
                           <span
-                            className={`px-2 py-1 text-xs font-semibold rounded-md text-white ${
-                              t.tier === "free" ? "badge-free" : "badge-premium"
-                            }`}
+                            className={`px-2 py-1 text-xs font-semibold rounded-md text-white ${t.tier === "free" ? "badge-free" : "badge-premium"
+                              }`}
                           >
                             {t.tier === "free" ? "FREE" : "PREMIUM"}
                           </span>
                         </div>
                         <div className="relative w-full h-96">
-                          <img src={t.thumbnail} alt={t.name} className="w-full h-full object-cover rounded-lg"/>
+                          <img src={t.thumbnail} alt={t.name} className="w-full h-full object-cover rounded-lg" />
                         </div>
-                        
+
                         {/* Hover Popup - Large Preview */}
                         <div className="absolute left-full ml-4 top-0 z-50 hidden group-hover:block pointer-events-none">
                           <div className="bg-white rounded-lg shadow-2xl border-2 border-violet-500 p-2 w-96">
