@@ -48,6 +48,7 @@ export function ResumeEditor() {
 
   const [previewInProcess, setPreviewInProcess] = useState(false);
   const [downloadInProcess, setDownloadInProcess] = useState(false);
+  const [activeSub, setActiveSub] = useState(false);
 
   const user = JSON.parse(localStorage.getItem("user") || "{}");
 
@@ -133,7 +134,8 @@ export function ResumeEditor() {
   useEffect(() => {
     if (isOpen) {
       api.get('/resume/templates').then(res => {
-        const list = res.data;
+        const list = res.data.templates;
+        setActiveSub(res.data.active_sub);
         setTemplates(list);
       });
     }
@@ -520,11 +522,12 @@ export function ResumeEditor() {
                     {templates.map((t) => (
                       <div
                         key={t.id}
-                        onClick={() => { if (t.tier == 'free') { setSelectedTemplate(t.id) } }}
-                        className={`group relative border rounded-lg cursor-pointer bg-white shadow-sm hover:shadow-xl transition-all max-w-xs mx-auto ${selectedTemplate === t.id
-                          ? "border-violet-600 ring-2 ring-violet-400"
-                          : "border-gray-200"
-                          } ${t.tier !== "free" ? "template-disabled" : ""}`}
+                        onClick={() => { if(t.tier == 'free') {setSelectedTemplate(t.id)} else if(activeSub){setSelectedTemplate(t.id)} } }
+                        className={`group relative flex-shrink-0 w-80 border rounded-lg cursor-pointer bg-white shadow-sm hover:shadow-xl transition-all ${
+                          selectedTemplate === t.id
+                            ? "border-violet-600 ring-2 ring-violet-400"
+                            : "border-gray-200"
+                        } ${t.tier !== "free" && !activeSub ? "template-disabled" : ""}`}
                       >
                         {/* Tier Badge */}
                         <div className="absolute top-2 left-2">

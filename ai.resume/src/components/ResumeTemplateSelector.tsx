@@ -21,10 +21,12 @@ export function ResumeTemplateSelector() {
   const [templates, setTemplates] = useState<ResumeTemplate[]>([]);
   const [activeCategory, setActiveCategory] = useState('all');
   const [categories, setCategories] = useState<any[]>([]);
+  const [activeSub, setActiveSub] = useState(false);
 
   useEffect(() => {
     api.get('/resume/templates').then((res) => {
-      const data: ResumeTemplate[] = res.data;
+      const data: ResumeTemplate[] = res.data.templates;
+      setActiveSub(res.data.active_sub);
       setTemplates(data);
 
       // Extract unique category list
@@ -120,16 +122,13 @@ export function ResumeTemplateSelector() {
 
                     {/* Template Info */}
                     <div className="p-4 flex justify-center items-center">
-                      {/* {template.tier === "free" ? ( */}
-                        <Button
-                          onClick={() => handleSelectTemplate(template.id)}
-                          variant="outline"
-                          className="border-[#2cacd5] text-[#2cacd5] hover:bg-[#2cacd5] hover:text-white px-8 rounded-full"
-                        >
-                          Use Template
-                        </Button>
-                      {/* ) : null} */}
-
+                      <Button
+                        onClick={() => handleSelectTemplate(template.id)}
+                        variant="outline"
+                        className="border-[#2cacd5] text-[#2cacd5] hover:bg-[#2cacd5] hover:text-white px-8 rounded-full"
+                      >
+                        Use Template
+                      </Button>
                     </div>
                   </Card>
 

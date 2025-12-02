@@ -11,6 +11,7 @@ from app.utils.activity_tracker import track_activity, log_user_activity
 import io, os, base64
 from app.utils.change_ditect import get_changed_fields
 from app.models.user_feedback import UserFeedback
+from app.utils.subscription_service import get_subscription_info
 
 TEMPLATES_DIR = os.path.join(os.path.dirname(__file__), "../../templates/resumes")
 env = Environment(loader=FileSystemLoader(TEMPLATES_DIR))
@@ -57,29 +58,39 @@ def get_resume(db: Session = Depends(get_db), current_user: User = Depends(get_c
     return resume.resume_data or {}
 
 @router.get("/resume/templates")
-def get_resume_templates():
-    return [
-        {"id": "one", "name": "Resume template one", "thumbnail": "/static/resume_thumbs/one.png", 'tier': 'free', 'category': 'modern'},
-        {"id": "two", "name": "Resume template two", "thumbnail": "/static/resume_thumbs/two.png", 'tier': 'free', 'category': 'modern'},
-        {"id": "three", "name": "Resume template three", "thumbnail": "/static/resume_thumbs/three.png", 'tier': 'free', 'category': 'modern'},
-        {"id": "four", "name": "Resume template four", "thumbnail": "/static/resume_thumbs/four.png", 'tier': 'premium', 'category': 'classical'},
-        {"id": "five", "name": "Resume template five", "thumbnail": "/static/resume_thumbs/five.png", 'tier': 'premium', 'category': 'classical'},
-        {"id": "six", "name": "Resume template six", "thumbnail": "/static/resume_thumbs/six.png", 'tier': 'premium', 'category': 'classical'},
-        {"id": "seven", "name": "Resume template seven", "thumbnail": "/static/resume_thumbs/seven.png", 'tier': 'premium', 'category': 'classical'},
-        {"id": "eight", "name": "Resume template eight", "thumbnail": "/static/resume_thumbs/eight.png", 'tier': 'premium', 'category': 'classical'},
-        {"id": "nine", "name": "Resume template nine", "thumbnail": "/static/resume_thumbs/nine.png", 'tier': 'premium', 'category': 'classical'},
-        {"id": "ten", "name": "Resume template ten", "thumbnail": "/static/resume_thumbs/ten.png", 'tier': 'premium', 'category': 'classical'},
-        {"id": "eleven", "name": "Resume template eleven", "thumbnail": "/static/resume_thumbs/eleven.png", 'tier': 'premium', 'category': 'classical'},
-        {"id": "twelve", "name": "Resume template twelve", "thumbnail": "/static/resume_thumbs/twelve.png", 'tier': 'premium', 'category': 'classical'},
-        {"id": "thirteen", "name": "Resume template thirteen", "thumbnail": "/static/resume_thumbs/thirteen.png", 'tier': 'premium', 'category': 'classical'},
-        {"id": "fourteen", "name": "Resume template fourteen", "thumbnail": "/static/resume_thumbs/fourteen.png", 'tier': 'premium', 'category': 'classical'},
-        {"id": "fifteen", "name": "Resume template fifteen", "thumbnail": "/static/resume_thumbs/fifteen.png", 'tier': 'premium', 'category': 'classical'},
-        {"id": "sixteen", "name": "Resume template sixteen", "thumbnail": "/static/resume_thumbs/sixteen.png", 'tier': 'premium', 'category': 'classical'},
-        {"id": "seventeen", "name": "Resume template seventeen", "thumbnail": "/static/resume_thumbs/seventeen.png", 'tier': 'premium', 'category': 'classical'},
-        {"id": "eighteen", "name": "Resume template eighteen", "thumbnail": "/static/resume_thumbs/eighteen.png", 'tier': 'premium', 'category': 'classical'},
-        {"id": "nineteen", "name": "Resume template nineteen", "thumbnail": "/static/resume_thumbs/nineteen.png", 'tier': 'premium', 'category': 'classical'},
-        {"id": "twenty", "name": "Resume template twenty", "thumbnail": "/static/resume_thumbs/twenty.png", 'tier': 'premium', 'category': 'classical'},
-    ]
+def get_resume_templates(db: Session = Depends(get_db), current_user=Depends(get_current_user)):
+    active_sub = False
+
+    if current_user:
+        subscription = get_subscription_info(current_user, db)
+        if subscription["active"]:
+            active_sub = True
+    
+    return {
+        'active_sub' : active_sub,
+        'templates' : [
+            {"id": "one", "name": "Resume template one", "thumbnail": "/static/resume_thumbs/one.png", 'tier': 'free', 'category': 'modern'},
+            {"id": "two", "name": "Resume template two", "thumbnail": "/static/resume_thumbs/two.png", 'tier': 'free', 'category': 'modern'},
+            {"id": "three", "name": "Resume template three", "thumbnail": "/static/resume_thumbs/three.png", 'tier': 'free', 'category': 'modern'},
+            {"id": "four", "name": "Resume template four", "thumbnail": "/static/resume_thumbs/four.png", 'tier': 'premium', 'category': 'classical'},
+            {"id": "five", "name": "Resume template five", "thumbnail": "/static/resume_thumbs/five.png", 'tier': 'premium', 'category': 'classical'},
+            {"id": "six", "name": "Resume template six", "thumbnail": "/static/resume_thumbs/six.png", 'tier': 'premium', 'category': 'classical'},
+            {"id": "seven", "name": "Resume template seven", "thumbnail": "/static/resume_thumbs/seven.png", 'tier': 'premium', 'category': 'classical'},
+            {"id": "eight", "name": "Resume template eight", "thumbnail": "/static/resume_thumbs/eight.png", 'tier': 'premium', 'category': 'classical'},
+            {"id": "nine", "name": "Resume template nine", "thumbnail": "/static/resume_thumbs/nine.png", 'tier': 'premium', 'category': 'classical'},
+            {"id": "ten", "name": "Resume template ten", "thumbnail": "/static/resume_thumbs/ten.png", 'tier': 'premium', 'category': 'classical'},
+            {"id": "eleven", "name": "Resume template eleven", "thumbnail": "/static/resume_thumbs/eleven.png", 'tier': 'premium', 'category': 'classical'},
+            {"id": "twelve", "name": "Resume template twelve", "thumbnail": "/static/resume_thumbs/twelve.png", 'tier': 'premium', 'category': 'classical'},
+            {"id": "thirteen", "name": "Resume template thirteen", "thumbnail": "/static/resume_thumbs/thirteen.png", 'tier': 'premium', 'category': 'classical'},
+            {"id": "fourteen", "name": "Resume template fourteen", "thumbnail": "/static/resume_thumbs/fourteen.png", 'tier': 'premium', 'category': 'classical'},
+            {"id": "fifteen", "name": "Resume template fifteen", "thumbnail": "/static/resume_thumbs/fifteen.png", 'tier': 'premium', 'category': 'classical'},
+            {"id": "sixteen", "name": "Resume template sixteen", "thumbnail": "/static/resume_thumbs/sixteen.png", 'tier': 'premium', 'category': 'classical'},
+            {"id": "seventeen", "name": "Resume template seventeen", "thumbnail": "/static/resume_thumbs/seventeen.png", 'tier': 'premium', 'category': 'classical'},
+            {"id": "eighteen", "name": "Resume template eighteen", "thumbnail": "/static/resume_thumbs/eighteen.png", 'tier': 'premium', 'category': 'classical'},
+            {"id": "nineteen", "name": "Resume template nineteen", "thumbnail": "/static/resume_thumbs/nineteen.png", 'tier': 'premium', 'category': 'classical'},
+            {"id": "twenty", "name": "Resume template twenty", "thumbnail": "/static/resume_thumbs/twenty.png", 'tier': 'premium', 'category': 'classical'},
+        ]
+    }
 
 @router.get("/resume/preview/{template_id}")
 def resume_preview(template_id: str, db: Session = Depends(get_db), current_user=Depends(get_current_user)):
