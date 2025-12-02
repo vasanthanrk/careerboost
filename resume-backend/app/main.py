@@ -4,6 +4,7 @@ from app.api.v1 import health, auth, resume, ai_resume, ai_cover_letter, job_ana
 from fastapi.staticfiles import StaticFiles
 import os
 from app.core.config import settings
+from app.middleware.tracking import TrackingMiddleware
 
 app = FastAPI(
     title="SmartCV Maker AI Backend",
@@ -21,6 +22,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.add_middleware(TrackingMiddleware)
 
 # ✅ Ensure upload folder exists
 os.makedirs("uploads/avatars", exist_ok=True)

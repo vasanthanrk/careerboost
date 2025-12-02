@@ -1,0 +1,22 @@
+sudo apt update && sudo apt install -y \
+    wget \
+    gnupg \
+    ca-certificates \
+    xfonts-base \
+    xfonts-75dpi \
+    fontconfig \
+    libjpeg62-turbo \
+    libxrender1 \
+    libxext6 \
+    libfreetype6 \
+    libpng16-16 \
+    libssl3 \
+    default-mysql-client \
+    netcat-traditional \
+    libcairo2 \
+    libpango-1.0-0 \
+    libpangocairo-1.0-0 \
+    libgdk-pixbuf-2.0-0 \
+    libjpeg-turbo8 \
+    libssl3t64 \
+    libpng16-16t64 \
