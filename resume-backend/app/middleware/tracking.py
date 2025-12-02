@@ -26,8 +26,7 @@ class TrackingMiddleware(BaseHTTPMiddleware):
                 # country = res.get("country_name", "Unknown")
                 # city = res.get("city", "Unknown")
 
-                result = geo_reader.city('49.47.199.135')
-                print(result)
+                result = geo_reader.city(ip)
                 country = result.country.name
                 city = result.city.name
             except:
