@@ -1,13 +1,14 @@
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig
 from jinja2 import Environment, FileSystemLoader
+from app.core.config import settings
 import os
 
 config = ConnectionConfig(
-    MAIL_USERNAME=os.getenv("MAIL_USERNAME"),
-    MAIL_PASSWORD=os.getenv("MAIL_PASSWORD"),
-    MAIL_FROM=os.getenv("MAIL_FROM"),
-    MAIL_PORT=int(os.getenv("MAIL_PORT")),
-    MAIL_SERVER=os.getenv("MAIL_SERVER"),
+    MAIL_USERNAME=settings.MAIL_USERNAME,
+    MAIL_PASSWORD=settings.MAIL_PASSWORD,
+    MAIL_FROM=settings.MAIL_FROM,
+    MAIL_PORT=int(settings.MAIL_PORT),
+    MAIL_SERVER=settings.MAIL_SERVER,
     MAIL_STARTTLS=True,
     MAIL_SSL_TLS=False,
     USE_CREDENTIALS=True,

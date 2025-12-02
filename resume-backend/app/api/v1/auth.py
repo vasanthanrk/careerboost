@@ -8,6 +8,7 @@ from app.core.security import get_current_user
 from app.utils.activity_tracker import log_user_activity
 from app.utils.email_service import new_user_mail_to_user, new_user_mail_to_admin
 from fastapi import BackgroundTasks
+from app.core.config import settings
 import os
 
 router = APIRouter()
@@ -35,7 +36,7 @@ def signup(user_data: UserCreate, background_tasks: BackgroundTasks, db: Session
 
     token = create_access_token({"sub": new_user.email})
 
-    admin_email = os.getenv("ADMIN_EMAIL")
+    admin_email = settings.ADMIN_EMAIL
     new_user_mail_to_user(background_tasks, [new_user.email], {"name": new_user.full_name})
     new_user_mail_to_admin(background_tasks, [admin_email], data={"name": new_user.full_name,"email": new_user.email})
 
