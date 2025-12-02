@@ -20,3 +20,8 @@ sudo apt update && sudo apt install -y \
     libjpeg-turbo8 \
     libssl3t64 \
     libpng16-16t64 \
+
+
+mkdir -p /opt/geoip
+cd /opt/geoip
+wget https://git.io/GeoLite2-City.mmdb
