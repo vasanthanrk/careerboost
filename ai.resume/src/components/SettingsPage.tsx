@@ -33,14 +33,9 @@ export function SettingsPage() {
     email: '',
     phone: '',
     location: '',
-<<<<<<< HEAD
-    career_level: '',
-    avatar_url: ''
-=======
     career_level:'',
     avatar_url:'',
     subscription:''
->>>>>>> cbd56aa (Subscriptions)
   });
 
   async function loadUser() {
