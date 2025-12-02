@@ -30,3 +30,4 @@ __MACOSX/
 resume-backend/uploads/avatars/
 resume-backend/alembic/versions
 resume-backend/app/data/*.txt
+resume-backend/GeoLite2-City.mmdb

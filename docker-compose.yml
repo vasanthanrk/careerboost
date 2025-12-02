@@ -55,6 +55,7 @@ services:
       - ./resume-backend:/app
       - ./resume-backend/alembic:/app/alembic  # proper host ↔ container sync
       - /app/__pycache__
+      - ./resume-backend/GeoLite2-City.mmdb:/opt/geoip/GeoLite2-City.mmdb
     environment:
       # - DATABASE_URL=${DATABASE_URL}
       - WATCHFILES_FORCE_POLLING=true

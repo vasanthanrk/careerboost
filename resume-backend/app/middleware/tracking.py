@@ -5,6 +5,10 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from app.core.database import SessionLocal
 from app.models import VisitorLog
 
+from geoip2.database import Reader
+
+geo_reader = Reader("/opt/geoip/GeoLite2-City.mmdb")
+
 class TrackingMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
 
@@ -18,10 +22,14 @@ class TrackingMiddleware(BaseHTTPMiddleware):
             city = "Unknown"
 
             try:
-                res = requests.get(f"https://ipapi.co/49.47.199.135/json/").json()
-                print(res)
-                country = res.get("country_name", "Unknown")
-                city = res.get("city", "Unknown")
+                # res = requests.get(f"https://ipapi.co/49.47.199.135/json/").json()
+                # country = res.get("country_name", "Unknown")
+                # city = res.get("city", "Unknown")
+
+                result = geo_reader.city('49.47.199.135')
+                print(result)
+                country = result.country.name
+                city = result.city.name
             except:
                 pass
 
