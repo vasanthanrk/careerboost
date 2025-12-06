@@ -4,6 +4,14 @@
 <head>
   <meta charset="UTF-8" />
   <style>
+    html {
+      image-rendering: optimizeQuality;
+      font-smooth: always;
+    }
+    p div {
+      line-height: 1.25;   /* 1.5 times the font size */
+    }
+
     .experience-item {
       page-break-inside: avoid;
       break-inside: avoid;
@@ -58,7 +66,7 @@
     .template2 .header {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
-      padding: 50px 40px;
+      padding: 20px 15px;
       text-align: center;
     }
 
@@ -80,7 +88,7 @@
 
     .template2 h2 {
       color: #667eea;
-      margin-top: 30px;
+      margin-top: 20px;
       margin-bottom: 15px;
       font-size: 1.4em;
       text-transform: uppercase;
@@ -120,7 +128,7 @@
 
     .template2 .description {
       margin-top: 8px;
-      line-height: 1.6;
+      line-height: 1.25;
       color: #34495e;
     }
 
@@ -161,7 +169,7 @@
     <div class="content">
       <div>
         <h2>Professional Summary</h2>
-        <p style="line-height: 1.6;">{{ resume.summary }}</p>
+        <p>{{ resume.summary }}</p>
       </div>
 
       {% if resume.experiences and resume.experiences|length > 0 %}
@@ -207,7 +215,7 @@
 
       {% if resume.skills and resume.skills|length > 0 %}
       <div>
-        <h2>Technical Skills</h2>
+        <h2>Skills</h2>
         <div>
           {% for skill in resume.skills %}
           <span class="skill-tag">{{ skill.skill }}</span>
@@ -251,7 +259,7 @@
       </div>
       {% endif %}
 
-      {% if resume.keywords and resume.keywords|length > 0 %}
+      <!-- {% if resume.keywords and resume.keywords|length > 0 %}
       <div>
         <h2>Otheres</h2>
         <div>
@@ -260,7 +268,7 @@
           {% endfor %}
         </div>
       </div>
-      {% endif %}
+      {% endif %} -->
     </div>
   </div>
 </body>

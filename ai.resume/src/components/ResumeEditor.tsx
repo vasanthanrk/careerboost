@@ -678,7 +678,7 @@ export function ResumeEditor() {
                           { value: "certifications", label: "Certifications" },
                           { value: "languages", label: "Languages" },
                           { value: "achievements", label: "Achievements" },
-                          { value: "keywords", label: "Keywords" },
+                          // { value: "keywords", label: "Keywords" },
                         ].map((tab) => (
                           <TabsTrigger
                             key={tab.value}
@@ -929,7 +929,7 @@ export function ResumeEditor() {
                     </Button>
                   </TabsContent>
 
-                  <TabsContent value="keywords" className="space-y-4">
+                  {/* <TabsContent value="keywords" className="space-y-4">
                     <div className="flex flex-wrap gap-2">
                       {resumeData?.keywords?.map((keyword: string, index: number) => (
                         <div key={index} className="px-3 py-1 bg-violet-100 text-violet-700 rounded-full flex items-center gap-2">
@@ -939,7 +939,7 @@ export function ResumeEditor() {
                       ))}
                     </div>
                     <Input placeholder="Add a keyword and press Enter" value={newKeyword} onChange={(e) => setNewKeyword(e.target.value)} onKeyDown={handleKeywordKeyDown} />
-                  </TabsContent>
+                  </TabsContent> */}
 
                 </Tabs>
               </CardContent>
