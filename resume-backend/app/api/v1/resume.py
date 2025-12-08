@@ -63,6 +63,19 @@ def get_resume_templates():
         {"id": "five", "name": "Resume template five", "thumbnail": "/static/resume_thumbs/five.png", 'tier': 'premium', 'category': 'classical'},
         {"id": "six", "name": "Resume template six", "thumbnail": "/static/resume_thumbs/six.png", 'tier': 'premium', 'category': 'classical'},
         {"id": "seven", "name": "Resume template seven", "thumbnail": "/static/resume_thumbs/seven.png", 'tier': 'premium', 'category': 'classical'},
+        {"id": "eight", "name": "Resume template eight", "thumbnail": "/static/resume_thumbs/eight.png", 'tier': 'free', 'category': 'classical'},
+        {"id": "nine", "name": "Resume template nine", "thumbnail": "/static/resume_thumbs/nine.png", 'tier': 'free', 'category': 'classical'},
+        {"id": "ten", "name": "Resume template ten", "thumbnail": "/static/resume_thumbs/ten.png", 'tier': 'free', 'category': 'classical'},
+        {"id": "eleven", "name": "Resume template eleven", "thumbnail": "/static/resume_thumbs/eleven.png", 'tier': 'free', 'category': 'classical'},
+        {"id": "twelve", "name": "Resume template twelve", "thumbnail": "/static/resume_thumbs/twelve.png", 'tier': 'free', 'category': 'classical'},
+        {"id": "thirteen", "name": "Resume template thirteen", "thumbnail": "/static/resume_thumbs/thirteen.png", 'tier': 'free', 'category': 'classical'},
+        {"id": "fourteen", "name": "Resume template fourteen", "thumbnail": "/static/resume_thumbs/fourteen.png", 'tier': 'free', 'category': 'classical'},
+        {"id": "fifteen", "name": "Resume template fifteen", "thumbnail": "/static/resume_thumbs/fifteen.png", 'tier': 'free', 'category': 'classical'},
+        {"id": "sixteen", "name": "Resume template sixteen", "thumbnail": "/static/resume_thumbs/sixteen.png", 'tier': 'free', 'category': 'classical'},
+        {"id": "seventeen", "name": "Resume template seventeen", "thumbnail": "/static/resume_thumbs/seventeen.png", 'tier': 'free', 'category': 'classical'},
+        {"id": "eighteen", "name": "Resume template eighteen", "thumbnail": "/static/resume_thumbs/eighteen.png", 'tier': 'free', 'category': 'classical'},
+        {"id": "nineteen", "name": "Resume template nineteen", "thumbnail": "/static/resume_thumbs/nineteen.png", 'tier': 'free', 'category': 'classical'},
+        {"id": "twenty", "name": "Resume template twenty", "thumbnail": "/static/resume_thumbs/twenty.png", 'tier': 'free', 'category': 'classical'},
     ]
 
 @router.get("/resume/preview/{template_id}")

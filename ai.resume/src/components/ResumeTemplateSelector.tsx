@@ -29,7 +29,7 @@ export function ResumeTemplateSelector() {
 
       // Extract unique category list
       const uniqueCategories = Array.from(new Set(data.map(t => t.category)));
-      
+
       // Build dynamic category list
       const formatted = [
         { id: "all", name: "All Templates", icon: Sparkles },
@@ -57,7 +57,7 @@ export function ResumeTemplateSelector() {
       <div className="max-w-7xl mx-auto p-6 space-y-6">
         {/* Header */}
         <div className="text-center space-y-2 mb-8">
-          <h1 className="bg-gradient-to-r from-[#2cacd5] to-[#1e90b8] bg-clip-text text-transparent">
+          <h1 className="bg-gradient-to-r from-[#2cacd5] to-[#1e90b8] bg-clip-text text-transparent lg:text-6xl text-4xl font-bold">
             Choose Your Resume Template
           </h1>
           <p className="text-gray-600">
@@ -69,7 +69,7 @@ export function ResumeTemplateSelector() {
         <Tabs value={activeCategory} onValueChange={setActiveCategory} className="w-full">
           <TabsList className="grid w-full grid-cols-7 mb-8 bg-white border border-gray-200 p-1">
             {categories.map((category) => {
-              
+
               return (
                 <TabsTrigger
                   key={category.id}
@@ -119,19 +119,17 @@ export function ResumeTemplateSelector() {
                     </div>
 
                     {/* Template Info */}
-                    <div className="p-4 space-y-2">
-                      <h3 className="text-gray-900">{template.name}</h3>
-
+                    <div className="p-4 flex justify-center items-center">
                       {template.tier === "free" ? (
                         <Button
                           onClick={() => handleSelectTemplate(template.id)}
                           variant="outline"
-                          className="w-full mt-2 border-[#2cacd5] text-[#2cacd5] hover:bg-[#2cacd5] hover:text-white"
+                          className="border-[#2cacd5] text-[#2cacd5] hover:bg-[#2cacd5] hover:text-white px-8 rounded-full"
                         >
-                          Select Template
+                          Use Template
                         </Button>
-                      ):null }
-                      
+                      ) : null}
+
                     </div>
                   </Card>
 

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Disney Auyoung</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            font-size: 12px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 210mm;
+            margin: 0 auto;
+            background: #fff;
+            min-height: 297mm;
+            position: relative;
+        }
+
+        /* HEADER */
+        .header {
+            padding: 40px 40px 20px 40px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0;
+            font-weight: 700;
+            color: #000;
+            line-height: 1.2;
+        }
+
+        .header .role {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* LAYOUT */
+        .main-table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        .col-left {
+            width: 32%;
+            vertical-align: top;
+            padding: 0 40px 40px 40px;
+            border-right: 1px solid #eee;
+        }
+
+        .col-right {
+            width: 68%;
+            vertical-align: top;
+            padding: 0 40px 40px 40px;
+        }
+
+        /* SECTIONS */
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        /* LEFT COLUMN STYLES */
+        .detail-item {
+            margin-bottom: 15px;
+        }
+
+        .detail-label {
+            font-weight: 700;
+            font-size: 10px;
+            text-transform: uppercase;
+            color: #000;
+            margin-bottom: 2px;
+        }
+
+        .detail-value {
+            color: #555;
+            font-size: 11px;
+            word-wrap: break-word;
+        }
+
+        .skill-item {
+            margin-bottom: 10px;
+        }
+
+        .skill-name {
+            font-size: 11px;
+            margin-bottom: 3px;
+            color: #333;
+        }
+
+        .skill-bar-bg {
+            height: 3px;
+            background: #eee;
+            width: 100%;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            background: #000;
+        }
+
+        /* RIGHT COLUMN STYLES */
+        .profile-text {
+            color: #555;
+            text-align: justify;
+        }
+
+        .experience-item,
+        .education-item {
+            margin-bottom: 20px;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2px;
+        }
+
+        .job-title {
+            font-weight: 700;
+            font-size: 13px;
+            color: #000;
+        }
+
+        .job-company {
+            font-weight: 600;
+            font-size: 13px;
+            color: #000;
+        }
+
+        .job-location {
+            float: right;
+            font-size: 11px;
+            color: #666;
+        }
+
+        .job-date {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 5px;
+            font-style: italic;
+        }
+
+        .job-description {
+            margin-top: 5px;
+        }
+
+        .job-description ul {
+            margin: 0;
+            padding-left: 15px;
+        }
+
+        .job-description li {
+            margin-bottom: 3px;
+            color: #555;
+        }
+
+        /* UTILS */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Disney Auyoung</h1>
+            <div class="role">School Counselor</div>
+        </div>
+
+        <table class="main-table">
+            <tr>
+                <td class="col-left">
+
+                    <div class="section">
+                        <div class="section-title">Details</div>
+
+                        <div class="detail-item">
+                            <div class="detail-label">Address</div>
+                            <div class="detail-value">1234 Desert Breeze Lane, Phoenix, AZ 85032</div>
+                        </div>
+
+                        <div class="detail-item">
+                            <div class="detail-label">Phone</div>
+                            <div class="detail-value">(764) 847-4723</div>
+                        </div>
+
+                        <div class="detail-item">
+                            <div class="detail-label">Email</div>
+                            <div class="detail-value">disney.auyoung@gmail.com</div>
+                        </div>
+
+                        <div class="detail-item">
+                            <div class="detail-label">LinkedIn</div>
+                            <div class="detail-value">
+                                <a href="https://linkedin.com/in/disneyauyoung"
+                                    style="color:inherit; text-decoration:none;">
+                                    linkedin.com/in/disneyauyoung
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">Certificates</div>
+                        <div class="detail-item">
+                            <div class="detail-value">National Certified School Counselor (NCSC) <br><span
+                                    style="color:#888; font-size:10px;">Dec 2021</span></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-value">Registered Play Therapist (RPT)</div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">Skills</div>
+
+                        <div class="skill-item">
+                            <div class="skill-name">Empathy</div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width: 95%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Active Listening</div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width: 95%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Conflict Resolution</div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Crisis Intervention</div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Multicultural Competence</div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Group Facilitation</div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Career Guidance</div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">Languages</div>
+                        <div class="skill-item">
+                            <div class="skill-name">English</div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </td>
+
+                <td class="col-right">
+
+                    <div class="section">
+                        <div class="section-title">Profile</div>
+                        <div class="profile-text">
+                            Dedicated School Counselor with 2 years of experience in offering comprehensive support to
+                            students in academic, social, and emotional development. Skilled in implementing targeted
+                            interventions and fostering positive relationships with students, faculty, and parents.
+                            Committed to promoting a safe and inclusive learning environment, while effectively
+                            addressing students' individual needs and goals. Passionate about empowering students to
+                            realize their full potential and achieve personal and academic success.
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">Employment History</div>
+
+                        <div class="experience-item">
+                            <div class="clearfix">
+                                <span class="job-title">School Counselor, Arizona School Counselors Association</span>
+                                <span class="job-location">AZ</span>
+                            </div>
+                            <div class="job-date">Mar 2023 - Present</div>
+                            <div class="job-description">
+                                <ul>
+                                    <li>Implemented a comprehensive school counseling program that resulted in a 25%
+                                        increase in graduation rates and a 20% decrease in disciplinary referrals within
+                                        two years.</li>
+                                    <li>Developed and led a successful anti-bullying campaign, reducing incidents of
+                                        bullying by 30% and creating a more inclusive and supportive school environment
+                                        for all students.</li>
+                                    <li>Collaborated with teachers and administrators to create a targeted intervention
+                                        program for at-risk students, resulting in a 40% improvement in academic
+                                        performance and a 50% reduction in dropout rates.</li>
+                                    <li>Secured over $100,000 in grant funding to support mental health resources and
+                                        initiatives, allowing for the implementation of a school-wide social-emotional
+                                        learning curriculum and professional development opportunities for staff.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="experience-item">
+                            <div class="clearfix">
+                                <span class="job-title">Assistant School Counselor, Flagstaff Unified School
+                                    District</span>
+                                <span class="job-location">AZ</span>
+                            </div>
+                            <div class="job-date">Aug 2021 - Feb 2023</div>
+                            <div class="job-description">
+                                <ul>
+                                    <li>Successfully implemented a comprehensive school counseling program, resulting in
+                                        a 25% increase in student engagement and a 15% decrease in disciplinary
+                                        referrals over a two-year period.</li>
+                                    <li>Facilitated a 10% improvement in academic performance for at-risk students
+                                        through targeted interventions, including individual counseling, group sessions,
+                                        and parent-teacher collaboration.</li>
+                                    <li>Developed and led multiple workshops and training sessions for faculty and
+                                        staff, enhancing their understanding of mental health issues and providing tools
+                                        to support student well-being, leading to a 20% reduction in reported student
+                                        stress levels.</li>
+                                    <li>Coordinated with community organizations to provide additional resources and
+                                        support for students and families, resulting in a 30% increase in the number of
+                                        students accessing mental health services outside of school.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">Education</div>
+
+                        <div class="education-item">
+                            <div class="job-title">Master of Education in School Counseling</div>
+                            <div class="job-company">Northern Arizona University</div>
+                            <div class="job-location">Flagstaff, AZ</div>
+                            <div class="job-date">Aug 2017 - May 2021</div>
+                            <div class="job-description">
+                                <p><strong>Relevant Coursework:</strong> Child and Adolescent Development, Counseling
+                                    Theories and Techniques, Multicultural Counseling, Group Counseling, Career
+                                    Counseling, Crisis Intervention, Assessment in School Counseling, Ethics and Legal
+                                    Issues in School Counseling, and School Counseling Program Development and
+                                    Evaluation.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+
+</html>

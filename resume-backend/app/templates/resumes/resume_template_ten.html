@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Template Ten</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', Times, serif;
+            /* Serif font for classic look */
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            font-size: 11px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 210mm;
+            margin: 0 auto;
+            background: #fff;
+            min-height: 297mm;
+            padding: 50px;
+            box-sizing: border-box;
+        }
+
+        /* HEADER */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0 0 5px 0;
+            font-weight: 700;
+            color: #000;
+        }
+
+        .header .role {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Sans-serif for role */
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        .header-contact {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 10px;
+            color: #444;
+        }
+
+        .header-contact span {
+            margin: 0 10px;
+        }
+
+        /* SECTIONS */
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background-color: #f0f0f0;
+            /* Gray background bar */
+            padding: 5px 0;
+            margin-bottom: 15px;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            color: #000;
+        }
+
+        .content-block {
+            margin-bottom: 15px;
+        }
+
+        /* EMPLOYMENT & EDUCATION LISTS */
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+            border-bottom: 1px dotted #ccc;
+            /* Dotted line separator */
+            padding-bottom: 2px;
+        }
+
+        .entry-title {
+            font-weight: 700;
+            font-size: 12px;
+            color: #000;
+        }
+
+        .entry-date {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 10px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .entry-subtitle {
+            font-style: italic;
+            font-size: 11px;
+            color: #444;
+            margin-bottom: 5px;
+        }
+
+        .entry-content {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 11px;
+            color: #444;
+            text-align: justify;
+        }
+
+        .entry-content ul {
+            margin: 5px 0;
+            padding-left: 20px;
+        }
+
+        .entry-content li {
+            margin-bottom: 3px;
+        }
+
+        /* SKILLS GRID */
+        .skills-grid {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        .skill-col {
+            display: table-cell;
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dotted #ccc;
+            margin-bottom: 5px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 11px;
+        }
+
+        .skill-name {
+            font-weight: 600;
+        }
+
+        .skill-level {
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>{{ resume.name }}</h1>
+            {% if resume.role %}
+            <div class="role">{{ resume.role }}</div>
+            {% endif %}
+
+            <div class="header-contact">
+                {% if resume.phone %}<span>{{ resume.phone }}</span>{% endif %}
+                {% if resume.location %}<span>{{ resume.location }}</span>{% endif %}
+                {% if resume.email %}<span>{{ resume.email }}</span>{% endif %}
+            </div>
+        </div>
+
+        <!-- PROFILE -->
+        {% if resume.summary %}
+        <div class="section">
+            <div class="section-title">Profile</div>
+            <div class="content-block" style="text-align: center; font-family: 'Segoe UI', sans-serif;">
+                {{ resume.summary }}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- EMPLOYMENT HISTORY -->
+        {% if resume.experiences %}
+        <div class="section">
+            <div class="section-title">Employment History</div>
+            {% for exp in resume.experiences %}
+            <div class="content-block">
+                <div class="entry-header">
+                    <span class="entry-title">&#10022; {{ exp.title }}, {{ exp.company }}</span>
+                    <span class="entry-date">{{ exp.duration }}</span>
+                </div>
+                <div class="entry-content">
+                    <p>{{ exp.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- EDUCATION -->
+        {% if resume.educations %}
+        <div class="section">
+            <div class="section-title">Education</div>
+            {% for edu in resume.educations %}
+            <div class="content-block">
+                <div class="entry-header">
+                    <span class="entry-title">&#10022; {{ edu.degree }}</span>
+                    <span class="entry-date">{{ edu.year }}</span>
+                </div>
+                <div class="entry-subtitle">{{ edu.school }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- SKILLS -->
+        {% if resume.skills %}
+        <div class="section">
+            <div class="section-title">Skills</div>
+            <div class="content-block">
+                <!-- Simple list layout for skills to match classic style -->
+                <div class="skills-grid">
+                    <div class="skill-col">
+                        {% for skill in resume.skills %}
+                        <div class="skill-item">
+                            <span class="skill-name">{{ skill.skill }}</span>
+                            <span class="skill-level">Expert</span> <!-- Placeholder level -->
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- INTERNSHIPS (Optional, using experiences data if labeled as internship, or custom field) -->
+        <!-- For now, we'll skip specific internship section unless data is structured for it, 
+             or we could reuse experiences if we had a type field. 
+             Let's add References as shown in screenshot. -->
+
+        <!-- REFERENCES -->
+        {% if resume.references %}
+        <div class="section">
+            <div class="section-title">References</div>
+            {% for ref in resume.references %}
+            <div class="content-block">
+                <div class="entry-header">
+                    <span class="entry-title">&#10022; {{ ref.name }}</span>
+                </div>
+                <div class="entry-content">
+                    {{ ref.contact }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>

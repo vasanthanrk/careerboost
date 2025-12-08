@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Template Seventeen</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            font-size: 11px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 210mm;
+            /* A4 width */
+            margin: 0 auto;
+            background: #fff;
+            min-height: 297mm;
+            /* A4 height */
+        }
+
+        /* HEADER */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        .header-bar-cell {
+            width: 20px;
+            background-color: #2C5F86;
+            /* Header Blue Bar */
+        }
+
+        .header-content-cell {
+            padding: 40px 30px 20px 30px;
+            vertical-align: top;
+        }
+
+        .header-contact-cell {
+            padding: 40px 40px 20px 0;
+            vertical-align: top;
+            text-align: right;
+            width: 250px;
+        }
+
+        .name {
+            font-size: 32px;
+            font-weight: 700;
+            color: #2C5F86;
+            /* Dark Blue */
+            margin: 0 0 5px 0;
+            line-height: 1.2;
+        }
+
+        .role {
+            font-size: 14px;
+            color: #4DB6AC;
+            /* Teal */
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .summary {
+            font-size: 11px;
+            color: #555;
+            line-height: 1.6;
+            max-width: 500px;
+        }
+
+        .contact-item {
+            margin-bottom: 5px;
+            font-size: 11px;
+            color: #555;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .contact-item a {
+            color: #555;
+            text-decoration: none;
+        }
+
+        .contact-icon {
+            color: #2C5F86;
+            font-size: 12px;
+            width: 14px;
+            text-align: center;
+        }
+
+        /* LAYOUT TABLE */
+        .layout-table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        .col-left {
+            width: 55%;
+            vertical-align: top;
+            padding: 0 30px 40px 40px;
+            border-right: 1px solid #eee;
+        }
+
+        .col-right {
+            width: 45%;
+            vertical-align: top;
+            padding: 0 40px 40px 30px;
+        }
+
+        /* SECTIONS */
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #333;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        /* LEFT COLUMN STYLES (Timeline) */
+        .job-item {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .job-header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 5px;
+        }
+
+        .marker-cell {
+            width: 20px;
+            vertical-align: top;
+            padding-top: 4px;
+        }
+
+        .marker {
+            width: 12px;
+            height: 12px;
+            background-color: #4DB6AC;
+            /* Teal Marker */
+            display: block;
+        }
+
+        .job-content-cell {
+            vertical-align: top;
+            padding-left: 10px;
+        }
+
+        .job-title {
+            font-weight: 700;
+            font-size: 13px;
+            color: #333;
+        }
+
+        .job-company {
+            font-weight: 600;
+            font-size: 12px;
+            color: #555;
+        }
+
+        .job-date {
+            font-size: 11px;
+            color: #4DB6AC;
+            /* Teal */
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .job-description ul {
+            margin: 5px 0 0 0;
+            padding-left: 15px;
+        }
+
+        .job-description li {
+            margin-bottom: 4px;
+            color: #555;
+            font-size: 11px;
+        }
+
+        /* RIGHT COLUMN STYLES (Badges) */
+        .skill-group {
+            margin-bottom: 20px;
+        }
+
+        .skill-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        /* For PDF compatibility, flex might be tricky for badges wrapping. 
+           Inline-block is safer if flex fails, but modern wkhtmltopdf supports flex wrap reasonably well. 
+           Fallback: simple spans with margins. */
+        .skill-badge {
+            display: inline-block;
+            background-color: #2C5F86;
+            /* Dark Blue */
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-size: 11px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .portfolio-item {
+            margin-bottom: 15px;
+        }
+
+        .portfolio-title {
+            font-weight: 700;
+            font-size: 12px;
+            color: #333;
+        }
+
+        .portfolio-link a {
+            color: #4DB6AC;
+            text-decoration: none;
+            font-size: 11px;
+        }
+
+        .portfolio-desc {
+            font-size: 11px;
+            color: #555;
+            margin-top: 3px;
+        }
+
+        .cert-item {
+            margin-bottom: 15px;
+        }
+
+        .cert-name {
+            font-weight: 700;
+            font-size: 12px;
+            color: #333;
+        }
+
+        .cert-details {
+            font-size: 11px;
+            color: #777;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- HEADER TABLE -->
+        <table class="header-table">
+            <tr>
+                <td class="header-bar-cell"></td>
+                <td class="header-content-cell">
+                    <div class="name">{{ resume.name }}</div>
+                    {% if resume.role %}
+                    <div class="role">{{ resume.role }}</div>
+                    {% endif %}
+                    {% if resume.summary %}
+                    <div class="summary">{{ resume.summary }}</div>
+                    {% endif %}
+                </td>
+                <td class="header-contact-cell">
+                    {% if resume.email %}
+                    <div class="contact-item">
+                        <a href="mailto:{{ resume.email }}">{{ resume.email }}</a>
+                        <span class="contact-icon">&#9993;</span>
+                    </div>
+                    {% endif %}
+                    {% if resume.phone %}
+                    <div class="contact-item">
+                        <span>{{ resume.phone }}</span>
+                        <span class="contact-icon">&#9742;</span>
+                    </div>
+                    {% endif %}
+                    {% if resume.location %}
+                    <div class="contact-item">
+                        <span>{{ resume.location }}</span>
+                        <span class="contact-icon">&#9830;</span>
+                    </div>
+                    {% endif %}
+                    {% if resume.linkedin_url %}
+                    <div class="contact-item">
+                        <a href="{{ resume.linkedin_url }}">LinkedIn</a>
+                        <span class="contact-icon">&#128279;</span>
+                    </div>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+
+        <!-- LAYOUT TABLE -->
+        <table class="layout-table">
+            <tr>
+                <!-- LEFT COLUMN -->
+                <td class="col-left">
+
+                    <!-- WORK EXPERIENCE -->
+                    {% if resume.experiences %}
+                    <div class="section">
+                        <div class="section-title">Work Experience</div>
+                        {% for exp in resume.experiences %}
+                        <div class="job-item">
+                            <table class="job-header-table">
+                                <tr>
+                                    <td class="marker-cell">
+                                        <div class="marker"></div>
+                                    </td>
+                                    <td class="job-content-cell">
+                                        <div class="job-title">{{ exp.title }}</div>
+                                        <div class="job-company">{{ exp.company }}</div>
+                                        <div class="job-date">{{ exp.duration }}</div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="job-description" style="padding-left: 30px;">
+                                <p>{{ exp.description }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <!-- EDUCATION -->
+                    {% if resume.educations %}
+                    <div class="section">
+                        <div class="section-title">Education</div>
+                        {% for edu in resume.educations %}
+                        <div class="job-item">
+                            <table class="job-header-table">
+                                <tr>
+                                    <td class="marker-cell">
+                                        <div class="marker"></div>
+                                    </td>
+                                    <td class="job-content-cell">
+                                        <div class="job-title">{{ edu.degree }}</div>
+                                        <div class="job-company">{{ edu.school }}</div>
+                                        <div class="job-date">{{ edu.year }}</div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                </td>
+
+                <!-- RIGHT COLUMN -->
+                <td class="col-right">
+
+                    <!-- SKILLS (Hard/Soft split if data allows, otherwise all in one) -->
+                    {% if resume.skills %}
+                    <div class="section">
+                        <div class="section-title">Hard Skills</div>
+                        <div class="skill-badges">
+                            {% for skill in resume.skills %}
+                            <span class="skill-badge">{{ skill.skill }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- LANGUAGES -->
+                    {% if resume.languages %}
+                    <div class="section">
+                        <div class="section-title">Languages</div>
+                        <div class="skill-badges">
+                            {% for lang in resume.languages %}
+                            <span class="skill-badge" style="background-color: #4DB6AC;">{{ lang.language }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- PORTFOLIO (Using projects) -->
+                    {% if resume.projects %}
+                    <div class="section">
+                        <div class="section-title">Portfolio</div>
+                        {% for proj in resume.projects %}
+                        <div class="portfolio-item">
+                            <div class="portfolio-title">{{ proj.name }}</div>
+                            <!-- Assuming description might contain a link or just text -->
+                            <div class="portfolio-desc">{{ proj.description }}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <!-- CERTIFICATES (Placeholder or if data exists) -->
+                    <!-- 
+                    <div class="section">
+                        <div class="section-title">Certificates</div>
+                        <div class="cert-item">
+                            <div class="cert-name">Adobe Lightroom: Advanced Techniques</div>
+                            <div class="cert-details">Domestika - 2022</div>
+                        </div>
+                    </div> 
+                    -->
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+
+</html>

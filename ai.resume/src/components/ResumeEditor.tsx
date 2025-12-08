@@ -477,9 +477,14 @@ export function ResumeEditor() {
       <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
           <DialogContent
-            className="max-w-6xl max-h-[90vh] flex flex-col p-0"
+            // UPDATED: max-w-7xl for width, max-h-[95vh] for taller dialog
+            className="max-w-7xl max-h-[95vh] flex flex-col p-0"
           >
-            <div className="flex-1 overflow-y-auto bg-gray-50" style={{ maxHeight: "80vh" }}>
+            <div
+              className="flex-1 flex flex-col bg-gray-50"
+              // UPDATED: maxHeight to 90vh
+              style={{ maxHeight: "90vh" }}
+            >
               {/* Sticky Header */}
               <div className="px-6 pt-6 pb-4 border-b bg-white shrink-0">
                 <DialogHeader>
@@ -493,18 +498,19 @@ export function ResumeEditor() {
               </div>
 
               {/* Horizontal Scrollable Content */}
-              <div className="flex-1 px-6 py-6 bg-gray-50 overflow-hidden">
+              <div className="flex-1 px-12 py-6 bg-gray-50 overflow-y-auto">
                 {templates.length === 0 ? (
                   <div className="flex items-center justify-center h-full text-gray-500">
                     Loading templates...
                   </div>
                 ) : (
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                  // UPDATED: Reduced gap from gap-8 to gap-4
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {templates.map((t) => (
                       <div
                         key={t.id}
                         onClick={() => { if (t.tier == 'free') { setSelectedTemplate(t.id) } }}
-                        className={`group relative border rounded-lg cursor-pointer bg-white shadow-sm hover:shadow-xl transition-all ${selectedTemplate === t.id
+                        className={`group relative border rounded-lg cursor-pointer bg-white shadow-sm hover:shadow-xl transition-all max-w-xs mx-auto ${selectedTemplate === t.id
                           ? "border-violet-600 ring-2 ring-violet-400"
                           : "border-gray-200"
                           } ${t.tier !== "free" ? "template-disabled" : ""}`}
@@ -518,19 +524,40 @@ export function ResumeEditor() {
                             {t.tier === "free" ? "FREE" : "PREMIUM"}
                           </span>
                         </div>
-                        <div className="relative w-full h-96">
-                          <img src={t.thumbnail} alt={t.name} className="w-full h-full object-cover rounded-lg" />
+                        <div className="relative w-64 mx-auto h-96 overflow-hidden rounded-t-lg bg-gray-100">
+                          <img src={t.thumbnail} alt={t.name} className="w-4/5 h-full object-cover object-top rounded-lg mx-auto" />
                         </div>
 
                         {/* Hover Popup - Large Preview */}
-                        <div className="absolute left-full ml-4 top-0 z-50 hidden group-hover:block pointer-events-none">
-                          <div className="bg-white rounded-lg shadow-2xl border-2 border-violet-500 p-2 w-96">
+                        <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[100] hidden group-hover:block pointer-events-none">
+                          <div className="bg-white rounded-xl shadow-2xl border border-gray-200 p-3 w-[500px] h-[60vh] overflow-hidden flex flex-col">
                             <img
                               src={t.thumbnail}
                               alt={`${t.name} - Large Preview`}
                               className="w-full h-auto object-contain rounded"
                             />
-                            <p className="text-center mt-2 font-semibold text-gray-700">{t.name}</p>
+                            <div className="mt-3 flex items-center justify-between px-1">
+                              <div className="flex items-center gap-2">
+                                <div className="w-6 h-6 rounded-full bg-gray-900 text-white flex items-center justify-center text-xs font-semibold">
+                                  M
+                                </div>
+                                <span className="font-medium text-gray-900 text-sm">Monochrome</span>
+                              </div>
+                              <div className="flex gap-2">
+                                <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-gray-100 text-gray-600 border border-gray-300">
+                                  PDF
+                                </span>
+                                <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-gray-100 text-gray-600 border border-gray-300">
+                                  DOCX
+                                </span>
+                                <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${t.tier === 'free'
+                                  ? 'bg-green-100 text-green-700'
+                                  : 'bg-orange-100 text-orange-700'
+                                  }`}>
+                                  {t.tier === 'free' ? 'FREE' : 'PRO'}
+                                </span>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>

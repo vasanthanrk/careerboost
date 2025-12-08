@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Template Eight</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            font-size: 12px;
+            /* Base font size */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 210mm;
+            /* A4 width */
+            margin: 0 auto;
+            background: #fff;
+            min-height: 297mm;
+            /* A4 height */
+            position: relative;
+        }
+
+        /* HEADER */
+        .header {
+            padding: 40px 40px 20px 40px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0;
+            font-weight: 700;
+            color: #000;
+            line-height: 1.2;
+        }
+
+        .header .role {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* LAYOUT */
+        .main-table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        .col-left {
+            width: 32%;
+            vertical-align: top;
+            padding: 0 40px 40px 40px;
+            border-right: 1px solid #eee;
+            /* Optional separator */
+        }
+
+        .col-right {
+            width: 68%;
+            vertical-align: top;
+            padding: 0 40px 40px 40px;
+        }
+
+        /* SECTIONS */
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        /* LEFT COLUMN STYLES */
+        .detail-item {
+            margin-bottom: 15px;
+        }
+
+        .detail-label {
+            font-weight: 700;
+            font-size: 10px;
+            text-transform: uppercase;
+            color: #000;
+            margin-bottom: 2px;
+        }
+
+        .detail-value {
+            color: #555;
+            font-size: 11px;
+            word-wrap: break-word;
+        }
+
+        .skill-item {
+            margin-bottom: 10px;
+        }
+
+        .skill-name {
+            font-size: 11px;
+            margin-bottom: 3px;
+            color: #333;
+        }
+
+        .skill-bar-bg {
+            height: 3px;
+            background: #eee;
+            width: 100%;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            background: #000;
+            width: 70%;
+            /* Default width */
+        }
+
+        /* RIGHT COLUMN STYLES */
+        .profile-text {
+            color: #555;
+            text-align: justify;
+        }
+
+        .experience-item,
+        .education-item {
+            margin-bottom: 20px;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2px;
+        }
+
+        /* Table fallback for flex in PDF if needed, but flex usually works in modern renderers. 
+           Using simple block layout for safety. */
+        .job-title {
+            font-weight: 700;
+            font-size: 13px;
+            color: #000;
+        }
+
+        .job-company {
+            font-weight: 600;
+            font-size: 13px;
+            color: #000;
+        }
+
+        .job-location {
+            float: right;
+            font-size: 11px;
+            color: #666;
+        }
+
+        .job-date {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 5px;
+            font-style: italic;
+        }
+
+        .job-description {
+            margin-top: 5px;
+        }
+
+        .job-description ul {
+            margin: 0;
+            padding-left: 15px;
+        }
+
+        .job-description li {
+            margin-bottom: 3px;
+            color: #555;
+        }
+
+        /* UTILS */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- HEADER SECTION -->
+        <div class="header">
+            <h1>{{ resume.name }}</h1>
+            <!-- Placeholder for Role if not in data, or use a generic one if desired. 
+                 Since we don't have a specific 'role' field in the standard schema shown, 
+                 we might omit it or use the first job title. 
+                 For now, I'll check if 'resume.role' exists, else omit. -->
+            {% if resume.role %}
+            <div class="role">{{ resume.role }}</div>
+            {% endif %}
+        </div>
+
+        <table class="main-table">
+            <tr>
+                <!-- LEFT COLUMN -->
+                <td class="col-left">
+
+                    <!-- DETAILS -->
+                    <div class="section">
+                        <div class="section-title">Details</div>
+
+                        <div class="detail-item">
+                            <div class="detail-label">Address</div>
+                            <div class="detail-value">{{ resume.location }}</div>
+                        </div>
+
+                        <div class="detail-item">
+                            <div class="detail-label">Phone</div>
+                            <div class="detail-value">{{ resume.phone }}</div>
+                        </div>
+
+                        <div class="detail-item">
+                            <div class="detail-label">Email</div>
+                            <div class="detail-value">{{ resume.email }}</div>
+                        </div>
+
+                        <!-- Nationality is not standard, using custom field or omitting -->
+                        <!-- 
+                        <div class="detail-item">
+                            <div class="detail-label">Nationality</div>
+                            <div class="detail-value">American</div>
+                        </div> 
+                        -->
+
+                        {% if resume.linkedin_url %}
+                        <div class="detail-item">
+                            <div class="detail-label">LinkedIn</div>
+                            <div class="detail-value"><a href="{{ resume.linkedin_url }}"
+                                    style="color:inherit; text-decoration:none;">{{ resume.linkedin_url }}</a></div>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- SKILLS -->
+                    {% if resume.skills %}
+                    <div class="section">
+                        <div class="section-title">Skills</div>
+                        {% for skill in resume.skills %}
+                        <div class="skill-item">
+                            <div class="skill-name">{{ skill.skill }}</div>
+                            <div class="skill-bar-bg">
+                                <!-- Random width for visual effect or fixed if no data -->
+                                <div class="skill-bar-fill" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <!-- LANGUAGES -->
+                    {% if resume.languages %}
+                    <div class="section">
+                        <div class="section-title">Languages</div>
+                        {% for lang in resume.languages %}
+                        <div class="skill-item">
+                            <div class="skill-name">{{ lang.language }}</div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill"
+                                    style="width: {% if lang.proficiency == 'Native' %}100%{% elif lang.proficiency == 'Fluent' %}90%{% else %}70%{% endif %};">
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                </td>
+
+                <!-- RIGHT COLUMN -->
+                <td class="col-right">
+
+                    <!-- PROFILE -->
+                    {% if resume.summary %}
+                    <div class="section">
+                        <div class="section-title">Profile</div>
+                        <div class="profile-text">
+                            {{ resume.summary }}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- EMPLOYMENT HISTORY -->
+                    {% if resume.experiences %}
+                    <div class="section">
+                        <div class="section-title">Employment History</div>
+                        {% for exp in resume.experiences %}
+                        <div class="experience-item">
+                            <div class="clearfix">
+                                <span class="job-title">{{ exp.title }}, {{ exp.company }}</span>
+                                <span class="job-location">{{ exp.location }}</span>
+                            </div>
+                            <div class="job-date">{{ exp.duration }}</div>
+                            <div class="job-description">
+                                <p>{{ exp.description }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <!-- EDUCATION -->
+                    {% if resume.educations %}
+                    <div class="section">
+                        <div class="section-title">Education</div>
+                        {% for edu in resume.educations %}
+                        <div class="education-item">
+                            <div class="job-title">{{ edu.degree }}, {{ edu.school }}</div>
+                            <div class="job-location">{{ edu.location }}</div> <!-- Assuming location exists or omit -->
+                            <div class="job-date">{{ edu.year }}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <!-- PROJECTS (Optional, if space permits) -->
+                    {% if resume.projects %}
+                    <div class="section">
+                        <div class="section-title">Projects</div>
+                        {% for proj in resume.projects %}
+                        <div class="experience-item">
+                            <div class="job-title">{{ proj.name }}</div>
+                            <div class="job-description">
+                                <p>{{ proj.description }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+
+</html>

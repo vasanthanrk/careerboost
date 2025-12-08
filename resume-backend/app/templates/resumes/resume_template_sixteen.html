@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Template Sixteen</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', Times, serif;
+            color: #333;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            font-size: 11px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 210mm;
+            /* A4 width */
+            margin: 0 auto;
+            background: #fff;
+            min-height: 297mm;
+            /* A4 height */
+        }
+
+        /* LAYOUT TABLE */
+        .layout-table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            min-height: 297mm;
+        }
+
+        .col-left {
+            width: 32%;
+            vertical-align: top;
+            padding: 40px 30px;
+            background-color: #10403B;
+            /* Dark Green */
+            color: #fff;
+            text-align: center;
+        }
+
+        .col-right {
+            width: 68%;
+            vertical-align: top;
+            padding: 40px 40px;
+            background-color: #fff;
+            color: #333;
+        }
+
+        /* LEFT COLUMN STYLES */
+        .profile-pic-container {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px auto;
+            border: 3px solid #fff;
+            background-color: #ccc;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .name {
+            font-size: 24px;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .role {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #A0C0B5;
+            /* Light Greenish Grey */
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            display: inline-block;
+        }
+
+        .sidebar-section {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .sidebar-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 15px;
+            font-family: 'Georgia', serif;
+        }
+
+        .contact-info {
+            font-size: 11px;
+            color: #E0E0E0;
+            line-height: 1.6;
+        }
+
+        .contact-info div {
+            margin-bottom: 5px;
+        }
+
+        .contact-info a {
+            color: #E0E0E0;
+            text-decoration: underline;
+        }
+
+        .skill-item {
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            font-size: 11px;
+            color: #fff;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .skill-bar-bg {
+            width: 100%;
+            height: 3px;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            background-color: #fff;
+        }
+
+        /* RIGHT COLUMN STYLES */
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+            font-family: 'Georgia', serif;
+        }
+
+        .profile-text {
+            font-size: 11px;
+            color: #444;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        .job-item {
+            margin-bottom: 25px;
+        }
+
+        .job-title {
+            font-weight: 700;
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 2px;
+        }
+
+        .job-date {
+            font-size: 9px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .job-description ul {
+            margin: 0;
+            padding-left: 15px;
+        }
+
+        .job-description li {
+            margin-bottom: 4px;
+            color: #444;
+            font-size: 11px;
+        }
+
+        .edu-item {
+            margin-bottom: 20px;
+        }
+
+        .edu-degree {
+            font-weight: 700;
+            font-size: 12px;
+            color: #333;
+        }
+
+        .edu-details {
+            font-size: 9px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        .edu-honors {
+            font-size: 11px;
+            color: #444;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .ref-item {
+            margin-bottom: 15px;
+        }
+
+        .ref-name {
+            font-weight: 700;
+            font-size: 12px;
+            color: #333;
+        }
+
+        .ref-details {
+            font-size: 11px;
+            color: #444;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <table class="layout-table">
+            <tr>
+                <!-- LEFT COLUMN -->
+                <td class="col-left">
+                    <!-- PROFILE PIC -->
+                    <div class="profile-pic-container">
+                        {% if resume.profile_pic %}
+                        <img src="{{ resume.profile_pic }}" alt="Profile" class="profile-pic">
+                        {% else %}
+                        <!-- Placeholder if no image -->
+                        <div style="width:100%; height:100%; background:#ccc;"></div>
+                        {% endif %}
+                    </div>
+
+                    <div class="name">{{ resume.name }}</div>
+                    {% if resume.role %}
+                    <div class="role">{{ resume.role }}</div>
+                    {% endif %}
+
+                    <!-- DETAILS -->
+                    <div class="sidebar-section">
+                        <div class="sidebar-title">Details</div>
+                        <div class="contact-info">
+                            {% if resume.location %}
+                            <div>{{ resume.location }}</div>
+                            {% endif %}
+                            {% if resume.phone %}
+                            <div>{{ resume.phone }}</div>
+                            {% endif %}
+                            {% if resume.email %}
+                            <div><a href="mailto:{{ resume.email }}">{{ resume.email }}</a></div>
+                            {% endif %}
+                            {% if resume.linkedin_url %}
+                            <div><a href="{{ resume.linkedin_url }}">LinkedIn Profile</a></div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- SKILLS -->
+                    {% if resume.skills %}
+                    <div class="sidebar-section">
+                        <div class="sidebar-title">Skills</div>
+                        {% for skill in resume.skills %}
+                        <div class="skill-item">
+                            <span class="skill-name">{{ skill.skill }}</span>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <!-- LANGUAGES -->
+                    {% if resume.languages %}
+                    <div class="sidebar-section">
+                        <div class="sidebar-title">Languages</div>
+                        {% for lang in resume.languages %}
+                        <div class="skill-item">
+                            <span class="skill-name">{{ lang.language }}</span>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill"
+                                    style="width: {% if lang.proficiency == 'Native' %}100%{% elif lang.proficiency == 'Fluent' %}90%{% else %}70%{% endif %};">
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </td>
+
+                <!-- RIGHT COLUMN -->
+                <td class="col-right">
+
+                    <!-- PROFILE -->
+                    {% if resume.summary %}
+                    <div class="section">
+                        <div class="section-title">Profile</div>
+                        <div class="profile-text">
+                            {{ resume.summary }}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- EMPLOYMENT HISTORY -->
+                    {% if resume.experiences %}
+                    <div class="section">
+                        <div class="section-title">Employment History</div>
+                        {% for exp in resume.experiences %}
+                        <div class="job-item">
+                            <div class="job-title">{{ exp.title }}, {{ exp.company }}</div>
+                            <div class="job-date">{{ exp.duration }}</div>
+                            <div class="job-description">
+                                <p>{{ exp.description }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <!-- EDUCATION -->
+                    {% if resume.educations %}
+                    <div class="section">
+                        <div class="section-title">Education</div>
+                        {% for edu in resume.educations %}
+                        <div class="edu-item">
+                            <div class="edu-degree">{{ edu.degree }}, {{ edu.school }}</div>
+                            <div class="edu-details">{{ edu.year }}</div>
+                            <!-- Placeholder for honors/details -->
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <!-- REFERENCES (Placeholder or if data exists) -->
+                    <!-- 
+                    <div class="section">
+                        <div class="section-title">References</div>
+                        <div class="ref-item">
+                            <div class="ref-name">Marissa Leeds from Gold Coast Hotel</div>
+                            <div class="ref-details">mleeds@goldcoast.com | 732-189-0909</div>
+                        </div>
+                    </div> 
+                    -->
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+
+</html>
