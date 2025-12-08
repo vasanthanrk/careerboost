@@ -20,7 +20,8 @@ class Settings(BaseSettings):
     MAIL_SERVER:str
     MAIL_TLS:str
     ADMIN_EMAIL:str
-
+    OPENAI_API_KEY:str
+    
     class Config:
         env_file = ".env"
 
