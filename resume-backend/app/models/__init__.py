@@ -12,7 +12,8 @@ from app.models.metrics import UserMetrics
 from app.models.user_feedback import UserFeedback
 from app.models.feature_request import FeatureRequest
 from app.models.ats import ATSResult
+from app.models.visitor_log import VisitorLog
 
 __all__ = [
-    "User", "UserMetrics", "UserFeedback", "FeatureRequest", "ATSResult", "Resume", "Portfolio", "PortfolioPersonal", "PortfolioExperience", "PortfolioSkill", "PortfolioProject", "CoverLetter", "JobFitAnalysis", "LinkedInProfile", "Subscription", "UserActivity", "Notification", "PrivacySetting"
+    "User", "UserMetrics", "UserFeedback", "FeatureRequest", "ATSResult", "Resume", "Portfolio", "PortfolioPersonal", "PortfolioExperience", "PortfolioSkill", "PortfolioProject", "CoverLetter", "JobFitAnalysis", "LinkedInProfile", "Subscription", "UserActivity", "Notification", "PrivacySetting", "VisitorLog"
 ]

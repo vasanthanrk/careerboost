@@ -26,9 +26,9 @@ router = APIRouter()
 genai.configure(api_key=settings.GEMINI_API_KEY)
 
 # Dir for resume HTML templates
-TEMPLATES_DIR = os.getenv("RESUME_TEMPLATES_DIR", "./templates/resume_templates")
+TEMPLATES_DIR = "./templates/resume_templates"
 # Dir to store generated PDFs (optional)
-OUTPUT_PDF_DIR = os.getenv("ATSSAVE_DIR", "./generated_pdfs")
+OUTPUT_PDF_DIR = "./generated_pdfs"
 os.makedirs(OUTPUT_PDF_DIR, exist_ok=True)
 
 jinja_env = Environment(
