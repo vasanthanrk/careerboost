@@ -1,33 +1,21 @@
 import { useEffect, useState, useRef } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
-import { Badge } from "./ui/badge";
-import { Progress } from "./ui/progress";
 import "../styles/flip.css";
-import { Dialog, DialogContent } from "./ui/dialog";
 import {
   FileText,
   Mail,
   Target,
   Linkedin,
-  Briefcase,
-  Sparkles,
   ArrowRight,
   Check,
-  Zap,
   Users,
   TrendingUp,
   Shield,
   CheckCircle2,
-  Upload,
-  BarChart3,
-  AlertCircle,
-  Download,
-  Eye,
-  Scan,
   ChevronLeft,
   ChevronRight,
-  ZoomIn,
   X
 } from "lucide-react";
 import { ImageWithFallback } from './figma/ImageWithFallback';
@@ -44,6 +32,7 @@ interface Template {
 }
 
 export function LandingPageOne() {
+  const navigate = useNavigate();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -151,6 +140,10 @@ export function LandingPageOne() {
 
       setTimeout(checkScrollPosition, 300);
     }
+  };
+
+  const handleSelectTemplate = (templateId: string, category: string) => {
+    navigate(`/resume-builder?template=${templateId}&category=${category}`);
   };
 
   return (
@@ -408,11 +401,11 @@ export function LandingPageOne() {
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <Link to="/resume-templates">
-                        <Button className="cursor-pointer bg-violet-600 hover:bg-violet-700 text-white rounded-full px-6 py-2 shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 font-medium">
-                          Use Template
-                        </Button>
-                      </Link>
+                    <Button 
+                    onClick={() => handleSelectTemplate(template.id, template.category)}
+                    className="cursor-pointer bg-violet-600 hover:bg-violet-700 text-white rounded-full px-6 py-2 shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 font-medium">
+                      Use Template
+                    </Button>
                     </div>
                   </div>
                 </div>

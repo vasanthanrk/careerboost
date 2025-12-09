@@ -192,7 +192,11 @@ export function ResumeEditor() {
       const res = await api.post('/resume', cleanData);
       setResumeData(res.data);
       toast.success('Resume saved successfully!');
-      setIsOpen(true)
+      if(selectedTemplate == null ){
+        setIsOpen(true);
+      } else {
+        handlePreview();
+      }
     } catch (err: any) {
       toast.error('Error saving resume');
     } finally {
@@ -225,12 +229,13 @@ export function ResumeEditor() {
   };
 
   const handlePreview = async () => {
-    if (!selectedTemplate) {
+    if (selectedTemplate == null) {
       toast.error("Please select a template first");
       return;
     }
 
     setPreviewInProcess(true);
+    setShowPreview(true);
 
     const res = await api.get(`/resume/preview/${selectedTemplate}`);
     const base64 = res.data.pdf;
@@ -246,7 +251,6 @@ export function ResumeEditor() {
 
     setPreviewPdf(bytes);
     setIsOpen(false);
-    setShowPreview(true);
     setPreviewInProcess(false);
   };
 
@@ -455,21 +459,28 @@ export function ResumeEditor() {
           <div className="relative">
             {/* Disable Right Click / Print */}
             <div onContextMenu={(e) => e.preventDefault()} className="select-none">
-              {previewPdf ? (
+              {!previewInProcess ? (
                 <MinimalPdfViewer pdfData={previewPdf} />
               ) : (
-                <p>Loading preview...</p>
+                <p className='text-center'>Loading preview...</p>
               )}
             </div>
-
-            <div className="p-4 border-t flex justify-end gap-3 bg-white">
-              <Button variant="outline" onClick={() => { setShowPreview(false); setIsOpen(true); }}>
-                Close
-              </Button>
-              <Button className="bg-violet-600 hover:bg-violet-700" onClick={handleDownload}>
-                {downloadInProcess ? 'download in progress...' : 'Download PDF'}
-              </Button>
-            </div>
+            {
+              resumeData?.premium_template ? (
+                <div className="p-4 border-t flex justify-end gap-3 bg-white">
+                  <Button className="bg-violet-600 hover:bg-violet-700" onClick={() => { setShowPreview(false); setActiveFeature("resume_download"); setShowLimitPopup(true) }}>
+                    {downloadInProcess ? 'download in progress...' : 'Enquire'}
+                  </Button>
+                </div>
+              ) : (
+                <div className="p-4 border-t flex justify-end gap-3 bg-white">
+                  <Button className="bg-violet-600 hover:bg-violet-700" onClick={handleDownload}>
+                    {downloadInProcess ? 'download in progress...' : 'Download PDF'}
+                  </Button>
+                </div>
+              )
+            }
+            
           </div>
         </DialogContent>
       </Dialog>
@@ -1114,13 +1125,9 @@ export function ResumeEditor() {
 
             {/* Action Buttons */}
             <div className="flex gap-3">
-              {/* <Button onClick={handleSave} variant="outline" className="flex-1">
-                <Save className="w-4 h-4 mr-2" />
-                {isSaving ? 'Saving...' : 'Save Resume'}
-              </Button> */}
               <Button onClick={handleSave} className="flex-1 bg-violet-600 hover:bg-violet-700">
                 <Download className="w-4 h-4 mr-2" />
-                {isSaving ? 'Saving...' : 'Save and Select Template'}
+                {isSaving ? 'Saving...' : selectedTemplate == null? 'Save and Select Template' : 'Save and Preview Template'}
               </Button>
             </div>
           </div>) : null}

@@ -120,7 +120,7 @@ export function ResumeTemplateSelector() {
 
                     {/* Template Info */}
                     <div className="p-4 flex justify-center items-center">
-                      {template.tier === "free" ? (
+                      {/* {template.tier === "free" ? ( */}
                         <Button
                           onClick={() => handleSelectTemplate(template.id)}
                           variant="outline"
@@ -128,7 +128,7 @@ export function ResumeTemplateSelector() {
                         >
                           Use Template
                         </Button>
-                      ) : null}
+                      {/* ) : null} */}
 
                     </div>
                   </Card>
