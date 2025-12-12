@@ -4,10 +4,15 @@ from starlette.middleware.base import BaseHTTPMiddleware
 
 from app.core.database import SessionLocal
 from app.models import VisitorLog
-
+import platform
 from geoip2.database import Reader
 
-geo_reader = Reader("/opt/geoip/GeoLite2-City.mmdb")
+os_type = platform.system()
+print(os_type)
+if os_type == "Linux":
+    geo_reader = Reader("/opt/geoip/GeoLite2-City.mmdb")
+elif os_type == "Windows":
+    geo_reader = Reader("app/geoip/GeoLite2-City.mmdb")
 
 class TrackingMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
