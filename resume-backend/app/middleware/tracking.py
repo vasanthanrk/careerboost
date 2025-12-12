@@ -4,15 +4,41 @@ from starlette.middleware.base import BaseHTTPMiddleware
 
 from app.core.database import SessionLocal
 from app.models import VisitorLog
-import platform
 from geoip2.database import Reader
+import os
+# import platform
+# os_type = platform.system()
+# print(os_type)
+# if os_type == "Linux":
+#     geo_reader = Reader("/opt/geoip/GeoLite2-City.mmdb")
+# elif os_type == "Windows":
+#     geo_reader = Reader("app/geoip/GeoLite2-City.mmdb")
 
-os_type = platform.system()
-print(os_type)
-if os_type == "Linux":
-    geo_reader = Reader("/opt/geoip/GeoLite2-City.mmdb")
-elif os_type == "Windows":
-    geo_reader = Reader("app/geoip/GeoLite2-City.mmdb")
+def load_geoip_reader():
+    """
+    Load GeoIP database safely on Windows, Linux, and Docker.
+    Returns None if GeoIP is not available.
+    """
+
+    possible_paths = [
+        "/opt/geoip/GeoLite2-City.mmdb",           # Linux / Docker path
+        "app/geoip/GeoLite2-City.mmdb",            # App folder (Windows & dev)
+        "./geoip/GeoLite2-City.mmdb",              # Relative local folder
+    ]
+
+    for path in possible_paths:
+        if os.path.exists(path):
+            try:
+                print(f"🌍 Using GeoLite2 database: {path}")
+                return Reader(path)
+            except Exception as e:
+                print(f"⚠ Could not load GeoIP DB at {path}: {e}")
+
+    print("⚠ GeoIP database not found. Geo tracking disabled.")
+    return None
+
+
+geo_reader = load_geoip_reader()
 
 class TrackingMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
